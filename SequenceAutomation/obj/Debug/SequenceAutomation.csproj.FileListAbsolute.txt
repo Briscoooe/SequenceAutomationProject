@@ -8,3 +8,6 @@ C:\Users\Brian\documents\visual studio 2015\Projects\SequenceAutomation\Sequence
 C:\Users\Brian\documents\visual studio 2015\Projects\SequenceAutomation\SequenceAutomation\obj\Debug\SequenceAutomation.csproj.GenerateResource.Cache
 C:\Users\Brian\documents\visual studio 2015\Projects\SequenceAutomation\SequenceAutomation\obj\Debug\SequenceAutomation.exe
 C:\Users\Brian\documents\visual studio 2015\Projects\SequenceAutomation\SequenceAutomation\obj\Debug\SequenceAutomation.pdb
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\bin\Debug\SequenceAutomation.exe.config
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.exe
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.pdb
