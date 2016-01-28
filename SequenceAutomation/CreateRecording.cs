@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json.Serialization;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace SequenceAutomation
 {
@@ -15,6 +16,8 @@ namespace SequenceAutomation
         public delegate IntPtr HookDelegate(int Code, IntPtr wParam, IntPtr lParam);
 
         public RecordingManager recManager;
+        public ContextManager contxtManager = new ContextManager();
+        private Dictionary<IntPtr, string> context;
 
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
@@ -83,6 +86,13 @@ namespace SequenceAutomation
                 long time = watch.ElapsedMilliseconds; //Number of milliseconds elapsed since we called the Start() method
                 int vkCode = Marshal.ReadInt32(lParam); //We read the value associated with the pointer (?)
                 Keys key = (Keys)vkCode; //We convert the int to the Keys type
+                if(key.ToString() == "Return" && wParam.ToString() == "256")
+                {
+                    Console.WriteLine("Enter key pressed");
+                    context = contxtManager.GetOpenWindows();
+                    string json = JsonConvert.SerializeObject(context, Formatting.Indented);
+                    Console.WriteLine(json);
+                }
                 if (!savedKeys.ContainsKey(time))
                 {
                     // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionnary

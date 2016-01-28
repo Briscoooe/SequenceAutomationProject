@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextManager.cs" />
     <Compile Include="CreateRecording.cs" />
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="MainInterface.cs">
