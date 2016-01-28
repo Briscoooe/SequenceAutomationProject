@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json.Serialization;
 using System.Windows.Forms;
 
 namespace SequenceAutomation
@@ -11,6 +13,8 @@ namespace SequenceAutomation
     class CreateRecording
     {
         public delegate IntPtr HookDelegate(int Code, IntPtr wParam, IntPtr lParam);
+
+        public RecordingManager recManager;
 
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
@@ -58,6 +62,8 @@ namespace SequenceAutomation
             Console.WriteLine("stopped");
             watch.Stop(); // Stops the timer
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
+            recManager = new RecordingManager(savedKeys);
+            recManager.toJson();
             return savedKeys;
         }
 

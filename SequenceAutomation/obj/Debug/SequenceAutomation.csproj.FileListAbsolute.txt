@@ -18,3 +18,5 @@ C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\Sequence
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.Properties.Resources.resources
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.csproj.GenerateResource.Cache
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.MainInterface.resources
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\bin\Debug\Newtonsoft.Json.xml
