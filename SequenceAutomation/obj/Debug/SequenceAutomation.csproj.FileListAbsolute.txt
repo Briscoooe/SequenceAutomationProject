@@ -15,6 +15,6 @@ C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\Sequence
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\bin\Debug\SequenceAutomation.pdb
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\bin\Debug\MySql.Data.dll
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.csprojResolveAssemblyReference.cache
-C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.Form1.resources
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.Properties.Resources.resources
 C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.csproj.GenerateResource.Cache
+C:\Users\Brian\Documents\Visual Studio 2015\Projects\SequenceAutomation\SequenceAutomationProject\SequenceAutomation\obj\Debug\SequenceAutomation.MainInterface.resources
