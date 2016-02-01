@@ -66,7 +66,6 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<Keys, IntPtr>> Stop()
         {
             watch.Stop(); // Stops the timer
-            watch = null;
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
             recManager = new RecordingManager(savedKeys);
             recManager.toJson();
@@ -90,8 +89,8 @@ namespace SequenceAutomation
                 if(key.ToString() == "Return" && wParam.ToString() == "256")
                 {
                     Console.WriteLine("Enter key pressed");
-                    context = contxtManager.GetOpenWindows();
-                    string json = JsonConvert.SerializeObject(context, Formatting.Indented);
+                    contxtManager.GetOpenWindows(time);
+                    string json = JsonConvert.SerializeObject(contxtManager, Formatting.Indented);
                     Console.WriteLine(json);
                 }
                 if (!savedKeys.ContainsKey(time))
@@ -99,9 +98,10 @@ namespace SequenceAutomation
                     // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionary
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
+                /*
                 Console.WriteLine("key: {0}", key.ToString());
                 Console.WriteLine("wParam: {0}", wParam.ToString());
-                Console.WriteLine("time: {0}", time.ToString());
+                Console.WriteLine("time: {0}", time.ToString());*/
                 savedKeys[time].Add(key, wParam); //Saves the key and the activity
             }
             return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam); //Bubbles the informations for others applications using similar hooks

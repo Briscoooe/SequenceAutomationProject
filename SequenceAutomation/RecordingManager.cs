@@ -24,10 +24,14 @@ namespace SequenceAutomation
             savedKeys = savedKeysPassed;
         }
 
+        public void addToJson()
+        {
+
+        }
         public void toJson()
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            Console.WriteLine(json);
+            Console.WriteLine("\nCompleted keys JSON: {0}", json);
         }
     }
 }

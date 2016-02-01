@@ -53,6 +53,7 @@ namespace SequenceAutomation
             startButton.Click += launchRecording;
             startButton.Click -= stopRecording;
             Dictionary<long, Dictionary<Keys, IntPtr>> keys = createRec.Stop(); //Gets the recorded keys
+            Console.WriteLine("\nCompleted list of keys");
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> keyVal in keys)
             {
                 foreach (KeyValuePair<Keys, IntPtr> keyVal2 in keyVal.Value)
@@ -68,7 +69,7 @@ namespace SequenceAutomation
                     }
                 }
             }
-            this.playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
+            playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
         }
 
         /*
@@ -77,7 +78,7 @@ namespace SequenceAutomation
          */
         private void launchPlaying(object sender, EventArgs e)
         {
-            this.playRec.Start(); //Starts to play the keys.
+            playRec.Start(); //Starts to play the keys.
         }
 
 

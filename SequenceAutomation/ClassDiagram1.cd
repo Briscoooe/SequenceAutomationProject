@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SequenceAutomation.CreateRecording">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="SequenceAutomation.CreateRecording" Collapsed="true">
+    <Position X="4.25" Y="1" Width="1.5" />
     <NestedTypes>
       <Delegate Name="SequenceAutomation.CreateRecording.HookDelegate" Collapsed="true">
         <TypeIdentifier>
@@ -14,5 +14,94 @@
       <FileName>CreateRecording.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="SequenceAutomation.ContextManager" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAQgAAAQAAACgAAAAAAAAAAgAAA=</HashCode>
+      <FileName>ContextManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.DatabaseManager" Collapsed="true">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAhEAAEAAAEABAAAAAAQkEgAAAEKBAAAAAA=</HashCode>
+      <FileName>DatabaseManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.MainInterface" Collapsed="true">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAABAAAgASBQAACAAAAAAKAACAACAAAAAA=</HashCode>
+      <FileName>MainInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.PlayRecording" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgABAiCAAAAAAAJAAAAAAIAAAEQCAIAAAAAAAAAA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.Program" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.RecordingManager" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAkIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecordingManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.Properties.Resources" Collapsed="true">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.Properties.Settings" Collapsed="true">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SequenceAutomation.MOUSEINPUT" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAYQA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SequenceAutomation.HARDWAREINPUT" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SequenceAutomation.KEYBDINPUT" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SequenceAutomation.MOUSEKEYBDHARDWAREINPUT" Collapsed="true">
+    <Position X="6" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SequenceAutomation.INPUT" Collapsed="true">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAA=</HashCode>
+      <FileName>PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

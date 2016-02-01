@@ -9,6 +9,8 @@ namespace SequenceAutomation
 {
     class ContextManager
     {
+        public long time;
+        public Dictionary<IntPtr, string> openWindows;
         public ContextManager() { }
 
         public void getContext()
@@ -18,8 +20,9 @@ namespace SequenceAutomation
 
         /// <summary>Returns a dictionary that contains the handle and title of all the open windows.</summary>
         /// <returns>A dictionary that contains the handle and title of all the open windows.</returns>
-        public Dictionary<IntPtr, string> GetOpenWindows()
+        public void GetOpenWindows(long timePassed)
         {
+            time = timePassed;
             IntPtr shellWindow = GetShellWindow();
             Dictionary<IntPtr, string> windows = new Dictionary<IntPtr, string>();
 
@@ -39,7 +42,7 @@ namespace SequenceAutomation
 
             }, 0);
 
-            return windows;
+            openWindows = windows;
         }
 
         private delegate bool EnumWindowsProc(IntPtr hWnd, int lParam);
