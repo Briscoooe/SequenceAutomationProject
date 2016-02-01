@@ -25,8 +25,6 @@ namespace SequenceAutomation
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Recorded keys activity, indexed by the millisecond the have been pressed. The activity is indexed by the concerned key ("Keys" type) and is associated with the activity code (0x0101 for "key up", 0x0100 for "key down").
         private IntPtr hookId; // Hook used to listen to the keyboard
 
-        //private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam); // Imported type : LowLevelKeyboardProc. Now we can use this type.*/
-
         /*
          * Constructor 
          */
@@ -36,10 +34,15 @@ namespace SequenceAutomation
             watch = new Stopwatch();
         }
 
+        public void Reset()
+        {
+            watch.Restart();
+            savedKeys.Clear();
+        }
+
         /*
          * method Start()
          * Description : starts to save the keyboard inputs.
-         * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms644990%28v=vs.85%29.aspx
          */
 
         public void Start()
@@ -62,8 +65,8 @@ namespace SequenceAutomation
          */
         public Dictionary<long, Dictionary<Keys, IntPtr>> Stop()
         {
-            Console.WriteLine("stopped");
             watch.Stop(); // Stops the timer
+            watch = null;
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
             recManager = new RecordingManager(savedKeys);
             recManager.toJson();
@@ -76,8 +79,6 @@ namespace SequenceAutomation
          * @nCode : Validity code. If >= 0, we can use the information, otherwise we have to let it.
          * @wParam : Activity that have been detected (keyup or keydown). Must be compared to KeysSaver.KEYUP and KeysSaver.KEYDOWN to see what activity it is.
          * @lParam : (once read and casted) Key of the keyboard that have been triggered.
-         * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms644985%28v=vs.85%29.aspx (for this function documentation)
-         * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms644974%28v=vs.85%29.aspx (for CallNextHookEx documentation)
          */
         private IntPtr onActivity(int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -95,9 +96,12 @@ namespace SequenceAutomation
                 }
                 if (!savedKeys.ContainsKey(time))
                 {
-                    // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionnary
+                    // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionary
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
+                Console.WriteLine("key: {0}", key.ToString());
+                Console.WriteLine("wParam: {0}", wParam.ToString());
+                Console.WriteLine("time: {0}", time.ToString());
                 savedKeys[time].Add(key, wParam); //Saves the key and the activity
             }
             return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam); //Bubbles the informations for others applications using similar hooks

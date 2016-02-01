@@ -25,7 +25,6 @@ namespace SequenceAutomation
         public MainInterface()
         {
             InitializeComponent();
-            this.createRec = new CreateRecording();
         }
 
         /*
@@ -34,6 +33,9 @@ namespace SequenceAutomation
          */
         private void launchRecording(object sender, EventArgs e)
         {
+            createRec = null; // Reinitialise the createRec instance 
+            createRec = new CreateRecording();
+            createRec.Reset(); // Reinitialises the stopwatch and savedKeys 
             createRec.Start(); //Starts to save the keys
             startButton.Text = "Stop"; //Updates the button
             startButton.Click -= launchRecording;
