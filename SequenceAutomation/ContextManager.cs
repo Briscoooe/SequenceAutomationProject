@@ -10,7 +10,7 @@ namespace SequenceAutomation
     class ContextManager
     {
         //public long time;
-        public Dictionary<IntPtr, string> openWindows;
+        //public Dictionary<IntPtr, string> openWindows;
         //public Dictionary<long, Dictionary<IntPtr, string>> openWindows;
         public ContextManager() { }
 
@@ -25,7 +25,6 @@ namespace SequenceAutomation
         public Dictionary<IntPtr, string> GetOpenWindows()
         {
             IntPtr shellWindow = GetShellWindow();
-            //Dictionary<long, Dictionary<IntPtr, string>> windows = new Dictionary<long, Dictionary<IntPtr, string>>();
             Dictionary <IntPtr, string> windows = new Dictionary<IntPtr, string>();
 
             EnumWindows(delegate (IntPtr hWnd, int lParam)

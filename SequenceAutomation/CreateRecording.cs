@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json.Serialization;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SequenceAutomation
 {
@@ -69,7 +70,7 @@ namespace SequenceAutomation
         {
             watch.Stop(); // Stops the timer
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
-            recManager = new RecordingManager(savedKeys);
+            recManager = new RecordingManager(savedKeys, contextDict);
             keysJson = recManager.toJson();
             return savedKeys;
         }

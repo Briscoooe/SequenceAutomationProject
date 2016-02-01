@@ -53,11 +53,12 @@ namespace SequenceAutomation
             startButton.Click += launchRecording;
             startButton.Click -= stopRecording;
             Dictionary<long, Dictionary<Keys, IntPtr>> keys = createRec.Stop(); //Gets the recorded keys
-            Console.WriteLine("\nCompleted list of keys");
+            //Console.WriteLine("\nCompleted list of keys");
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> keyVal in keys)
             {
                 foreach (KeyValuePair<Keys, IntPtr> keyVal2 in keyVal.Value)
                 {
+                    /*
                     //Displays the recorded keys in the console
                     if (keyVal2.Value == CreateRecording.KEYDOWN)
                     {
@@ -66,7 +67,7 @@ namespace SequenceAutomation
                     if (keyVal2.Value == CreateRecording.KEYUP)
                     {
                         Console.WriteLine(keyVal.Key + " : (up)" + keyVal2.Key);
-                    }
+                    }*/
                 }
             }
             playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.

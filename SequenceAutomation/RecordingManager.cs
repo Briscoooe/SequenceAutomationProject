@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SequenceAutomation
 {
@@ -15,13 +16,16 @@ namespace SequenceAutomation
     {
         public string name;
         public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys;
+        public Dictionary<long, Dictionary<IntPtr, string>> context;
         JavaScriptSerializer serializer = new JavaScriptSerializer();
 
         public RecordingManager() { }
 
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeysPassed)
+        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeysPassed, 
+                                Dictionary<long, Dictionary<IntPtr, string>> contextPassed)
         {
             savedKeys = savedKeysPassed;
+            context = contextPassed;
         }
 
         public void addToJson()
@@ -30,9 +34,13 @@ namespace SequenceAutomation
         }
         public string toJson()
         {
-            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            Console.WriteLine("\nCompleted keys JSON: {0}", json);
-            return json;
+            string keysJson = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
+            string contextJson = JsonConvert.SerializeObject(context, Formatting.Indented);
+            JObject o1 = JObject.Parse(keysJson);
+            JObject o2 = JObject.Parse(contextJson);
+            o1.Merge(o2, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
+            Console.WriteLine("\nMerged JSON Object: {0}", o1.ToString());
+            return o1.ToString();
         }
     }
 }
