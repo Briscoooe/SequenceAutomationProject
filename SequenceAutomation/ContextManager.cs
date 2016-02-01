@@ -9,8 +9,9 @@ namespace SequenceAutomation
 {
     class ContextManager
     {
-        public long time;
+        //public long time;
         public Dictionary<IntPtr, string> openWindows;
+        //public Dictionary<long, Dictionary<IntPtr, string>> openWindows;
         public ContextManager() { }
 
         public void getContext()
@@ -18,13 +19,14 @@ namespace SequenceAutomation
             
         }
 
+        /// References http://www.tcx.be/blog/2006/list-open-windows/
         /// <summary>Returns a dictionary that contains the handle and title of all the open windows.</summary>
         /// <returns>A dictionary that contains the handle and title of all the open windows.</returns>
-        public void GetOpenWindows(long timePassed)
+        public Dictionary<IntPtr, string> GetOpenWindows()
         {
-            time = timePassed;
             IntPtr shellWindow = GetShellWindow();
-            Dictionary<IntPtr, string> windows = new Dictionary<IntPtr, string>();
+            //Dictionary<long, Dictionary<IntPtr, string>> windows = new Dictionary<long, Dictionary<IntPtr, string>>();
+            Dictionary <IntPtr, string> windows = new Dictionary<IntPtr, string>();
 
             EnumWindows(delegate (IntPtr hWnd, int lParam)
             {
@@ -38,11 +40,12 @@ namespace SequenceAutomation
                 GetWindowText(hWnd, builder, length + 1);
 
                 windows[hWnd] = builder.ToString();
+
                 return true;
 
             }, 0);
 
-            openWindows = windows;
+            return windows;
         }
 
         private delegate bool EnumWindowsProc(IntPtr hWnd, int lParam);

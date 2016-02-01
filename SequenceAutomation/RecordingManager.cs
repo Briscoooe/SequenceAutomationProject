@@ -28,10 +28,11 @@ namespace SequenceAutomation
         {
 
         }
-        public void toJson()
+        public string toJson()
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
             Console.WriteLine("\nCompleted keys JSON: {0}", json);
+            return json;
         }
     }
 }

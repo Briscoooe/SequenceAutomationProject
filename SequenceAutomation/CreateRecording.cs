@@ -16,8 +16,9 @@ namespace SequenceAutomation
         public delegate IntPtr HookDelegate(int Code, IntPtr wParam, IntPtr lParam);
 
         public RecordingManager recManager;
+        public string contextJson, keysJson;
         public ContextManager contxtManager = new ContextManager();
-        private Dictionary<IntPtr, string> context;
+        private Dictionary<long, Dictionary<IntPtr, string>> contextDict;
 
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
@@ -31,6 +32,7 @@ namespace SequenceAutomation
         public CreateRecording()
         {
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
+            contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
         }
 
@@ -68,7 +70,7 @@ namespace SequenceAutomation
             watch.Stop(); // Stops the timer
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
             recManager = new RecordingManager(savedKeys);
-            recManager.toJson();
+            keysJson = recManager.toJson();
             return savedKeys;
         }
 
@@ -88,10 +90,21 @@ namespace SequenceAutomation
                 Keys key = (Keys)vkCode; //We convert the int to the Keys type
                 if(key.ToString() == "Return" && wParam.ToString() == "256")
                 {
-                    Console.WriteLine("Enter key pressed");
-                    contxtManager.GetOpenWindows(time);
-                    string json = JsonConvert.SerializeObject(contxtManager, Formatting.Indented);
-                    Console.WriteLine(json);
+                    foreach (KeyValuePair<IntPtr, string> window in contxtManager.GetOpenWindows())
+                    {
+                        IntPtr handle = window.Key;
+                        string title = window.Value;
+
+                        if(!contextDict.ContainsKey(time))
+                        {
+                            contextDict.Add(time, new Dictionary<IntPtr, string>());
+                        }
+
+                        contextDict[time].Add(handle, title);
+
+                    }
+                    contextJson = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
+                    Console.WriteLine("contextManager object: {0}", contextJson);
                 }
                 if (!savedKeys.ContainsKey(time))
                 {
