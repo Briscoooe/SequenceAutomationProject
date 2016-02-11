@@ -19,6 +19,7 @@ namespace SequenceAutomation
     {
         private CreateRecording createRec;
         private PlayRecording playRec;
+        private Dictionary<long, Dictionary<Keys, IntPtr>> keys;
         private bool isPressed = false;
 
         //Initialisation 
@@ -52,7 +53,7 @@ namespace SequenceAutomation
             startButton.Text = "Record";//Updates the button
             startButton.Click += launchRecording;
             startButton.Click -= stopRecording;
-            Dictionary<long, Dictionary<Keys, IntPtr>> keys = createRec.Stop(); //Gets the recorded keys
+            keys = createRec.Stop(); //Gets the recorded keys
             //Console.WriteLine("\nCompleted list of keys");
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> keyVal in keys)
             {
@@ -70,7 +71,8 @@ namespace SequenceAutomation
                     }*/
                 }
             }
-            playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
+            string mergedJson = createRec.getJson();
+            outputBox.Text = mergedJson;
         }
 
         /*
@@ -79,6 +81,8 @@ namespace SequenceAutomation
          */
         private void launchPlaying(object sender, EventArgs e)
         {
+            playRec = null;
+            playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
             playRec.Start(); //Starts to play the keys.
         }
 

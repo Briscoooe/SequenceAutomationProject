@@ -36,8 +36,16 @@ namespace SequenceAutomation
         {
             string keysJson = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
             string contextJson = JsonConvert.SerializeObject(context, Formatting.Indented);
+            Console.WriteLine("\nKeys JSON string: {0}", keysJson);
+            Console.WriteLine("\nContext JSON string: {0}", contextJson);
             JObject o1 = JObject.Parse(keysJson);
             JObject o2 = JObject.Parse(contextJson);
+
+            // Loop through o2, remove windows ID, add open windows as parent and add all windows as children
+            // "window title" : { window title, window title }
+            // OR use "info" : "open windows" { window title, window title }
+
+            o2.Add("info", "open windows");
             o1.Merge(o2, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
             Console.WriteLine("\nMerged JSON Object: {0}", o1.ToString());
             return o1.ToString();

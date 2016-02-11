@@ -10,6 +10,7 @@ namespace SequenceAutomation
     class ContextManager
     {
         //public long time;
+        //public string openWindowsStr = "open windows";
         //public Dictionary<IntPtr, string> openWindows;
         //public Dictionary<long, Dictionary<IntPtr, string>> openWindows;
         public ContextManager() { }
