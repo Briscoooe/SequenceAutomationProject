@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
-using Newtonsoft.Json.Serialization;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /* 
  * http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
@@ -22,6 +16,8 @@ namespace SequenceAutomation
     {
         public delegate IntPtr HookDelegate(int Code, IntPtr keyActivity, IntPtr keyName);
 
+        private static HookDelegate hookProc;
+
         public RecordingManager recManager;
         public string contextJson, keysJson;
         public ContextManager contxtManager = new ContextManager();
@@ -29,6 +25,7 @@ namespace SequenceAutomation
 
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
+        public static int WH_KEYBOARD_LL = 13;
         private Stopwatch watch; // Timer used to trace at which millisecond each key have been pressed
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Recorded keys activity, indexed by the millisecond the have been pressed. The activity is indexed by the concerned key ("Keys" type) and is associated with the activity code (0x0101 for "key up", 0x0100 for "key down").
         private IntPtr hookId; // Hook used to listen to the keyboard
@@ -41,6 +38,7 @@ namespace SequenceAutomation
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
+            hookProc = new HookDelegate(onActivity);
         }
 
         public void Reset()
@@ -63,7 +61,7 @@ namespace SequenceAutomation
                 //'onActivity' being called at each activity. You can find this function in the actual thread (GetModuleHandle(curModule.ModuleName)), and you listen to the 
                 //keyboard activity of ALL the treads (code : 0)
 
-                hookId = SetWindowsHookEx(13, onActivity, GetModuleHandle(curModule.ModuleName), 0);
+                hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, GetModuleHandle(curModule.ModuleName), 0);
             }
             watch.Start(); // Starts the timer
         }
@@ -103,6 +101,7 @@ namespace SequenceAutomation
                 Keys key = (Keys)vkCode; //We convert the int to the Keys type
                 if(key.ToString() == "Return" && keyActivity.ToString() == "256")
                 {
+                    
                     foreach (KeyValuePair<IntPtr, string> window in contxtManager.GetOpenWindows())
                     {
                         IntPtr handle = window.Key;
@@ -144,7 +143,7 @@ namespace SequenceAutomation
         private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyName);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr GetModuleHandle(string windowTitle);
+        private static extern IntPtr GetModuleHandle(string handle);
 
     }
 }
