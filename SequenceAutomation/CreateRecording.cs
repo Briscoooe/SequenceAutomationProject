@@ -14,10 +14,10 @@ namespace SequenceAutomation
 {
     class CreateRecording
     {
-        delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyName);
+        #region Variable declarations
+        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyName);
 
-        public static int x;
-        private HookDelegate hookProc = null;
+        public HookDelegate callbackDelegate;
         public RecordingManager recManager;
         public string contextJson, keysJson;
         public ContextManager contxtManager = new ContextManager();
@@ -28,8 +28,11 @@ namespace SequenceAutomation
         public static int WH_KEYBOARD_LL = 13;
         private Stopwatch watch; // Timer used to trace at which millisecond each key have been pressed
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Recorded keys activity, indexed by the millisecond the have been pressed. The activity is indexed by the concerned key ("Keys" type) and is associated with the activity code (0x0101 for "key up", 0x0100 for "key down").
-        private static IntPtr hookId; // Hook used to listen to the keyboard
+        private static IntPtr hookId = IntPtr.Zero; // Hook used to listen to the keyboard
 
+        #endregion
+
+        #region Library imports
         // Importation of native libraries
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate lpfn, IntPtr hookInstance, uint threadId);
@@ -47,12 +50,14 @@ namespace SequenceAutomation
         [DllImport("kernel32.dll")]
         static extern IntPtr LoadLibrary(string lpFileName);
 
+        #endregion
+
+        #region Methods
         /*
          * Constructor 
          */
         public CreateRecording()
         {
-            GC.KeepAlive(hookProc);
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
@@ -68,19 +73,17 @@ namespace SequenceAutomation
          * method Start()
          * Description : starts to save the keyboard inputs.
          */
-
         public void Start()
         {
-            //Console.WriteLine("\n\nHooked: round {0}", x.ToString());
-            if (hookProc != null)
+            if (callbackDelegate != null)
                 throw new InvalidOperationException("Cannot hook more than once");
             IntPtr hInstance = LoadLibrary("User32");
-            hookProc = new HookDelegate(onActivity);
+            callbackDelegate = new HookDelegate(onActivity);
             
             // Installs a hook to the keyboard (the "13" params means "keyboard", see the link above for the codes), by saying "Hey, I want the function 
             //'onActivity' being called at each activity. You can find this function in the actual thread (GetModuleHandle(curModule.ModuleName)), and you listen to the 
             //keyboard activity of ALL the treads (code : 0)
-            hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, hInstance, 0);
+            hookId = SetWindowsHookEx(WH_KEYBOARD_LL, callbackDelegate, hInstance, 0);
 
             if(hookId == IntPtr.Zero){ Console.WriteLine("\n\nStart Exception");}
 
@@ -96,8 +99,8 @@ namespace SequenceAutomation
         {
             //Console.WriteLine("UnHooked");
             watch.Stop(); // Stops the timer
-            UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
-            hookProc = null;
+            UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start
+            callbackDelegate = null;
             return savedKeys;
         }
 
@@ -143,14 +146,11 @@ namespace SequenceAutomation
                     // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionary
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
-                
-                // Console.WriteLine("\nkey: {0}", key.ToString());
-                // Console.WriteLine("keyActivity: {0}", keyActivity.ToString());
-                //Console.WriteLine("time: {0}", time.ToString());
                 savedKeys[time].Add(key, keyActivity); //Saves the key and the activity
             }
 
             return CallNextHookEx(hookId, validityCode, keyActivity, keyName);
         }
+        #endregion
     }
 }

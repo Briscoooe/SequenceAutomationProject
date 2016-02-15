@@ -28,37 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.startButton = new System.Windows.Forms.Button();
-            this.stopButton = new System.Windows.Forms.Button();
+            this.startStopButton = new System.Windows.Forms.Button();
             this.playButton = new System.Windows.Forms.Button();
             this.outputBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // startButton
+            // startStopButton
             // 
-            this.startButton.Location = new System.Drawing.Point(12, 12);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 23);
-            this.startButton.TabIndex = 0;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // stopButton
-            // 
-            this.stopButton.Location = new System.Drawing.Point(93, 12);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(75, 23);
-            this.stopButton.TabIndex = 1;
-            this.stopButton.Text = "Stop";
-            this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            this.startStopButton.Location = new System.Drawing.Point(12, 12);
+            this.startStopButton.Name = "startStopButton";
+            this.startStopButton.Size = new System.Drawing.Size(157, 23);
+            this.startStopButton.TabIndex = 0;
+            this.startStopButton.Text = "Start";
+            this.startStopButton.UseVisualStyleBackColor = true;
+            this.startStopButton.Click += new System.EventHandler(this.launchRecording);
             // 
             // playButton
             // 
-            this.playButton.Location = new System.Drawing.Point(53, 41);
+            this.playButton.Location = new System.Drawing.Point(12, 51);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(75, 23);
+            this.playButton.Size = new System.Drawing.Size(157, 23);
             this.playButton.TabIndex = 2;
             this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = true;
@@ -80,8 +69,7 @@
             this.ClientSize = new System.Drawing.Size(552, 261);
             this.Controls.Add(this.outputBox);
             this.Controls.Add(this.playButton);
-            this.Controls.Add(this.stopButton);
-            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.startStopButton);
             this.Name = "MainInterface";
             this.Text = "Sequence Automator";
             this.ResumeLayout(false);
@@ -91,8 +79,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button startStopButton;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.TextBox outputBox;
     }

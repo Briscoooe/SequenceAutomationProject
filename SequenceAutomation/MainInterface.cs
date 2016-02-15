@@ -37,13 +37,14 @@ namespace SequenceAutomation
         private void launchRecording(object sender, EventArgs e)
         {
             Console.WriteLine("\n***Round {0}***\nHooked", x.ToString());
+
             createRec = null; // Reinitialise the createRec instance 
             createRec = new CreateRecording();
             createRec.Reset(); // Reinitialises the stopwatch and savedKeys 
             createRec.Start(); //Starts to save the keys
-            //startButton.Text = "Stop"; //Updates the button
-            startButton.Click -= launchRecording;
-            startButton.Click += stopRecording;
+            startStopButton.Text = "Stop"; //Updates the button
+            startStopButton.Click -= launchRecording;
+            startStopButton.Click += stopRecording;
         }
 
         /*
@@ -54,12 +55,12 @@ namespace SequenceAutomation
         {
             Console.WriteLine("Unhooked");
             x++;
+
             isPressed = true;
-            //startButton.Text = "Record";//Updates the button
-            startButton.Click += launchRecording;
-            startButton.Click -= stopRecording;
+            startStopButton.Text = "Record";//Updates the button
+            startStopButton.Click += launchRecording;
+            startStopButton.Click -= stopRecording;
             keys = createRec.Stop(); //Gets the recorded keys
-            //Console.WriteLine("\nCompleted list of keys");
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> keyVal in keys)
             {
                 foreach (KeyValuePair<Keys, IntPtr> keyVal2 in keyVal.Value)
@@ -96,9 +97,18 @@ namespace SequenceAutomation
          * method startButton_click
          * Description: Auto-generated function to launch a recording
          */
-        private void startButton_Click(object sender, EventArgs e)
+        private void startStopButton_Click(object sender, EventArgs e)
         {
-            launchRecording(sender, e);
+            /*
+            if(!isPressed)
+            {
+                launchRecording(sender, e);
+            }
+
+            else if(isPressed)
+            {
+                stopRecording(sender, e);
+            }*/
         }
 
         /*
@@ -108,15 +118,6 @@ namespace SequenceAutomation
         private void playButton_Click(object sender, EventArgs e)
         {
             launchPlaying(sender, e);
-        }
-
-        /*
-         * method stopButton_click
-         * Description: Auto-generated function to stop creating a recording
-         */
-        private void stopButton_Click(object sender, EventArgs e)
-        {
-            stopRecording(sender, e);
         }
     }
 
