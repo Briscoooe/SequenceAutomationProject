@@ -14,10 +14,10 @@ namespace SequenceAutomation
 {
     class CreateRecording
     {
-        public delegate IntPtr HookDelegate(int Code, IntPtr keyActivity, IntPtr keyName);
+        delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyName);
 
-        private static HookDelegate hookProc;
-
+        public static int x;
+        private HookDelegate hookProc = null;
         public RecordingManager recManager;
         public string contextJson, keysJson;
         public ContextManager contxtManager = new ContextManager();
@@ -28,17 +28,34 @@ namespace SequenceAutomation
         public static int WH_KEYBOARD_LL = 13;
         private Stopwatch watch; // Timer used to trace at which millisecond each key have been pressed
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Recorded keys activity, indexed by the millisecond the have been pressed. The activity is indexed by the concerned key ("Keys" type) and is associated with the activity code (0x0101 for "key up", 0x0100 for "key down").
-        private IntPtr hookId; // Hook used to listen to the keyboard
+        private static IntPtr hookId; // Hook used to listen to the keyboard
+
+        // Importation of native libraries
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate lpfn, IntPtr hookInstance, uint threadId);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hookHandle);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyName);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string handle);
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr LoadLibrary(string lpFileName);
 
         /*
          * Constructor 
          */
         public CreateRecording()
         {
+            GC.KeepAlive(hookProc);
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
-            hookProc = new HookDelegate(onActivity);
         }
 
         public void Reset()
@@ -54,15 +71,19 @@ namespace SequenceAutomation
 
         public void Start()
         {
-            using (Process curProcess = Process.GetCurrentProcess())
-            using (ProcessModule curModule = curProcess.MainModule) // Get the actual thread
-            {
-                // Installs a hook to the keyboard (the "13" params means "keyboard", see the link above for the codes), by saying "Hey, I want the function 
-                //'onActivity' being called at each activity. You can find this function in the actual thread (GetModuleHandle(curModule.ModuleName)), and you listen to the 
-                //keyboard activity of ALL the treads (code : 0)
+            //Console.WriteLine("\n\nHooked: round {0}", x.ToString());
+            if (hookProc != null)
+                throw new InvalidOperationException("Cannot hook more than once");
+            IntPtr hInstance = LoadLibrary("User32");
+            hookProc = new HookDelegate(onActivity);
+            
+            // Installs a hook to the keyboard (the "13" params means "keyboard", see the link above for the codes), by saying "Hey, I want the function 
+            //'onActivity' being called at each activity. You can find this function in the actual thread (GetModuleHandle(curModule.ModuleName)), and you listen to the 
+            //keyboard activity of ALL the treads (code : 0)
+            hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, hInstance, 0);
 
-                hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookProc, GetModuleHandle(curModule.ModuleName), 0);
-            }
+            if(hookId == IntPtr.Zero){ Console.WriteLine("\n\nStart Exception");}
+
             watch.Start(); // Starts the timer
         }
 
@@ -73,8 +94,10 @@ namespace SequenceAutomation
          */
         public Dictionary<long, Dictionary<Keys, IntPtr>> Stop()
         {
+            //Console.WriteLine("UnHooked");
             watch.Stop(); // Stops the timer
             UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start())
+            hookProc = null;
             return savedKeys;
         }
 
@@ -113,9 +136,7 @@ namespace SequenceAutomation
                         }
 
                         contextDict[time].Add(handle, title);
-
                     }
-
                 }
                 if (!savedKeys.ContainsKey(time))
                 {
@@ -123,27 +144,13 @@ namespace SequenceAutomation
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
                 
-                Console.WriteLine("\nkey: {0}", key.ToString());
-                Console.WriteLine("keyActivity: {0}", keyActivity.ToString());
-                Console.WriteLine("time: {0}", time.ToString());
+                // Console.WriteLine("\nkey: {0}", key.ToString());
+                // Console.WriteLine("keyActivity: {0}", keyActivity.ToString());
+                //Console.WriteLine("time: {0}", time.ToString());
                 savedKeys[time].Add(key, keyActivity); //Saves the key and the activity
             }
-            return CallNextHookEx(IntPtr.Zero, validityCode, keyActivity, keyName); //Bubbles the informations for others applications using similar hooks
+
+            return CallNextHookEx(hookId, validityCode, keyActivity, keyName);
         }
-
-        // Importation of native libraries
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate hookProc, IntPtr hookInstance, uint threadId);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool UnhookWindowsHookEx(IntPtr hookHandle);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyName);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr GetModuleHandle(string handle);
-
     }
 }

@@ -22,6 +22,8 @@ namespace SequenceAutomation
         private Dictionary<long, Dictionary<Keys, IntPtr>> keys;
         private bool isPressed = false;
 
+        public int x = 1;
+
         //Initialisation 
         public MainInterface()
         {
@@ -34,11 +36,12 @@ namespace SequenceAutomation
          */
         private void launchRecording(object sender, EventArgs e)
         {
+            Console.WriteLine("\n***Round {0}***\nHooked", x.ToString());
             createRec = null; // Reinitialise the createRec instance 
             createRec = new CreateRecording();
             createRec.Reset(); // Reinitialises the stopwatch and savedKeys 
             createRec.Start(); //Starts to save the keys
-            startButton.Text = "Stop"; //Updates the button
+            //startButton.Text = "Stop"; //Updates the button
             startButton.Click -= launchRecording;
             startButton.Click += stopRecording;
         }
@@ -49,8 +52,10 @@ namespace SequenceAutomation
          */
         private void stopRecording(object sender, EventArgs e)
         {
+            Console.WriteLine("Unhooked");
+            x++;
             isPressed = true;
-            startButton.Text = "Record";//Updates the button
+            //startButton.Text = "Record";//Updates the button
             startButton.Click += launchRecording;
             startButton.Click -= stopRecording;
             keys = createRec.Stop(); //Gets the recorded keys

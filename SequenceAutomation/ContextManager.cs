@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SequenceAutomation
 {
-    class ContextManager
+    public class ContextManager
     {
         //public long time;
         //public string openWindowsStr = "open windows";

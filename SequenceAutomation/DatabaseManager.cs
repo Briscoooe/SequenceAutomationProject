@@ -25,7 +25,7 @@ namespace SequenceAutomation
         string query = "";
         byte[] bytes = null;
 
-    public Boolean TestConnection()
+        public bool TestConnection()
         {
             return true;
         }
