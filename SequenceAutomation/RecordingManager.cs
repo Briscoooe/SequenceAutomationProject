@@ -21,6 +21,7 @@ namespace SequenceAutomation
         #endregion
 
         #region Public methods
+
         /*
          * Method: RecordingManager()
          * Summary: Class Constructor

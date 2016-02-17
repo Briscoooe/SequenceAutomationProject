@@ -15,8 +15,8 @@ namespace SequenceAutomation
     class CreateRecording
     {
         #region Variable declarations
-        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
 
+        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
         private RecordingManager recManager;
         private ContextManager contextManager;
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
@@ -32,6 +32,7 @@ namespace SequenceAutomation
         #endregion
 
         #region Library imports
+
         // Importation of native libraries
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate hookProc, IntPtr hookInstance, uint threadId);

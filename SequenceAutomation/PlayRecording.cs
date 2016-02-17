@@ -86,6 +86,7 @@ namespace SequenceAutomation
     class PlayRecording
     {
         #region Variable declarations
+
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
         private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
@@ -93,18 +94,22 @@ namespace SequenceAutomation
         private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of inputKeys, transforming Keys into Inputs.
         private Stopwatch watch; // Timer used to respect the strokes timing.
         private long currentFrame; // While playing, keeps the last inputKeys frame that have been played.
+        
         #endregion
 
         #region Libary importations
+
         // Importation of native libraries
         [DllImport("user32.dll", SetLastError = true)]
         public static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputStructure);
 
         [DllImport("kernel32.dll")]
         static extern uint GetLastError();
+
         #endregion
 
         #region Public methods
+
         /*
          * Constructor 
          */
@@ -153,6 +158,7 @@ namespace SequenceAutomation
         #endregion
 
         #region Private methods
+
         /*
          * method loadkeysToPlay()
          * Description : Transforms the inputKeys dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
