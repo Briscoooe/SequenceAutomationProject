@@ -22,12 +22,12 @@ namespace SequenceAutomation
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
-        private Dictionary<long, Dictionary<IntPtr, string>> contextDict; // Dictionary to store the context at each critical moment
-        public string keysJson; 
+        private Dictionary<long, Dictionary<string, string>> contextDict; // Dictionary to store the context at each critical moment
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
+        public string keysJson;
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace SequenceAutomation
 
         #endregion
 
-        #region Methods
+        #region Public methods
 
         /*
          * Method: CreateRecording()
@@ -61,7 +61,7 @@ namespace SequenceAutomation
         {
             contextManager = new ContextManager();
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-            contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
+            contextDict = new Dictionary<long, Dictionary<string, string>>();
             watch = new Stopwatch();
         }
 
@@ -104,6 +104,16 @@ namespace SequenceAutomation
         }
 
         /* 
+         * Method: Reset()
+         * Summary: Resets the stopwatch and clears the savedKeys dictionary
+         */
+        public void Reset()
+        {
+            watch.Restart();
+            savedKeys.Clear();
+        }
+
+        /* 
          * Method: getJson()
          * Summary: Instantiates the RecordingManager variable with the keys and contexts strings, then invokes the method that combines them into a single string
          * Return: JSON string comprising the keys recorded and the context of press of the return key
@@ -115,54 +125,55 @@ namespace SequenceAutomation
             return keysJson;
         }
 
+        #endregion
+
+        #region Private methods
+
         /*
          * Method: onActivity()
          * Summary: Method called each time a key action (key up or down) happens. Each key action is recorded along with the time at which it occured
          * Parameter: validityCode - Checks if the call is valid. If this is greater or equal to 0, i.e. successful, execution will continue
          * Parameter: keyActivity - The key activity. Either KEYUP or KEYDOWN
          * Parameter: keyCode - The code of the key pressed
+         * Returns: IntPtr
          */
         private IntPtr onActivity(int validityCode, IntPtr keyActivity, IntPtr keyCode)
         {
             if (validityCode >= 0)
             {
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
-                Keys key = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer of the key to the Keys data type
+                Keys key = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
+
+                // If the enter key is pressed down
                 if (key.ToString() == "Return" && keyActivity.ToString() == "256")
                 {
-                    
+                    // Loop through the open windows dicionary returned by getOpenWindows in the contextManager class
                     foreach (KeyValuePair<IntPtr, string> window in contextManager.GetOpenWindows())
                     {
-                        IntPtr handle = window.Key;
-                        string title = window.Value;
+                        string title = window.Value; // Store the window title 
 
+                        // If the contextDictionary contains no entries for the current elapsed time, create one
                         if(!contextDict.ContainsKey(time))
                         {
-                            contextDict.Add(time, new Dictionary<IntPtr, string>());
+                            contextDict.Add(time, new Dictionary<string, string>());
                         }
 
-                        contextDict[time].Add(handle, title);
+                        // Add the "Window title" and actual window title values to the context dictionary
+                        contextDict[time].Add("Window title", title);
                     }
                 }
+
+                // If the savedKeys dictionary contains no entries for the current elapsed time, create one
                 if (!savedKeys.ContainsKey(time))
                 {
-                    // If no key activity have been detected for this millisecond yet, we create the entry in the savedKeys Dictionary
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
+
                 savedKeys[time].Add(key, keyActivity); //Saves the key and the activity
             }
 
+            // Passes the hook information to the next hook procedure in the current hook chain
             return CallNextHookEx(hookId, validityCode, keyActivity, keyCode);
-        }
-
-        /* 
-         * Method: Reset()
-         * Summary: Resets the stopwatch and clears the savedKeys dictionary
-         */
-        public void Reset()
-        {
-            watch.Restart();
-            savedKeys.Clear();
         }
 
         #endregion

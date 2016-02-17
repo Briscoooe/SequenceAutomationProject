@@ -1,57 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SequenceAutomation
 {
     public class ContextManager
     {
-        //public long time;
-        //public string openWindowsStr = "open windows";
-        //public Dictionary<IntPtr, string> openWindows;
-        //public Dictionary<long, Dictionary<IntPtr, string>> openWindows;
-        public ContextManager() { }
+        #region Variable declarations
+        private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
 
-        public void getContext()
-        {
-            
-        }
+        private Dictionary<string, string> openWindows; // Dictionary to store the handle and title of open windows
+        private IntPtr shellWindow;
+        private StringBuilder titleBuffer;
 
-        /// References http://www.tcx.be/blog/2006/list-open-windows/
-        /// <summary>Returns a dictionary that contains the handle and title of all the open windows.</summary>
-        /// <returns>A dictionary that contains the handle and title of all the open windows.</returns>
-        public Dictionary<IntPtr, string> GetOpenWindows()
-        {
-            IntPtr shellWindow = GetShellWindow();
-            Dictionary <IntPtr, string> windows = new Dictionary<IntPtr, string>();
+        #endregion
 
-            EnumWindows(delegate (IntPtr hWnd, int lParam)
-            {
-                if (hWnd == shellWindow) return true;
-                if (!IsWindowVisible(hWnd)) return true;
-
-                int length = GetWindowTextLength(hWnd);
-                if (length == 0) return true;
-
-                StringBuilder builder = new StringBuilder(length);
-                GetWindowText(hWnd, builder, length + 1);
-
-                windows[hWnd] = builder.ToString();
-
-                return true;
-
-            }, 0);
-
-            return windows;
-        }
-
-        private delegate bool EnumWindowsProc(IntPtr hWnd, int lParam);
-
+        #region Library imports
+        // Importation of native libraries
         [DllImport("user32.dll")]
-        private static extern bool EnumWindows(EnumWindowsProc enumFunc, int lParam);
+        private static extern bool EnumWindows(EnumWindowsProc enumFunc, int callbackVal);
 
         [DllImport("user32.dll")]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
@@ -64,6 +32,74 @@ namespace SequenceAutomation
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetShellWindow();
+
+        #endregion
+
+        #region Public methods
+        /*
+         * Method: ContextManager()
+         * Summary: Class constructor for the ContextManager class
+         */
+        public ContextManager()
+        {
+            // To do
+        }
+
+        /*
+         * Method: ContextManager()
+         * Summary: 
+         */
+        public void getContext()
+        {
+            // To do
+        }
+
+        /*
+         * Method: GetOpenWindows()
+         * Summary: Retrieves information on all windows currently open on the system
+         * Returns: Dictionary of the handle and titles of all open windows on the system
+         * References: http://www.tcx.be/blog/2006/list-open-windows/
+         */
+        public Dictionary<string, string> GetOpenWindows()
+        {
+            shellWindow = GetShellWindow(); // Get the shell window handle, to be omitted from the dictionary
+            openWindows = new Dictionary<string, string>(); // Initialise the openWindows dictionary
+
+            // The EnumWindows call using the EnumWindowsProc as the first parameter and 0 as the callbackValue
+            EnumWindows(delegate (IntPtr windowHandle, int callbackVal)
+            {
+                // If the window listed is the shell window, ignore it
+                // The shell window is used in the background to get the list of windows
+                if (windowHandle == shellWindow)
+                    return true;
+
+                // If the window is not visible, ignore it
+                if (!IsWindowVisible(windowHandle))
+                    return true;
+
+                // If the window handle length is 0, ignore it
+                int length = GetWindowTextLength(windowHandle);
+                if (length == 0)
+                    return true;
+
+                titleBuffer = new StringBuilder(length); // Assigning the length to the titleBuffer variable
+
+                // For the window with the given windowHandle, add the text to the titleBuffer until the maximum number of characters (length + 1) has been reached
+                GetWindowText(windowHandle, titleBuffer, length + 1);
+
+                openWindows[windowHandle.ToString()] = titleBuffer.ToString(); // For the entry in the dictionary with the given windowHandle, add the title stored in the titleBuffer
+
+                // Continue execution
+                return true;
+
+            }, 0);
+
+            return openWindows;
+        }
+
+        #endregion
+
+
     }
- 
+
 }
