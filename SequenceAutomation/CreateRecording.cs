@@ -15,34 +15,33 @@ namespace SequenceAutomation
     class CreateRecording
     {
         #region Variable declarations
-        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyName);
+        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
 
-        public HookDelegate callbackDelegate;
-        public RecordingManager recManager;
-        public string contextJson, keysJson;
-        public ContextManager contxtManager = new ContextManager();
-        private Dictionary<long, Dictionary<IntPtr, string>> contextDict;
-
-        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
-        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
-        public static int WH_KEYBOARD_LL = 13;
-        private Stopwatch watch; // Timer used to trace at which millisecond each key have been pressed
-        private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Recorded keys activity, indexed by the millisecond the have been pressed. The activity is indexed by the concerned key ("Keys" type) and is associated with the activity code (0x0101 for "key up", 0x0100 for "key down").
-        private static IntPtr hookId = IntPtr.Zero; // Hook used to listen to the keyboard
+        private RecordingManager recManager;
+        private ContextManager contextManager;
+        private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
+        private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
+        private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
+        private Dictionary<long, Dictionary<IntPtr, string>> contextDict; // Dictionary to store the context at each critical moment
+        public string keysJson; 
+        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
+        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
+        public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
+        private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
 
         #endregion
 
         #region Library imports
         // Importation of native libraries
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate lpfn, IntPtr hookInstance, uint threadId);
+        private static extern IntPtr SetWindowsHookEx(int hookId, HookDelegate hookProc, IntPtr hookInstance, uint threadId);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool UnhookWindowsHookEx(IntPtr hookHandle);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyName);
+        private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyCode);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string handle);
@@ -53,57 +52,62 @@ namespace SequenceAutomation
         #endregion
 
         #region Methods
+
         /*
-         * Constructor 
+         * Method: CreateRecording()
+         * Summary: The constructor for the CreateRecording class
          */
         public CreateRecording()
         {
+            contextManager = new ContextManager();
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
         }
 
-        public void Reset()
-        {
-            watch.Restart();
-            savedKeys.Clear();
-        }
-
         /*
-         * method Start()
-         * Description : starts to save the keyboard inputs.
+         * Method: Start()
+         * Summary: Hooks the keyboard to the program and begins recording each key press 
          */
         public void Start()
         {
+            // If there is still a hook attached, throw an exception
+            // This had to be included as I was having huge problems as a result of multiple hook/unhook operations in a single execution
+            // This line ensures that the program will not try set another hook if one already exists
             if (callbackDelegate != null)
                 throw new InvalidOperationException("Cannot hook more than once");
-            IntPtr hInstance = LoadLibrary("User32");
-            callbackDelegate = new HookDelegate(onActivity);
-            
-            // Installs a hook to the keyboard (the "13" params means "keyboard", see the link above for the codes), by saying "Hey, I want the function 
-            //'onActivity' being called at each activity. You can find this function in the actual thread (GetModuleHandle(curModule.ModuleName)), and you listen to the 
-            //keyboard activity of ALL the treads (code : 0)
+
+            IntPtr hInstance = LoadLibrary("User32"); // Loads the User32 library and returns the module value, assigning it to the hInstance variable
+            callbackDelegate = new HookDelegate(onActivity); // Initialises the callbackDelegate using the onActivity method
+
+            // Installs the hook to the keyboard using the following parameters
+            // WH_KEYBOARD_LL stores the value 13, which is the code for the keyboard hook type
+            // callbackDelegate is the variable, of type HookDelegate, which passes a reference to the onActivity method
+            // hInstance stores the handle of the module thread
+            // 0 is the thread ID. It tells the hook to listen to the activity of all threads, not just the thead containing the program itself
+            // The call returns an IntPtr which is stored in the hookId variable. This is the ID of the hook which is later used to remove the hook.
             hookId = SetWindowsHookEx(WH_KEYBOARD_LL, callbackDelegate, hInstance, 0);
-
-            if(hookId == IntPtr.Zero){ Console.WriteLine("\n\nStart Exception");}
-
             watch.Start(); // Starts the timer
         }
 
         /*
-         * method Stop()
-         * Description : stops to save the keyboard inputs.
-         * Returns : the recorded keys activity since Start().
+         * Method: Stop()
+         * Summary: Stops recording and saves the keys to the savedKeys dictionary
+         * Return: The dictionary containing all keys recorded since the start method was called
          */
         public Dictionary<long, Dictionary<Keys, IntPtr>> Stop()
         {
-            //Console.WriteLine("UnHooked");
-            watch.Stop(); // Stops the timer
-            UnhookWindowsHookEx(hookId); //Uninstalls the hook of the keyboard (the one we installed in Start
+            watch.Stop();
+            UnhookWindowsHookEx(hookId); // Removes the keyboard hook
             callbackDelegate = null;
             return savedKeys;
         }
 
+        /* 
+         * Method: getJson()
+         * Summary: Instantiates the RecordingManager variable with the keys and contexts strings, then invokes the method that combines them into a single string
+         * Return: JSON string comprising the keys recorded and the context of press of the return key
+         */
         public string getJson()
         {
             recManager = new RecordingManager(savedKeys, contextDict);
@@ -112,23 +116,22 @@ namespace SequenceAutomation
         }
 
         /*
-         * method onActivity()
-         * Description : function called each time there is a keyboard activity (key up of key down). Saves the detected activity and the time at the moment it have been done.
-         * @validityCode : Validity code. If >= 0, we can use the information, otherwise we have to let it.
-         * @keyActivity : Activity that have been detected (keyup or keydown). Must be compared to KeysSaver.KEYUP and KeysSaver.KEYDOWN to see what activity it is.
-         * @keyName : (once read and casted) Key of the keyboard that have been triggered.
+         * Method: onActivity()
+         * Summary: Method called each time a key action (key up or down) happens. Each key action is recorded along with the time at which it occured
+         * Parameter: validityCode - Checks if the call is valid. If this is greater or equal to 0, i.e. successful, execution will continue
+         * Parameter: keyActivity - The key activity. Either KEYUP or KEYDOWN
+         * Parameter: keyCode - The code of the key pressed
          */
-        private IntPtr onActivity(int validityCode, IntPtr keyActivity, IntPtr keyName)
+        private IntPtr onActivity(int validityCode, IntPtr keyActivity, IntPtr keyCode)
         {
-            if (validityCode >= 0) //We check the validity of the informations. If >= 0, we can use them.
+            if (validityCode >= 0)
             {
-                long time = watch.ElapsedMilliseconds; //Number of milliseconds elapsed since we called the Start() method
-                int vkCode = Marshal.ReadInt32(keyName); //We read the value associated with the pointer (?)
-                Keys key = (Keys)vkCode; //We convert the int to the Keys type
-                if(key.ToString() == "Return" && keyActivity.ToString() == "256")
+                long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
+                Keys key = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer of the key to the Keys data type
+                if (key.ToString() == "Return" && keyActivity.ToString() == "256")
                 {
                     
-                    foreach (KeyValuePair<IntPtr, string> window in contxtManager.GetOpenWindows())
+                    foreach (KeyValuePair<IntPtr, string> window in contextManager.GetOpenWindows())
                     {
                         IntPtr handle = window.Key;
                         string title = window.Value;
@@ -149,8 +152,19 @@ namespace SequenceAutomation
                 savedKeys[time].Add(key, keyActivity); //Saves the key and the activity
             }
 
-            return CallNextHookEx(hookId, validityCode, keyActivity, keyName);
+            return CallNextHookEx(hookId, validityCode, keyActivity, keyCode);
         }
+
+        /* 
+         * Method: Reset()
+         * Summary: Resets the stopwatch and clears the savedKeys dictionary
+         */
+        public void Reset()
+        {
+            watch.Restart();
+            savedKeys.Clear();
+        }
+
         #endregion
     }
 }
