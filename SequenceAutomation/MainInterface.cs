@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.IO;
-using System.Xml.Linq;
-using System.Xml;
 
 namespace SequenceAutomation
 {
@@ -61,22 +50,6 @@ namespace SequenceAutomation
             startStopButton.Click += launchRecording;
             startStopButton.Click -= stopRecording;
             keys = createRec.Stop(); //Gets the recorded keys
-            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> keyVal in keys)
-            {
-                foreach (KeyValuePair<Keys, IntPtr> keyVal2 in keyVal.Value)
-                {
-                    /*
-                    //Displays the recorded keys in the console
-                    if (keyVal2.Value == CreateRecording.KEYDOWN)
-                    {
-                        Console.WriteLine(keyVal.Key + " : (down)" + keyVal2.Key);
-                    }
-                    if (keyVal2.Value == CreateRecording.KEYUP)
-                    {
-                        Console.WriteLine(keyVal.Key + " : (up)" + keyVal2.Key);
-                    }*/
-                }
-            }
             string mergedJson = createRec.getJson();
             outputBox.Text = mergedJson;
         }
@@ -87,37 +60,14 @@ namespace SequenceAutomation
          */
         private void launchPlaying(object sender, EventArgs e)
         {
+            if (keys == null)
+            {
+                MessageBox.Show("Error: There is no recording to play");
+                return;
+            }
             playRec = null;
             playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
             playRec.Start(); //Starts to play the keys.
-        }
-
-
-        /*
-         * method startButton_click
-         * Description: Auto-generated function to launch a recording
-         */
-        private void startStopButton_Click(object sender, EventArgs e)
-        {
-            /*
-            if(!isPressed)
-            {
-                launchRecording(sender, e);
-            }
-
-            else if(isPressed)
-            {
-                stopRecording(sender, e);
-            }*/
-        }
-
-        /*
-         * method playButton_click
-         * Description: Auto-generated function launch a recording
-         */
-        private void playButton_Click(object sender, EventArgs e)
-        {
-            launchPlaying(sender, e);
         }
     }
 
