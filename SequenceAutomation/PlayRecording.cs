@@ -8,7 +8,7 @@ using System.Windows.Forms;
 /* http://www.pinvoke.net/default.aspx/user32.SendInput */
 namespace SequenceAutomation
 {
-    #region Stucture declaration
+    #region Stucture declarations
     /*
      * Struct MOUSEINPUT
      * Mouse internal input struct
@@ -104,6 +104,7 @@ namespace SequenceAutomation
         static extern uint GetLastError();
         #endregion
 
+        #region Public methods
         /*
          * Constructor 
          */
@@ -149,6 +150,9 @@ namespace SequenceAutomation
             watch.Stop(); //Stops the timer.
         }
 
+        #endregion
+
+        #region Private methods
         /*
          * method loadkeysToPlay()
          * Description : Transforms the inputKeys dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
@@ -206,6 +210,8 @@ namespace SequenceAutomation
 
             };
         }
+
+        #endregion
     }
 
 }

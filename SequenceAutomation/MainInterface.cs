@@ -6,69 +6,85 @@ namespace SequenceAutomation
 {
     public partial class MainInterface : Form
     {
+        #region Variable declarations
+
         private CreateRecording createRec;
         private PlayRecording playRec;
         private Dictionary<long, Dictionary<Keys, IntPtr>> keys;
-        private bool isPressed = false;
 
-        public int x = 1;
+        #endregion
 
-        //Initialisation 
+        #region Public methods
+
+        /*
+         * Method: MainInterface()
+         * Summary: Class constructor
+         */
         public MainInterface()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Private methods
+
         /*
-         * method launchRecording()
-         * Description : Starts to record the keys. Called when the "record" button is triggered.
+         * Method: launchRecording()
+         * Summary: Begins the recording of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
          */
         private void launchRecording(object sender, EventArgs e)
         {
-            Console.WriteLine("\n***Round {0}***\nHooked", x.ToString());
+            startStopButton.Text = "Stop";
+            createRec = new CreateRecording(); // Reinitialise the createRec variable, restarting the clock and clearning the dictionary of recorded keys
+            createRec.Start(); // Begin recording
 
-            createRec = null; // Reinitialise the createRec instance 
-            createRec = new CreateRecording();
-            createRec.Reset(); // Reinitialises the stopwatch and savedKeys 
-            createRec.Start(); //Starts to save the keys
-            startStopButton.Text = "Stop"; //Updates the button
-            startStopButton.Click -= launchRecording;
-            startStopButton.Click += stopRecording;
+            // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
+            startStopButton.Click -= launchRecording; 
+            startStopButton.Click += stopRecording; 
         }
 
         /*
-         * method stopRecording()
-         * Description : Stops to record the keys and logs the recorded keys in the console. Called when the "record" button is triggered.
+         * Method: stopRecording()
+         * Summary: Stops the recording of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
          */
         private void stopRecording(object sender, EventArgs e)
         {
-            Console.WriteLine("Unhooked");
-            x++;
+            startStopButton.Text = "Record";
 
-            isPressed = true;
-            startStopButton.Text = "Record";//Updates the button
+            // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopButton.Click += launchRecording;
             startStopButton.Click -= stopRecording;
-            keys = createRec.Stop(); //Gets the recorded keys
+
+            keys = createRec.Stop(); // Stop recording
+
             string mergedJson = createRec.getJson();
             outputBox.Text = mergedJson;
         }
 
         /*
-         * method launchPlaying()
-         * Description : Starts to play the keys. Called when the "play" button is triggered.
+         * Method: launchPlaying()
+         * Summary: Begins the playback of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
          */
         private void launchPlaying(object sender, EventArgs e)
         {
+            // If there are no keys loaded to play, display a message informing the user of this
             if (keys == null)
             {
                 MessageBox.Show("Error: There is no recording to play");
                 return;
             }
-            playRec = null;
-            playRec = new PlayRecording(keys); //Creates a new player and gives it the recorded keys.
-            playRec.Start(); //Starts to play the keys.
+            playRec = new PlayRecording(keys); // Initialise the playRec object with the keys returned from the createRec class
+            playRec.Start(); // Begin playback
         }
+
+        #endregion
     }
 
-}//End project
+}

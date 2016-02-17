@@ -104,16 +104,6 @@ namespace SequenceAutomation
         }
 
         /* 
-         * Method: Reset()
-         * Summary: Resets the stopwatch and clears the savedKeys dictionary
-         */
-        public void Reset()
-        {
-            watch.Restart();
-            savedKeys.Clear();
-        }
-
-        /* 
          * Method: getJson()
          * Summary: Instantiates the RecordingManager variable with the keys and contexts strings, then invokes the method that combines them into a single string
          * Return: JSON string comprising the keys recorded and the context of press of the return key

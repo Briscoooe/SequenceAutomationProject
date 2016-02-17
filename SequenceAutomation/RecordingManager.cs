@@ -10,12 +10,17 @@ namespace SequenceAutomation
 {
     class RecordingManager
     {
+        #region Variable declaration
+
         public string name;
         public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<IntPtr, string>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         private string keysJson, contextJson;
         private JObject keysObject, contextObject;
 
+        #endregion
+
+        #region Public methods
         /*
          * Method: RecordingManager()
          * Summary: Class Constructor
@@ -53,5 +58,7 @@ namespace SequenceAutomation
 
             return keysObject.ToString();
         }
+
+        #endregion
     }
 }
