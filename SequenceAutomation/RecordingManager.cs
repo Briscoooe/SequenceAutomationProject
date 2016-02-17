@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters;
-using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using Newtonsoft.Json.Serialization;
+
+// External library used: http://www.newtonsoft.com/json
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,40 +11,47 @@ namespace SequenceAutomation
     class RecordingManager
     {
         public string name;
-        public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys;
-        public Dictionary<long, Dictionary<IntPtr, string>> context;
-        JavaScriptSerializer serializer = new JavaScriptSerializer();
+        public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
+        public Dictionary<long, Dictionary<IntPtr, string>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
+        private string keysJson, contextJson;
+        private JObject keysObject, contextObject;
 
+        /*
+         * Method: RecordingManager()
+         * Summary: Class Constructor
+         */
         public RecordingManager() { }
 
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeysPassed, 
-                                Dictionary<long, Dictionary<IntPtr, string>> contextPassed)
+        /*
+         * Method: RecordingManager()
+         * Summary: Class Constructor
+         */
+        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeysPassed, Dictionary<long, Dictionary<IntPtr, string>> contextPassed)
         {
             savedKeys = savedKeysPassed;
             context = contextPassed;
         }
 
-        public void addToJson()
-        {
-
-        }
+        /*
+         * Method: toJson()
+         * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
+         * Return: A string comprising both the savedKeys and contexts as one organised JSON string
+         */
         public string toJson()
         {
-            string keysJson = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
-            string contextJson = JsonConvert.SerializeObject(context, Formatting.Indented);
-            //Console.WriteLine("\nKeys JSON string: {0}", keysJson);
-            //Console.WriteLine("\nContext JSON string: {0}", contextJson);
-            JObject o1 = JObject.Parse(keysJson);
-            JObject o2 = JObject.Parse(contextJson);
+            // Convert the dictionaries to JSON strings
+            keysJson = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
+            contextJson = JsonConvert.SerializeObject(context, Formatting.Indented);
 
-            // Loop through o2, remove windows ID, add open windows as parent and add all windows as children
-            // "window title" : { window title, window title }
-            // OR use "info" : "open windows" { window title, window title }
+            // Convert the JSON strings to JSON objects
+            keysObject = JObject.Parse(keysJson);
+            contextObject = JObject.Parse(contextJson);
 
-            o2.Add("info", "open windows");
-            o1.Merge(o2, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
-            //Console.WriteLine("\nMerged JSON Object: {0}", o1.ToString());
-            return o1.ToString();
+            // Merge the two JSON objects together at matching values
+            // This process merges each each context recorded with the specific enter key press at the exact same milisecond
+            keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
+
+            return keysObject.ToString();
         }
     }
 }

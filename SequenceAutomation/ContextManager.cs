@@ -10,7 +10,7 @@ namespace SequenceAutomation
         #region Variable declarations
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
 
-        private Dictionary<string, string> openWindows; // Dictionary to store the handle and title of open windows
+        private Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
         private IntPtr shellWindow;
         private StringBuilder titleBuffer;
 
@@ -60,10 +60,10 @@ namespace SequenceAutomation
          * Returns: Dictionary of the handle and titles of all open windows on the system
          * References: http://www.tcx.be/blog/2006/list-open-windows/
          */
-        public Dictionary<string, string> GetOpenWindows()
+        public Dictionary<IntPtr, string> GetOpenWindows()
         {
             shellWindow = GetShellWindow(); // Get the shell window handle, to be omitted from the dictionary
-            openWindows = new Dictionary<string, string>(); // Initialise the openWindows dictionary
+            openWindows = new Dictionary<IntPtr, string>(); // Initialise the openWindows dictionary
 
             // The EnumWindows call using the EnumWindowsProc as the first parameter and 0 as the callbackValue
             EnumWindows(delegate (IntPtr windowHandle, int callbackVal)
@@ -87,7 +87,7 @@ namespace SequenceAutomation
                 // For the window with the given windowHandle, add the text to the titleBuffer until the maximum number of characters (length + 1) has been reached
                 GetWindowText(windowHandle, titleBuffer, length + 1);
 
-                openWindows[windowHandle.ToString()] = titleBuffer.ToString(); // For the entry in the dictionary with the given windowHandle, add the title stored in the titleBuffer
+                openWindows[windowHandle] = titleBuffer.ToString(); // For the entry in the dictionary with the given windowHandle, add the title stored in the titleBuffer
 
                 // Continue execution
                 return true;

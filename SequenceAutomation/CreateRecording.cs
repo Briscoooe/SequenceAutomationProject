@@ -22,7 +22,7 @@ namespace SequenceAutomation
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
-        private Dictionary<long, Dictionary<string, string>> contextDict; // Dictionary to store the context at each critical moment
+        private Dictionary<long, Dictionary<IntPtr, string>> contextDict; // Dictionary to store the context at each critical moment
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
@@ -61,7 +61,7 @@ namespace SequenceAutomation
         {
             contextManager = new ContextManager();
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-            contextDict = new Dictionary<long, Dictionary<string, string>>();
+            contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
             watch = new Stopwatch();
         }
 
@@ -150,16 +150,17 @@ namespace SequenceAutomation
                     // Loop through the open windows dicionary returned by getOpenWindows in the contextManager class
                     foreach (KeyValuePair<IntPtr, string> window in contextManager.GetOpenWindows())
                     {
+                        IntPtr handle = window.Key; // Store the window handle
                         string title = window.Value; // Store the window title 
 
                         // If the contextDictionary contains no entries for the current elapsed time, create one
                         if(!contextDict.ContainsKey(time))
                         {
-                            contextDict.Add(time, new Dictionary<string, string>());
+                            contextDict.Add(time, new Dictionary<IntPtr, string>());
                         }
 
                         // Add the "Window title" and actual window title values to the context dictionary
-                        contextDict[time].Add("Window title", title);
+                        contextDict[time].Add(handle, title);
                     }
                 }
 
