@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -128,10 +129,11 @@ namespace SequenceAutomation
         {
             recManager = new RecordingManager();
             this.inputJson = inputJson;
-            //keysToPlay = new Dictionary<long, INPUT[]>();
+            keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
             currentFrame = 0;
-            loadkeysToPlay();
+            convertToKeys();
+            //loadkeysToPlay();
         }
 
         /*
@@ -171,6 +173,18 @@ namespace SequenceAutomation
         #endregion
 
         #region Private methods
+
+        private void convertToKeys()
+        {
+            dynamic parsedObject = JsonConvert.DeserializeObject(inputJson);
+            foreach (dynamic entry in parsedObject)
+            {
+                string name = entry.Name; // "test"
+                Console.WriteLine("Name: {0}", name);
+                dynamic value = entry.Value; 
+                Console.WriteLine("Value: {0}",value);
+            }
+        }
 
         /*
          * Method: loadkeysToPlay()
