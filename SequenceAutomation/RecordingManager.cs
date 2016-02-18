@@ -12,10 +12,9 @@ namespace SequenceAutomation
     {
         #region Variable declaration
 
-        public string name;
         public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
-        public Dictionary<long, Dictionary<IntPtr, string>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        private string keysJson, contextJson;
+        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
+        private string keysJsonStr, contextJsonStr;
         private JObject keysObject, contextObject;
 
         #endregion
@@ -32,10 +31,10 @@ namespace SequenceAutomation
          * Method: RecordingManager()
          * Summary: Class Constructor
          */
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeysPassed, Dictionary<long, Dictionary<IntPtr, string>> contextPassed)
+        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context)
         {
-            savedKeys = savedKeysPassed;
-            context = contextPassed;
+            this.savedKeys = savedKeys;
+            this.context = context;
         }
 
         /*
@@ -46,12 +45,14 @@ namespace SequenceAutomation
         public string toJson()
         {
             // Convert the dictionaries to JSON strings
-            keysJson = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
-            contextJson = JsonConvert.SerializeObject(context, Formatting.Indented);
+            keysJsonStr = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
+            contextJsonStr = JsonConvert.SerializeObject(context, Formatting.Indented);
+
+            Console.WriteLine(contextJsonStr);
 
             // Convert the JSON strings to JSON objects
-            keysObject = JObject.Parse(keysJson);
-            contextObject = JObject.Parse(contextJson);
+            keysObject = JObject.Parse(keysJsonStr);
+            contextObject = JObject.Parse(contextJsonStr);
 
             // Merge the two JSON objects together at matching values
             // This process merges each each context recorded with the specific enter key press at the exact same milisecond

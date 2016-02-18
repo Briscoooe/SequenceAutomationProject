@@ -11,6 +11,7 @@ namespace SequenceAutomation
         private CreateRecording createRec;
         private PlayRecording playRec;
         private Dictionary<long, Dictionary<Keys, IntPtr>> keys;
+        private string mergedJson;
 
         #endregion
 
@@ -62,7 +63,7 @@ namespace SequenceAutomation
 
             keys = createRec.Stop(); // Stop recording
 
-            string mergedJson = createRec.getJson();
+            mergedJson = createRec.getJson();
             outputBox.Text = mergedJson;
         }
 

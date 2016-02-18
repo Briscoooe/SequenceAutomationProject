@@ -4,6 +4,10 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
+// External library used: http://www.newtonsoft.com/json
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 /* 
  * http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
  * http://www.pinvoke.net/default.aspx/user32/UnhookWindowsHookEx.html
@@ -22,12 +26,14 @@ namespace SequenceAutomation
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
-        private Dictionary<long, Dictionary<IntPtr, string>> contextDict; // Dictionary to store the context at each critical moment
+        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
         public string keysJson;
+        private JArray keysJsonArray;
+        private JObject keysJsonObj;
 
         #endregion
 
@@ -60,9 +66,11 @@ namespace SequenceAutomation
          */
         public CreateRecording()
         {
+            keysJsonArray = new JArray();
+            keysJsonObj = new JObject();
             contextManager = new ContextManager();
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-            contextDict = new Dictionary<long, Dictionary<IntPtr, string>>();
+            contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             watch = new Stopwatch();
         }
 
@@ -147,11 +155,18 @@ namespace SequenceAutomation
                         // If the contextDictionary contains no entries for the current elapsed time, create one
                         if(!contextDict.ContainsKey(time))
                         {
-                            contextDict.Add(time, new Dictionary<IntPtr, string>());
+                            contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
+
+                            // If the contextDictionary contains no entries for the current elapsed time, create one
+                            if (!contextDict[time].ContainsKey("Open Windows"))
+                            {
+                                contextDict[time].Add("Open Windows", new Dictionary<IntPtr, string>());
+                            }
                         }
 
-                        // Add the "Window title" and actual window title values to the context dictionary
-                        contextDict[time].Add(handle, title);
+                        // Add the "Window title" and actual window title values to the context 
+                        //contextDict[time].Add("Open Windows", new Dictionary<IntPtr, string>());
+                        contextDict[time]["Open Windows"].Add(handle, title);
                     }
                 }
 
