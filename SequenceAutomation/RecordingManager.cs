@@ -48,8 +48,6 @@ namespace SequenceAutomation
             keysJsonStr = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
             contextJsonStr = JsonConvert.SerializeObject(context, Formatting.Indented);
 
-            Console.WriteLine(contextJsonStr);
-
             // Convert the JSON strings to JSON objects
             keysObject = JObject.Parse(keysJsonStr);
             contextObject = JObject.Parse(contextJsonStr);

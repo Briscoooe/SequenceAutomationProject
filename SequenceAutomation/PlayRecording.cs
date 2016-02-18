@@ -119,7 +119,7 @@ namespace SequenceAutomation
             keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
             currentFrame = 0;
-            loadkeysToPlay(); //Load the keys that will be played.
+            loadkeysToPlay();
         }
 
         /*

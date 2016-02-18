@@ -11,6 +11,7 @@ namespace SequenceAutomation
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
 
         private Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
+        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext;
         private IntPtr shellWindow;
         private StringBuilder titleBuffer;
 
@@ -42,16 +43,39 @@ namespace SequenceAutomation
          */
         public ContextManager()
         {
-            // To do
+            currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
         }
 
         /*
          * Method: ContextManager()
-         * Summary: 
+         * Summary: Retrieve the context of the program when the enter key is pressed
+         * Returns: A dictionary containing key value pairs of relevant context information
          */
-        public void getContext()
+        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(long time)
         {
-            // To do
+            // Loop through the open windows dicionary returned by getOpenWindows in the contextManager class
+            foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
+            {
+                IntPtr handle = window.Key; // Store the window handle
+                string title = window.Value; // Store the window title 
+
+                // If the contextDictionary contains no entries for the current elapsed time, create one
+                if (!currentContext.ContainsKey(time))
+                {
+                    currentContext.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
+
+                    // If the contextDictionary contains no context at the current elapsed time, create one
+                    if (!currentContext[time].ContainsKey("Open windows"))
+                    {
+                        currentContext[time].Add("Open windows", new Dictionary<IntPtr, string>());
+                    }
+                }
+
+                // Add the dictionary of window handles and titles at to the dictionary at the current milisecond under the key "Open Windows"
+                currentContext[time]["Open windows"].Add(handle, title);
+            }
+
+            return currentContext;
         }
 
         /*

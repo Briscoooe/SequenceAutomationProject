@@ -143,31 +143,10 @@ namespace SequenceAutomation
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
                 Keys key = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
 
-                // If the enter key is pressed down
+                // If the enter key is pressed down, get the current context
                 if (key.ToString() == "Return" && keyActivity.ToString() == "256")
                 {
-                    // Loop through the open windows dicionary returned by getOpenWindows in the contextManager class
-                    foreach (KeyValuePair<IntPtr, string> window in contextManager.GetOpenWindows())
-                    {
-                        IntPtr handle = window.Key; // Store the window handle
-                        string title = window.Value; // Store the window title 
-
-                        // If the contextDictionary contains no entries for the current elapsed time, create one
-                        if(!contextDict.ContainsKey(time))
-                        {
-                            contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
-
-                            // If the contextDictionary contains no entries for the current elapsed time, create one
-                            if (!contextDict[time].ContainsKey("Open Windows"))
-                            {
-                                contextDict[time].Add("Open Windows", new Dictionary<IntPtr, string>());
-                            }
-                        }
-
-                        // Add the "Window title" and actual window title values to the context 
-                        //contextDict[time].Add("Open Windows", new Dictionary<IntPtr, string>());
-                        contextDict[time]["Open Windows"].Add(handle, title);
-                    }
+                    contextDict = contextManager.getContext(time);
                 }
 
                 // If the savedKeys dictionary contains no entries for the current elapsed time, create one
