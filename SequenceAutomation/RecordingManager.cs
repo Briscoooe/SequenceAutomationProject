@@ -112,24 +112,30 @@ namespace SequenceAutomation
                 foreach (dynamic innerLevel in child)
                 {
                     string keyNameStr = innerLevel.Name;
-                    dynamic action = innerLevel.Value;
+                    dynamic keyActionStr = innerLevel.Value;
+                    IntPtr keyAction;
 
-                    Console.WriteLine("KEY ACTIVITY: {0}", action);
+                    foreach(dynamic innerLevel2 in innerLevel)
+                    {
+                        if (innerLevel2.Value == "256")
+                        {
+                            keyAction = (IntPtr)0x0101;
+                        }
 
-                    Keys keyName;
-                    Enum.TryParse(keyNameStr, out keyName);
+                        else
+                        {
+                            keyAction = (IntPtr)0x0100;
+                        }
 
-                    GCHandle handle1 = GCHandle.Alloc(action);
-                    IntPtr keyCode = (IntPtr)handle1;
+                        Keys keyName;
+                        Enum.TryParse(keyNameStr, out keyName);
 
+                        // If the savedKeys dictionary contains no entry for the current elapsed time, create one
+                        if (!keysDict.ContainsKey(time))
+                            keysDict.Add(time, new Dictionary<Keys, IntPtr>());
 
-                    // If the savedKeys dictionary contains no entry for the current elapsed time, create one
-                    if (!keysDict.ContainsKey(time))
-                        keysDict.Add(time, new Dictionary<Keys, IntPtr>());
-
-                    keysDict[time].Add(keyName, keyCode); //Saves the key and the activity
-
-                    Console.WriteLine("KEY ACTIVITY: {0}", keyCode);
+                        keysDict[time].Add(keyName, keyAction); //Saves the key and the activity
+                    }
 
                 }
             }

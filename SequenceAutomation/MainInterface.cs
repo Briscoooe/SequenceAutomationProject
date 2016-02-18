@@ -78,7 +78,7 @@ namespace SequenceAutomation
                 return;
             }
             playRec = new PlayRecording(mergedJson); // Initialise the playRec object with the keys returned from the createRec class
-            //playRec.Start(); // Begin playback
+            playRec.Start(); // Begin playback
         }
 
         #endregion
