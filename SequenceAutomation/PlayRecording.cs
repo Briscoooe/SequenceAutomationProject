@@ -158,7 +158,7 @@ namespace SequenceAutomation
                 while (watch.ElapsedMilliseconds < enumerator.Current) { } //We wait until the very precise millisecond 
                 uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT))); //Simulate the inputs of the actual frame
 
-                Console.WriteLine(enumerator.Current.ToString());
+                Console.WriteLine("Current time: {0}", enumerator.Current.ToString());
                 currentFrame = enumerator.Current; //Updates the currentFrame to the frame we just played.
             }
         }
@@ -193,6 +193,7 @@ namespace SequenceAutomation
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
                 {
+                    Console.WriteLine("\n\nKey: {0}\nValue: {1}", kvp.Key, kvp.Value);
                     inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
                 }
                 keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".

@@ -96,34 +96,34 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> getKeys(string inputJson)
         {
+            
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
 
             dynamic parsedObject = JsonConvert.DeserializeObject(inputJson);
-            foreach (dynamic outerLevel in parsedObject)
+            // Iterating over the time key of the JSON string
+            foreach (dynamic timeKeys in parsedObject)
             {
-                long time = Convert.ToInt64(outerLevel.Name);
-                // If the savedKeys dictionary contains no entry for the current elapsed time, create one
-                if (!keysDict.ContainsKey(time))
-                    keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+                long time = Convert.ToInt64(timeKeys.Name);
 
-
-                dynamic child = outerLevel.Value;
-
-                foreach (dynamic innerLevel in child)
+                dynamic child = timeKeys.Value;
+                
+                // Iterating over the name keys of the JSON string
+                foreach (dynamic nameKeys in child)
                 {
-                    string keyNameStr = innerLevel.Name;
-                    dynamic keyActionStr = innerLevel.Value;
+                    string keyNameStr = nameKeys.Name;
 
-
-                    foreach(dynamic innerLevel2 in innerLevel)
+                    // Iterating over the action keys of the JSON string
+                    foreach (dynamic actionKeys in nameKeys.Value)
                     {
                         IntPtr keyAction = (IntPtr)0x0100;
-                        if (innerLevel2.Value == "256")
+                        string keyActionStr = actionKeys.Value;
+
+                        if (keyActionStr == "256")
                         {
                             keyAction = (IntPtr)0x0100;
                         }
 
-                        else if(innerLevel2.Value == "257")
+                        else if(keyActionStr == "257")
                         {
                             keyAction = (IntPtr)0x0101;
                         }
@@ -131,16 +131,21 @@ namespace SequenceAutomation
                         Keys keyName;
                         Enum.TryParse(keyNameStr, out keyName);
 
-                        // If the savedKeys dictionary contains no entry for the current elapsed time, create one
-                        if (!keysDict.ContainsKey(time))
-                            keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+                        Console.WriteLine("\nTIME: {0}\nKEYNAMESTR: {1}\nKEYACTION: {2}", time, keyNameStr, keyAction);
 
-                        keysDict[time].Add(keyName, keyAction); //Saves the key and the activity
+                        if(keyNameStr != "Open windows")
+                        {
+                            // If the savedKeys dictionary contains no entry for the current elapsed time, create one
+                            if (!keysDict.ContainsKey(time))
+                                keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+                            keysDict[time].Add(keyName, keyAction); //Saves the key and the 
+                        }
                     }
 
                 }
             }
 
+            Console.WriteLine("Complete");
             return keysDict;
         }
 
