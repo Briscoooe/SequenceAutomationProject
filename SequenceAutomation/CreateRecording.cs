@@ -26,7 +26,7 @@ namespace SequenceAutomation
         private ContextManager contextManager;
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
-        private Dictionary<long, Dictionary<Keys, string>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
+        private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
@@ -66,7 +66,7 @@ namespace SequenceAutomation
         public CreateRecording()
         {
             contextManager = new ContextManager();
-            savedKeys = new Dictionary<long, Dictionary<Keys, string>>();
+            savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             watch = new Stopwatch();
         }
@@ -130,27 +130,16 @@ namespace SequenceAutomation
             {
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
                 Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
-                string keyActivityStr = keyActivity.ToString();
 
                 // If the enter key is pressed down, get the current context
-                if (keyName.ToString() == "Return" && keyActivityStr == "256")
+                if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
                     contextDict = contextManager.getContext(time);
 
                 // If the savedKeys dictionary contains no entry for the current elapsed time, create one
                 if (!savedKeys.ContainsKey(time))
-                    savedKeys.Add(time, new Dictionary<Keys, string>());
+                    savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
 
-                if (keyActivityStr == "256")
-                {
-                    keyActivityStr = "Pressed";
-                }
-
-                else
-                {
-                    keyActivityStr = "Released";
-                }
-
-                savedKeys[time].Add(keyName, keyActivityStr); //Saves the key and the activity
+                savedKeys[time].Add(keyName, keyActivity); //Saves the key and the activity
             }
 
             // Passes the hook information to the next hook procedure in the current hook chain

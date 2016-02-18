@@ -94,11 +94,13 @@ namespace SequenceAutomation
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
         private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
-        private Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
+        private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
+        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
+
         private string inputJson;
-        private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of inputKeys, transforming Keys into Inputs.
+        private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of keysDict, transforming Keys into Inputs.
         private Stopwatch watch; // Timer used to respect the strokes timing.
-        private long currentFrame; // While playing, keeps the last inputKeys frame that have been played.
+        private long currentFrame; // While playing, keeps the last keysDict frame that have been played.
 
         private RecordingManager recManager;
 
@@ -124,16 +126,17 @@ namespace SequenceAutomation
          * Summary: Class constructor
          * Parameter: 
          */
-        //public PlayRecording(Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys)
         public PlayRecording(string inputJson)
         {
-            recManager = new RecordingManager();
             this.inputJson = inputJson;
+            keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
+            contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+            recManager = new RecordingManager();
             keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
             currentFrame = 0;
-            convertToKeys();
-            //loadkeysToPlay();
+            parseJson();
+            loadkeysToPlay();
         }
 
         /*
@@ -141,8 +144,7 @@ namespace SequenceAutomation
          * Summary: starts to play the keyboard inputs.
          */
         public void Start()
-        {
-            
+        {   
             currentFrame = 0;  //currentFrame is 0 at the beginning.
             watch.Reset(); //Resets the timer
             watch.Start(); //Starts the timer (yeah, pretty obvious)
@@ -174,26 +176,19 @@ namespace SequenceAutomation
 
         #region Private methods
 
-        private void convertToKeys()
+        private void parseJson()
         {
-            dynamic parsedObject = JsonConvert.DeserializeObject(inputJson);
-            foreach (dynamic entry in parsedObject)
-            {
-                string name = entry.Name; // "test"
-                Console.WriteLine("Name: {0}", name);
-                dynamic value = entry.Value; 
-                Console.WriteLine("Value: {0}",value);
-            }
+            keysDict = recManager.getKeys(inputJson);
+            //contextDict = recManager.getContext(inputJson);
         }
 
         /*
          * Method: loadkeysToPlay()
-         * Summary: Transforms the inputKeys dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
+         * Summary: Transforms the keysDict dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
          */
         private void loadkeysToPlay()
         {
-
-            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in inputKeys)
+            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in keysDict)
             {
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
