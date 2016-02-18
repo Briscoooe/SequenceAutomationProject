@@ -113,18 +113,19 @@ namespace SequenceAutomation
                 {
                     string keyNameStr = innerLevel.Name;
                     dynamic keyActionStr = innerLevel.Value;
-                    IntPtr keyAction;
+
 
                     foreach(dynamic innerLevel2 in innerLevel)
                     {
+                        IntPtr keyAction = (IntPtr)0x0100;
                         if (innerLevel2.Value == "256")
                         {
-                            keyAction = (IntPtr)0x0101;
+                            keyAction = (IntPtr)0x0100;
                         }
 
-                        else
+                        else if(innerLevel2.Value == "257")
                         {
-                            keyAction = (IntPtr)0x0100;
+                            keyAction = (IntPtr)0x0101;
                         }
 
                         Keys keyName;

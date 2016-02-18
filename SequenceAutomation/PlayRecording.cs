@@ -154,7 +154,7 @@ namespace SequenceAutomation
                 /* The thread sleeps until the millisecond before the next frame. For exemple, if there is an input at the 42th millisecond,
                  * the thread will sleep to the 41st millisecond. Seems optionnal, since we have a "while" that waits, but it allows to consume less 
                  * ressources. Also, in a too long "while", the processor tends to "forget" the thread for a long time, resulting in desyncs. */
-                Thread.Sleep(((int)(enumerator.Current - currentFrame - 1)) * timeFactor); 
+                Thread.Sleep(((int)(enumerator.Current - currentFrame - 1))); 
                 while (watch.ElapsedMilliseconds < enumerator.Current) { } //We wait until the very precise millisecond 
                 uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT))); //Simulate the inputs of the actual frame
 
