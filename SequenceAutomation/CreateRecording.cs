@@ -149,7 +149,7 @@ namespace SequenceAutomation
                     contextDict = contextManager.getContext(time);
                 }
 
-                // If the savedKeys dictionary contains no entries for the current elapsed time, create one
+                // If the savedKeys dictionary contains no entry for the current elapsed time, create one
                 if (!savedKeys.ContainsKey(time))
                 {
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());

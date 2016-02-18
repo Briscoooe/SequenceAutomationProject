@@ -53,13 +53,13 @@ namespace SequenceAutomation
          */
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(long time)
         {
-            // Loop through the open windows dicionary returned by getOpenWindows in the contextManager class
+            // Loop through the open windows dicionary returned by GetOpenWindows
             foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
             {
                 IntPtr handle = window.Key; // Store the window handle
                 string title = window.Value; // Store the window title 
 
-                // If the contextDictionary contains no entries for the current elapsed time, create one
+                // If the contextDictionary contains no entry for the current elapsed time, create one
                 if (!currentContext.ContainsKey(time))
                 {
                     currentContext.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
