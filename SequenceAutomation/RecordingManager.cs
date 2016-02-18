@@ -5,6 +5,8 @@ using System.Windows.Forms;
 // External library used: http://www.newtonsoft.com/json
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
+using Newtonsoft.Json.Converters;
 
 namespace SequenceAutomation
 {
@@ -12,9 +14,9 @@ namespace SequenceAutomation
     {
         #region Variable declaration
 
-        public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
+        public Dictionary<long, Dictionary<Keys, string>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        private string keysJsonStr, contextJsonStr, keysStr;
+        private string keysJsonStr, contextJsonStr;
         private JObject keysObject, contextObject;
         private NestedDictionary<string, string> keysDict;
 
@@ -32,11 +34,10 @@ namespace SequenceAutomation
          * Method: RecordingManager()
          * Summary: Class Constructor
          */
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context, NestedDictionary<string,string> keysDict)
+        public RecordingManager(Dictionary<long, Dictionary<Keys, string>> savedKeys, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context)
         {
             this.savedKeys = savedKeys;
             this.context = context;
-            this.keysDict = keysDict;
         }
 
         /*
@@ -50,9 +51,6 @@ namespace SequenceAutomation
             keysJsonStr = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
             contextJsonStr = JsonConvert.SerializeObject(context, Formatting.Indented);
 
-            keysStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
-            Console.WriteLine("RECMANAGER: Keys Dict: {0}", keysStr);
-
             // Convert the JSON strings to JSON objects
             keysObject = JObject.Parse(keysJsonStr);
             contextObject = JObject.Parse(contextJsonStr);
@@ -64,11 +62,10 @@ namespace SequenceAutomation
             return keysObject.ToString();
         }
 
-        public JObject parseJson(string mergedJson)
+
+        public void parseJson(string mergedJson)
         {
-            Console.WriteLine("RECMANAGER: Pre parse JSON: {0}", mergedJson);
-            JObject x = JObject.Parse(mergedJson);
-            return x;
+           
         }
 
         #endregion

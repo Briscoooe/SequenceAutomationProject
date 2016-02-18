@@ -26,16 +26,13 @@ namespace SequenceAutomation
         private ContextManager contextManager;
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
-        private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
+        private Dictionary<long, Dictionary<Keys, string>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
         public string keysJson;
-        private JArray keysJsonArray;
-        private JObject keysJsonObj;
-        private NestedDictionary<string, string> keysDict;
 
         #endregion
 
@@ -68,11 +65,8 @@ namespace SequenceAutomation
          */
         public CreateRecording()
         {
-            keysDict = new NestedDictionary<string, string>();
-            keysJsonArray = new JArray();
-            keysJsonObj = new JObject();
             contextManager = new ContextManager();
-            savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
+            savedKeys = new Dictionary<long, Dictionary<Keys, string>>();
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             watch = new Stopwatch();
         }
@@ -113,7 +107,7 @@ namespace SequenceAutomation
             UnhookWindowsHookEx(hookId); // Removes the keyboard hook
 
             // Merge the context and keys dictionaries into a single JSON string and return it
-            recManager = new RecordingManager(savedKeys, contextDict, keysDict);
+            recManager = new RecordingManager(savedKeys, contextDict);
             keysJson = recManager.mergeToJson();
             return keysJson;
         }
@@ -136,28 +130,27 @@ namespace SequenceAutomation
             {
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
                 Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
-                string timeStr = time.ToString();
-                string keyNameStr = keyName.ToString();
                 string keyActivityStr = keyActivity.ToString();
 
                 // If the enter key is pressed down, get the current context
-                if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
-                {
+                if (keyName.ToString() == "Return" && keyActivityStr == "256")
                     contextDict = contextManager.getContext(time);
-                }
 
                 // If the savedKeys dictionary contains no entry for the current elapsed time, create one
                 if (!savedKeys.ContainsKey(time))
+                    savedKeys.Add(time, new Dictionary<Keys, string>());
+
+                if (keyActivityStr == "256")
                 {
-                    savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
+                    keyActivityStr = "Pressed";
                 }
 
-                if (!keysDict.ContainsKey(timeStr))
+                else
                 {
-                    keysDict[timeStr][keyNameStr]["value"].Value = keyActivityStr;
+                    keyActivityStr = "Released";
                 }
 
-                savedKeys[time].Add(keyName, keyActivity); //Saves the key and the activity
+                savedKeys[time].Add(keyName, keyActivityStr); //Saves the key and the activity
             }
 
             // Passes the hook information to the next hook procedure in the current hook chain

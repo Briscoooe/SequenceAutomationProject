@@ -93,13 +93,15 @@ namespace SequenceAutomation
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
         private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
-        //private Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
+        private Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
         private string inputJson;
         private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of inputKeys, transforming Keys into Inputs.
         private Stopwatch watch; // Timer used to respect the strokes timing.
         private long currentFrame; // While playing, keeps the last inputKeys frame that have been played.
 
         private RecordingManager recManager;
+
+        public List<string> times = new List<string>();
         
         #endregion
 
@@ -138,6 +140,7 @@ namespace SequenceAutomation
          */
         public void Start()
         {
+            
             currentFrame = 0;  //currentFrame is 0 at the beginning.
             watch.Reset(); //Resets the timer
             watch.Start(); //Starts the timer (yeah, pretty obvious)
@@ -175,11 +178,8 @@ namespace SequenceAutomation
          */
         private void loadkeysToPlay()
         {
-            JObject test = recManager.parseJson(inputJson);
 
-            Console.WriteLine("PLAYRECORDING: parsed Json: {0}", test.ToString());
-            /*
-            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in recManager.parseJson(inputJson))
+            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in inputKeys)
             {
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
@@ -187,15 +187,17 @@ namespace SequenceAutomation
                     inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
                 }
                 keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".
-            }*/
+            }
         }
 
         /*
          * Method: intPtrToFlags()
          * Summary: Translate the IntPtr which references the activity (keydown/keyup) into input flags.
          */
+         
         private uint intPtrToFlags(IntPtr activity)
         {
+            
             if (activity == KEYDOWN) //Todo : extended keys
             {
                 return 0;
@@ -205,14 +207,17 @@ namespace SequenceAutomation
                 return 0x0002;
             }
             return 0;
+            
         }
 
         /*
          * Method: loadKey()
          * Summary: Transforms the Key into a sendable input (using the above structures).
          */
+        
         private INPUT loadKey(Keys key, uint flags)
         {
+
             return new INPUT
             {
                 Type = 1, //1 = "this is a keyboad event"
