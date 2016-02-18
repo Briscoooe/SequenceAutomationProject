@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -174,6 +175,10 @@ namespace SequenceAutomation
          */
         private void loadkeysToPlay()
         {
+            JObject test = recManager.parseJson(inputJson);
+
+            Console.WriteLine("PLAYRECORDING: parsed Json: {0}", test.ToString());
+            /*
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in recManager.parseJson(inputJson))
             {
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
@@ -182,7 +187,7 @@ namespace SequenceAutomation
                     inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
                 }
                 keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".
-            }
+            }*/
         }
 
         /*

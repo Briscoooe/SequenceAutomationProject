@@ -14,9 +14,9 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        private string keysJsonStr, contextJsonStr;
+        private string keysJsonStr, contextJsonStr, keysStr;
         private JObject keysObject, contextObject;
-        private NestedDictionary<string, string> nested;
+        private NestedDictionary<string, string> keysDict;
 
         #endregion
 
@@ -32,11 +32,11 @@ namespace SequenceAutomation
          * Method: RecordingManager()
          * Summary: Class Constructor
          */
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context, NestedDictionary<string,string> test)
+        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> context, NestedDictionary<string,string> keysDict)
         {
             this.savedKeys = savedKeys;
             this.context = context;
-            this.nested = test;
+            this.keysDict = keysDict;
         }
 
         /*
@@ -50,9 +50,9 @@ namespace SequenceAutomation
             keysJsonStr = JsonConvert.SerializeObject(savedKeys, Formatting.Indented);
             contextJsonStr = JsonConvert.SerializeObject(context, Formatting.Indented);
 
-            string test = JsonConvert.SerializeObject(nested, Formatting.Indented);
+            keysStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
+            Console.WriteLine("RECMANAGER: Keys Dict: {0}", keysStr);
 
-            Console.WriteLine(test);
             // Convert the JSON strings to JSON objects
             keysObject = JObject.Parse(keysJsonStr);
             contextObject = JObject.Parse(contextJsonStr);
@@ -64,10 +64,11 @@ namespace SequenceAutomation
             return keysObject.ToString();
         }
 
-        public Dictionary<long, Dictionary<Keys, IntPtr>> parseJson(string mergedJson)
+        public JObject parseJson(string mergedJson)
         {
-            Console.WriteLine(mergedJson);
-            return JsonConvert.DeserializeObject<Dictionary<long, Dictionary<Keys, IntPtr>>>(mergedJson);
+            Console.WriteLine("RECMANAGER: Pre parse JSON: {0}", mergedJson);
+            JObject x = JObject.Parse(mergedJson);
+            return x;
         }
 
         #endregion

@@ -136,6 +136,9 @@ namespace SequenceAutomation
             {
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
                 Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
+                string timeStr = time.ToString();
+                string keyNameStr = keyName.ToString();
+                string keyActivityStr = keyActivity.ToString();
 
                 // If the enter key is pressed down, get the current context
                 if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
@@ -149,9 +152,9 @@ namespace SequenceAutomation
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
 
-                if (!keysDict.ContainsKey(time.ToString()))
+                if (!keysDict.ContainsKey(timeStr))
                 {
-                    keysDict[time.ToString()][keyName.ToString()].Value = keyActivity.ToString();
+                    keysDict[timeStr][keyNameStr]["value"].Value = keyActivityStr;
                 }
 
                 savedKeys[time].Add(keyName, keyActivity); //Saves the key and the activity
