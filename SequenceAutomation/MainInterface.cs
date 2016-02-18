@@ -10,7 +10,6 @@ namespace SequenceAutomation
 
         private CreateRecording createRec;
         private PlayRecording playRec;
-        private Dictionary<long, Dictionary<Keys, IntPtr>> keys;
         private string mergedJson;
 
         #endregion
@@ -60,10 +59,7 @@ namespace SequenceAutomation
             // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopButton.Click += launchRecording;
             startStopButton.Click -= stopRecording;
-
-            keys = createRec.Stop(); // Stop recording
-
-            mergedJson = createRec.getJson();
+            mergedJson = createRec.Stop(); // Stop recording
             outputBox.Text = mergedJson;
         }
 
@@ -76,12 +72,12 @@ namespace SequenceAutomation
         private void launchPlaying(object sender, EventArgs e)
         {
             // If there are no keys loaded to play, display a message informing the user of this
-            if (keys == null)
+            if (mergedJson == null)
             {
                 MessageBox.Show("Error: There is no recording to play");
                 return;
             }
-            playRec = new PlayRecording(keys); // Initialise the playRec object with the keys returned from the createRec class
+            playRec = new PlayRecording(mergedJson); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
 

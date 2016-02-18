@@ -5,7 +5,9 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
-/* http://www.pinvoke.net/default.aspx/user32.SendInput */
+/*
+ * References
+ * http://www.pinvoke.net/default.aspx/user32.SendInput */
 namespace SequenceAutomation
 {
     #region Stucture declarations
@@ -90,10 +92,13 @@ namespace SequenceAutomation
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
         private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
-        private Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
+        //private Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
+        private string inputJson;
         private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of inputKeys, transforming Keys into Inputs.
         private Stopwatch watch; // Timer used to respect the strokes timing.
         private long currentFrame; // While playing, keeps the last inputKeys frame that have been played.
+
+        private RecordingManager recManager;
         
         #endregion
 
@@ -111,20 +116,24 @@ namespace SequenceAutomation
         #region Public methods
 
         /*
-         * Constructor 
+         * Method:  PlayRecording
+         * Summary: Class constructor
+         * Parameter: 
          */
-        public PlayRecording(Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys)
+        //public PlayRecording(Dictionary<long, Dictionary<Keys, IntPtr>> inputKeys)
+        public PlayRecording(string inputJson)
         {
-            this.inputKeys = inputKeys;
-            keysToPlay = new Dictionary<long, INPUT[]>();
+            recManager = new RecordingManager();
+            this.inputJson = inputJson;
+            //keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
             currentFrame = 0;
             loadkeysToPlay();
         }
 
         /*
-         * method Start()
-         * Description : starts to play the keyboard inputs.
+         * Method: Start()
+         * Summary: starts to play the keyboard inputs.
          */
         public void Start()
         {
@@ -147,8 +156,8 @@ namespace SequenceAutomation
         }
 
         /*
-         * method Stop()
-         * Description : stops to play the keyboard inputs.
+         * Method: Stop()
+         * Summary: stops to play the keyboard inputs.
          */
         public void Stop()
         {
@@ -160,12 +169,12 @@ namespace SequenceAutomation
         #region Private methods
 
         /*
-         * method loadkeysToPlay()
-         * Description : Transforms the inputKeys dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
+         * Method: loadkeysToPlay()
+         * Summary: Transforms the inputKeys dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
          */
         private void loadkeysToPlay()
         {
-            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in inputKeys)
+            foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in recManager.parseJson(inputJson))
             {
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
@@ -177,8 +186,8 @@ namespace SequenceAutomation
         }
 
         /*
-         * method intPtrToFlags()
-         * Description : Translate the IntPtr which references the activity (keydown/keyup) into input flags.
+         * Method: intPtrToFlags()
+         * Summary: Translate the IntPtr which references the activity (keydown/keyup) into input flags.
          */
         private uint intPtrToFlags(IntPtr activity)
         {
@@ -194,8 +203,8 @@ namespace SequenceAutomation
         }
 
         /*
-         * method loadKey()
-         * Description : Transforms the Key into a sendable input (using the above structures).
+         * Method: loadKey()
+         * Summary: Transforms the Key into a sendable input (using the above structures).
          */
         private INPUT loadKey(Keys key, uint flags)
         {

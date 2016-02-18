@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 /* 
+ * References
  * http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
  * http://www.pinvoke.net/default.aspx/user32/UnhookWindowsHookEx.html
  * http://www.pinvoke.net/default.aspx/user32/CallNextHookEx.html
@@ -34,6 +35,7 @@ namespace SequenceAutomation
         public string keysJson;
         private JArray keysJsonArray;
         private JObject keysJsonObj;
+        private NestedDictionary<string, string> keysDict;
 
         #endregion
 
@@ -66,6 +68,7 @@ namespace SequenceAutomation
          */
         public CreateRecording()
         {
+            keysDict = new NestedDictionary<string, string>();
             keysJsonArray = new JArray();
             keysJsonObj = new JObject();
             contextManager = new ContextManager();
@@ -102,25 +105,16 @@ namespace SequenceAutomation
         /*
          * Method: Stop()
          * Summary: Stops recording and saves the keys to the savedKeys dictionary
-         * Return: The dictionary containing all keys recorded since the start method was called
+         * Return: The merged JSON containing all keys recorded and the context of each "Return" key press
          */
-        public Dictionary<long, Dictionary<Keys, IntPtr>> Stop()
+        public string Stop()
         {
             watch.Stop();
             UnhookWindowsHookEx(hookId); // Removes the keyboard hook
-            callbackDelegate = null;
-            return savedKeys;
-        }
 
-        /* 
-         * Method: getJson()
-         * Summary: Instantiates the RecordingManager variable with the keys and contexts strings, then invokes the method that combines them into a single string
-         * Return: JSON string comprising the keys recorded and the context of press of the return key
-         */
-        public string getJson()
-        {
-            recManager = new RecordingManager(savedKeys, contextDict);
-            keysJson = recManager.toJson();
+            // Merge the context and keys dictionaries into a single JSON string and return it
+            recManager = new RecordingManager(savedKeys, contextDict, keysDict);
+            keysJson = recManager.mergeToJson();
             return keysJson;
         }
 
@@ -141,10 +135,10 @@ namespace SequenceAutomation
             if (validityCode >= 0)
             {
                 long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
-                Keys key = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
+                Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
 
                 // If the enter key is pressed down, get the current context
-                if (key.ToString() == "Return" && keyActivity.ToString() == "256")
+                if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
                 {
                     contextDict = contextManager.getContext(time);
                 }
@@ -155,7 +149,12 @@ namespace SequenceAutomation
                     savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
                 }
 
-                savedKeys[time].Add(key, keyActivity); //Saves the key and the activity
+                if (!keysDict.ContainsKey(time.ToString()))
+                {
+                    keysDict[time.ToString()][keyName.ToString()].Value = keyActivity.ToString();
+                }
+
+                savedKeys[time].Add(keyName, keyActivity); //Saves the key and the activity
             }
 
             // Passes the hook information to the next hook procedure in the current hook chain
