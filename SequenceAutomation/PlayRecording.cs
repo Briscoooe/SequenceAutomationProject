@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -102,6 +100,7 @@ namespace SequenceAutomation
         private long currentFrame; // While playing, keeps the last keysDict frame that have been played.
 
         private RecordingManager recManager;
+        private ContextManager contextManager;
 
         public List<string> times = new List<string>();
         
@@ -132,6 +131,7 @@ namespace SequenceAutomation
            
             // Instantiate the Recording Manager with the input JSON string and initialise the dictionaries with the appropriate values
             recManager = new RecordingManager(inputJson);
+            contextManager = new ContextManager();
             keysDict = recManager.keysDict;
             contextDict = recManager.contextDict;
 
@@ -150,10 +150,24 @@ namespace SequenceAutomation
             currentFrame = 0;  //currentFrame is 0 at the beginning.
             watch.Reset(); //Resets the timer
             watch.Start(); //Starts the timer (yeah, pretty obvious)
-            Console.WriteLine();
             IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); //The keysToPlay enumerator. Used to jump from one frame to another.
             while (enumerator.MoveNext()) //Moves the pointer of the keysToPlay dictionary to the next entry (so, to the next frame).
             {
+                foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
+                {
+                    if (currentFrame == kvp.Key)
+                    {
+                        if(contextManager.checkContext(currentFrame, contextDict))
+                        {
+                            Console.WriteLine("Passed");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Failed");
+                        }
+                    }
+                }
                 /* The thread sleeps until the millisecond before the next frame. For exemple, if there is an input at the 42th millisecond,
                  * the thread will sleep to the 41st millisecond. Seems optionnal, since we have a "while" that waits, but it allows to consume less 
                  * ressources. Also, in a too long "while", the processor tends to "forget" the thread for a long time, resulting in desyncs. */
@@ -194,19 +208,6 @@ namespace SequenceAutomation
                     inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
                 }
                 keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".
-            }
-
-            foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
-            {
-                Console.WriteLine("\nTime: {0}", kvp.Key);
-                foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
-                {
-                    Console.WriteLine(kvp2.Key);
-                    foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
-                    {
-                        Console.WriteLine(kvp3.Value);
-                    }
-                }
             }
         }
 

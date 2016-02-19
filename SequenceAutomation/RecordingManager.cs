@@ -71,6 +71,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContextDict(string inputJson)
         {
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+
             randomNum = new Random();
             dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
             foreach (dynamic timeVal in timeKeys)

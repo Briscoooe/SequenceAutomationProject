@@ -78,6 +78,38 @@ namespace SequenceAutomation
             return currentContext;
         }
 
+        public bool checkContext(long time, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
+        {
+            int countOpenWindows = 0;
+            int matches = 0;
+            foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
+                foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
+                    foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
+                        foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
+                        {
+                            string title = window.Value; // Store the window title
+                            if (kvp3.Value == title)
+                            {
+                                matches += 1;
+                            }
+
+                            countOpenWindows += 1;
+                        }
+
+            countOpenWindows /= 2;
+
+            if(countOpenWindows == matches)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
         /*
          * Method: GetOpenWindows()
          * Summary: Retrieves information on all windows currently open on the system
