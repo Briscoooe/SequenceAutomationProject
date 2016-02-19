@@ -29,7 +29,11 @@ namespace SequenceAutomation
          * Method: RecordingManager()
          * Summary: Class Constructor
          */
-        public RecordingManager() { }
+        public RecordingManager(string inputJson)
+        {
+            keysDict = getKeysDict(inputJson);
+            contextDict = getContextDict(inputJson);
+        }
 
         /*
          * Method: RecordingManager()
@@ -80,12 +84,7 @@ namespace SequenceAutomation
 
                     foreach (dynamic windowVal in nameVal.Value)
                     {
-                        string keyActionStr = windowVal.Value;
-                        //Console.WriteLine("\nPRE IF");
-                        //Console.WriteLine("keyActionStr: {0}", keyActionStr);
-                        //Console.WriteLine("keyNameStr: {0}", keyNameStr);
-
-                    
+                        string keyActionStr = windowVal.Value;                    
                         if (keyNameStr == "Open windows")
                         {
                             // If the contextDict dictionary contains no entry for the current elapsed time, create one
@@ -101,8 +100,6 @@ namespace SequenceAutomation
                             }
 
                             IntPtr windowHandle = new IntPtr(randomNum.Next());
-                            Console.WriteLine("\nWINDOW HANDLE: {0}\nWINDOW TITLE: {1}", windowHandle, keyActionStr);
-
                             contextDict[time]["Open windows"].Add(windowHandle, keyActionStr);
                         }
                     }

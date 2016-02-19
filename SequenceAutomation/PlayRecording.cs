@@ -129,13 +129,14 @@ namespace SequenceAutomation
         {
             this.inputJson = inputJson;
             currentFrame = 0;
-            keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-            contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
-            recManager = new RecordingManager();
+           
+            // Instantiate the Recording Manager with the input JSON string and initialise the dictionaries with the appropriate values
+            recManager = new RecordingManager(inputJson);
+            keysDict = recManager.keysDict;
+            contextDict = recManager.contextDict;
+
             keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
-            keysDict = recManager.getKeysDict(inputJson);
-            contextDict = recManager.getContextDict(inputJson);
             loadkeysToPlay();
 
         }
@@ -197,13 +198,13 @@ namespace SequenceAutomation
 
             foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
             {
+                Console.WriteLine("\nTime: {0}", kvp.Key);
                 foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
                 {
+                    Console.WriteLine(kvp2.Key);
                     foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
                     {
-                        Console.WriteLine("\nCONTEXT\nTIME {0}\nKVP VALUE {1}", kvp.Key, kvp.Value);
-                        Console.WriteLine("KVP2 KEY {0}\nKVP2 VALUE {1}", kvp2.Key, kvp2.Value);
-                        Console.WriteLine("KVP3 KEY {0}\nKVP3 VALUE {1}", kvp3.Key, kvp3.Value);
+                        Console.WriteLine(kvp3.Value);
                     }
                 }
             }
