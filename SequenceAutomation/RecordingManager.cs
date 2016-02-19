@@ -19,6 +19,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         private string keysJsonStr, contextJsonStr;
         private JObject keysObject, contextObject;
+        public Random randomNum;
 
         #endregion
 
@@ -66,7 +67,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContextDict(string inputJson)
         {
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
-
+            randomNum = new Random();
             dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
             foreach (dynamic timeVal in timeKeys)
             {
@@ -75,23 +76,18 @@ namespace SequenceAutomation
 
                 foreach (dynamic nameVal in nameKeys)
                 {
-                    string key = nameVal.Name;
-                    Console.WriteLine("Key: {0}", key);
-                    dynamic windows = nameVal.Value;
-                    Console.WriteLine("Action: {0}", windows);
+                    string keyNameStr = nameVal.Name;
 
-                    dynamic actionKeys = nameVal.Value;
-
-                    if (key == "Open windows" && actionKeys.Value == "256")
+                    foreach (dynamic windowVal in nameVal.Value)
                     {
-                        foreach (dynamic windowVal in windows)
-                        {
-                            Random randomNum = new Random();
-                            IntPtr windowHandle = new IntPtr(randomNum.Next());
-                            string windowTitle = windowVal.Value;
-                            Console.WriteLine("windowTitle: {0}", windowTitle);
-                            Console.WriteLine("windowHandle: {0}", windowHandle);
+                        string keyActionStr = windowVal.Value;
+                        //Console.WriteLine("\nPRE IF");
+                        //Console.WriteLine("keyActionStr: {0}", keyActionStr);
+                        //Console.WriteLine("keyNameStr: {0}", keyNameStr);
 
+                    
+                        if (keyNameStr == "Open windows")
+                        {
                             // If the contextDict dictionary contains no entry for the current elapsed time, create one
                             if (!contextDict.ContainsKey(time))
                             {
@@ -104,10 +100,13 @@ namespace SequenceAutomation
                                 }
                             }
 
-                            contextDict[time]["Open windows"].Add(windowHandle, windowTitle);
+                            IntPtr windowHandle = new IntPtr(randomNum.Next());
+                            Console.WriteLine("\nWINDOW HANDLE: {0}\nWINDOW TITLE: {1}", windowHandle, keyActionStr);
 
+                            contextDict[time]["Open windows"].Add(windowHandle, keyActionStr);
                         }
                     }
+                        
                 }
             }
 

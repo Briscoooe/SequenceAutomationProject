@@ -96,7 +96,6 @@ namespace SequenceAutomation
         private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
         private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
-
         private string inputJson;
         private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of keysDict, transforming Keys into Inputs.
         private Stopwatch watch; // Timer used to respect the strokes timing.
@@ -124,7 +123,7 @@ namespace SequenceAutomation
         /*
          * Method:  PlayRecording
          * Summary: Class constructor
-         * Parameter: 
+         * Parameter: inputJson - The JSON string that stores all keys and contexts
          */
         public PlayRecording(string inputJson)
         {
@@ -138,6 +137,7 @@ namespace SequenceAutomation
             keysDict = recManager.getKeysDict(inputJson);
             contextDict = recManager.getContextDict(inputJson);
             loadkeysToPlay();
+
         }
 
         /*
@@ -149,6 +149,7 @@ namespace SequenceAutomation
             currentFrame = 0;  //currentFrame is 0 at the beginning.
             watch.Reset(); //Resets the timer
             watch.Start(); //Starts the timer (yeah, pretty obvious)
+            Console.WriteLine();
             IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); //The keysToPlay enumerator. Used to jump from one frame to another.
             while (enumerator.MoveNext()) //Moves the pointer of the keysToPlay dictionary to the next entry (so, to the next frame).
             {
@@ -159,18 +160,18 @@ namespace SequenceAutomation
                 while (watch.ElapsedMilliseconds < enumerator.Current) { } //We wait until the very precise millisecond 
                 uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT))); //Simulate the inputs of the actual frame
 
-                Console.WriteLine("Current time: {0}", enumerator.Current.ToString());
+                //Console.WriteLine("Current time: {0}", enumerator.Current.ToString());
                 currentFrame = enumerator.Current; //Updates the currentFrame to the frame we just played.
             }
         }
 
         /*
          * Method: Stop()
-         * Summary: stops to play the keyboard inputs.
+         * Summary: Stops execution of keystrokes
          */
         public void Stop()
         {
-            watch.Stop(); //Stops the timer.
+            watch.Stop();
         }
 
         #endregion
@@ -188,10 +189,23 @@ namespace SequenceAutomation
                 List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
                 {
-                    Console.WriteLine("\n\nKey: {0}\nValue: {1}", kvp.Key, kvp.Value);
+                    //Console.WriteLine("\nKEYS\nKVP2 KEY {0}\nKVP2 VALUE {1}", kvp2.Key, kvp2.Value);
                     inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
                 }
                 keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".
+            }
+
+            foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
+            {
+                foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
+                {
+                    foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
+                    {
+                        Console.WriteLine("\nCONTEXT\nTIME {0}\nKVP VALUE {1}", kvp.Key, kvp.Value);
+                        Console.WriteLine("KVP2 KEY {0}\nKVP2 VALUE {1}", kvp2.Key, kvp2.Value);
+                        Console.WriteLine("KVP3 KEY {0}\nKVP3 VALUE {1}", kvp3.Key, kvp3.Value);
+                    }
+                }
             }
         }
 
@@ -202,8 +216,7 @@ namespace SequenceAutomation
          
         private uint intPtrToFlags(IntPtr activity)
         {
-            
-            if (activity == KEYDOWN) //Todo : extended keys
+            if (activity == KEYDOWN)
             {
                 return 0;
             }
@@ -222,7 +235,6 @@ namespace SequenceAutomation
         
         private INPUT loadKey(Keys key, uint flags)
         {
-
             return new INPUT
             {
                 Type = 1, //1 = "this is a keyboad event"
