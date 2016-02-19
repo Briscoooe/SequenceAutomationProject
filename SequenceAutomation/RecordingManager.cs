@@ -63,29 +63,49 @@ namespace SequenceAutomation
         }
 
 
-        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(string inputJson)
+        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContextDict(string inputJson)
         {
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
 
-            dynamic parsedObject = JsonConvert.DeserializeObject(inputJson);
-            foreach (dynamic entry in parsedObject)
+            dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
+            foreach (dynamic timeVal in timeKeys)
             {
-                string time = entry.Name;
-                dynamic value = entry.Value;
+                long time = Convert.ToInt64(timeVal.Name);
+                dynamic nameKeys = timeVal.Value;
 
-                foreach (dynamic entry2 in value)
+                foreach (dynamic nameVal in nameKeys)
                 {
-                    string key = entry2.Name;
+                    string key = nameVal.Name;
                     Console.WriteLine("Key: {0}", key);
-                    dynamic action = entry2.Value;
-                    Console.WriteLine("Action: {0}", action);
+                    dynamic windows = nameVal.Value;
+                    Console.WriteLine("Action: {0}", windows);
 
-                    if (key == "Open windows")
+                    dynamic actionKeys = nameVal.Value;
+
+                    if (key == "Open windows" && actionKeys.Value == "256")
                     {
-                        foreach (dynamic entry3 in action)
+                        foreach (dynamic windowVal in windows)
                         {
-                            string value3 = entry3.Value;
-                            Console.WriteLine("Windows: {0}", value3);
+                            Random randomNum = new Random();
+                            IntPtr windowHandle = new IntPtr(randomNum.Next());
+                            string windowTitle = windowVal.Value;
+                            Console.WriteLine("windowTitle: {0}", windowTitle);
+                            Console.WriteLine("windowHandle: {0}", windowHandle);
+
+                            // If the contextDict dictionary contains no entry for the current elapsed time, create one
+                            if (!contextDict.ContainsKey(time))
+                            {
+                                contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
+
+                                // If the contextDictionary contains no context at the current elapsed time, create one
+                                if (!contextDict[time].ContainsKey("Open windows"))
+                                {
+                                    contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
+                                }
+                            }
+
+                            contextDict[time]["Open windows"].Add(windowHandle, windowTitle);
+
                         }
                     }
                 }
@@ -94,26 +114,25 @@ namespace SequenceAutomation
             return contextDict;
         }
 
-        public Dictionary<long, Dictionary<Keys, IntPtr>> getKeys(string inputJson)
+        public Dictionary<long, Dictionary<Keys, IntPtr>> getKeysDict(string inputJson)
         {
             
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
 
-            dynamic parsedObject = JsonConvert.DeserializeObject(inputJson);
+            dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
             // Iterating over the time key of the JSON string
-            foreach (dynamic timeKeys in parsedObject)
+            foreach (dynamic timeVal in timeKeys)
             {
-                long time = Convert.ToInt64(timeKeys.Name);
-
-                dynamic child = timeKeys.Value;
+                long time = Convert.ToInt64(timeVal.Name);
+                dynamic nameKeys = timeVal.Value;
                 
                 // Iterating over the name keys of the JSON string
-                foreach (dynamic nameKeys in child)
+                foreach (dynamic nameVal in nameKeys)
                 {
-                    string keyNameStr = nameKeys.Name;
+                    string keyNameStr = nameVal.Name;
 
                     // Iterating over the action keys of the JSON string
-                    foreach (dynamic actionKeys in nameKeys.Value)
+                    foreach (dynamic actionKeys in nameVal.Value)
                     {
                         IntPtr keyAction = (IntPtr)0x0100;
                         string keyActionStr = actionKeys.Value;
@@ -131,8 +150,6 @@ namespace SequenceAutomation
                         Keys keyName;
                         Enum.TryParse(keyNameStr, out keyName);
 
-                        Console.WriteLine("\nTIME: {0}\nKEYNAMESTR: {1}\nKEYACTION: {2}", time, keyNameStr, keyAction);
-
                         if(keyNameStr != "Open windows")
                         {
                             // If the savedKeys dictionary contains no entry for the current elapsed time, create one
@@ -145,7 +162,6 @@ namespace SequenceAutomation
                 }
             }
 
-            Console.WriteLine("Complete");
             return keysDict;
         }
 

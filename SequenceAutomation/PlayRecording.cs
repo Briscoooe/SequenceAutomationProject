@@ -129,13 +129,14 @@ namespace SequenceAutomation
         public PlayRecording(string inputJson)
         {
             this.inputJson = inputJson;
+            currentFrame = 0;
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             recManager = new RecordingManager();
             keysToPlay = new Dictionary<long, INPUT[]>();
             watch = new Stopwatch();
-            currentFrame = 0;
-            parseJson();
+            keysDict = recManager.getKeysDict(inputJson);
+            contextDict = recManager.getContextDict(inputJson);
             loadkeysToPlay();
         }
 
@@ -175,12 +176,6 @@ namespace SequenceAutomation
         #endregion
 
         #region Private methods
-
-        private void parseJson()
-        {
-            keysDict = recManager.getKeys(inputJson);
-            //contextDict = recManager.getContext(inputJson);
-        }
 
         /*
          * Method: loadkeysToPlay()
