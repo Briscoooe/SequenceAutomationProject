@@ -21,13 +21,25 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
+        /*
+         * Method: goBack()
+         * Summary: Returns to the previous screen
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
         private void goBack(object sender, EventArgs e)
         {
             Hide();
-            LoginUserControl x = new LoginUserControl();
-            x.Show();
+            //LoginUserControl x = new LoginUserControl();
+            //x.Show();
         }
 
+        /*
+         * Method: launchPlaying()
+         * Summary: Begins the playback of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
         private void testRecording(object sender, EventArgs e)
         {
             // If there are no keys loaded to play, display a message informing the user of this
@@ -40,6 +52,12 @@ namespace SequenceAutomation
             playRec.Start(); // Begin playback
         }
 
+        /*
+         * Method: startRecording()
+         * Summary: Begins the playback of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
         private void startRecording(object sender, EventArgs e)
         {
             startStopRecBtn.Text = "Stop Recording";
@@ -47,13 +65,19 @@ namespace SequenceAutomation
             createRec.Start(); // Begin recording
 
             recStatusText.ForeColor = Color.Green;
-            recStatusText.Text = "Recording active";
+            recStatusText.Text = "Playing recording";
 
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;
             startStopRecBtn.Click += stopRecording;
         }
 
+        /*
+         * Method: stopRecording()
+         * Summary: Stops the recording of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
         private void stopRecording(object sender, EventArgs e)
         {
             startStopRecBtn.Text = "Begin Recording";
