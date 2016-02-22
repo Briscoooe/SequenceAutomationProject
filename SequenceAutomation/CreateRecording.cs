@@ -4,16 +4,12 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-// External library used: http://www.newtonsoft.com/json
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 /* 
  * References
- * http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
- * http://www.pinvoke.net/default.aspx/user32/UnhookWindowsHookEx.html
- * http://www.pinvoke.net/default.aspx/user32/CallNextHookEx.html
- * http://www.pinvoke.net/default.aspx/kernel32/getmodulehandle.html?diff=y
+ * SetWindowsHookEx: http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
+ * UnhookWindowsHookEx: http://www.pinvoke.net/default.aspx/user32/UnhookWindowsHookEx.html
+ * CallNextHookEx: http://www.pinvoke.net/default.aspx/user32/CallNextHookEx.html
+ * GetModuleHandle: http://www.pinvoke.net/default.aspx/kernel32/getmodulehandle.html?diff=y
  */
 namespace SequenceAutomation
 {

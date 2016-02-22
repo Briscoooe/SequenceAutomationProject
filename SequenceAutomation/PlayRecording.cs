@@ -7,14 +7,21 @@ using System.Windows.Forms;
 
 /*
  * References
- * http://www.pinvoke.net/default.aspx/user32.SendInput */
+ * SendInput: http://www.pinvoke.net/default.aspx/user32.SendInput 
+ * INPUT structure : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646270(v=vs.85).aspx
+ * KEYBDINPUT structure: https://msdn.microsoft.com/en-us/library/windows/desktop/ms646271(v=vs.85).aspx
+ * HARDWAREINPUT structure: https://msdn.microsoft.com/en-us/library/windows/desktop/ms646269(v=vs.85).aspx
+ * MOUSEINPUT structure: https://msdn.microsoft.com/en-us/library/windows/desktop/ms646273(v=vs.85).asp
+ */
 namespace SequenceAutomation
 {
     #region Stucture declarations
+
     /*
-     * Struct MOUSEINPUT
-     * Mouse internal input struct
-     * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646273(v=vs.85).aspx
+     * Structure: MOUSEINPUT
+     * Summary: A structure to store information about simulated mouse input
+     * Note: This structure is not directly used and only exists to be combined with the keyboard and hardware structures, thus allowing the INPUT structure to exist
+     * See : x
      */
     internal struct MOUSEINPUT
     {
@@ -27,9 +34,9 @@ namespace SequenceAutomation
     }
 
     /*
-     * Struct HARDWAREINPUT
-     * Hardware internal input struct
-     * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646269(v=vs.85).aspx
+     * Structure: HARDWAREINPUT
+     * Summary: A structure to store information about simulated hardware input, other than a keyboard or mouse
+     * Note: This structure is not directly used and only exists to be combined with the keyboard and mouse structures, thus allowing the INPUT structure to exist
      */
     internal struct HARDWAREINPUT
     {
@@ -39,25 +46,30 @@ namespace SequenceAutomation
     }
 
     /*
-     * Struct KEYBDINPUT
-     * Keyboard internal input struct (Yes, actually only this one is used, but we need the 2 others to properly send inputs)
-     * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646271(v=vs.85).aspx
+     * Structure: KEYBDINPUT
+     * Summary: A structure to store information about simulated keyboard input
+     * Member: KeyCode - The key code of the key to be simulated
+     * Member: Scan - A hardware scan code for the key
+     * Member: Flags - The key action, either key up or key down
+     * Member: Time - The timestamp for the key even in milliseconds
+     * Member: ExtraInfo - An additional value associated with the keystroke
      */
     internal struct KEYBDINPUT
     {
-        public ushort KeyCode; //The keycode of the triggered key. See https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
-        public ushort Scan; //Unicode character in some keys (when flags are saying "hey, this is unicode"). Ununsed in our case.
-        public uint Flags; //Type of action (keyup or keydown). Specifies too if the key is a "special" key.
-        public uint Time; //Timestamp of the event. Ununsed in our case.
-        public IntPtr ExtraInfo; //Extra information (yeah, it wasn't that hard to guess). Ununsed in our case.
+        public ushort KeyCode;
+        public ushort Scan; 
+        public uint Flags;
+        public uint Time; 
+        public IntPtr ExtraInfo;
     }
 
     /*
-     * Struct MOUSEKEYBDHARDWAREINPUT
-     * Union struct for key sending 
-     * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646270%28v=vs.85%29.aspx
+     * Structure: MOUSEKEYBDHARDWAREINPUT
+     * Summary: The union of the Mouse, Keyboard and Hardware structures
+     * Member: Mouse - An instance of the Mouse structure
+     * Member: Keyboard - An instance of the Keyboard structure
+     * Member: Hardware - An instance of the Hardware structure
      */
-
     [StructLayout(LayoutKind.Explicit)]
     internal struct MOUSEKEYBDHARDWAREINPUT
     {
@@ -72,15 +84,15 @@ namespace SequenceAutomation
     }
 
     /*
-     * Struct INPUT
-     * Input internal struct for key sending 
-     * See : https://msdn.microsoft.com/en-us/library/windows/desktop/ms646270%28v=vs.85%29.aspx
+     * Structure: INPUT
+     * Summary: Used by the sendInput method to execute mouse, keyboard or hardware actions
+     * Member: Type - The type of input, 0 for mouse, 1 for keyboard, 2 for hardware
+     * Member: Data - The union of the Mouse, Keyboard and Hardware structures
      */
-
     internal struct INPUT
     {
-        public uint Type; //Type of the input (0 = Mouse, 1 = Keyboard, 2 = Hardware)
-        public MOUSEKEYBDHARDWAREINPUT Data; //The union of "Mouse/Keyboard/Hardware". Only one is read, depending of the type.
+        public uint Type;
+        public MOUSEKEYBDHARDWAREINPUT Data; 
     }
 
     #endregion
@@ -89,20 +101,17 @@ namespace SequenceAutomation
     {
         #region Variable declarations
 
-        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the "key up" signal
-        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the "key down" signal
-        private int timeFactor = 2; // The time factor used to determine the speed at which the recording should play
-        private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Keys to play, with the timing. See KeysSaver.savedKeys for more informations.
-        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
-        private string inputJson;
-        private Dictionary<long, INPUT[]> keysToPlay; // The inputs that will be played. This is a "translation" of keysDict, transforming Keys into Inputs.
-        private Stopwatch watch; // Timer used to respect the strokes timing.
-        private long currentFrame; // While playing, keeps the last keysDict frame that have been played.
-
         private RecordingManager recManager;
         private ContextManager contextManager;
-
-        public List<string> times = new List<string>();
+        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
+        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
+        private int timeFactor; // The time factor used to determine the speed at which the recording should play
+        private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
+        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
+        private Dictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
+        private Stopwatch watch; // Timer used to compare the times of the recorded keys with the currently elapsed time
+        private long currentEntry; // While playing, keeps the last keysDict frame that have been played.
+        private string inputJson; 
         
         #endregion
 
@@ -126,38 +135,45 @@ namespace SequenceAutomation
          */
         public PlayRecording(string inputJson)
         {
-            this.inputJson = inputJson;
-            currentFrame = 0;
-           
-            // Instantiate the Recording Manager with the input JSON string and initialise the dictionaries with the appropriate values
-            recManager = new RecordingManager(inputJson);
+            currentEntry = 0;
+            watch = new Stopwatch();
             contextManager = new ContextManager();
+
+            // Instantiate the RecordingManager with the input JSON string and initialise the dictionaries accordingly
+            recManager = new RecordingManager(inputJson);
             keysDict = recManager.keysDict;
             contextDict = recManager.contextDict;
 
+            // Initialise the keysToPlay dictoinary and load the keys into it
             keysToPlay = new Dictionary<long, INPUT[]>();
-            watch = new Stopwatch();
-            loadkeysToPlay();
+            prepareKeysToPlay();
 
         }
 
         /*
          * Method: Start()
-         * Summary: starts to play the keyboard inputs.
+         * Summary: Begins the execution of the inputs in the keysToPlay dictionary
          */
         public void Start()
         {   
-            currentFrame = 0;  //currentFrame is 0 at the beginning.
-            watch.Reset(); //Resets the timer
-            watch.Start(); //Starts the timer (yeah, pretty obvious)
-            IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); //The keysToPlay enumerator. Used to jump from one frame to another.
-            while (enumerator.MoveNext()) //Moves the pointer of the keysToPlay dictionary to the next entry (so, to the next frame).
+            currentEntry = 0; 
+            watch.Reset();
+            watch.Start();
+
+            // The keysToPlay enumerator, used to jump from one entry to another
+            IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); 
+
+            // Moves the next entry in the keysToPlay dictionary
+            while (enumerator.MoveNext())
             {
+                // Foreach time key in the context dictionary
                 foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
                 {
-                    if (currentFrame == kvp.Key)
+                    // Check if the timeKey (currentEntry) is also present in the contextDictionary, symbolising that a context entry is present for the exact time
+                    if (currentEntry == kvp.Key)
                     {
-                        if(contextManager.checkContext(currentFrame, contextDict))
+                        // Check the current context against the stored context
+                        if(contextManager.checkContext(currentEntry, contextDict))
                         {
                             Console.WriteLine("Passed");
                         }
@@ -168,15 +184,20 @@ namespace SequenceAutomation
                         }
                     }
                 }
-                /* The thread sleeps until the millisecond before the next frame. For exemple, if there is an input at the 42th millisecond,
-                 * the thread will sleep to the 41st millisecond. Seems optionnal, since we have a "while" that waits, but it allows to consume less 
-                 * ressources. Also, in a too long "while", the processor tends to "forget" the thread for a long time, resulting in desyncs. */
-                Thread.Sleep(((int)(enumerator.Current - currentFrame - 1))); 
-                while (watch.ElapsedMilliseconds < enumerator.Current) { } //We wait until the very precise millisecond 
-                uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT))); //Simulate the inputs of the actual frame
 
-                //Console.WriteLine("Current time: {0}", enumerator.Current.ToString());
-                currentFrame = enumerator.Current; //Updates the currentFrame to the frame we just played.
+                // The current thread sleeps until the milisecond before the next entry
+                //Thread.Sleep(((int)(enumerator.Current - currentEntry - 1)));
+
+                while (watch.ElapsedMilliseconds < enumerator.Current) { } // Wait until the exact milisecond
+
+                // The sendInput call, utilising three parameters
+                // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
+                // keysToPlay[enumerator.Current] is the current entry in the array of INPUT structures, keysToPlay
+                // Marshal.SizeOf(typeof(INPUT)) is the size of an INPUT structure
+                // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if blocked by another thread
+                uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
+
+                currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }
         }
 
@@ -194,26 +215,34 @@ namespace SequenceAutomation
         #region Private methods
 
         /*
-         * Method: loadkeysToPlay()
-         * Summary: Transforms the keysDict dictionnary into a sequence of inputs. Also, pre-load the inputs we need (loading takes a bit of time that could lead to desyncs).
+         * Method: prepareKeysToPlay()
+         * Summary: Translates the keysDict entries into INPUT structures that are necessary for the sendInput call
          */
-        private void loadkeysToPlay()
+        private void prepareKeysToPlay()
         {
+            // For each key-value pair in the keysDict dictionary
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in keysDict)
             {
-                List<INPUT> inputs = new List<INPUT>(); //For each recorded frame, creates a list of inputs
+                // Create a list of inputs
+                List<INPUT> inputs = new List<INPUT>();
+
+                // For each key-value pair in the kvp.Values, i.e. the keys played
                 foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
                 {
-                    //Console.WriteLine("\nKEYS\nKVP2 KEY {0}\nKVP2 VALUE {1}", kvp2.Key, kvp2.Value);
-                    inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); //Load the key that will be played and adds it to the list. 
+                    // Add the key and a pointer to the key action (up or down) to the list of INPUTS
+                    inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); 
                 }
-                keysToPlay.Add(kvp.Key, inputs.ToArray());//Transforms the list into an array and adds it to the keysToPlay "partition".
+                
+                // Load the time value (kvp.Key) and list of inputs to the keysToPlay dictionary
+                keysToPlay.Add(kvp.Key, inputs.ToArray());
             }
         }
 
         /*
          * Method: intPtrToFlags()
-         * Summary: Translate the IntPtr which references the activity (keydown/keyup) into input flags.
+         * Summary: Translate the IntPtr reference for the key activity (up or down) to an unsigned integer flag necessary for storage in the INPUT list
+         * Parameter: activity - The key activity, either key up or key down
+         * Return: An insigned integer representing either the KEYUP or KEYDOWN hex code
          */
          
         private uint intPtrToFlags(IntPtr activity)
@@ -232,16 +261,19 @@ namespace SequenceAutomation
 
         /*
          * Method: loadKey()
-         * Summary: Transforms the Key into a sendable input (using the above structures).
+         * Summary: Transforms the Key and key activity into an INPUT data structure, as declared at the beginning of this class
+         * Parameter: key - A Key data type representing the key pressed
+         * Parameter: flags - Flags representing the key activity (key up or key down)
+         * Return: An INPUT structure comprising the necessary information as specified in the above data structure
          */
-        
         private INPUT loadKey(Keys key, uint flags)
         {
             return new INPUT
             {
-                Type = 1, //1 = "this is a keyboad event"
+                Type = 1, // 1 represents a keyboard event
                 Data =
                 {
+                    // Creating a KEYBDINPUT structure as per the definition at the beginning of this file
                     Keyboard = new KEYBDINPUT
                     {
                         KeyCode = (ushort)key,

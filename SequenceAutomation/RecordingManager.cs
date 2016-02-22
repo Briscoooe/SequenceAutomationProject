@@ -5,9 +5,6 @@ using System.Windows.Forms;
 // External library used: http://www.newtonsoft.com/json
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using Newtonsoft.Json.Converters;
-using System.Runtime.InteropServices;
 
 namespace SequenceAutomation
 {
@@ -17,8 +14,6 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        private string keysJsonStr, contextJsonStr;
-        private JObject keysObject, contextObject;
         public Random randomNum;
 
         #endregion
@@ -38,6 +33,8 @@ namespace SequenceAutomation
         /*
          * Method: RecordingManager()
          * Summary: Class Constructor
+         * Parameter: keysDict - The dictionary of keys pressed, the key action, and the time it was pressed
+         * Parameter: contextDict - The context of each "Return" key press
          */
         public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> keysDict, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
         {
@@ -53,12 +50,12 @@ namespace SequenceAutomation
         public string mergeToJson()
         {
             // Convert the dictionaries to JSON strings
-            keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
-            contextJsonStr = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
+            string keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
+            string contextJsonStr = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
 
             // Convert the JSON strings to JSON objects
-            keysObject = JObject.Parse(keysJsonStr);
-            contextObject = JObject.Parse(contextJsonStr);
+            JObject keysObject = JObject.Parse(keysJsonStr);
+            JObject contextObject = JObject.Parse(contextJsonStr);
 
             // Merge the two JSON objects together at matching values
             // This process merges each each context recorded with the specific enter key press at the exact same milisecond
@@ -68,24 +65,43 @@ namespace SequenceAutomation
         }
 
 
+        /*
+         * Method: getContextDict()
+         * Summary: Retrieves the original context dictionary from the merged JSON input string
+         * Return: A dictionary containing the context entries from the inputJson string
+         */
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContextDict(string inputJson)
         {
+            // Initialise the randomNum and contextDict 
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
-
             randomNum = new Random();
+
+            // Store the inputJson string into a dynamic object
             dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
+
+            // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
             foreach (dynamic timeVal in timeKeys)
             {
+                // Store the time value as a long, necessary for a dictionary entry
                 long time = Convert.ToInt64(timeVal.Name);
+
+                // Store the timeVal.Value, in this instance it is the key name, into a dynamic object
                 dynamic nameKeys = timeVal.Value;
 
+                // Iterate over the key names
                 foreach (dynamic nameVal in nameKeys)
                 {
+                    // Store the key name in a string variable
                     string keyNameStr = nameVal.Name;
 
+                    // Iterate over the nameVal.Values, in this instance it is the names of the windows 
                     foreach (dynamic windowVal in nameVal.Value)
                     {
-                        string keyActionStr = windowVal.Value;                    
+                        // Store the key action (key up or key down) into a string variable
+                        string keyActionStr = windowVal.Value;
+
+                        // If the key name is equal to "Open windows", begin the process of adding the open windows to the contextDict
+                        // The key name may be "Open windows" due to the fact the keys and context dictionaries were merged into a single JSON string
                         if (keyNameStr == "Open windows")
                         {
                             // If the contextDict dictionary contains no entry for the current elapsed time, create one
@@ -93,18 +109,22 @@ namespace SequenceAutomation
                             {
                                 contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
 
-                                // If the contextDictionary contains no context at the current elapsed time, create one
+                                // If the contextDictionary contains no context for open windows at the current elapsed time, create one
                                 if (!contextDict[time].ContainsKey("Open windows"))
                                 {
                                     contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
                                 }
                             }
 
+                            // Initialise a random pointer to be added to the context dictionary. During recording the pointer
+                            // would represent the value of the window handle. This information is required for recording but not
+                            // For playback and thus the value can be generated at random
                             IntPtr windowHandle = new IntPtr(randomNum.Next());
+
+                            // Add the entry to the context dictionary
                             contextDict[time]["Open windows"].Add(windowHandle, keyActionStr);
                         }
-                    }
-                        
+                    }   
                 }
             }
 
@@ -116,24 +136,32 @@ namespace SequenceAutomation
             
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
 
+            // Store the inputJson string into a dynamic object
             dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
-            // Iterating over the time key of the JSON string
+
+            // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
             foreach (dynamic timeVal in timeKeys)
             {
+                // Store the time value as a long, necessary for a dictionary entry
                 long time = Convert.ToInt64(timeVal.Name);
+
+                // Store the timeVal.Value, in this instance it is the key name, into a dynamic object
                 dynamic nameKeys = timeVal.Value;
-                
-                // Iterating over the name keys of the JSON string
+
+                // Iterate over the key names
                 foreach (dynamic nameVal in nameKeys)
                 {
+                    // Store the key name in a string variable
                     string keyNameStr = nameVal.Name;
 
-                    // Iterating over the action keys of the JSON string
+                    // Iterating over the nameVal.Values, in this instance it is the key actions (key up or key down)
                     foreach (dynamic actionKeys in nameVal.Value)
                     {
+                        // Initialise the keyAction and keyActionStr variables
                         IntPtr keyAction = (IntPtr)0x0100;
                         string keyActionStr = actionKeys.Value;
 
+                        // If the key is pressed up or down, assign the keyAction variable the appropriate pointer value
                         if (keyActionStr == "256")
                         {
                             keyAction = (IntPtr)0x0100;
@@ -144,18 +172,21 @@ namespace SequenceAutomation
                             keyAction = (IntPtr)0x0101;
                         }
 
+                        // Convert the key name string variable to the Key data type
                         Keys keyName;
                         Enum.TryParse(keyNameStr, out keyName);
 
+                        // If the key name string is a valid key name
                         if(keyNameStr != "Open windows")
                         {
-                            // If the savedKeys dictionary contains no entry for the current elapsed time, create one
+                            // If the keysDict dictionary contains no entry for the current elapsed time, create one
                             if (!keysDict.ContainsKey(time))
                                 keysDict.Add(time, new Dictionary<Keys, IntPtr>());
-                            keysDict[time].Add(keyName, keyAction); //Saves the key and the 
+
+                            // Add the entry to the keysDict dictionary
+                            keysDict[time].Add(keyName, keyAction);
                         }
                     }
-
                 }
             }
 
