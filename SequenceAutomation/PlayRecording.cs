@@ -133,9 +133,10 @@ namespace SequenceAutomation
          * Summary: Class constructor
          * Parameter: inputJson - The JSON string that stores all keys and contexts
          */
-        public PlayRecording(string inputJson)
+        public PlayRecording(string inputJson, int timeFactor)
         {
             currentEntry = 0;
+            this.timeFactor = timeFactor;
             watch = new Stopwatch();
             contextManager = new ContextManager();
 

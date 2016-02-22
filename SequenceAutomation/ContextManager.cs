@@ -78,37 +78,42 @@ namespace SequenceAutomation
             return currentContext;
         }
 
+        /* 
+         * Method: checkContext()
+         * Summary: Checks the current context when called and verifies if it matches the context of the recording
+         * Parameter: time - The exact time of the context
+         * Parameter: contextDict - The dictionary that stores the context
+         * Return: True or false depending on the outcome of the context check
+         */
         public bool checkContext(long time, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
         {
-            int countOpenWindows = 0;
-            int matches = 0;
+            // Initialise the number windows stored in the context and the number of matches to 0
+            int numOfContextWindows = 0;
+            int numOfMatches = 0;
+            // Iterate over the key-value pairs in the context dictionary, then the key value pairs of the
+            // first nested dictionary, then the values of the third nested dictionary
             foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
                 foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
                     foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
+                    {
+                        numOfContextWindows += 1;
+                        // Get the open windows and compare the results to the ones stored in the
+                        // context dictionary
                         foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
                         {
-                            string title = window.Value; // Store the window title
-                            Console.WriteLine("\n\nTitle: {0}", title);
-                            Console.WriteLine("kvp3.Value: {0}", kvp3.Value, ToString());
-                            if (kvp3.Value == title)
+                            // If the window stored matches one of the current windows, increment the matches variable by one
+                            if (kvp3.Value == window.Value)
                             {
-                                matches += 1;
+                                numOfMatches += 1;
                             }
-
-                            countOpenWindows += 1;
                         }
+                    }
 
-            countOpenWindows /= 2;
-
-            if(countOpenWindows == matches)
-            {
+            // If the number of windows listed in the context is equal to the number of matches calculated, return true
+            if(numOfContextWindows == numOfMatches)
                 return true;
-            }
-
             else
-            {
                 return false;
-            }
 
         }
 

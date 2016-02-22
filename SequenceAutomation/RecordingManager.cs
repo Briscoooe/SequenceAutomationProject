@@ -26,8 +26,9 @@ namespace SequenceAutomation
          */
         public RecordingManager(string inputJson)
         {
-            keysDict = getKeysDict(inputJson);
-            contextDict = getContextDict(inputJson);
+            getDictionaries(inputJson);
+            //keysDict = getKeysDict(inputJson);
+            //contextDict = getContextDict(inputJson);
         }
 
         /*
@@ -64,16 +65,16 @@ namespace SequenceAutomation
             return keysObject.ToString();
         }
 
-
         /*
-         * Method: getContextDict()
-         * Summary: Retrieves the original context dictionary from the merged JSON input string
-         * Return: A dictionary containing the context entries from the inputJson string
+         * Method: getDictionaries()
+         * Summary: Translates a single, merged JSON string back into two separate dictionaries for keys and context
+         * Parameter: inputJson - The merged JSON string storing both dictionaries
          */
-        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContextDict(string inputJson)
+        public void getDictionaries(string inputJson)
         {
-            // Initialise the randomNum and contextDict 
+            // Initialise the dictionaries and randomNum variable
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+            keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             randomNum = new Random();
 
             // Store the inputJson string into a dynamic object
@@ -92,9 +93,10 @@ namespace SequenceAutomation
                 foreach (dynamic nameVal in nameKeys)
                 {
                     // Store the key name in a string variable
+                    // In this instance it will be either a key name or the "Open windows"
                     string keyNameStr = nameVal.Name;
 
-                    // Iterate over the nameVal.Values, in this instance it is the names of the windows 
+                    // Iterate over the nameVal.Values, in this instance it will be either a window title or key action 
                     foreach (dynamic windowVal in nameVal.Value)
                     {
                         // Store the key action (key up or key down) into a string variable
@@ -124,73 +126,42 @@ namespace SequenceAutomation
                             // Add the entry to the context dictionary
                             contextDict[time]["Open windows"].Add(windowHandle, keyActionStr);
                         }
-                    }   
-                }
-            }
 
-            return contextDict;
-        }
-
-        public Dictionary<long, Dictionary<Keys, IntPtr>> getKeysDict(string inputJson)
-        {
-            
-            keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-
-            // Store the inputJson string into a dynamic object
-            dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
-
-            // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
-            foreach (dynamic timeVal in timeKeys)
-            {
-                // Store the time value as a long, necessary for a dictionary entry
-                long time = Convert.ToInt64(timeVal.Name);
-
-                // Store the timeVal.Value, in this instance it is the key name, into a dynamic object
-                dynamic nameKeys = timeVal.Value;
-
-                // Iterate over the key names
-                foreach (dynamic nameVal in nameKeys)
-                {
-                    // Store the key name in a string variable
-                    string keyNameStr = nameVal.Name;
-
-                    // Iterating over the nameVal.Values, in this instance it is the key actions (key up or key down)
-                    foreach (dynamic actionKeys in nameVal.Value)
-                    {
-                        // Initialise the keyAction and keyActionStr variables
-                        IntPtr keyAction = (IntPtr)0x0100;
-                        string keyActionStr = actionKeys.Value;
-
-                        // If the key is pressed up or down, assign the keyAction variable the appropriate pointer value
-                        if (keyActionStr == "256")
+                        // If the keyNameStr is a valid key, begin the process of adding an entry to the keys Dictionary
+                        else
                         {
-                            keyAction = (IntPtr)0x0100;
-                        }
+                            // Initialise the keyAction and keyActionStr variables
+                            IntPtr keyAction = (IntPtr)0x0100;
 
-                        else if(keyActionStr == "257")
-                        {
-                            keyAction = (IntPtr)0x0101;
-                        }
+                            // If the key is pressed up or down, assign the keyAction variable the appropriate pointer value
+                            if (keyActionStr == "256")
+                            {
+                                keyAction = (IntPtr)0x0100;
+                            }
 
-                        // Convert the key name string variable to the Key data type
-                        Keys keyName;
-                        Enum.TryParse(keyNameStr, out keyName);
+                            else if (keyActionStr == "257")
+                            {
+                                keyAction = (IntPtr)0x0101;
+                            }
 
-                        // If the key name string is a valid key name
-                        if(keyNameStr != "Open windows")
-                        {
-                            // If the keysDict dictionary contains no entry for the current elapsed time, create one
-                            if (!keysDict.ContainsKey(time))
-                                keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+                            // Convert the key name string variable to the Key data type
+                            Keys keyName;
+                            Enum.TryParse(keyNameStr, out keyName);
 
-                            // Add the entry to the keysDict dictionary
-                            keysDict[time].Add(keyName, keyAction);
+                            // If the key name string is a valid key name
+                            if (keyNameStr != "Open windows")
+                            {
+                                // If the keysDict dictionary contains no entry for the current elapsed time, create one
+                                if (!keysDict.ContainsKey(time))
+                                    keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+
+                                // Add the entry to the keysDict dictionary
+                                keysDict[time].Add(keyName, keyAction);
+                            }
                         }
                     }
                 }
             }
-
-            return keysDict;
         }
 
         #endregion

@@ -77,7 +77,7 @@ namespace SequenceAutomation
                 MessageBox.Show("Error: There is no recording to play");
                 return;
             }
-            playRec = new PlayRecording(mergedJson); // Initialise the playRec object with the keys returned from the createRec class
+            playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
 
