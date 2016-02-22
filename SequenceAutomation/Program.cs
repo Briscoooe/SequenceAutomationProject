@@ -18,7 +18,7 @@ namespace SequenceAutomation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainInterface());
+            Application.Run(new ApplicationContainer());
         }
     }
 }
