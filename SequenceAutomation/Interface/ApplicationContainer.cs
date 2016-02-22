@@ -16,21 +16,17 @@ namespace SequenceAutomation
 
         private void returnToHome(object sender, EventArgs e)
         {
-            loginUserControl.Show();
-            playRecUserControl.Hide();
-            createRecUserControl.Hide();
+            loginUserControl.BringToFront();
         }
 
         public void gotoPlay(object sender, EventArgs e)
         {
-            playRecUserControl.Show();
-            loginUserControl.Hide();
+            playRecUserControl.BringToFront();
         }
 
         protected void gotoCreate(object sender, EventArgs e)
         {
-            createRecUserControl.Show();
-            loginUserControl.Hide();
+            createRecUserControl.BringToFront();
         }
     }
 }
