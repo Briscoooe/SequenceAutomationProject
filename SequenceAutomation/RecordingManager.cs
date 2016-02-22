@@ -27,8 +27,6 @@ namespace SequenceAutomation
         public RecordingManager(string inputJson)
         {
             getDictionaries(inputJson);
-            //keysDict = getKeysDict(inputJson);
-            //contextDict = getContextDict(inputJson);
         }
 
         /*
@@ -63,6 +61,12 @@ namespace SequenceAutomation
             keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
 
             return keysObject.ToString();
+        }
+
+        public string getDescription(string keysJson)
+        {
+            string descJson = keysJson;
+            return descJson;
         }
 
         /*
@@ -148,7 +152,7 @@ namespace SequenceAutomation
                             Keys keyName;
                             Enum.TryParse(keyNameStr, out keyName);
 
-                            // If the key name string is a valid key name
+                            // If the key name string is a valid key name, i.e. NOT "Open windows"
                             if (keyNameStr != "Open windows")
                             {
                                 // If the keysDict dictionary contains no entry for the current elapsed time, create one

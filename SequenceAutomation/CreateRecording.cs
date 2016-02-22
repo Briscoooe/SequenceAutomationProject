@@ -28,7 +28,7 @@ namespace SequenceAutomation
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
-        public string keysJson;
+        public string keysJson, recDescription;
 
         #endregion
 
@@ -105,6 +105,7 @@ namespace SequenceAutomation
             // Merge the context and keys dictionaries into a single JSON string and return it
             recManager = new RecordingManager(savedKeys, contextDict);
             keysJson = recManager.mergeToJson();
+            recDescription = recManager.getDescription(keysJson);
             return keysJson;
         }
 

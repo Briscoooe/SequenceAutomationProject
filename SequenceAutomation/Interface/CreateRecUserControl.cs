@@ -84,9 +84,9 @@ namespace SequenceAutomation
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
             mergedJson = createRec.Stop(); // Stop recording
+            string desc = createRec.recDescription;
 
-            Console.WriteLine(mergedJson);
-            //outputBox.Text = mergedJson;
+            recDescTxt.Text = desc;
         }
     }
 }
