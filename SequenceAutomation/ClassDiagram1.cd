@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SequenceAutomation.CreateRecording" Collapsed="true">
-    <Position X="4.25" Y="1" Width="1.5" />
+  <Class Name="SequenceAutomation.CreateRecording">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Delegate Name="SequenceAutomation.CreateRecording.HookDelegate" Collapsed="true">
         <TypeIdentifier>
@@ -10,94 +13,104 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAACAAAACCCABAEAEIAgDAAAMAAAIAAAIAAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAACCCAAAAAEYAgDAAAMQBAIAAAIAAEQAAgAAA=</HashCode>
       <FileName>CreateRecording.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.ContextManager" Collapsed="true">
-    <Position X="2.75" Y="1.25" Width="1.5" />
+  <Class Name="SequenceAutomation.ContextManager">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="SequenceAutomation.ContextManager.EnumWindowsProc" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ContextManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAQgAAAQAAACgAAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAACAABQgABQQAAACgAAAAAAABAAgAAA=</HashCode>
       <FileName>ContextManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.DatabaseManager" Collapsed="true">
-    <Position X="6" Y="1" Width="1.5" />
+  <Class Name="SequenceAutomation.DatabaseManager">
+    <Position X="9.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAhEAAEAAAEABAAAAAAQkEgAAAEKBAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAABEAAEAAAAAAAAAAAAAkAgAAAEIBAAAAAA=</HashCode>
       <FileName>DatabaseManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.MainInterface" Collapsed="true">
-    <Position X="7.75" Y="1" Width="1.5" />
+  <Class Name="SequenceAutomation.MainInterface">
+    <Position X="13" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAACAABAAAgASBQAACAAAAAAKAACAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAABAAAAADAAAACAACABAKAACAAAAAAAAA=</HashCode>
       <FileName>MainInterface.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.PlayRecording" Collapsed="true">
-    <Position X="4.25" Y="2" Width="1.5" />
+  <Class Name="SequenceAutomation.PlayRecording">
+    <Position X="6" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAgABAiCAAAAAAAJAAAAAAIAAAEQCAIAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAwABACCDAAAAAIZAABAAAIAAAEAAAIAAAQAAAAAA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.Program" Collapsed="true">
-    <Position X="6" Y="2" Width="1.5" />
+  <Class Name="SequenceAutomation.Program">
+    <Position X="7.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.RecordingManager" Collapsed="true">
-    <Position X="7.75" Y="2" Width="1.5" />
+  <Class Name="SequenceAutomation.RecordingManager">
+    <Position X="11.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAkIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAgAAAQAAAAAQAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>RecordingManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Properties.Resources" Collapsed="true">
-    <Position X="4.25" Y="3" Width="1.5" />
+    <Position X="0.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Properties.Settings" Collapsed="true">
-    <Position X="6" Y="3" Width="1.5" />
+    <Position X="0.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Struct Name="SequenceAutomation.MOUSEINPUT" Collapsed="true">
-    <Position X="4.25" Y="5.25" Width="1.5" />
+    <Position X="0.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAhAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAYQA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="SequenceAutomation.HARDWAREINPUT" Collapsed="true">
-    <Position X="4.25" Y="4.25" Width="1.5" />
+    <Position X="0.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="SequenceAutomation.KEYBDINPUT" Collapsed="true">
-    <Position X="7.75" Y="4.25" Width="1.5" />
+    <Position X="0.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="SequenceAutomation.MOUSEKEYBDHARDWAREINPUT" Collapsed="true">
-    <Position X="6" Y="5.25" Width="1.5" />
+    <Position X="0.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="SequenceAutomation.INPUT" Collapsed="true">
-    <Position X="6" Y="4.25" Width="1.5" />
+    <Position X="0.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAA=</HashCode>
       <FileName>PlayRecording.cs</FileName>
