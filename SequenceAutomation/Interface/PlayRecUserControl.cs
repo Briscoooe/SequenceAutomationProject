@@ -12,9 +12,17 @@ namespace SequenceAutomation
 {
     public partial class PlayRecUserControl : UserControl
     {
+        public event EventHandler BackButtonEvent;
+
         public PlayRecUserControl()
         {
             InitializeComponent();
+        }
+
+        public void goBack(object sender, EventArgs e)
+        {
+            if (BackButtonEvent != null)
+                BackButtonEvent(this, e);
         }
     }
 }

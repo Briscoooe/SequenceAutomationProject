@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SequenceAutomation
 {
     public partial class CreateRecUserControl : UserControl
     {
+        public event EventHandler BackButtonEvent;
+
         private CreateRecording createRec;
         private PlayRecording playRec;
         private string mergedJson;
@@ -27,12 +23,10 @@ namespace SequenceAutomation
          * Parameter: sender - The control that the action is for, in this case the button
          * Parameter: e - Any arguments the function may use
          */
-        private void goBack(object sender, EventArgs e)
+        public void goBack(object sender, EventArgs e)
         {
-            Hide();
-            this.Parent.Show();
-            //LoginUserControl x = new LoginUserControl();
-            //x.Show();
+            if(BackButtonEvent != null)
+                BackButtonEvent(this, e);
         }
 
         /*
@@ -66,7 +60,7 @@ namespace SequenceAutomation
             createRec.Start(); // Begin recording
 
             recStatusText.ForeColor = Color.Green;
-            recStatusText.Text = "Playing recording";
+            recStatusText.Text = "Recording active";
 
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;

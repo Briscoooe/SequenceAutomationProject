@@ -5,21 +5,25 @@ namespace SequenceAutomation
 {
     public partial class LoginUserControl : UserControl
     {
+        public event EventHandler CreateButtonEvent;
+        public event EventHandler PlayButtonEvent;
+
         public LoginUserControl()
         {
             InitializeComponent();
         }
 
-        public void gotoPlay(object sender, EventArgs e)
+        protected void gotoCreate(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (CreateButtonEvent != null)
+                CreateButtonEvent(this, new EventArgs());
         }
 
-        public void gotoCreate(object sender, EventArgs e)
+        
+        private void gotoPlay(object sender, EventArgs e)
         {
-            Hide();
-            CreateRecUserControl rec = new CreateRecUserControl();
-            rec.Show();
+            if (PlayButtonEvent != null)
+                PlayButtonEvent(this, e);
         }
     }
 }

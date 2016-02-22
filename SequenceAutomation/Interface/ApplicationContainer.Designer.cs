@@ -30,31 +30,47 @@ namespace SequenceAutomation
         /// </summary>
         private void InitializeComponent()
         {
-            this.createRecUserControl1 = new SequenceAutomation.CreateRecUserControl();
-            this.a = new SequenceAutomation.LoginUserControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationContainer));
+            this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
+            this.loginUserControl = new SequenceAutomation.LoginUserControl();
+            this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
             this.SuspendLayout();
             // 
-            // createRecUserControl1
+            // playRecUserControl
             // 
-            this.createRecUserControl1.Location = new System.Drawing.Point(-4, -1);
-            this.createRecUserControl1.Name = "createRecUserControl1";
-            this.createRecUserControl1.Size = new System.Drawing.Size(990, 530);
-            this.createRecUserControl1.TabIndex = 1;
+            this.playRecUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("playRecUserControl.BackgroundImage")));
+            this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.playRecUserControl.Location = new System.Drawing.Point(-4, -1);
+            this.playRecUserControl.Name = "playRecUserControl";
+            this.playRecUserControl.Size = new System.Drawing.Size(990, 547);
+            this.playRecUserControl.TabIndex = 2;
             // 
-            // a
+            // loginUserControl
             // 
-            this.a.Location = new System.Drawing.Point(-4, -1);
-            this.a.Name = "a";
-            this.a.Size = new System.Drawing.Size(990, 547);
-            this.a.TabIndex = 0;
+            this.loginUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginUserControl.BackgroundImage")));
+            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginUserControl.Location = new System.Drawing.Point(-4, -1);
+            this.loginUserControl.Name = "loginUserControl";
+            this.loginUserControl.Size = new System.Drawing.Size(990, 547);
+            this.loginUserControl.TabIndex = 0;
+            // 
+            // createRecUserControl
+            // 
+            this.createRecUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRecUserControl.BackgroundImage")));
+            this.createRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.createRecUserControl.Location = new System.Drawing.Point(-4, -1);
+            this.createRecUserControl.Name = "createRecUserControl";
+            this.createRecUserControl.Size = new System.Drawing.Size(990, 530);
+            this.createRecUserControl.TabIndex = 1;
             // 
             // ApplicationContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 541);
-            this.Controls.Add(this.a);
-            this.Controls.Add(this.createRecUserControl1);
+            this.Controls.Add(this.loginUserControl);
+            this.Controls.Add(this.createRecUserControl);
+            this.Controls.Add(this.playRecUserControl);
             this.Name = "ApplicationContainer";
             this.Text = "Login";
             this.ResumeLayout(false);
@@ -63,7 +79,8 @@ namespace SequenceAutomation
 
         #endregion
 
-        private LoginUserControl a;
-        private CreateRecUserControl createRecUserControl1;
+        private LoginUserControl loginUserControl;
+        private CreateRecUserControl createRecUserControl;
+        private PlayRecUserControl playRecUserControl;
     }
 }

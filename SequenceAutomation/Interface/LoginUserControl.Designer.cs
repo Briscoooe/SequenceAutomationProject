@@ -30,6 +30,7 @@ namespace SequenceAutomation
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginUserControl));
             this.loginCreateRec = new System.Windows.Forms.Button();
             this.loginPlayRec = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,6 +38,9 @@ namespace SequenceAutomation
             // 
             // loginCreateRec
             // 
+            this.loginCreateRec.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.loginCreateRec.FlatAppearance.BorderSize = 4;
+            this.loginCreateRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginCreateRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginCreateRec.Location = new System.Drawing.Point(618, 258);
             this.loginCreateRec.Name = "loginCreateRec";
@@ -48,6 +52,9 @@ namespace SequenceAutomation
             // 
             // loginPlayRec
             // 
+            this.loginPlayRec.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.loginPlayRec.FlatAppearance.BorderSize = 4;
+            this.loginPlayRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginPlayRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginPlayRec.Location = new System.Drawing.Point(199, 258);
             this.loginPlayRec.Name = "loginPlayRec";
@@ -56,11 +63,11 @@ namespace SequenceAutomation
             this.loginPlayRec.Text = "Play a recording";
             this.loginPlayRec.UseVisualStyleBackColor = true;
             this.loginPlayRec.Click += new System.EventHandler(this.gotoPlay);
-
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(189, 46);
             this.label1.Name = "label1";
@@ -72,6 +79,8 @@ namespace SequenceAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginPlayRec);
             this.Controls.Add(this.loginCreateRec);
