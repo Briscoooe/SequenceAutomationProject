@@ -30,6 +30,7 @@ namespace SequenceAutomation
         private void goBack(object sender, EventArgs e)
         {
             Hide();
+            this.Parent.Show();
             //LoginUserControl x = new LoginUserControl();
             //x.Show();
         }
