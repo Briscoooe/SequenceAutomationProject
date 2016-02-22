@@ -88,6 +88,8 @@ namespace SequenceAutomation
                         foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
                         {
                             string title = window.Value; // Store the window title
+                            Console.WriteLine("\n\nTitle: {0}", title);
+                            Console.WriteLine("kvp3.Value: {0}", kvp3.Value, ToString());
                             if (kvp3.Value == title)
                             {
                                 matches += 1;
