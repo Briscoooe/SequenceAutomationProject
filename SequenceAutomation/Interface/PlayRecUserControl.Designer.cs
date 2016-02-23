@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayRecUserControl));
             this.playRecBtn = new System.Windows.Forms.Button();
             this.recordingsList = new System.Windows.Forms.ListBox();
             this.goBackBtn = new System.Windows.Forms.Button();
@@ -64,7 +63,8 @@
             this.goBackBtn.TabIndex = 2;
             this.goBackBtn.Text = "Go back";
             this.goBackBtn.UseVisualStyleBackColor = true;
-            this.goBackBtn.Click += goBack;
+            this.goBackBtn.Click += new System.EventHandler(this.goBack);
+
             // 
             // loadBtn
             // 
@@ -80,7 +80,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.goBackBtn);

@@ -30,7 +30,6 @@ namespace SequenceAutomation
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateRecUserControl));
             this.startStopRecBtn = new System.Windows.Forms.Button();
             this.testRecBtn = new System.Windows.Forms.Button();
             this.goBackBtn = new System.Windows.Forms.Button();
@@ -118,7 +117,6 @@ namespace SequenceAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.recDescTxt);
             this.Controls.Add(this.label1);

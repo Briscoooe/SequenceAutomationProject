@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationContainer));
             this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
             this.loginUserControl = new SequenceAutomation.LoginUserControl();
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
@@ -36,7 +35,7 @@
             // 
             // playRecUserControl
             // 
-            this.playRecUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("playRecUserControl.BackgroundImage")));
+            this.playRecUserControl.BackColor = System.Drawing.SystemColors.Control;
             this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.playRecUserControl.Name = "playRecUserControl";
@@ -45,7 +44,6 @@
             // 
             // loginUserControl
             // 
-            this.loginUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginUserControl.BackgroundImage")));
             this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.loginUserControl.Location = new System.Drawing.Point(0, 0);
             this.loginUserControl.Name = "loginUserControl";
@@ -54,7 +52,7 @@
             // 
             // createRecUserControl
             // 
-            this.createRecUserControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRecUserControl.BackgroundImage")));
+            this.createRecUserControl.BackColor = System.Drawing.SystemColors.Control;
             this.createRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.createRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.createRecUserControl.Name = "createRecUserControl";
