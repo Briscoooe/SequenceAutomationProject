@@ -145,7 +145,7 @@ namespace SequenceAutomation
                             {
                                 keyAction = (IntPtr)0x0100;
 
-                                Regex rex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]{0,1}$");
+                                Regex rex = new Regex(@"^[a-zA-Z][0-9]{0,1}$");
                                 if(rex.IsMatch(keyNameStr))
                                 {
                                     Console.WriteLine(keyNameStr);
