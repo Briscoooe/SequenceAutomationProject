@@ -5,6 +5,8 @@ using System.Windows.Forms;
 // External library used: http://www.newtonsoft.com/json
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace SequenceAutomation
 {
@@ -15,6 +17,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         public Random randomNum;
+        public string description;
 
         #endregion
 
@@ -63,12 +66,6 @@ namespace SequenceAutomation
             return keysObject.ToString();
         }
 
-        public string getDescription(string keysJson)
-        {
-            string descJson = keysJson;
-            return descJson;
-        }
-
         /*
          * Method: getDictionaries()
          * Summary: Translates a single, merged JSON string back into two separate dictionaries for keys and context
@@ -76,6 +73,8 @@ namespace SequenceAutomation
          */
         public void getDictionaries(string inputJson)
         {
+            List<string> alphaNumTyped = new List<string>();
+
             // Initialise the dictionaries and randomNum variable
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
@@ -137,20 +136,26 @@ namespace SequenceAutomation
                             // Initialise the keyAction and keyActionStr variables
                             IntPtr keyAction = (IntPtr)0x0100;
 
+                            // Convert the key name string variable to the Key data type
+                            Keys keyName;
+                            Enum.TryParse(keyNameStr, out keyName);
+
                             // If the key is pressed up or down, assign the keyAction variable the appropriate pointer value
                             if (keyActionStr == "256")
                             {
                                 keyAction = (IntPtr)0x0100;
+
+                                Regex rex = new Regex(@"^[a-zA-Z][a-zA-Z0-9]{0,1}$");
+                                if(rex.IsMatch(keyNameStr))
+                                {
+                                    Console.WriteLine(keyNameStr);
+                                }
                             }
 
                             else if (keyActionStr == "257")
                             {
                                 keyAction = (IntPtr)0x0101;
                             }
-
-                            // Convert the key name string variable to the Key data type
-                            Keys keyName;
-                            Enum.TryParse(keyNameStr, out keyName);
 
                             // If the key name string is a valid key name, i.e. NOT "Open windows"
                             if (keyNameStr != "Open windows")
