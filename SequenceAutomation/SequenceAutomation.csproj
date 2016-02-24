@@ -96,7 +96,6 @@
     <Compile Include="Interface\CreateRecUserControl.Designer.cs">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseManager.cs" />
     <Compile Include="PlayRecording.cs" />
     <Compile Include="Interface\PlayRecUserControl.cs">
       <SubType>UserControl</SubType>

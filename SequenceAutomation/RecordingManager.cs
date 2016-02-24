@@ -73,7 +73,9 @@ namespace SequenceAutomation
          */
         public void getDictionaries(string inputJson)
         {
-            List<string> alphaNumTyped = new List<string>();
+            List<string> descList = new List<string>();
+            int x = 0;
+            string tempstr = "";
 
             // Initialise the dictionaries and randomNum variable
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
@@ -133,6 +135,7 @@ namespace SequenceAutomation
                         // If the keyNameStr is a valid key, begin the process of adding an entry to the keys Dictionary
                         else
                         {
+
                             // Initialise the keyAction and keyActionStr variables
                             IntPtr keyAction = (IntPtr)0x0100;
 
@@ -152,9 +155,9 @@ namespace SequenceAutomation
                                  */
 
                                 Regex rex = new Regex(@"^[a-zA-Z][0-9]{0,1}$");
-                                if(rex.IsMatch(keyNameStr))
+                                if (rex.IsMatch(keyNameStr))
                                 {
-                                    Console.WriteLine(keyNameStr);
+                                    //tempstr += keyNameStr + ",";
                                 }
                             }
 
@@ -177,6 +180,8 @@ namespace SequenceAutomation
                     }
                 }
             }
+
+            Console.WriteLine(tempstr);
         }
 
         #endregion
