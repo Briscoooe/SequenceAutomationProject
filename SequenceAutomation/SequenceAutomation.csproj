@@ -112,7 +112,7 @@
     <Compile Include="Interface\LoginUserControl.Designer.cs">
       <DependentUpon>LoginUserControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Interface\MainInterface.resx">
+    <EmbeddedResource Include="Interface\ApplicationContainer.resx">
       <DependentUpon>ApplicationContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interface\CreateRecUserControl.resx">
