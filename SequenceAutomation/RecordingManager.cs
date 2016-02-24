@@ -145,6 +145,12 @@ namespace SequenceAutomation
                             {
                                 keyAction = (IntPtr)0x0100;
 
+                                /*
+                                 * While regex is true, concatenate string, add "typed: " to beginning, add string to list item[x]
+                                 * if not true, add "Pressed {0} key", add string to list item[x]
+                                 * work out where to increment x
+                                 */
+
                                 Regex rex = new Regex(@"^[a-zA-Z][0-9]{0,1}$");
                                 if(rex.IsMatch(keyNameStr))
                                 {
