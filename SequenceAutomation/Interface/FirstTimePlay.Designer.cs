@@ -37,24 +37,32 @@
             // 
             // yesBtn
             // 
-            this.yesBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yesBtn.Location = new System.Drawing.Point(204, 293);
+            this.yesBtn.BackColor = System.Drawing.Color.White;
+            this.yesBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.yesBtn.FlatAppearance.BorderSize = 3;
+            this.yesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.yesBtn.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yesBtn.Location = new System.Drawing.Point(157, 248);
             this.yesBtn.Name = "yesBtn";
-            this.yesBtn.Size = new System.Drawing.Size(173, 161);
+            this.yesBtn.Size = new System.Drawing.Size(220, 220);
             this.yesBtn.TabIndex = 0;
             this.yesBtn.Text = "Yes";
-            this.yesBtn.UseVisualStyleBackColor = true;
+            this.yesBtn.UseVisualStyleBackColor = false;
             this.yesBtn.Click += new System.EventHandler(this.gotoTutorial);
             // 
             // noBtn
             // 
-            this.noBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noBtn.Location = new System.Drawing.Point(585, 293);
+            this.noBtn.BackColor = System.Drawing.Color.White;
+            this.noBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.noBtn.FlatAppearance.BorderSize = 3;
+            this.noBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.noBtn.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noBtn.Location = new System.Drawing.Point(585, 248);
             this.noBtn.Name = "noBtn";
-            this.noBtn.Size = new System.Drawing.Size(171, 161);
+            this.noBtn.Size = new System.Drawing.Size(220, 220);
             this.noBtn.TabIndex = 1;
             this.noBtn.Text = "No";
-            this.noBtn.UseVisualStyleBackColor = true;
+            this.noBtn.UseVisualStyleBackColor = false;
             this.noBtn.Click += new System.EventHandler(this.gotoPlay);
             // 
             // rememberChoiceBtn
@@ -71,7 +79,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(86, 26);
+            this.label1.Location = new System.Drawing.Point(108, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(820, 125);
             this.label1.TabIndex = 3;
@@ -81,7 +89,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(113, 186);
+            this.label2.Location = new System.Drawing.Point(111, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(694, 41);
             this.label2.TabIndex = 4;
@@ -91,6 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MintCream;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rememberChoiceBtn);

@@ -263,12 +263,13 @@
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playRecBtn.Location = new System.Drawing.Point(1163, 444);
             this.playRecBtn.Name = "playRecBtn";
-            this.playRecBtn.Size = new System.Drawing.Size(206, 178);
+            this.playRecBtn.Size = new System.Drawing.Size(200, 200);
             this.playRecBtn.TabIndex = 0;
             this.playRecBtn.UseVisualStyleBackColor = false;
             // 
             // showTutorialBtn
             // 
+            this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showTutorialBtn.Location = new System.Drawing.Point(644, 14);
             this.showTutorialBtn.Name = "showTutorialBtn";
@@ -277,12 +278,12 @@
             this.showTutorialBtn.Text = "Show Tutorial";
             this.showTutorialBtn.UseVisualStyleBackColor = true;
             this.showTutorialBtn.Click += new System.EventHandler(this.showTutorial);
-
             // 
             // PlayRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.showTutorialBtn);
             this.Controls.Add(this.label12);

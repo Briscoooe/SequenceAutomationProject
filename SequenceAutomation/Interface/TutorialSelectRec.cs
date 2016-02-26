@@ -14,10 +14,17 @@ namespace SequenceAutomation
     {
         public event EventHandler goBackEvent;
         public event EventHandler goNextEvent;
+        public event EventHandler gotoLoginEvent;
 
         public TutorialSelectRec()
         {
             InitializeComponent();
+        }
+
+        private void gotoLogin(object sender, EventArgs e)
+        {
+            if (gotoLoginEvent != null)
+                gotoLoginEvent(this, e);
         }
 
         private void goNext(object sender, EventArgs e)

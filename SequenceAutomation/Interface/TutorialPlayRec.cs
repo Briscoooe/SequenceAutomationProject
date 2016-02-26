@@ -14,6 +14,7 @@ namespace SequenceAutomation
     {
         public event EventHandler goBackEvent;
         public event EventHandler gotoPlayEvent;
+        public event EventHandler gotoLoginEvent;
 
         public TutorialPlayRec()
         {
@@ -31,5 +32,12 @@ namespace SequenceAutomation
             if (goBackEvent != null)
                 goBackEvent(this, e);
         }
+
+        private void gotoLogin(object sender, EventArgs e)
+        {
+            if (gotoLoginEvent != null)
+                gotoLoginEvent(this, e);
+        }
+
     }
 }

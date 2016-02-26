@@ -28,14 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.loginUserControl = new SequenceAutomation.LoginUserControl();
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
             this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
             this.firstTimePlay = new SequenceAutomation.FirstTimePlay();
-            this.loginUserControl = new SequenceAutomation.LoginUserControl();
-            this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
-            this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
             this.tutorialSelectSpeed = new SequenceAutomation.TutorialSelectSpeed();
+            this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
+            this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
             this.SuspendLayout();
+            // 
+            // loginUserControl
+            // 
+            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginUserControl.Location = new System.Drawing.Point(0, 0);
+            this.loginUserControl.Name = "loginUserControl";
+            this.loginUserControl.Size = new System.Drawing.Size(990, 530);
+            this.loginUserControl.TabIndex = 0;
             // 
             // createRecUserControl
             // 
@@ -62,13 +70,19 @@
             this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
             this.firstTimePlay.TabIndex = 3;
             // 
-            // loginUserControl
+            // tutorialSelectSpeed
             // 
-            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.loginUserControl.Location = new System.Drawing.Point(0, 0);
-            this.loginUserControl.Name = "loginUserControl";
-            this.loginUserControl.Size = new System.Drawing.Size(990, 530);
-            this.loginUserControl.TabIndex = 0;
+            this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
+            this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
+            this.tutorialSelectSpeed.Size = new System.Drawing.Size(955, 444);
+            this.tutorialSelectSpeed.TabIndex = 6;
+            // 
+            // tutorialPlayRec
+            // 
+            this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialPlayRec.Name = "tutorialPlayRec";
+            this.tutorialPlayRec.Size = new System.Drawing.Size(847, 468);
+            this.tutorialPlayRec.TabIndex = 5;
             // 
             // tutorialSelectRec
             // 
@@ -76,20 +90,6 @@
             this.tutorialSelectRec.Name = "tutorialSelectRec";
             this.tutorialSelectRec.Size = new System.Drawing.Size(990, 530);
             this.tutorialSelectRec.TabIndex = 4;
-            // 
-            // tutorialPlayRec
-            // 
-            this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
-            this.tutorialPlayRec.Name = "tutorialPlayRec";
-            this.tutorialPlayRec.Size = new System.Drawing.Size(809, 385);
-            this.tutorialPlayRec.TabIndex = 5;
-            // 
-            // tutorialSelectSpeed
-            // 
-            this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
-            this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
-            this.tutorialSelectSpeed.Size = new System.Drawing.Size(865, 444);
-            this.tutorialSelectSpeed.TabIndex = 6;
             // 
             // ApplicationContainer
             // 
@@ -104,7 +104,7 @@
             this.Controls.Add(this.tutorialPlayRec);
             this.Controls.Add(this.tutorialSelectRec);
             this.Name = "ApplicationContainer";
-            this.Text = "ApplicationContainer";
+            this.Text = "Easy Automator";
             this.ResumeLayout(false);
 
         }

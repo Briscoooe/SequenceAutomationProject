@@ -30,48 +30,29 @@ namespace SequenceAutomation
         /// </summary>
         private void InitializeComponent()
         {
-            this.startStopRecBtn = new System.Windows.Forms.Button();
             this.testRecBtn = new System.Windows.Forms.Button();
-            this.goBackBtn = new System.Windows.Forms.Button();
             this.recStatusLabel = new System.Windows.Forms.Label();
             this.recStatusText = new System.Windows.Forms.Label();
             this.uploadBtn = new System.Windows.Forms.Button();
             this.uploadTb = new System.Windows.Forms.TextBox();
+            this.goBackBtn = new System.Windows.Forms.Button();
+            this.startStopRecBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // startStopRecBtn
-            // 
-            this.startStopRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startStopRecBtn.Location = new System.Drawing.Point(47, 116);
-            this.startStopRecBtn.Name = "startStopRecBtn";
-            this.startStopRecBtn.Size = new System.Drawing.Size(213, 162);
-            this.startStopRecBtn.TabIndex = 0;
-            this.startStopRecBtn.Text = "Begin Recording";
-            this.startStopRecBtn.UseVisualStyleBackColor = true;
-            this.startStopRecBtn.Click += new System.EventHandler(this.startRecording);
             // 
             // testRecBtn
             // 
+            this.testRecBtn.BackColor = System.Drawing.Color.White;
+            this.testRecBtn.FlatAppearance.BorderSize = 3;
+            this.testRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.testRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.testRecBtn.Location = new System.Drawing.Point(47, 317);
+            this.testRecBtn.Location = new System.Drawing.Point(47, 347);
             this.testRecBtn.Name = "testRecBtn";
             this.testRecBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.testRecBtn.Size = new System.Drawing.Size(213, 161);
+            this.testRecBtn.Size = new System.Drawing.Size(213, 131);
             this.testRecBtn.TabIndex = 1;
             this.testRecBtn.Text = "Test Recording";
-            this.testRecBtn.UseVisualStyleBackColor = true;
+            this.testRecBtn.UseVisualStyleBackColor = false;
             this.testRecBtn.Click += new System.EventHandler(this.testRecording);
-            // 
-            // goBackBtn
-            // 
-            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goBackBtn.Location = new System.Drawing.Point(47, 12);
-            this.goBackBtn.Name = "goBackBtn";
-            this.goBackBtn.Size = new System.Drawing.Size(213, 51);
-            this.goBackBtn.TabIndex = 2;
-            this.goBackBtn.Text = "Go back";
-            this.goBackBtn.UseVisualStyleBackColor = true;
-            this.goBackBtn.Click += new System.EventHandler(this.goBack);
             // 
             // recStatusLabel
             // 
@@ -96,10 +77,12 @@ namespace SequenceAutomation
             // 
             // uploadBtn
             // 
+            this.uploadBtn.FlatAppearance.BorderSize = 3;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uploadBtn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadBtn.Location = new System.Drawing.Point(771, 442);
             this.uploadBtn.Name = "uploadBtn";
-            this.uploadBtn.Size = new System.Drawing.Size(139, 36);
+            this.uploadBtn.Size = new System.Drawing.Size(139, 46);
             this.uploadBtn.TabIndex = 5;
             this.uploadBtn.Text = "Upload";
             this.uploadBtn.UseVisualStyleBackColor = true;
@@ -113,10 +96,41 @@ namespace SequenceAutomation
             this.uploadTb.Size = new System.Drawing.Size(346, 33);
             this.uploadTb.TabIndex = 6;
             // 
+            // goBackBtn
+            // 
+            this.goBackBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.backbutton;
+            this.goBackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goBackBtn.FlatAppearance.BorderSize = 0;
+            this.goBackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goBackBtn.Location = new System.Drawing.Point(3, 6);
+            this.goBackBtn.Name = "goBackBtn";
+            this.goBackBtn.Size = new System.Drawing.Size(169, 73);
+            this.goBackBtn.TabIndex = 2;
+            this.goBackBtn.UseVisualStyleBackColor = true;
+            this.goBackBtn.Click += new System.EventHandler(this.goBack);
+            // 
+            // startStopRecBtn
+            // 
+            this.startStopRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play4;
+            this.startStopRecBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.startStopRecBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.startStopRecBtn.FlatAppearance.BorderSize = 0;
+            this.startStopRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startStopRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startStopRecBtn.Location = new System.Drawing.Point(47, 102);
+            this.startStopRecBtn.Name = "startStopRecBtn";
+            this.startStopRecBtn.Size = new System.Drawing.Size(200, 200);
+            this.startStopRecBtn.TabIndex = 0;
+            this.startStopRecBtn.UseVisualStyleBackColor = true;
+            this.startStopRecBtn.Click += new System.EventHandler(this.startRecording);
+            // 
             // CreateRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.uploadTb);
             this.Controls.Add(this.uploadBtn);

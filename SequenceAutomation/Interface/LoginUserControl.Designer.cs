@@ -37,30 +37,32 @@ namespace SequenceAutomation
             // 
             // loginCreateRec
             // 
-            this.loginCreateRec.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.loginCreateRec.FlatAppearance.BorderSize = 4;
+            this.loginCreateRec.BackColor = System.Drawing.Color.White;
+            this.loginCreateRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.loginCreateRec.FlatAppearance.BorderSize = 3;
             this.loginCreateRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginCreateRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginCreateRec.Location = new System.Drawing.Point(597, 258);
             this.loginCreateRec.Name = "loginCreateRec";
-            this.loginCreateRec.Size = new System.Drawing.Size(226, 220);
+            this.loginCreateRec.Size = new System.Drawing.Size(220, 220);
             this.loginCreateRec.TabIndex = 0;
             this.loginCreateRec.Text = "Create a recording";
-            this.loginCreateRec.UseVisualStyleBackColor = true;
+            this.loginCreateRec.UseVisualStyleBackColor = false;
             this.loginCreateRec.Click += new System.EventHandler(this.gotoCreate);
             // 
             // loginPlayRec
             // 
-            this.loginPlayRec.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.loginPlayRec.FlatAppearance.BorderSize = 4;
+            this.loginPlayRec.BackColor = System.Drawing.Color.White;
+            this.loginPlayRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.loginPlayRec.FlatAppearance.BorderSize = 3;
             this.loginPlayRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginPlayRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginPlayRec.Location = new System.Drawing.Point(178, 258);
             this.loginPlayRec.Name = "loginPlayRec";
-            this.loginPlayRec.Size = new System.Drawing.Size(226, 220);
+            this.loginPlayRec.Size = new System.Drawing.Size(220, 220);
             this.loginPlayRec.TabIndex = 1;
             this.loginPlayRec.Text = "Play a recording";
-            this.loginPlayRec.UseVisualStyleBackColor = true;
+            this.loginPlayRec.UseVisualStyleBackColor = false;
             this.loginPlayRec.Click += new System.EventHandler(this.gotoPlay);
             // 
             // label1
@@ -78,6 +80,7 @@ namespace SequenceAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginPlayRec);

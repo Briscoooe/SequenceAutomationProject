@@ -35,8 +35,9 @@ namespace SequenceAutomation
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.speedDropDown = new System.Windows.Forms.ComboBox();
-            this.goBackBtn = new System.Windows.Forms.Button();
+            this.homeBtn = new System.Windows.Forms.Button();
             this.nextBtn = new System.Windows.Forms.Button();
+            this.goBackBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label10
@@ -52,7 +53,7 @@ namespace SequenceAutomation
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(417, 21);
+            this.label9.Location = new System.Drawing.Point(359, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(407, 41);
             this.label9.TabIndex = 22;
@@ -62,7 +63,7 @@ namespace SequenceAutomation
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(280, 21);
+            this.label8.Location = new System.Drawing.Point(232, 21);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(121, 41);
             this.label8.TabIndex = 21;
@@ -87,33 +88,58 @@ namespace SequenceAutomation
             this.speedDropDown.Size = new System.Drawing.Size(313, 40);
             this.speedDropDown.TabIndex = 19;
             // 
-            // goBackBtn
+            // homeBtn
             // 
-            this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goBackBtn.Location = new System.Drawing.Point(27, 17);
-            this.goBackBtn.Name = "goBackBtn";
-            this.goBackBtn.Size = new System.Drawing.Size(206, 48);
-            this.goBackBtn.TabIndex = 24;
-            this.goBackBtn.Text = "Go back";
-            this.goBackBtn.UseVisualStyleBackColor = true;
-            this.goBackBtn.Click += new System.EventHandler(this.goBack);
+            this.homeBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.home;
+            this.homeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.homeBtn.FlatAppearance.BorderSize = 0;
+            this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.homeBtn.Location = new System.Drawing.Point(842, 3);
+            this.homeBtn.Name = "homeBtn";
+            this.homeBtn.Size = new System.Drawing.Size(110, 110);
+            this.homeBtn.TabIndex = 29;
+            this.homeBtn.UseVisualStyleBackColor = true;
+            this.homeBtn.Click += new System.EventHandler(this.gotoLogin);
             // 
             // nextBtn
             // 
+            this.nextBtn.BackColor = System.Drawing.Color.Transparent;
+            this.nextBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.forwardbutton;
+            this.nextBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.nextBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nextBtn.FlatAppearance.BorderSize = 0;
+            this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextBtn.Location = new System.Drawing.Point(717, 372);
+            this.nextBtn.Location = new System.Drawing.Point(783, 368);
             this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(123, 43);
+            this.nextBtn.Size = new System.Drawing.Size(169, 73);
             this.nextBtn.TabIndex = 26;
-            this.nextBtn.Text = "Next";
-            this.nextBtn.UseVisualStyleBackColor = true;
+            this.nextBtn.UseVisualStyleBackColor = false;
             this.nextBtn.Click += new System.EventHandler(this.goNext);
+            // 
+            // goBackBtn
+            // 
+            this.goBackBtn.BackColor = System.Drawing.Color.Transparent;
+            this.goBackBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.backbutton;
+            this.goBackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goBackBtn.FlatAppearance.BorderSize = 0;
+            this.goBackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goBackBtn.Location = new System.Drawing.Point(3, 5);
+            this.goBackBtn.Name = "goBackBtn";
+            this.goBackBtn.Size = new System.Drawing.Size(169, 73);
+            this.goBackBtn.TabIndex = 24;
+            this.goBackBtn.UseVisualStyleBackColor = false;
+            this.goBackBtn.Click += new System.EventHandler(this.goBack);
             // 
             // TutorialSelectSpeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.label10);
@@ -122,7 +148,7 @@ namespace SequenceAutomation
             this.Controls.Add(this.label3);
             this.Controls.Add(this.speedDropDown);
             this.Name = "TutorialSelectSpeed";
-            this.Size = new System.Drawing.Size(865, 444);
+            this.Size = new System.Drawing.Size(955, 444);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +163,6 @@ namespace SequenceAutomation
         private System.Windows.Forms.ComboBox speedDropDown;
         private System.Windows.Forms.Button goBackBtn;
         private System.Windows.Forms.Button nextBtn;
+        private System.Windows.Forms.Button homeBtn;
     }
 }

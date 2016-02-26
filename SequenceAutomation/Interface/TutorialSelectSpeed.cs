@@ -14,6 +14,7 @@ namespace SequenceAutomation
     {
         public event EventHandler goBackEvent;
         public event EventHandler goNextEvent;
+        public event EventHandler gotoLoginEvent;
 
         public TutorialSelectSpeed()
         {
@@ -30,6 +31,12 @@ namespace SequenceAutomation
         {
             if (goBackEvent != null)
                 goBackEvent(this, e);
+        }
+
+        private void gotoLogin(object sender, EventArgs e)
+        {
+            if (gotoLoginEvent != null)
+                gotoLoginEvent(this, e);
         }
     }
 }

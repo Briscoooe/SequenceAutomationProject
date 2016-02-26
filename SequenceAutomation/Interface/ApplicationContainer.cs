@@ -29,33 +29,36 @@ namespace SequenceAutomation
 
             tutorialSelectRec.goBackEvent += returnToLogin;
             tutorialSelectRec.goNextEvent += gotoSelectSpeed;
+            tutorialSelectRec.gotoLoginEvent += returnToLogin;
 
             tutorialSelectSpeed.goBackEvent += gotoSelectRec;
             tutorialSelectSpeed.goNextEvent += gotoPlayRec;
+            tutorialSelectSpeed.gotoLoginEvent += returnToLogin;
 
             tutorialPlayRec.goBackEvent += gotoSelectSpeed;
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
+            tutorialPlayRec.gotoLoginEvent += returnToLogin;
         }
 
         private void gotoPlayRec(object sender, EventArgs e)
         {
-            CenterToScreen();
-            ClientSize = new Size(809, 385);
+            ClientSize = new Size(847, 468);
             tutorialPlayRec.BringToFront();
+            CenterToScreen();
         }
 
         private void gotoSelectRec(object sender, EventArgs e)
         {
-            CenterToScreen();
             ClientSize = new Size(990, 530);
             tutorialSelectRec.BringToFront();
+            CenterToScreen();
         }
 
         private void gotoSelectSpeed(object sender, EventArgs e)
         {
-            CenterToScreen();
-            ClientSize = new Size(865, 444);
+            ClientSize = new Size(955, 444);
             tutorialSelectSpeed.BringToFront();
+            CenterToScreen();
         }
 
         /* 
@@ -66,9 +69,9 @@ namespace SequenceAutomation
          */
         private void returnToLogin(object sender, EventArgs e)
         {
-            CenterToScreen();
             loginUserControl.BringToFront();
             ClientSize = new Size(990, 530);
+            CenterToScreen();
         }
 
         /* 
@@ -79,10 +82,9 @@ namespace SequenceAutomation
          */
         public void gotoPlay(object sender, EventArgs e)
         {
-            CenterToScreen();
             playRecUserControl.BringToFront();
             ClientSize = new Size(1406, 663);
-
+            CenterToScreen();
         }
 
         /* 
@@ -93,22 +95,22 @@ namespace SequenceAutomation
         */
         protected void gotoCreate(object sender, EventArgs e)
         {
-            CenterToScreen();
             createRecUserControl.BringToFront();
+            CenterToScreen();
         }
 
         private void gotoTutorial(object sender, EventArgs e)
         {
             ClientSize = new Size(990, 530);
-            CenterToScreen();
             tutorialSelectRec.BringToFront();
+            CenterToScreen();
         }
 
 
         private void gotoTutorialSelect(object sender, EventArgs e)
         {
-            CenterToScreen();
             firstTimePlay.BringToFront();
+            CenterToScreen();
         }
 
     }

@@ -57,7 +57,7 @@ namespace SequenceAutomation
          */
         private void startRecording(object sender, EventArgs e)
         {
-            startStopRecBtn.Text = "Stop Recording";
+            startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             createRec = new CreateRecording(); // Reinitialise the createRec variable, restarting the clock and clearning the dictionary of recorded keys
             createRec.Start(); // Begin recording
 
@@ -77,7 +77,7 @@ namespace SequenceAutomation
          */
         private void stopRecording(object sender, EventArgs e)
         {
-            startStopRecBtn.Text = "Begin Recording";
+            startStopRecBtn.BackgroundImage = Properties.Resources.play4;
 
             recStatusText.ForeColor = Color.Red;
             recStatusText.Text = "Not recording";
