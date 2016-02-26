@@ -28,19 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
             this.loginUserControl = new SequenceAutomation.LoginUserControl();
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
+            this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
+            this.firstTimePlay = new SequenceAutomation.FirstTimePlay();
             this.SuspendLayout();
-            // 
-            // playRecUserControl
-            // 
-            this.playRecUserControl.BackColor = System.Drawing.SystemColors.Control;
-            this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
-            this.playRecUserControl.Name = "playRecUserControl";
-            this.playRecUserControl.Size = new System.Drawing.Size(1406, 663);
-            this.playRecUserControl.TabIndex = 2;
             // 
             // loginUserControl
             // 
@@ -59,6 +51,22 @@
             this.createRecUserControl.Size = new System.Drawing.Size(990, 530);
             this.createRecUserControl.TabIndex = 1;
             // 
+            // playRecUserControl
+            // 
+            this.playRecUserControl.BackColor = System.Drawing.SystemColors.Control;
+            this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
+            this.playRecUserControl.Name = "playRecUserControl";
+            this.playRecUserControl.Size = new System.Drawing.Size(1406, 663);
+            this.playRecUserControl.TabIndex = 2;
+            // 
+            // firstTimePlay
+            // 
+            this.firstTimePlay.Location = new System.Drawing.Point(0, 0);
+            this.firstTimePlay.Name = "firstTimePlay";
+            this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
+            this.firstTimePlay.TabIndex = 3;
+            // 
             // ApplicationContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -67,6 +75,7 @@
             this.Controls.Add(this.loginUserControl);
             this.Controls.Add(this.createRecUserControl);
             this.Controls.Add(this.playRecUserControl);
+            this.Controls.Add(this.firstTimePlay);
             this.Name = "ApplicationContainer";
             this.Text = "ApplicationContainer";
             this.ResumeLayout(false);
@@ -78,5 +87,6 @@
         private LoginUserControl loginUserControl;
         private CreateRecUserControl createRecUserControl;
         private PlayRecUserControl playRecUserControl;
+        private FirstTimePlay firstTimePlay;
     }
 }

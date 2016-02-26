@@ -41,7 +41,7 @@ namespace SequenceAutomation
             this.loginCreateRec.FlatAppearance.BorderSize = 4;
             this.loginCreateRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginCreateRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginCreateRec.Location = new System.Drawing.Point(618, 258);
+            this.loginCreateRec.Location = new System.Drawing.Point(597, 258);
             this.loginCreateRec.Name = "loginCreateRec";
             this.loginCreateRec.Size = new System.Drawing.Size(226, 220);
             this.loginCreateRec.TabIndex = 0;
@@ -55,7 +55,7 @@ namespace SequenceAutomation
             this.loginPlayRec.FlatAppearance.BorderSize = 4;
             this.loginPlayRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginPlayRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginPlayRec.Location = new System.Drawing.Point(199, 258);
+            this.loginPlayRec.Location = new System.Drawing.Point(178, 258);
             this.loginPlayRec.Name = "loginPlayRec";
             this.loginPlayRec.Size = new System.Drawing.Size(226, 220);
             this.loginPlayRec.TabIndex = 1;
@@ -68,7 +68,7 @@ namespace SequenceAutomation
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(189, 46);
+            this.label1.Location = new System.Drawing.Point(168, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(655, 112);
             this.label1.TabIndex = 2;

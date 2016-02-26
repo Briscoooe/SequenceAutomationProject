@@ -22,9 +22,14 @@ namespace SequenceAutomation
 
             // Initialising the events to their appropriate methods
             loginUserControl.CreateButtonEvent += gotoCreate;
-            loginUserControl.PlayButtonEvent += gotoPlay;
+            loginUserControl.PlayButtonEvent += gotoTutorialSelect;
+
             createRecUserControl.BackButtonEvent += returnToLogin;
+
             playRecUserControl.BackButtonEvent += returnToLogin;
+
+            firstTimePlay.YesTutorialEvent += gotoTutorial;
+            firstTimePlay.NoTutorialEvent += gotoPlay;
         }
 
         /* 
@@ -47,6 +52,7 @@ namespace SequenceAutomation
          */
         public void gotoPlay(object sender, EventArgs e)
         {
+            Console.WriteLine("Called");
             playRecUserControl.BringToFront();
             ClientSize = new Size(1406, 663);
 
@@ -62,5 +68,17 @@ namespace SequenceAutomation
         {
             createRecUserControl.BringToFront();
         }
+
+        private void gotoTutorial(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void gotoTutorialSelect(object sender, EventArgs e)
+        {
+            firstTimePlay.BringToFront();
+        }
+
     }
 }

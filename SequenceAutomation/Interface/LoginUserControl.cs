@@ -13,7 +13,7 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
-        protected void gotoCreate(object sender, EventArgs e)
+        private void gotoCreate(object sender, EventArgs e)
         {
             if (CreateButtonEvent != null)
                 CreateButtonEvent(this, new EventArgs());
