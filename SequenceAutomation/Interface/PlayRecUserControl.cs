@@ -13,6 +13,7 @@ namespace SequenceAutomation
     public partial class PlayRecUserControl : UserControl
     {
         public event EventHandler BackButtonEvent;
+        public event EventHandler TutorialEvent;
 
         public PlayRecUserControl()
         {
@@ -23,6 +24,12 @@ namespace SequenceAutomation
         {
             if (BackButtonEvent != null)
                 BackButtonEvent(this, e);
+        }
+
+        public void showTutorial(object sender, EventArgs e)
+        {
+            if (TutorialEvent != null)
+                TutorialEvent(this, e);
         }
     }
 }

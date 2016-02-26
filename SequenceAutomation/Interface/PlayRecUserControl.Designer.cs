@@ -49,6 +49,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.playRecBtn = new System.Windows.Forms.Button();
+            this.showTutorialBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // recordingsList
@@ -266,11 +267,24 @@
             this.playRecBtn.TabIndex = 0;
             this.playRecBtn.UseVisualStyleBackColor = false;
             // 
+            // showTutorialBtn
+            // 
+            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTutorialBtn.Location = new System.Drawing.Point(644, 14);
+            this.showTutorialBtn.Name = "showTutorialBtn";
+            this.showTutorialBtn.Size = new System.Drawing.Size(302, 52);
+            this.showTutorialBtn.TabIndex = 21;
+            this.showTutorialBtn.Text = "Show Tutorial";
+            this.showTutorialBtn.UseVisualStyleBackColor = true;
+            this.showTutorialBtn.Click += new System.EventHandler(this.showTutorial);
+
+            // 
             // PlayRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.showTutorialBtn);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -323,5 +337,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button showTutorialBtn;
     }
 }

@@ -28,19 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.loginUserControl = new SequenceAutomation.LoginUserControl();
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
             this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
             this.firstTimePlay = new SequenceAutomation.FirstTimePlay();
+            this.loginUserControl = new SequenceAutomation.LoginUserControl();
+            this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
+            this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
+            this.tutorialSelectSpeed = new SequenceAutomation.TutorialSelectSpeed();
             this.SuspendLayout();
-            // 
-            // loginUserControl
-            // 
-            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.loginUserControl.Location = new System.Drawing.Point(0, 0);
-            this.loginUserControl.Name = "loginUserControl";
-            this.loginUserControl.Size = new System.Drawing.Size(990, 530);
-            this.loginUserControl.TabIndex = 0;
             // 
             // createRecUserControl
             // 
@@ -67,6 +62,35 @@
             this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
             this.firstTimePlay.TabIndex = 3;
             // 
+            // loginUserControl
+            // 
+            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginUserControl.Location = new System.Drawing.Point(0, 0);
+            this.loginUserControl.Name = "loginUserControl";
+            this.loginUserControl.Size = new System.Drawing.Size(990, 530);
+            this.loginUserControl.TabIndex = 0;
+            // 
+            // tutorialSelectRec
+            // 
+            this.tutorialSelectRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialSelectRec.Name = "tutorialSelectRec";
+            this.tutorialSelectRec.Size = new System.Drawing.Size(990, 530);
+            this.tutorialSelectRec.TabIndex = 4;
+            // 
+            // tutorialPlayRec
+            // 
+            this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialPlayRec.Name = "tutorialPlayRec";
+            this.tutorialPlayRec.Size = new System.Drawing.Size(809, 385);
+            this.tutorialPlayRec.TabIndex = 5;
+            // 
+            // tutorialSelectSpeed
+            // 
+            this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
+            this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
+            this.tutorialSelectSpeed.Size = new System.Drawing.Size(865, 444);
+            this.tutorialSelectSpeed.TabIndex = 6;
+            // 
             // ApplicationContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,6 +100,9 @@
             this.Controls.Add(this.createRecUserControl);
             this.Controls.Add(this.playRecUserControl);
             this.Controls.Add(this.firstTimePlay);
+            this.Controls.Add(this.tutorialSelectSpeed);
+            this.Controls.Add(this.tutorialPlayRec);
+            this.Controls.Add(this.tutorialSelectRec);
             this.Name = "ApplicationContainer";
             this.Text = "ApplicationContainer";
             this.ResumeLayout(false);
@@ -83,10 +110,12 @@
         }
 
         #endregion
-
-        private LoginUserControl loginUserControl;
         private CreateRecUserControl createRecUserControl;
         private PlayRecUserControl playRecUserControl;
         private FirstTimePlay firstTimePlay;
+        private LoginUserControl loginUserControl;
+        private TutorialSelectRec tutorialSelectRec;
+        private TutorialPlayRec tutorialPlayRec;
+        private TutorialSelectSpeed tutorialSelectSpeed;
     }
 }

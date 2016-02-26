@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SequenceAutomation
@@ -19,6 +13,7 @@ namespace SequenceAutomation
         public ApplicationContainer()
         {
             InitializeComponent();
+            CenterToScreen();
 
             // Initialising the events to their appropriate methods
             loginUserControl.CreateButtonEvent += gotoCreate;
@@ -27,9 +22,40 @@ namespace SequenceAutomation
             createRecUserControl.BackButtonEvent += returnToLogin;
 
             playRecUserControl.BackButtonEvent += returnToLogin;
+            playRecUserControl.TutorialEvent += gotoTutorial;
 
             firstTimePlay.YesTutorialEvent += gotoTutorial;
             firstTimePlay.NoTutorialEvent += gotoPlay;
+
+            tutorialSelectRec.goBackEvent += returnToLogin;
+            tutorialSelectRec.goNextEvent += gotoSelectSpeed;
+
+            tutorialSelectSpeed.goBackEvent += gotoSelectRec;
+            tutorialSelectSpeed.goNextEvent += gotoPlayRec;
+
+            tutorialPlayRec.goBackEvent += gotoSelectSpeed;
+            tutorialPlayRec.gotoPlayEvent += gotoPlay;
+        }
+
+        private void gotoPlayRec(object sender, EventArgs e)
+        {
+            CenterToScreen();
+            ClientSize = new Size(809, 385);
+            tutorialPlayRec.BringToFront();
+        }
+
+        private void gotoSelectRec(object sender, EventArgs e)
+        {
+            CenterToScreen();
+            ClientSize = new Size(990, 530);
+            tutorialSelectRec.BringToFront();
+        }
+
+        private void gotoSelectSpeed(object sender, EventArgs e)
+        {
+            CenterToScreen();
+            ClientSize = new Size(865, 444);
+            tutorialSelectSpeed.BringToFront();
         }
 
         /* 
@@ -40,6 +66,7 @@ namespace SequenceAutomation
          */
         private void returnToLogin(object sender, EventArgs e)
         {
+            CenterToScreen();
             loginUserControl.BringToFront();
             ClientSize = new Size(990, 530);
         }
@@ -52,7 +79,7 @@ namespace SequenceAutomation
          */
         public void gotoPlay(object sender, EventArgs e)
         {
-            Console.WriteLine("Called");
+            CenterToScreen();
             playRecUserControl.BringToFront();
             ClientSize = new Size(1406, 663);
 
@@ -66,17 +93,21 @@ namespace SequenceAutomation
         */
         protected void gotoCreate(object sender, EventArgs e)
         {
+            CenterToScreen();
             createRecUserControl.BringToFront();
         }
 
         private void gotoTutorial(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ClientSize = new Size(990, 530);
+            CenterToScreen();
+            tutorialSelectRec.BringToFront();
         }
 
 
         private void gotoTutorialSelect(object sender, EventArgs e)
         {
+            CenterToScreen();
             firstTimePlay.BringToFront();
         }
 
