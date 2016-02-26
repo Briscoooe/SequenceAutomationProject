@@ -9,12 +9,14 @@ namespace SequenceAutomation
         public event EventHandler BackButtonEvent;
 
         private CreateRecording createRec;
+        private ConnectionManager conn;
         private PlayRecording playRec;
         private string mergedJson;
 
         public CreateRecUserControl()
         {
             InitializeComponent();
+            conn = new ConnectionManager();
         }
 
         /*
@@ -83,10 +85,22 @@ namespace SequenceAutomation
             // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
-            mergedJson = createRec.Stop(); // Stop recording
-            string desc = createRec.recDescription;
+            mergedJson = createRec.Stop(); // Stop recording  
 
-            recDescTxt.Text = desc;
+            uploadTb.Text = "rec001.json";
+        }
+
+        /*
+         *
+         */
+        private void upload(object sender, EventArgs e)
+        {
+            Console.WriteLine("upload called");
+            if(conn.Upload(mergedJson))
+                Console.WriteLine("Uploaded");
+
+            else
+                Console.WriteLine("Failed");
         }
     }
 }

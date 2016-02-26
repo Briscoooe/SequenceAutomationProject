@@ -36,6 +36,7 @@ namespace SequenceAutomation
         private void returnToLogin(object sender, EventArgs e)
         {
             loginUserControl.BringToFront();
+            ClientSize = new Size(990, 530);
         }
 
         /* 
@@ -47,6 +48,8 @@ namespace SequenceAutomation
         public void gotoPlay(object sender, EventArgs e)
         {
             playRecUserControl.BringToFront();
+            ClientSize = new Size(1406, 663);
+
         }
 
         /* 

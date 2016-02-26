@@ -39,7 +39,7 @@
             this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.playRecUserControl.Name = "playRecUserControl";
-            this.playRecUserControl.Size = new System.Drawing.Size(990, 530);
+            this.playRecUserControl.Size = new System.Drawing.Size(1406, 663);
             this.playRecUserControl.TabIndex = 2;
             // 
             // loginUserControl

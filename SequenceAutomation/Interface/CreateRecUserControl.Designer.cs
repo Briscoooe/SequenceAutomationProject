@@ -35,14 +35,14 @@ namespace SequenceAutomation
             this.goBackBtn = new System.Windows.Forms.Button();
             this.recStatusLabel = new System.Windows.Forms.Label();
             this.recStatusText = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.recDescTxt = new System.Windows.Forms.RichTextBox();
+            this.uploadBtn = new System.Windows.Forms.Button();
+            this.uploadTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // startStopRecBtn
             // 
             this.startStopRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startStopRecBtn.Location = new System.Drawing.Point(47, 93);
+            this.startStopRecBtn.Location = new System.Drawing.Point(47, 116);
             this.startStopRecBtn.Name = "startStopRecBtn";
             this.startStopRecBtn.Size = new System.Drawing.Size(213, 162);
             this.startStopRecBtn.TabIndex = 0;
@@ -94,32 +94,32 @@ namespace SequenceAutomation
             this.recStatusText.TabIndex = 4;
             this.recStatusText.Text = "Not recording";
             // 
-            // label1
+            // uploadBtn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(311, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(301, 32);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Recording description";
+            this.uploadBtn.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadBtn.Location = new System.Drawing.Point(771, 442);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(139, 36);
+            this.uploadBtn.TabIndex = 5;
+            this.uploadBtn.Text = "Upload";
+            this.uploadBtn.UseVisualStyleBackColor = true;
+            this.uploadBtn.Click += new System.EventHandler(this.upload);
             // 
-            // recDescTxt
+            // uploadTb
             // 
-            this.recDescTxt.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescTxt.Location = new System.Drawing.Point(317, 150);
-            this.recDescTxt.Name = "recDescTxt";
-            this.recDescTxt.Size = new System.Drawing.Size(295, 281);
-            this.recDescTxt.TabIndex = 7;
-            this.recDescTxt.Text = "";
+            this.uploadTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadTb.Location = new System.Drawing.Point(564, 403);
+            this.uploadTb.Name = "uploadTb";
+            this.uploadTb.Size = new System.Drawing.Size(346, 33);
+            this.uploadTb.TabIndex = 6;
             // 
             // CreateRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.recDescTxt);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.uploadTb);
+            this.Controls.Add(this.uploadBtn);
             this.Controls.Add(this.recStatusText);
             this.Controls.Add(this.recStatusLabel);
             this.Controls.Add(this.goBackBtn);
@@ -139,7 +139,7 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button goBackBtn;
         private System.Windows.Forms.Label recStatusLabel;
         private System.Windows.Forms.Label recStatusText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox recDescTxt;
+        private System.Windows.Forms.Button uploadBtn;
+        private System.Windows.Forms.TextBox uploadTb;
     }
 }
