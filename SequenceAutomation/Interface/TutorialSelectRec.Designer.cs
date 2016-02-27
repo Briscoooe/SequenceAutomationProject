@@ -150,6 +150,8 @@ namespace SequenceAutomation
             this.homeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.homeBtn.FlatAppearance.BorderSize = 0;
+            this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Location = new System.Drawing.Point(877, 4);
             this.homeBtn.Name = "homeBtn";
@@ -157,6 +159,8 @@ namespace SequenceAutomation
             this.homeBtn.TabIndex = 28;
             this.homeBtn.UseVisualStyleBackColor = true;
             this.homeBtn.Click += new System.EventHandler(this.gotoLogin);
+            this.homeBtn.MouseEnter += new System.EventHandler(this.homeBtn_MouseEnter);
+            this.homeBtn.MouseLeave += new System.EventHandler(this.homeBtn_MouseLeave);
             // 
             // nextBtn
             // 
@@ -164,6 +168,8 @@ namespace SequenceAutomation
             this.nextBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.nextBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nextBtn.FlatAppearance.BorderSize = 0;
+            this.nextBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.nextBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextBtn.Location = new System.Drawing.Point(818, 454);
@@ -172,6 +178,8 @@ namespace SequenceAutomation
             this.nextBtn.TabIndex = 25;
             this.nextBtn.UseVisualStyleBackColor = true;
             this.nextBtn.Click += new System.EventHandler(this.goNext);
+            this.nextBtn.MouseEnter += new System.EventHandler(this.nextBtn_MouseEnter);
+            this.nextBtn.MouseLeave += new System.EventHandler(this.nextBtn_MouseLeave);
             // 
             // goBackBtn
             // 
@@ -179,6 +187,8 @@ namespace SequenceAutomation
             this.goBackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goBackBtn.FlatAppearance.BorderSize = 0;
+            this.goBackBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.goBackBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.goBackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.goBackBtn.Location = new System.Drawing.Point(3, 4);
@@ -187,6 +197,8 @@ namespace SequenceAutomation
             this.goBackBtn.TabIndex = 17;
             this.goBackBtn.UseVisualStyleBackColor = true;
             this.goBackBtn.Click += new System.EventHandler(this.goBack);
+            this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
+            this.goBackBtn.MouseLeave += new System.EventHandler(this.goBackBtn_MouseLeave);
             // 
             // TutorialSelectRec
             // 

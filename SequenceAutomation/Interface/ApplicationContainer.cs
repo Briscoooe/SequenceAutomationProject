@@ -16,15 +16,15 @@ namespace SequenceAutomation
             CenterToScreen();
 
             // Initialising the events to their appropriate methods
-            loginUserControl.CreateButtonEvent += gotoCreate;
-            loginUserControl.PlayButtonEvent += gotoTutorialSelect;
+            loginUserControl.CreateButtonEvent += gotoCreateTutorialSelect;
+            loginUserControl.PlayButtonEvent += gotoPlayTutorialSelect;
 
             createRecUserControl.BackButtonEvent += returnToLogin;
 
             playRecUserControl.BackButtonEvent += returnToLogin;
-            playRecUserControl.TutorialEvent += gotoTutorial;
+            playRecUserControl.TutorialEvent += gotoPlayTutorial;
 
-            firstTimePlay.YesTutorialEvent += gotoTutorial;
+            firstTimePlay.YesTutorialEvent += gotoPlayTutorial;
             firstTimePlay.NoTutorialEvent += gotoPlay;
 
             tutorialSelectRec.goBackEvent += returnToLogin;
@@ -38,6 +38,14 @@ namespace SequenceAutomation
             tutorialPlayRec.goBackEvent += gotoSelectSpeed;
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
             tutorialPlayRec.gotoLoginEvent += returnToLogin;
+
+            firstTimeCreate.YesTutorialEvent += gotoCreateTutorial;
+            firstTimeCreate.NoTutorialEvent += gotoCreate;
+        }
+
+        private void gotoCreateTutorial(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void gotoPlayRec(object sender, EventArgs e)
@@ -95,11 +103,12 @@ namespace SequenceAutomation
         */
         protected void gotoCreate(object sender, EventArgs e)
         {
+            ClientSize = new Size(907, 433);
             createRecUserControl.BringToFront();
             CenterToScreen();
         }
 
-        private void gotoTutorial(object sender, EventArgs e)
+        private void gotoPlayTutorial(object sender, EventArgs e)
         {
             ClientSize = new Size(990, 530);
             tutorialSelectRec.BringToFront();
@@ -107,10 +116,32 @@ namespace SequenceAutomation
         }
 
 
-        private void gotoTutorialSelect(object sender, EventArgs e)
+        private void gotoPlayTutorialSelect(object sender, EventArgs e)
         {
-            firstTimePlay.BringToFront();
-            CenterToScreen();
+            if (firstTimePlay.rememberSelection)
+            {
+                gotoPlay(sender, e);
+            }
+
+            else
+            {
+                firstTimePlay.BringToFront();
+                CenterToScreen();
+            }
+        }
+
+        private void gotoCreateTutorialSelect(object sender, EventArgs e)
+        {
+            if (firstTimeCreate.rememberSelection)
+            {
+                gotoCreate(sender, e);
+            }
+
+            else
+            {
+                firstTimeCreate.BringToFront();
+                CenterToScreen();
+            }
         }
 
     }

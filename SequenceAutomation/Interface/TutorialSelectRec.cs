@@ -38,5 +38,35 @@ namespace SequenceAutomation
             if (goBackEvent != null)
                 goBackEvent(this, e);
         }
+
+        private void goBackBtn_MouseLeave(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
+        }
+
+        private void goBackBtn_MouseEnter(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
+        }
+
+        private void homeBtn_MouseLeave(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home;
+        }
+
+        private void homeBtn_MouseEnter(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home_hover;
+        }
+
+        private void nextBtn_MouseLeave(object sender, EventArgs e)
+        {
+            nextBtn.BackgroundImage = Properties.Resources.forwardbutton;
+        }
+
+        private void nextBtn_MouseEnter(object sender, EventArgs e)
+        {
+            nextBtn.BackgroundImage = Properties.Resources.forwardbutton_hover;
+        }
     }
 }

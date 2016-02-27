@@ -39,5 +39,45 @@ namespace SequenceAutomation
                 gotoLoginEvent(this, e);
         }
 
+        private void playRecBtn_MouseLeave(object sender, EventArgs e)
+        {
+            playRecBtn.BackgroundImage = Properties.Resources.play;
+        }
+
+        private void playRecBtn_MouseEnter(object sender, EventArgs e)
+        {
+            playRecBtn.BackgroundImage = Properties.Resources.play_hover;
+        }
+
+        private void goBackBtn_MouseLeave(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
+        }
+
+        private void goBackBtn_MouseEnter(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
+        }
+
+        private void homeBtn_MouseLeave(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home;
+        }
+
+        private void homeBtn_MouseEnter(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home_hover;
+        }
+
+        private void doneBtn_MouseLeave(object sender, EventArgs e)
+        {
+            doneBtn.BackgroundImage = Properties.Resources.done;
+        }
+
+        private void doneBtn_MouseEnter(object sender, EventArgs e)
+        {
+            doneBtn.BackgroundImage = Properties.Resources.done_hover;
+        }
+
     }
 }

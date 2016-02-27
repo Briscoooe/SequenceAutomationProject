@@ -98,6 +98,8 @@ namespace SequenceAutomation
             this.homeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.homeBtn.FlatAppearance.BorderSize = 0;
+            this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Location = new System.Drawing.Point(734, 3);
             this.homeBtn.Name = "homeBtn";
@@ -105,6 +107,8 @@ namespace SequenceAutomation
             this.homeBtn.TabIndex = 30;
             this.homeBtn.UseVisualStyleBackColor = true;
             this.homeBtn.Click += new System.EventHandler(this.gotoLogin);
+            this.homeBtn.MouseEnter += new System.EventHandler(this.homeBtn_MouseEnter);
+            this.homeBtn.MouseLeave += new System.EventHandler(this.homeBtn_MouseLeave);
             // 
             // doneBtn
             // 
@@ -112,6 +116,8 @@ namespace SequenceAutomation
             this.doneBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.doneBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.doneBtn.FlatAppearance.BorderSize = 0;
+            this.doneBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.doneBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.doneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doneBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.doneBtn.Location = new System.Drawing.Point(674, 340);
@@ -120,6 +126,8 @@ namespace SequenceAutomation
             this.doneBtn.TabIndex = 28;
             this.doneBtn.UseVisualStyleBackColor = true;
             this.doneBtn.Click += new System.EventHandler(this.gotoPlay);
+            this.doneBtn.MouseEnter += new System.EventHandler(this.doneBtn_MouseEnter);
+            this.doneBtn.MouseLeave += new System.EventHandler(this.doneBtn_MouseLeave);
             // 
             // goBackBtn
             // 
@@ -127,6 +135,8 @@ namespace SequenceAutomation
             this.goBackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.goBackBtn.FlatAppearance.BorderSize = 0;
+            this.goBackBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.goBackBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.goBackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.goBackBtn.Location = new System.Drawing.Point(3, 3);
@@ -135,21 +145,27 @@ namespace SequenceAutomation
             this.goBackBtn.TabIndex = 27;
             this.goBackBtn.UseVisualStyleBackColor = true;
             this.goBackBtn.Click += new System.EventHandler(this.goBack);
+            this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
+            this.goBackBtn.MouseLeave += new System.EventHandler(this.goBackBtn_MouseLeave);
             // 
             // playRecBtn
             // 
             this.playRecBtn.BackColor = System.Drawing.Color.Transparent;
-            this.playRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play4;
+            this.playRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play;
             this.playRecBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playRecBtn.FlatAppearance.BorderSize = 0;
+            this.playRecBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.playRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.playRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playRecBtn.Location = new System.Drawing.Point(380, 180);
+            this.playRecBtn.Location = new System.Drawing.Point(380, 178);
             this.playRecBtn.Name = "playRecBtn";
-            this.playRecBtn.Size = new System.Drawing.Size(230, 230);
+            this.playRecBtn.Size = new System.Drawing.Size(150, 150);
             this.playRecBtn.TabIndex = 21;
             this.playRecBtn.UseVisualStyleBackColor = false;
+            this.playRecBtn.MouseEnter += new System.EventHandler(this.playRecBtn_MouseEnter);
+            this.playRecBtn.MouseLeave += new System.EventHandler(this.playRecBtn_MouseLeave);
             // 
             // TutorialPlayRec
             // 

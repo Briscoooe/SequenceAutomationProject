@@ -35,10 +35,12 @@
             this.tutorialSelectSpeed = new SequenceAutomation.TutorialSelectSpeed();
             this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
             this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
+            this.firstTimeCreate = new SequenceAutomation.Interface.FirstTimeCreate();
             this.SuspendLayout();
             // 
             // loginUserControl
             // 
+            this.loginUserControl.BackColor = System.Drawing.Color.MintCream;
             this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.loginUserControl.Location = new System.Drawing.Point(0, 0);
             this.loginUserControl.Name = "loginUserControl";
@@ -65,6 +67,7 @@
             // 
             // firstTimePlay
             // 
+            this.firstTimePlay.BackColor = System.Drawing.Color.MintCream;
             this.firstTimePlay.Location = new System.Drawing.Point(0, 0);
             this.firstTimePlay.Name = "firstTimePlay";
             this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
@@ -72,6 +75,7 @@
             // 
             // tutorialSelectSpeed
             // 
+            this.tutorialSelectSpeed.BackColor = System.Drawing.Color.MintCream;
             this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
             this.tutorialSelectSpeed.Size = new System.Drawing.Size(955, 444);
@@ -79,6 +83,7 @@
             // 
             // tutorialPlayRec
             // 
+            this.tutorialPlayRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialPlayRec.Name = "tutorialPlayRec";
             this.tutorialPlayRec.Size = new System.Drawing.Size(847, 468);
@@ -86,10 +91,19 @@
             // 
             // tutorialSelectRec
             // 
+            this.tutorialSelectRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialSelectRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectRec.Name = "tutorialSelectRec";
             this.tutorialSelectRec.Size = new System.Drawing.Size(990, 530);
             this.tutorialSelectRec.TabIndex = 4;
+            // 
+            // firstTimeCreate
+            // 
+            this.firstTimeCreate.BackColor = System.Drawing.Color.MintCream;
+            this.firstTimeCreate.Location = new System.Drawing.Point(0, 0);
+            this.firstTimeCreate.Name = "firstTimeCreate";
+            this.firstTimeCreate.Size = new System.Drawing.Size(990, 530);
+            this.firstTimeCreate.TabIndex = 7;
             // 
             // ApplicationContainer
             // 
@@ -103,6 +117,7 @@
             this.Controls.Add(this.tutorialSelectSpeed);
             this.Controls.Add(this.tutorialPlayRec);
             this.Controls.Add(this.tutorialSelectRec);
+            this.Controls.Add(this.firstTimeCreate);
             this.Name = "ApplicationContainer";
             this.Text = "Easy Automator";
             this.ResumeLayout(false);
@@ -117,5 +132,6 @@
         private TutorialSelectRec tutorialSelectRec;
         private TutorialPlayRec tutorialPlayRec;
         private TutorialSelectSpeed tutorialSelectSpeed;
+        private Interface.FirstTimeCreate firstTimeCreate;
     }
 }

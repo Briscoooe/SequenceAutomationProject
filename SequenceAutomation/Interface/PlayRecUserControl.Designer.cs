@@ -257,7 +257,7 @@
             // playRecBtn
             // 
             this.playRecBtn.BackColor = System.Drawing.Color.Transparent;
-            this.playRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play4;
+            this.playRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play;
             this.playRecBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SequenceAutomation
+namespace SequenceAutomation.Interface
 {
-    public partial class FirstTimePlay : UserControl
+    public partial class FirstTimeCreate : UserControl
     {
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
         public bool rememberSelection = false;
 
-        public FirstTimePlay()
+        public FirstTimeCreate()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace SequenceAutomation
         }
 
 
-        private void gotoPlay(object sender, EventArgs e)
+        private void gotoCreate(object sender, EventArgs e)
         {
             if (NoTutorialEvent != null)
                 NoTutorialEvent(this, e);
@@ -36,7 +36,7 @@ namespace SequenceAutomation
 
         private void checkChanged(object sender, EventArgs e)
         {
-            if(rememberChoiceBtn.Checked)
+            if (rememberChoiceBtn.Checked)
             {
                 rememberSelection = true;
             }

@@ -38,6 +38,7 @@ namespace SequenceAutomation
             // loginCreateRec
             // 
             this.loginCreateRec.BackColor = System.Drawing.Color.White;
+            this.loginCreateRec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginCreateRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.loginCreateRec.FlatAppearance.BorderSize = 3;
             this.loginCreateRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -53,6 +54,7 @@ namespace SequenceAutomation
             // loginPlayRec
             // 
             this.loginPlayRec.BackColor = System.Drawing.Color.White;
+            this.loginPlayRec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginPlayRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.loginPlayRec.FlatAppearance.BorderSize = 3;
             this.loginPlayRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

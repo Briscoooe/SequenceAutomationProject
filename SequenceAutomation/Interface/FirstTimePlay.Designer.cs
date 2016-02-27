@@ -71,10 +71,11 @@
             this.rememberChoiceBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rememberChoiceBtn.Location = new System.Drawing.Point(585, 474);
             this.rememberChoiceBtn.Name = "rememberChoiceBtn";
-            this.rememberChoiceBtn.Size = new System.Drawing.Size(325, 36);
+            this.rememberChoiceBtn.Size = new System.Drawing.Size(288, 36);
             this.rememberChoiceBtn.TabIndex = 2;
-            this.rememberChoiceBtn.Text = "Remember my choice";
+            this.rememberChoiceBtn.Text = "Don\'t ask me again";
             this.rememberChoiceBtn.UseVisualStyleBackColor = true;
+            this.rememberChoiceBtn.CheckedChanged += new System.EventHandler(this.checkChanged);
             // 
             // label1
             // 
@@ -83,7 +84,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(820, 125);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Would you like to view a tutorial of how to use the application?";
+            this.label1.Text = "Would you like to view a tutorial on how to play recordings?";
             // 
             // label2
             // 

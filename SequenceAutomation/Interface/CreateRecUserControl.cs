@@ -19,6 +19,53 @@ namespace SequenceAutomation
             conn = new ConnectionManager();
         }
 
+        private void startStopRecBtn_MouseEnter(object sender, EventArgs e)
+        {
+            if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.stop))
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.stop_hover;
+            }
+
+            else if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.record))
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.record_hover;
+            }
+        }
+
+        private void startStopRecBtn_MouseLeave(object sender, EventArgs e)
+        {
+            if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.stop_hover))
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.stop;
+            }
+
+            else if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.record_hover))
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.record;
+            }
+        }
+
+
+        private void testRecBtn_MouseLeave(object sender, EventArgs e)
+        {
+            testRecBtn.BackgroundImage = Properties.Resources.play;
+        }
+
+        private void testRecBtn_MouseEnter(object sender, EventArgs e)
+        {
+            testRecBtn.BackgroundImage = Properties.Resources.play_hover;
+        }
+
+        private void goBackBtn_MouseLeave(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
+        }
+
+        private void goBackBtn_MouseEnter(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
+        }
+
         /*
          * Method: goBack()
          * Summary: Returns to the previous screen
@@ -58,6 +105,8 @@ namespace SequenceAutomation
         private void startRecording(object sender, EventArgs e)
         {
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
+            recButtonLabel.Text = "Stop recording";
+
             createRec = new CreateRecording(); // Reinitialise the createRec variable, restarting the clock and clearning the dictionary of recorded keys
             createRec.Start(); // Begin recording
 
@@ -77,8 +126,8 @@ namespace SequenceAutomation
          */
         private void stopRecording(object sender, EventArgs e)
         {
-            startStopRecBtn.BackgroundImage = Properties.Resources.play4;
-
+            startStopRecBtn.BackgroundImage = Properties.Resources.record;
+            recButtonLabel.Text = "Begin recording";
             recStatusText.ForeColor = Color.Red;
             recStatusText.Text = "Not recording";
 
