@@ -117,12 +117,12 @@ namespace SequenceAutomation
             // 
             // recordingsList
             // 
-            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recordingsList.FormattingEnabled = true;
-            this.recordingsList.ItemHeight = 36;
+            this.recordingsList.ItemHeight = 24;
             this.recordingsList.Location = new System.Drawing.Point(26, 185);
             this.recordingsList.Name = "recordingsList";
-            this.recordingsList.Size = new System.Drawing.Size(407, 328);
+            this.recordingsList.Size = new System.Drawing.Size(407, 316);
             this.recordingsList.TabIndex = 16;
             // 
             // label1

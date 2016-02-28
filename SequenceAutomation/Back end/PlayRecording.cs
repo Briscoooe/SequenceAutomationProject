@@ -155,7 +155,7 @@ namespace SequenceAutomation
          * Method: Start()
          * Summary: Begins the execution of the inputs in the keysToPlay dictionary
          */
-        public void Start()
+        public bool Start()
         {   
             currentEntry = 0; 
             watch.Reset();
@@ -200,6 +200,8 @@ namespace SequenceAutomation
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }
+
+            return true;
         }
 
         /*

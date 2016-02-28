@@ -56,8 +56,9 @@
             this.createRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.createRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.createRecUserControl.Name = "createRecUserControl";
-            this.createRecUserControl.Size = new System.Drawing.Size(990, 530);
+            this.createRecUserControl.Size = new System.Drawing.Size(1208, 612);
             this.createRecUserControl.TabIndex = 1;
+            this.createRecUserControl.Tag = "startRecTag";
             // 
             // playRecUserControl
             // 
@@ -113,7 +114,7 @@
             this.tutorialStartRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialStartRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialStartRec.Name = "tutorialStartRec";
-            this.tutorialStartRec.Size = new System.Drawing.Size(869, 429);
+            this.tutorialStartRec.Size = new System.Drawing.Size(961, 505);
             this.tutorialStartRec.TabIndex = 8;
             // 
             // tutorialTestRec
@@ -121,7 +122,7 @@
             this.tutorialTestRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialTestRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialTestRec.Name = "tutorialTestRec";
-            this.tutorialTestRec.Size = new System.Drawing.Size(869, 429);
+            this.tutorialTestRec.Size = new System.Drawing.Size(961, 505);
             this.tutorialTestRec.TabIndex = 9;
             // 
             // tutorialUploadRec
@@ -129,7 +130,7 @@
             this.tutorialUploadRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialUploadRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialUploadRec.Name = "tutorialUploadRec";
-            this.tutorialUploadRec.Size = new System.Drawing.Size(959, 639);
+            this.tutorialUploadRec.Size = new System.Drawing.Size(1065, 719);
             this.tutorialUploadRec.TabIndex = 10;
             // 
             // ApplicationContainer

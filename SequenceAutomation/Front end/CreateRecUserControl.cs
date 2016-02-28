@@ -7,6 +7,7 @@ namespace SequenceAutomation
     public partial class CreateRecUserControl : UserControl
     {
         public event EventHandler BackButtonEvent;
+        public event EventHandler ShowTutorialEvent;
 
         private CreateRecording createRec;
         private ConnectionManager conn;
@@ -19,14 +20,20 @@ namespace SequenceAutomation
             conn = new ConnectionManager();
         }
 
+        private void showTutorial(object sender, EventArgs e)
+        {
+            if (ShowTutorialEvent != null)
+                ShowTutorialEvent(this, e);
+        }
+
         private void startStopRecBtn_MouseEnter(object sender, EventArgs e)
         {
-            if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.stop))
+            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
             {
                 startStopRecBtn.BackgroundImage = Properties.Resources.stop_hover;
             }
 
-            else if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.record))
+            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
             {
                 startStopRecBtn.BackgroundImage = Properties.Resources.record_hover;
             }
@@ -34,12 +41,12 @@ namespace SequenceAutomation
 
         private void startStopRecBtn_MouseLeave(object sender, EventArgs e)
         {
-            if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.stop_hover))
+            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
             {
                 startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             }
 
-            else if (startStopRecBtn.BackgroundImage.Equals(Properties.Resources.record_hover))
+            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
             {
                 startStopRecBtn.BackgroundImage = Properties.Resources.record;
             }
@@ -64,6 +71,46 @@ namespace SequenceAutomation
         private void goBackBtn_MouseEnter(object sender, EventArgs e)
         {
             goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
+        }
+
+        private void homeBtn_MouseLeave(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home;
+        }
+
+        private void homeBtn_MouseEnter(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home_hover;
+        }
+
+        private void uploadBtn_MouseEnter(object sender, EventArgs e)
+        {
+            uploadBtn.BackgroundImage = Properties.Resources.upload_hover;
+        }
+
+        private void uploadBtn_MouseLeave(object sender, EventArgs e)
+        {
+            uploadBtn.BackgroundImage = Properties.Resources.upload;
+        }
+
+        private void saveBtn_MouseEnter(object sender, EventArgs e)
+        {
+            saveBtn.BackgroundImage = Properties.Resources.save_hover;
+        }
+
+        private void saveBtn_MouseLeave(object sender, EventArgs e)
+        {
+            saveBtn.BackgroundImage = Properties.Resources.save;
+        }
+
+        private void favouriteBtn_MouseEnter(object sender, EventArgs e)
+        {
+            favouriteBtn.BackgroundImage = Properties.Resources.favourite_hover;
+        }
+
+        private void favouriteBtn_MouseLeave(object sender, EventArgs e)
+        {
+            favouriteBtn.BackgroundImage = Properties.Resources.favourite;
         }
 
         /*
@@ -107,6 +154,9 @@ namespace SequenceAutomation
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             recButtonLabel.Text = "Stop recording";
 
+            startStopRecBtn.Tag = "stopRecTag";
+
+
             createRec = new CreateRecording(); // Reinitialise the createRec variable, restarting the clock and clearning the dictionary of recorded keys
             createRec.Start(); // Begin recording
 
@@ -131,12 +181,13 @@ namespace SequenceAutomation
             recStatusText.ForeColor = Color.Red;
             recStatusText.Text = "Not recording";
 
+            startStopRecBtn.Tag = "startRecTag";
+
+
             // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
             mergedJson = createRec.Stop(); // Stop recording  
-
-            uploadTb.Text = "rec001.json";
         }
 
         /*

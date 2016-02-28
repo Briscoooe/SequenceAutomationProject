@@ -20,6 +20,7 @@ namespace SequenceAutomation
             loginUserControl.PlayButtonEvent += gotoPlayTutorialSelect;
 
             createRecUserControl.BackButtonEvent += returnToLogin;
+            createRecUserControl.ShowTutorialEvent += gotoStartRec;
 
             playRecUserControl.BackButtonEvent += returnToLogin;
             playRecUserControl.TutorialEvent += gotoPlayTutorial;
@@ -43,37 +44,43 @@ namespace SequenceAutomation
             firstTimeCreate.NoTutorialEvent += gotoCreate;
 
             tutorialStartRec.goBackEvent += returnToLogin;
-            tutorialStartRec.goNextEvent += gotoTestRec;
+            tutorialStartRec.goNextEvent += new EventHandler<TextEventArgs>(gotoTestRec);
             tutorialStartRec.gotoLoginEvent += returnToLogin;
 
             tutorialTestRec.goBackEvent += gotoStartRec;
-            tutorialTestRec.goNextEvent += gotoUploadRec;
+            tutorialTestRec.goNextEvent += new EventHandler<TextEventArgs>(gotoUploadRec);
             tutorialTestRec.gotoLoginEvent += returnToLogin;
 
-            tutorialUploadRec.goBackEvent += gotoTestRec;
+            tutorialUploadRec.goBackEvent += new EventHandler<TextEventArgs>(gotoTestRec);
             tutorialUploadRec.goNextEvent += gotoCreate;
             tutorialUploadRec.gotoLoginEvent += returnToLogin;
 
 
         }
 
-        private void gotoUploadRec(object sender, EventArgs e)
+        private void gotoUploadRec(object sender, TextEventArgs e)
         {
-            ClientSize = new Size(959, 639);
+            if (e.json != "")
+                tutorialUploadRec.mergedJson = e.json;
+            ClientSize = new Size(1065, 719);
             tutorialUploadRec.BringToFront();
             CenterToScreen();
         }
 
         private void gotoStartRec(object sender, EventArgs e)
         {
-            ClientSize = new Size(869, 429);
+            tutorialStartRec.reset();
+            ClientSize = new Size(961, 505);
             tutorialStartRec.BringToFront();
             CenterToScreen();
         }
 
-        private void gotoTestRec(object sender, EventArgs e)
+        private void gotoTestRec(object sender, TextEventArgs e)
         {
-            ClientSize = new Size(869, 429);
+            if(e.json != "")
+                tutorialTestRec.mergedJson = e.json;
+
+            ClientSize = new Size(961, 505);
             tutorialTestRec.BringToFront();
             CenterToScreen();
         }
@@ -133,8 +140,8 @@ namespace SequenceAutomation
         */
         protected void gotoCreate(object sender, EventArgs e)
         {
-            ClientSize = new Size(907, 433);
             createRecUserControl.BringToFront();
+            ClientSize = new Size(1208, 612);
             CenterToScreen();
         }
 

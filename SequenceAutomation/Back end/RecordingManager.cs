@@ -17,7 +17,6 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         public Random randomNum;
-        public string description;
 
         #endregion
 
@@ -44,6 +43,11 @@ namespace SequenceAutomation
             this.contextDict = contextDict;
         }
 
+        public void addInformation(string keysString, string title, string description)
+        {
+            
+        }
+
         /*
          * Method: toJson()
          * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
@@ -64,6 +68,7 @@ namespace SequenceAutomation
             keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
 
             return keysObject.ToString();
+
         }
 
         /*

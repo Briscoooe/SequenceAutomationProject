@@ -66,7 +66,7 @@ namespace SequenceAutomation
             this.currentRecTitle.AutoSize = true;
             this.currentRecTitle.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentRecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.currentRecTitle.Location = new System.Drawing.Point(373, 117);
+            this.currentRecTitle.Location = new System.Drawing.Point(30, 177);
             this.currentRecTitle.Name = "currentRecTitle";
             this.currentRecTitle.Size = new System.Drawing.Size(268, 42);
             this.currentRecTitle.TabIndex = 23;
@@ -85,10 +85,11 @@ namespace SequenceAutomation
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 200);
+            this.label2.Location = new System.Drawing.Point(412, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(308, 210);
+            this.label2.Size = new System.Drawing.Size(308, 96);
             this.label2.TabIndex = 29;
             this.label2.Text = "Now just press the play button!";
             // 
@@ -120,9 +121,9 @@ namespace SequenceAutomation
             this.doneBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.doneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doneBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doneBtn.Location = new System.Drawing.Point(674, 340);
+            this.doneBtn.Location = new System.Drawing.Point(700, 345);
             this.doneBtn.Name = "doneBtn";
-            this.doneBtn.Size = new System.Drawing.Size(170, 125);
+            this.doneBtn.Size = new System.Drawing.Size(144, 120);
             this.doneBtn.TabIndex = 28;
             this.doneBtn.UseVisualStyleBackColor = true;
             this.doneBtn.Click += new System.EventHandler(this.gotoPlay);
@@ -159,7 +160,7 @@ namespace SequenceAutomation
             this.playRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.playRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playRecBtn.Location = new System.Drawing.Point(380, 178);
+            this.playRecBtn.Location = new System.Drawing.Point(419, 222);
             this.playRecBtn.Name = "playRecBtn";
             this.playRecBtn.Size = new System.Drawing.Size(150, 150);
             this.playRecBtn.TabIndex = 21;
