@@ -65,9 +65,9 @@ namespace SequenceAutomation
             this.label8.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(232, 21);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(121, 41);
+            this.label8.Size = new System.Drawing.Size(131, 41);
             this.label8.TabIndex = 21;
-            this.label8.Text = "Step 2";
+            this.label8.Text = "Step 2:";
             // 
             // label3
             // 

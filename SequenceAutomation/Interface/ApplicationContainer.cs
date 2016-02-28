@@ -39,13 +39,43 @@ namespace SequenceAutomation
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
             tutorialPlayRec.gotoLoginEvent += returnToLogin;
 
-            firstTimeCreate.YesTutorialEvent += gotoCreateTutorial;
+            firstTimeCreate.YesTutorialEvent += gotoStartRec;
             firstTimeCreate.NoTutorialEvent += gotoCreate;
+
+            tutorialStartRec.goBackEvent += returnToLogin;
+            tutorialStartRec.goNextEvent += gotoTestRec;
+            tutorialStartRec.gotoLoginEvent += returnToLogin;
+
+            tutorialTestRec.goBackEvent += gotoStartRec;
+            tutorialTestRec.goNextEvent += gotoUploadRec;
+            tutorialTestRec.gotoLoginEvent += returnToLogin;
+
+            tutorialUploadRec.goBackEvent += gotoTestRec;
+            tutorialUploadRec.goNextEvent += gotoCreate;
+            tutorialUploadRec.gotoLoginEvent += returnToLogin;
+
+
         }
 
-        private void gotoCreateTutorial(object sender, EventArgs e)
+        private void gotoUploadRec(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ClientSize = new Size(959, 639);
+            tutorialUploadRec.BringToFront();
+            CenterToScreen();
+        }
+
+        private void gotoStartRec(object sender, EventArgs e)
+        {
+            ClientSize = new Size(869, 429);
+            tutorialStartRec.BringToFront();
+            CenterToScreen();
+        }
+
+        private void gotoTestRec(object sender, EventArgs e)
+        {
+            ClientSize = new Size(869, 429);
+            tutorialTestRec.BringToFront();
+            CenterToScreen();
         }
 
         private void gotoPlayRec(object sender, EventArgs e)

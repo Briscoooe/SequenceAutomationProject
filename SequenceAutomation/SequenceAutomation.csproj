@@ -82,6 +82,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionManager.cs" />
+    <Compile Include="Interface\FirstTimeCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\FirstTimeCreate.Designer.cs">
+      <DependentUpon>FirstTimeCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FirstTimePlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\FirstTimePlay.Designer.cs">
+      <DependentUpon>FirstTimePlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interface\ApplicationContainer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +109,12 @@
     <Compile Include="Interface\CreateRecUserControl.Designer.cs">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\TutorialTestRec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialTestRec.Designer.cs">
+      <DependentUpon>TutorialTestRec.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayRecording.cs" />
     <Compile Include="Interface\PlayRecUserControl.cs">
       <SubType>UserControl</SubType>
@@ -105,6 +124,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RecordingManager.cs" />
     <Compile Include="Interface\LoginUserControl.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +136,42 @@
     <Compile Include="Interface\LoginUserControl.Designer.cs">
       <DependentUpon>LoginUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface\TutorialPlayRec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialPlayRec.Designer.cs">
+      <DependentUpon>TutorialPlayRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\TutorialSelectRec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialSelectRec.Designer.cs">
+      <DependentUpon>TutorialSelectRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\TutorialSelectSpeed.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialSelectSpeed.Designer.cs">
+      <DependentUpon>TutorialSelectSpeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\TutorialStartRec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialStartRec.Designer.cs">
+      <DependentUpon>TutorialStartRec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\TutorialUploadRec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interface\TutorialUploadRec.Designer.cs">
+      <DependentUpon>TutorialUploadRec.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Interface\FirstTimeCreate.resx">
+      <DependentUpon>FirstTimeCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\FirstTimePlay.resx">
+      <DependentUpon>FirstTimePlay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Interface\ApplicationContainer.resx">
       <DependentUpon>ApplicationContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,18 +181,31 @@
     <EmbeddedResource Include="Interface\PlayRecUserControl.resx">
       <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialTestRec.resx">
+      <DependentUpon>TutorialTestRec.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Interface\LoginUserControl.resx">
       <DependentUpon>LoginUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialPlayRec.resx">
+      <DependentUpon>TutorialPlayRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialSelectRec.resx">
+      <DependentUpon>TutorialSelectRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialSelectSpeed.resx">
+      <DependentUpon>TutorialSelectSpeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialStartRec.resx">
+      <DependentUpon>TutorialStartRec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\TutorialUploadRec.resx">
+      <DependentUpon>TutorialUploadRec.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
@@ -166,7 +239,67 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Include="Images\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\backbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\forwardbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\stop2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\backbutton_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\done_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\forwardbutton_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\home_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\record_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\stop2_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\save_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\upload_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\favourite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\favourite_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

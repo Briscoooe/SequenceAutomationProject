@@ -36,6 +36,9 @@
             this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
             this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
             this.firstTimeCreate = new SequenceAutomation.Interface.FirstTimeCreate();
+            this.tutorialStartRec = new SequenceAutomation.TutorialStartRec();
+            this.tutorialTestRec = new SequenceAutomation.Interface.TutorialTestRec();
+            this.tutorialUploadRec = new SequenceAutomation.TutorialUploadRec();
             this.SuspendLayout();
             // 
             // loginUserControl
@@ -105,6 +108,30 @@
             this.firstTimeCreate.Size = new System.Drawing.Size(990, 530);
             this.firstTimeCreate.TabIndex = 7;
             // 
+            // tutorialStartRec
+            // 
+            this.tutorialStartRec.BackColor = System.Drawing.Color.MintCream;
+            this.tutorialStartRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialStartRec.Name = "tutorialStartRec";
+            this.tutorialStartRec.Size = new System.Drawing.Size(869, 429);
+            this.tutorialStartRec.TabIndex = 8;
+            // 
+            // tutorialTestRec
+            // 
+            this.tutorialTestRec.BackColor = System.Drawing.Color.MintCream;
+            this.tutorialTestRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialTestRec.Name = "tutorialTestRec";
+            this.tutorialTestRec.Size = new System.Drawing.Size(869, 429);
+            this.tutorialTestRec.TabIndex = 9;
+            // 
+            // tutorialUploadRec
+            // 
+            this.tutorialUploadRec.BackColor = System.Drawing.Color.MintCream;
+            this.tutorialUploadRec.Location = new System.Drawing.Point(0, 0);
+            this.tutorialUploadRec.Name = "tutorialUploadRec";
+            this.tutorialUploadRec.Size = new System.Drawing.Size(959, 639);
+            this.tutorialUploadRec.TabIndex = 10;
+            // 
             // ApplicationContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +145,9 @@
             this.Controls.Add(this.tutorialPlayRec);
             this.Controls.Add(this.tutorialSelectRec);
             this.Controls.Add(this.firstTimeCreate);
+            this.Controls.Add(this.tutorialStartRec);
+            this.Controls.Add(this.tutorialTestRec);
+            this.Controls.Add(this.tutorialUploadRec);
             this.Name = "ApplicationContainer";
             this.Text = "Easy Automator";
             this.ResumeLayout(false);
@@ -133,5 +163,8 @@
         private TutorialPlayRec tutorialPlayRec;
         private TutorialSelectSpeed tutorialSelectSpeed;
         private Interface.FirstTimeCreate firstTimeCreate;
+        private TutorialStartRec tutorialStartRec;
+        private Interface.TutorialTestRec tutorialTestRec;
+        private TutorialUploadRec tutorialUploadRec;
     }
 }
