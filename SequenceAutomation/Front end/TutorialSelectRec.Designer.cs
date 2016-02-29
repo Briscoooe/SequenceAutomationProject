@@ -55,11 +55,10 @@ namespace SequenceAutomation
             // 
             // recDescLabel
             // 
-            this.recDescLabel.AutoSize = true;
             this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescLabel.Location = new System.Drawing.Point(442, 370);
             this.recDescLabel.Name = "recDescLabel";
-            this.recDescLabel.Size = new System.Drawing.Size(212, 33);
+            this.recDescLabel.Size = new System.Drawing.Size(328, 262);
             this.recDescLabel.TabIndex = 24;
             this.recDescLabel.Text = "rec Description";
             // 
@@ -75,11 +74,10 @@ namespace SequenceAutomation
             // 
             // recTitleLabel
             // 
-            this.recTitleLabel.AutoSize = true;
             this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleLabel.Location = new System.Drawing.Point(442, 272);
             this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(113, 33);
+            this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
             this.recTitleLabel.TabIndex = 22;
             this.recTitleLabel.Text = "rec info";
             // 

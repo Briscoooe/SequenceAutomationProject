@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace SequenceAutomation
 {
@@ -62,7 +64,16 @@ namespace SequenceAutomation
                 recTitle = Path.GetFileNameWithoutExtension(fullPath);
                 recNameLabel.Text = recTitle;
                 recJson = File.ReadAllText(fullPath);
+                updateInfo();
             }
+        }
+
+        private void updateInfo()
+        {
+            dynamic tempObj = JsonConvert.DeserializeObject(recJson);
+
+            recTitleLabel.Text = tempObj.Name;
+            recDescLabel.Text = tempObj.Desc;
         }
 
         private void goBack(object sender, EventArgs e)

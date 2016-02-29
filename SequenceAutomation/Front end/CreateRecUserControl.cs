@@ -210,9 +210,8 @@ namespace SequenceAutomation
         {
             if (validateInput())
             {
-
                 recManager = new RecordingManager(mergedJson);
-                recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
                 string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = test;
