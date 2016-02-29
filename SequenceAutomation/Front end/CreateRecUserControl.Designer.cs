@@ -49,6 +49,7 @@ namespace SequenceAutomation
             this.recTitleTb = new System.Windows.Forms.RichTextBox();
             this.recDescTb = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // testRecBtn
@@ -66,7 +67,7 @@ namespace SequenceAutomation
             this.testRecBtn.Name = "testRecBtn";
             this.testRecBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.testRecBtn.Size = new System.Drawing.Size(150, 150);
-            this.testRecBtn.TabIndex = 1;
+            this.testRecBtn.TabIndex = 3;
             this.testRecBtn.UseVisualStyleBackColor = false;
             this.testRecBtn.Click += new System.EventHandler(this.testRecording);
             this.testRecBtn.MouseEnter += new System.EventHandler(this.testRecBtn_MouseEnter);
@@ -76,7 +77,7 @@ namespace SequenceAutomation
             // 
             this.recStatusLabel.AutoSize = true;
             this.recStatusLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recStatusLabel.Location = new System.Drawing.Point(224, 25);
+            this.recStatusLabel.Location = new System.Drawing.Point(343, 69);
             this.recStatusLabel.Name = "recStatusLabel";
             this.recStatusLabel.Size = new System.Drawing.Size(241, 32);
             this.recStatusLabel.TabIndex = 3;
@@ -87,7 +88,7 @@ namespace SequenceAutomation
             this.recStatusText.AutoSize = true;
             this.recStatusText.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recStatusText.ForeColor = System.Drawing.Color.Red;
-            this.recStatusText.Location = new System.Drawing.Point(471, 25);
+            this.recStatusText.Location = new System.Drawing.Point(590, 69);
             this.recStatusText.Name = "recStatusText";
             this.recStatusText.Size = new System.Drawing.Size(195, 32);
             this.recStatusText.TabIndex = 4;
@@ -106,7 +107,7 @@ namespace SequenceAutomation
             this.goBackBtn.Location = new System.Drawing.Point(3, 3);
             this.goBackBtn.Name = "goBackBtn";
             this.goBackBtn.Size = new System.Drawing.Size(169, 73);
-            this.goBackBtn.TabIndex = 2;
+            this.goBackBtn.TabIndex = 1;
             this.goBackBtn.UseVisualStyleBackColor = true;
             this.goBackBtn.Click += new System.EventHandler(this.goBack);
             this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
@@ -125,7 +126,7 @@ namespace SequenceAutomation
             this.startStopRecBtn.Location = new System.Drawing.Point(80, 162);
             this.startStopRecBtn.Name = "startStopRecBtn";
             this.startStopRecBtn.Size = new System.Drawing.Size(150, 150);
-            this.startStopRecBtn.TabIndex = 0;
+            this.startStopRecBtn.TabIndex = 2;
             this.startStopRecBtn.Tag = "startRecTag";
             this.startStopRecBtn.UseVisualStyleBackColor = true;
             this.startStopRecBtn.Click += new System.EventHandler(this.startRecording);
@@ -165,7 +166,7 @@ namespace SequenceAutomation
             this.homeBtn.Location = new System.Drawing.Point(1095, 3);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(110, 110);
-            this.homeBtn.TabIndex = 40;
+            this.homeBtn.TabIndex = 10;
             this.homeBtn.UseVisualStyleBackColor = false;
             this.homeBtn.Click += new System.EventHandler(this.goBack);
             this.homeBtn.MouseEnter += new System.EventHandler(this.homeBtn_MouseEnter);
@@ -184,7 +185,7 @@ namespace SequenceAutomation
             this.favouriteBtn.Location = new System.Drawing.Point(995, 397);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
-            this.favouriteBtn.TabIndex = 59;
+            this.favouriteBtn.TabIndex = 9;
             this.favouriteBtn.UseVisualStyleBackColor = false;
             this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
             this.favouriteBtn.MouseLeave += new System.EventHandler(this.favouriteBtn_MouseLeave);
@@ -232,7 +233,7 @@ namespace SequenceAutomation
             this.saveBtn.Location = new System.Drawing.Point(995, 265);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
-            this.saveBtn.TabIndex = 55;
+            this.saveBtn.TabIndex = 8;
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveFile);
             this.saveBtn.MouseEnter += new System.EventHandler(this.saveBtn_MouseEnter);
@@ -251,7 +252,7 @@ namespace SequenceAutomation
             this.uploadBtn.Location = new System.Drawing.Point(985, 137);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
-            this.uploadBtn.TabIndex = 54;
+            this.uploadBtn.TabIndex = 7;
             this.uploadBtn.UseVisualStyleBackColor = false;
             this.uploadBtn.MouseEnter += new System.EventHandler(this.uploadBtn_MouseEnter);
             this.uploadBtn.MouseLeave += new System.EventHandler(this.uploadBtn_MouseLeave);
@@ -281,7 +282,7 @@ namespace SequenceAutomation
             this.recTitleTb.Location = new System.Drawing.Point(351, 153);
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(300, 31);
-            this.recTitleTb.TabIndex = 61;
+            this.recTitleTb.TabIndex = 4;
             this.recTitleTb.Text = "";
             // 
             // recDescTb
@@ -290,7 +291,7 @@ namespace SequenceAutomation
             this.recDescTb.Location = new System.Drawing.Point(351, 277);
             this.recDescTb.Name = "recDescTb";
             this.recDescTb.Size = new System.Drawing.Size(300, 288);
-            this.recDescTb.TabIndex = 60;
+            this.recDescTb.TabIndex = 5;
             this.recDescTb.Text = "";
             // 
             // button2
@@ -304,10 +305,20 @@ namespace SequenceAutomation
             this.button2.Location = new System.Drawing.Point(736, 17);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(215, 49);
-            this.button2.TabIndex = 64;
+            this.button2.TabIndex = 6;
             this.button2.Text = "Show tutorial";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.showTutorial);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(289, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(339, 41);
+            this.label4.TabIndex = 65;
+            this.label4.Text = "Create a recording";
             // 
             // CreateRecUserControl
             // 
@@ -315,6 +326,7 @@ namespace SequenceAutomation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -362,5 +374,6 @@ namespace SequenceAutomation
         private System.Windows.Forms.RichTextBox recTitleTb;
         private System.Windows.Forms.RichTextBox recDescTb;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
     }
 }

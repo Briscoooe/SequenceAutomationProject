@@ -18,6 +18,7 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
 
         private PlayRecording playRec;
+        private ToolTip tooltip;
 
         public string recJson = "";
         public string recTitle = "";
@@ -25,11 +26,46 @@ namespace SequenceAutomation
 
         public int recSpeedVal = 3;
 
+        public string temptooltiptext = "";
+
 
         public PlayRecUserControl()
         {
             InitializeComponent();
             onSpeedChange();
+
+            tooltip = new ToolTip();
+            tooltip.AutoPopDelay = 5000;
+            tooltip.InitialDelay = 1000;
+            tooltip.ReshowDelay = 500;
+            tooltip.Draw += new DrawToolTipEventHandler(tooltip_Draw);
+            tooltip.Popup += new PopupEventHandler(tooltip_Popup);
+
+            tooltip.ShowAlways = true;
+
+            tooltip.SetToolTip(playRecBtn, "Play the recording");
+            tooltip.SetToolTip(goBackBtn, "Return to the previous page");
+            tooltip.SetToolTip(homeBtn, "Go to the home screen");
+            tooltip.SetToolTip(addFavouriteBtn, "Add to favourites");
+            tooltip.SetToolTip(favouriteBtn, "Choose a recording from favourites");
+            tooltip.SetToolTip(browseBtn,  "Choose a recording from local storage");
+            tooltip.SetToolTip(increaseBtn, "Increase the playback speed of the recording");
+            tooltip.SetToolTip(decreaseBtn, "Decrease the playback speed of the recording");
+
+        }
+
+        private void tooltip_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font tooltipFont = new Font("calibri", 15.0f);
+            e.DrawBackground();
+            e.DrawBorder();
+            temptooltiptext = e.ToolTipText;
+            e.Graphics.DrawString(e.ToolTipText, tooltipFont, Brushes.Black, new PointF(2, 2));
+        }
+
+        private void tooltip_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(tooltip.GetToolTip(e.AssociatedControl), new Font("calibri", 15.0f));
         }
 
         /*
@@ -41,7 +77,7 @@ namespace SequenceAutomation
         private void playRecording(object sender, EventArgs e)
         {
             // If there are no keys loaded to play, display a message informing the user of this
-            if (recJson == null)
+            if (recJson == "")
             {
                 MessageBox.Show("Error: There is no recording to play");
                 return;

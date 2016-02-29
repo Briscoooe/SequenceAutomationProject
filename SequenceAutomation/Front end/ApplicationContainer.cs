@@ -16,6 +16,8 @@ namespace SequenceAutomation
         public ApplicationContainer()
         {
             InitializeComponent();
+            MaximizeBox = false;
+            MinimizeBox = false;
             CenterToScreen();
 
             // Initialising the events to their appropriate methods
@@ -27,6 +29,7 @@ namespace SequenceAutomation
 
             playRecUserControl.BackButtonEvent += returnToLogin;
             playRecUserControl.TutorialEvent += gotoPlayTutorial;
+            playRecUserControl.gotoLoginEvent += returnToLogin;
 
             firstTimePlay.YesTutorialEvent += gotoPlayTutorial;
             firstTimePlay.NoTutorialEvent += gotoPlay;
@@ -142,7 +145,7 @@ namespace SequenceAutomation
         public void gotoPlay(object sender, EventArgs e)
         {
             playRecUserControl.BringToFront();
-            ClientSize = new Size(1080, 575);
+            ClientSize = new Size(1178, 684);
             CenterToScreen();
         }
 

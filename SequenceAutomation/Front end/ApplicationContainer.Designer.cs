@@ -124,6 +124,7 @@
             this.Controls.Add(this.tutorialStartRec);
             this.Controls.Add(this.tutorialTestRec);
             this.Controls.Add(this.tutorialUploadRec);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ApplicationContainer";
             this.ResumeLayout(false);
 
