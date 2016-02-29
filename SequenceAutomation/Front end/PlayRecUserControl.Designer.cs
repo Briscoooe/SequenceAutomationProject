@@ -28,231 +28,229 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.recordingsList = new System.Windows.Forms.ListBox();
-            this.goBackBtn = new System.Windows.Forms.Button();
-            this.loadBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.currentRecTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.speedDropDown = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.recTitleLabel = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.recDescLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.playRecBtn = new System.Windows.Forms.Button();
             this.showTutorialBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.searchBox1 = new SequenceAutomation.SearchBox();
+            this.recDescLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.recTitleLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.recordingsList = new System.Windows.Forms.ListBox();
+            this.recSpeedLabel = new System.Windows.Forms.Label();
+            this.currentRecTitle = new System.Windows.Forms.Label();
+            this.recNameLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.addFavouriteBtn = new System.Windows.Forms.Button();
+            this.decreaseBtn = new System.Windows.Forms.Button();
+            this.increaseBtn = new System.Windows.Forms.Button();
+            this.playRecBtn = new System.Windows.Forms.Button();
+            this.favouriteBtn = new System.Windows.Forms.Button();
+            this.browseBtn = new System.Windows.Forms.Button();
+            this.homeBtn = new System.Windows.Forms.Button();
+            this.goBackBtn = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // recordingsList
+            // showTutorialBtn
             // 
-            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recordingsList.FormattingEnabled = true;
-            this.recordingsList.ItemHeight = 36;
-            this.recordingsList.Location = new System.Drawing.Point(45, 187);
-            this.recordingsList.Name = "recordingsList";
-            this.recordingsList.Size = new System.Drawing.Size(303, 364);
-            this.recordingsList.TabIndex = 1;
-            // 
-            // goBackBtn
-            // 
-            this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goBackBtn.Location = new System.Drawing.Point(45, 16);
-            this.goBackBtn.Name = "goBackBtn";
-            this.goBackBtn.Size = new System.Drawing.Size(206, 48);
-            this.goBackBtn.TabIndex = 2;
-            this.goBackBtn.Text = "Go back";
-            this.goBackBtn.UseVisualStyleBackColor = true;
-            this.goBackBtn.Click += new System.EventHandler(this.goBack);
-            // 
-            // loadBtn
-            // 
-            this.loadBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loadBtn.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadBtn.Location = new System.Drawing.Point(45, 572);
-            this.loadBtn.Name = "loadBtn";
-            this.loadBtn.Size = new System.Drawing.Size(303, 50);
-            this.loadBtn.TabIndex = 3;
-            this.loadBtn.Text = "Load for playback";
-            this.loadBtn.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1116, 187);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 32);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Current Recording\r\n";
-            // 
-            // currentRecTitle
-            // 
-            this.currentRecTitle.AutoSize = true;
-            this.currentRecTitle.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentRecTitle.Location = new System.Drawing.Point(1118, 229);
-            this.currentRecTitle.Name = "currentRecTitle";
-            this.currentRecTitle.Size = new System.Drawing.Size(209, 33);
-            this.currentRecTitle.TabIndex = 5;
-            this.currentRecTitle.Text = "Recording Title";
+            this.showTutorialBtn.BackColor = System.Drawing.Color.White;
+            this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.showTutorialBtn.FlatAppearance.BorderSize = 3;
+            this.showTutorialBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTutorialBtn.Location = new System.Drawing.Point(569, 14);
+            this.showTutorialBtn.Name = "showTutorialBtn";
+            this.showTutorialBtn.Size = new System.Drawing.Size(302, 52);
+            this.showTutorialBtn.TabIndex = 21;
+            this.showTutorialBtn.Text = "Show Tutorial";
+            this.showTutorialBtn.UseVisualStyleBackColor = false;
+            this.showTutorialBtn.Click += new System.EventHandler(this.showTutorial);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 143);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(222, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(276, 32);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Choose a recording";
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1122, 292);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(263, 52);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Save to favourites";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // speedDropDown
-            // 
-            this.speedDropDown.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedDropDown.FormattingEnabled = true;
-            this.speedDropDown.Location = new System.Drawing.Point(644, 250);
-            this.speedDropDown.Name = "speedDropDown";
-            this.speedDropDown.Size = new System.Drawing.Size(313, 40);
-            this.speedDropDown.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(638, 187);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(368, 32);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "How fast is your computer?";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(39, 101);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 32);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Step 1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(368, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 32);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Recording Info";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(368, 187);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 32);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Title";
-            // 
-            // recTitleLabel
-            // 
-            this.recTitleLabel.AutoSize = true;
-            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recTitleLabel.Location = new System.Drawing.Point(368, 229);
-            this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(113, 33);
-            this.recTitleLabel.TabIndex = 13;
-            this.recTitleLabel.Text = "rec info";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(368, 281);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 32);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Description";
-            // 
-            // recDescLabel
-            // 
-            this.recDescLabel.AutoSize = true;
-            this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescLabel.Location = new System.Drawing.Point(368, 324);
-            this.recDescLabel.Name = "recDescLabel";
-            this.recDescLabel.Size = new System.Drawing.Size(212, 33);
-            this.recDescLabel.TabIndex = 15;
-            this.recDescLabel.Text = "rec Description";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(638, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 32);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Step 2";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(638, 143);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(319, 32);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Select playback speed";
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(638, 315);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(319, 81);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "If you are unsure, you can leave this as it is";
+            this.label2.Size = new System.Drawing.Size(295, 41);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Play a recording";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1118, 101);
+            this.label11.Location = new System.Drawing.Point(17, 107);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 32);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Step 3";
+            this.label11.Size = new System.Drawing.Size(192, 32);
+            this.label11.TabIndex = 69;
+            this.label11.Text = "Search online";
             // 
-            // label12
+            // searchBox1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1115, 143);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(254, 32);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "Play the recording";
+            this.searchBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox1.Location = new System.Drawing.Point(23, 142);
+            this.searchBox1.Name = "searchBox1";
+            this.searchBox1.Size = new System.Drawing.Size(304, 33);
+            this.searchBox1.TabIndex = 64;
+            // 
+            // recDescLabel
+            // 
+            this.recDescLabel.AutoSize = true;
+            this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescLabel.Location = new System.Drawing.Point(333, 328);
+            this.recDescLabel.Name = "recDescLabel";
+            this.recDescLabel.Size = new System.Drawing.Size(212, 33);
+            this.recDescLabel.TabIndex = 61;
+            this.recDescLabel.Text = "rec Description";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(333, 282);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(160, 32);
+            this.label7.TabIndex = 60;
+            this.label7.Text = "Description";
+            // 
+            // recTitleLabel
+            // 
+            this.recTitleLabel.AutoSize = true;
+            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recTitleLabel.Location = new System.Drawing.Point(333, 230);
+            this.recTitleLabel.Name = "recTitleLabel";
+            this.recTitleLabel.Size = new System.Drawing.Size(113, 33);
+            this.recTitleLabel.TabIndex = 59;
+            this.recTitleLabel.Text = "rec info";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(333, 186);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 32);
+            this.label6.TabIndex = 58;
+            this.label6.Text = "Title";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(333, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(206, 32);
+            this.label5.TabIndex = 57;
+            this.label5.Text = "Recording Info";
+            // 
+            // recordingsList
+            // 
+            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordingsList.FormattingEnabled = true;
+            this.recordingsList.ItemHeight = 24;
+            this.recordingsList.Location = new System.Drawing.Point(23, 190);
+            this.recordingsList.Name = "recordingsList";
+            this.recordingsList.Size = new System.Drawing.Size(304, 364);
+            this.recordingsList.TabIndex = 56;
+            // 
+            // recSpeedLabel
+            // 
+            this.recSpeedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.recSpeedLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recSpeedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.recSpeedLabel.Location = new System.Drawing.Point(852, 204);
+            this.recSpeedLabel.Name = "recSpeedLabel";
+            this.recSpeedLabel.Size = new System.Drawing.Size(249, 37);
+            this.recSpeedLabel.TabIndex = 79;
+            this.recSpeedLabel.Text = " 3 - Normal";
+            // 
+            // currentRecTitle
+            // 
+            this.currentRecTitle.AutoSize = true;
+            this.currentRecTitle.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentRecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.currentRecTitle.Location = new System.Drawing.Point(757, 210);
+            this.currentRecTitle.Name = "currentRecTitle";
+            this.currentRecTitle.Size = new System.Drawing.Size(0, 42);
+            this.currentRecTitle.TabIndex = 72;
+            // 
+            // recNameLabel
+            // 
+            this.recNameLabel.AutoSize = true;
+            this.recNameLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.recNameLabel.Location = new System.Drawing.Point(821, 522);
+            this.recNameLabel.Name = "recNameLabel";
+            this.recNameLabel.Size = new System.Drawing.Size(63, 33);
+            this.recNameLabel.TabIndex = 84;
+            this.recNameLabel.Text = "test";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label9.Location = new System.Drawing.Point(563, 522);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(261, 32);
+            this.label9.TabIndex = 83;
+            this.label9.Text = "Current Recording:\r\n";
+            // 
+            // addFavouriteBtn
+            // 
+            this.addFavouriteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.addtofavourites;
+            this.addFavouriteBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.addFavouriteBtn.FlatAppearance.BorderSize = 0;
+            this.addFavouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addFavouriteBtn.Location = new System.Drawing.Point(907, 362);
+            this.addFavouriteBtn.Name = "addFavouriteBtn";
+            this.addFavouriteBtn.Size = new System.Drawing.Size(120, 110);
+            this.addFavouriteBtn.TabIndex = 85;
+            this.addFavouriteBtn.UseVisualStyleBackColor = false;
+            this.addFavouriteBtn.MouseEnter += new System.EventHandler(this.addFavouriteBtn_MouseEnter);
+            this.addFavouriteBtn.MouseLeave += new System.EventHandler(this.addFavouriteBtn_MouseLeave);
+            // 
+            // decreaseBtn
+            // 
+            this.decreaseBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.downarrow;
+            this.decreaseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.decreaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.decreaseBtn.FlatAppearance.BorderSize = 0;
+            this.decreaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.decreaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.decreaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.decreaseBtn.Location = new System.Drawing.Point(780, 244);
+            this.decreaseBtn.Name = "decreaseBtn";
+            this.decreaseBtn.Size = new System.Drawing.Size(75, 60);
+            this.decreaseBtn.TabIndex = 75;
+            this.decreaseBtn.UseVisualStyleBackColor = true;
+            this.decreaseBtn.Click += new System.EventHandler(this.decreaseSpeed);
+            this.decreaseBtn.MouseEnter += new System.EventHandler(this.decreaseBtn_MouseEnter);
+            this.decreaseBtn.MouseLeave += new System.EventHandler(this.decreaseBtn_MouseLeave);
+            // 
+            // increaseBtn
+            // 
+            this.increaseBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.uparrow;
+            this.increaseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.increaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.increaseBtn.FlatAppearance.BorderSize = 0;
+            this.increaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.increaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.increaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.increaseBtn.Location = new System.Drawing.Point(780, 139);
+            this.increaseBtn.Name = "increaseBtn";
+            this.increaseBtn.Size = new System.Drawing.Size(75, 60);
+            this.increaseBtn.TabIndex = 74;
+            this.increaseBtn.UseVisualStyleBackColor = true;
+            this.increaseBtn.Click += new System.EventHandler(this.increaseSpeed);
+            this.increaseBtn.MouseEnter += new System.EventHandler(this.increaseBtn_MouseEnter);
+            this.increaseBtn.MouseLeave += new System.EventHandler(this.increaseBtn_MouseLeave);
             // 
             // playRecBtn
             // 
@@ -260,24 +258,97 @@
             this.playRecBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.play;
             this.playRecBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playRecBtn.FlatAppearance.BorderSize = 0;
+            this.playRecBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.playRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.playRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playRecBtn.Location = new System.Drawing.Point(1163, 444);
+            this.playRecBtn.Location = new System.Drawing.Point(569, 142);
             this.playRecBtn.Name = "playRecBtn";
-            this.playRecBtn.Size = new System.Drawing.Size(200, 200);
-            this.playRecBtn.TabIndex = 0;
+            this.playRecBtn.Size = new System.Drawing.Size(150, 150);
+            this.playRecBtn.TabIndex = 70;
             this.playRecBtn.UseVisualStyleBackColor = false;
+            this.playRecBtn.Click += new System.EventHandler(this.playRecording);
+            this.playRecBtn.MouseEnter += new System.EventHandler(this.playRecBtn_MouseEnter);
+            this.playRecBtn.MouseLeave += new System.EventHandler(this.playRecBtn_MouseLeave);
             // 
-            // showTutorialBtn
+            // favouriteBtn
             // 
-            this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showTutorialBtn.Location = new System.Drawing.Point(644, 14);
-            this.showTutorialBtn.Name = "showTutorialBtn";
-            this.showTutorialBtn.Size = new System.Drawing.Size(302, 52);
-            this.showTutorialBtn.TabIndex = 21;
-            this.showTutorialBtn.Text = "Show Tutorial";
-            this.showTutorialBtn.UseVisualStyleBackColor = true;
-            this.showTutorialBtn.Click += new System.EventHandler(this.showTutorial);
+            this.favouriteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.favouriteBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.favourite;
+            this.favouriteBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.favouriteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.favouriteBtn.FlatAppearance.BorderSize = 0;
+            this.favouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.favouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.favouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.favouriteBtn.Location = new System.Drawing.Point(761, 362);
+            this.favouriteBtn.Name = "favouriteBtn";
+            this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
+            this.favouriteBtn.TabIndex = 68;
+            this.favouriteBtn.UseVisualStyleBackColor = false;
+            this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
+            this.favouriteBtn.MouseLeave += new System.EventHandler(this.favouriteBtn_MouseLeave);
+            // 
+            // browseBtn
+            // 
+            this.browseBtn.BackColor = System.Drawing.Color.Transparent;
+            this.browseBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.browse;
+            this.browseBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.browseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.browseBtn.FlatAppearance.BorderSize = 0;
+            this.browseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.browseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.browseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.browseBtn.Location = new System.Drawing.Point(588, 370);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(131, 94);
+            this.browseBtn.TabIndex = 66;
+            this.browseBtn.UseVisualStyleBackColor = false;
+            this.browseBtn.Click += new System.EventHandler(this.chooseFile);
+            this.browseBtn.MouseEnter += new System.EventHandler(this.browseBtn_MouseEnter);
+            this.browseBtn.MouseLeave += new System.EventHandler(this.browseBtn_MouseLeave);
+            // 
+            // homeBtn
+            // 
+            this.homeBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.home;
+            this.homeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.homeBtn.FlatAppearance.BorderSize = 0;
+            this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.homeBtn.Location = new System.Drawing.Point(967, 4);
+            this.homeBtn.Name = "homeBtn";
+            this.homeBtn.Size = new System.Drawing.Size(110, 110);
+            this.homeBtn.TabIndex = 63;
+            this.homeBtn.UseVisualStyleBackColor = true;
+            this.homeBtn.Click += new System.EventHandler(this.gotoLogin);
+            this.homeBtn.MouseEnter += new System.EventHandler(this.homeBtn_MouseEnter);
+            this.homeBtn.MouseLeave += new System.EventHandler(this.homeBtn_MouseLeave);
+            // 
+            // goBackBtn
+            // 
+            this.goBackBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.backbutton;
+            this.goBackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goBackBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goBackBtn.FlatAppearance.BorderSize = 0;
+            this.goBackBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.goBackBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.goBackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.goBackBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goBackBtn.Location = new System.Drawing.Point(3, 4);
+            this.goBackBtn.Name = "goBackBtn";
+            this.goBackBtn.Size = new System.Drawing.Size(169, 73);
+            this.goBackBtn.TabIndex = 22;
+            this.goBackBtn.UseVisualStyleBackColor = true;
+            this.goBackBtn.Click += new System.EventHandler(this.gotoLogin);
+            this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
+            this.goBackBtn.MouseLeave += new System.EventHandler(this.goBackBtn_MouseLeave);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
             // 
             // PlayRecUserControl
             // 
@@ -285,59 +356,59 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.showTutorialBtn);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.addFavouriteBtn);
+            this.Controls.Add(this.recNameLabel);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.recSpeedLabel);
+            this.Controls.Add(this.decreaseBtn);
+            this.Controls.Add(this.increaseBtn);
+            this.Controls.Add(this.currentRecTitle);
+            this.Controls.Add(this.playRecBtn);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.favouriteBtn);
+            this.Controls.Add(this.browseBtn);
+            this.Controls.Add(this.searchBox1);
+            this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.recDescLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.recTitleLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.speedDropDown);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.currentRecTitle);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.loadBtn);
-            this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.recordingsList);
-            this.Controls.Add(this.playRecBtn);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.goBackBtn);
+            this.Controls.Add(this.showTutorialBtn);
             this.DoubleBuffered = true;
             this.Name = "PlayRecUserControl";
-            this.Size = new System.Drawing.Size(1406, 663);
+            this.Size = new System.Drawing.Size(1080, 575);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button playRecBtn;
-        private System.Windows.Forms.ListBox recordingsList;
-        private System.Windows.Forms.Button goBackBtn;
-        private System.Windows.Forms.Button loadBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label currentRecTitle;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox speedDropDown;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label recTitleLabel;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label recDescLabel;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button showTutorialBtn;
+        private System.Windows.Forms.Button goBackBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button favouriteBtn;
+        private System.Windows.Forms.Button browseBtn;
+        private SearchBox searchBox1;
+        private System.Windows.Forms.Button homeBtn;
+        private System.Windows.Forms.Label recDescLabel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label recTitleLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox recordingsList;
+        private System.Windows.Forms.Label recSpeedLabel;
+        private System.Windows.Forms.Button decreaseBtn;
+        private System.Windows.Forms.Button increaseBtn;
+        public System.Windows.Forms.Label currentRecTitle;
+        private System.Windows.Forms.Button playRecBtn;
+        private System.Windows.Forms.Label recNameLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button addFavouriteBtn;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

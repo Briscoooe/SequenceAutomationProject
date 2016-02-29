@@ -57,7 +57,7 @@
             // 
             // playRecUserControl
             // 
-            this.playRecUserControl.BackColor = System.Drawing.SystemColors.Control;
+            this.playRecUserControl.BackColor = System.Drawing.Color.MintCream;
             resources.ApplyResources(this.playRecUserControl, "playRecUserControl");
             this.playRecUserControl.Name = "playRecUserControl";
             // 

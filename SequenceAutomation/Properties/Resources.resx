@@ -127,11 +127,17 @@
   <data name="backbutton_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\backbutton_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="uparrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="browse_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\browse_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="forwardbutton_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\forwardbutton_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="favourite_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\favourite_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,11 +166,17 @@
   <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\record.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="downarrow_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\downarrow_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="favourite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\favourite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="record_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\record_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uparrow_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\uparrow_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,16 +196,10 @@
   <data name="forwardbutton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\forwardbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addtofavourites" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\addtofavourites.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="downarrow_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\downarrow_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="uparrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\uparrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="uparrow_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\uparrow_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addtofavourites_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\addtofavourites_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

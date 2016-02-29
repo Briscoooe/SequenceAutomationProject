@@ -175,7 +175,7 @@
     <value>0, 0</value>
   </data>
   <data name="playRecUserControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1406, 663</value>
+    <value>1080, 575</value>
   </data>
   <data name="playRecUserControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -371,6 +371,9 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>988, 531</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Easy Automator</value>
