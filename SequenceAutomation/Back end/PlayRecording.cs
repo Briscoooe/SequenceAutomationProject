@@ -23,7 +23,7 @@ namespace SequenceAutomation
      * Note: This structure is not directly used and only exists to be combined with the keyboard and hardware structures, thus allowing the INPUT structure to exist
      * See : x
      */
-    internal struct MOUSEINPUT
+    public struct MOUSEINPUT
     {
         public int X;
         public int Y;
@@ -38,7 +38,7 @@ namespace SequenceAutomation
      * Summary: A structure to store information about simulated hardware input, other than a keyboard or mouse
      * Note: This structure is not directly used and only exists to be combined with the keyboard and mouse structures, thus allowing the INPUT structure to exist
      */
-    internal struct HARDWAREINPUT
+    public struct HARDWAREINPUT
     {
         public uint Msg;
         public ushort ParamL;
@@ -54,7 +54,7 @@ namespace SequenceAutomation
      * Member: Time - The timestamp for the key even in milliseconds
      * Member: ExtraInfo - An additional value associated with the keystroke
      */
-    internal struct KEYBDINPUT
+    public struct KEYBDINPUT
     {
         public ushort KeyCode;
         public ushort Scan; 
@@ -71,7 +71,7 @@ namespace SequenceAutomation
      * Member: Hardware - An instance of the Hardware structure
      */
     [StructLayout(LayoutKind.Explicit)]
-    internal struct MOUSEKEYBDHARDWAREINPUT
+    public struct MOUSEKEYBDHARDWAREINPUT
     {
         [FieldOffset(0)]
         public MOUSEINPUT Mouse;
@@ -89,7 +89,7 @@ namespace SequenceAutomation
      * Member: Type - The type of input, 0 for mouse, 1 for keyboard, 2 for hardware
      * Member: Data - The union of the Mouse, Keyboard and Hardware structures
      */
-    internal struct INPUT
+    public struct INPUT
     {
         public uint Type;
         public MOUSEKEYBDHARDWAREINPUT Data; 
@@ -97,7 +97,7 @@ namespace SequenceAutomation
 
     #endregion
 
-    class PlayRecording
+    public class PlayRecording
     {
         #region Variable declarations
 

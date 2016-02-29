@@ -13,7 +13,7 @@ using System.Windows.Forms;
  */
 namespace SequenceAutomation
 {
-    class CreateRecording
+    public class CreateRecording
     {
         #region Variable declarations
 

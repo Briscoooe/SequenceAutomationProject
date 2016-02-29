@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace SequenceAutomation
 {
-    class RecordingManager
+    public class RecordingManager
     {
         #region Variable declaration
 
@@ -185,8 +185,6 @@ namespace SequenceAutomation
                     }
                 }
             }
-
-            Console.WriteLine(tempstr);
         }
 
         #endregion
