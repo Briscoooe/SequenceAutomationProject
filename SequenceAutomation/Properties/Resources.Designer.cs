@@ -123,6 +123,26 @@ namespace SequenceAutomation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap downarrow {
+            get {
+                object obj = ResourceManager.GetObject("downarrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap downarrow_hover {
+            get {
+                object obj = ResourceManager.GetObject("downarrow_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap favourite {
             get {
                 object obj = ResourceManager.GetObject("favourite", resourceCulture);
@@ -256,6 +276,26 @@ namespace SequenceAutomation.Properties {
         internal static System.Drawing.Bitmap stop_hover {
             get {
                 object obj = ResourceManager.GetObject("stop_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap uparrow {
+            get {
+                object obj = ResourceManager.GetObject("uparrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap uparrow_hover {
+            get {
+                object obj = ResourceManager.GetObject("uparrow_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

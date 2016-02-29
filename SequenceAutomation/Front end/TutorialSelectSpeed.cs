@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SequenceAutomation
 {
@@ -16,16 +17,14 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
+        public PerformanceCounter cpuCounter;
+        public PerformanceCounter ramCounter;
+
         private string recJson;
 
         public TutorialSelectSpeed()
         {
             InitializeComponent();
-            speedDropDown.Items.Add("1 - Very slow");
-            speedDropDown.Items.Add("2 - Slow");
-            speedDropDown.Items.Add("3 - Average");
-            speedDropDown.Items.Add("4 - Fast");
-            speedDropDown.Items.Add("5 - Very fast");
             speedDropDown.SelectedIndex = 2;
 
         }
@@ -83,5 +82,34 @@ namespace SequenceAutomation
         {
             nextBtn.BackgroundImage = Properties.Resources.forwardbutton_hover;
         }
+
+        private void calibrateSpeed(object sender, EventArgs e)
+        {
+            cpuCounter = new PerformanceCounter();
+
+            cpuCounter.CategoryName = "Processor";
+            cpuCounter.CounterName = "% Processor Time";
+            cpuCounter.InstanceName = "_Total";
+
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+
+            for (int x = 0; x < 5; x++)
+            {
+                Console.WriteLine("\nCPU: {0}",cpuCounter.NextValue());
+                Console.WriteLine("RAM: {0}", ramCounter.NextValue());
+            }
+
+        }
+
+        public string getCurrentCpuUsage()
+        {
+            return cpuCounter.NextValue() + "%";
+        }
+
+        public string getAvailableRAM()
+        {
+            return ramCounter.NextValue() + "MB";
+        }
     }
+    
 }

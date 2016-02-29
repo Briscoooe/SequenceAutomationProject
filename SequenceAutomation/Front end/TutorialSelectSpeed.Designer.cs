@@ -81,8 +81,17 @@ namespace SequenceAutomation
             // 
             // speedDropDown
             // 
+            this.speedDropDown.BackColor = System.Drawing.Color.White;
+            this.speedDropDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.speedDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.speedDropDown.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.speedDropDown.FormattingEnabled = true;
+            this.speedDropDown.Items.AddRange(new object[] {
+            "1 - Very slow",
+            "2 - Slow",
+            "3 - Average",
+            "4 - Fast",
+            "5 - Very fast"});
             this.speedDropDown.Location = new System.Drawing.Point(527, 123);
             this.speedDropDown.Name = "speedDropDown";
             this.speedDropDown.Size = new System.Drawing.Size(313, 40);

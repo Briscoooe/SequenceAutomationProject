@@ -105,7 +105,7 @@ namespace SequenceAutomation
         private ContextManager contextManager;
         public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
-        private int timeFactor; // The time factor used to determine the speed at which the recording should play
+        private float timeFactor; // The time factor used to determine the speed at which the recording should play
         private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
         private Dictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
@@ -133,7 +133,7 @@ namespace SequenceAutomation
          * Summary: Class constructor
          * Parameter: inputJson - The JSON string that stores all keys and contexts
          */
-        public PlayRecording(string inputJson, int timeFactor)
+        public PlayRecording(string inputJson, float timeFactor)
         {
             currentEntry = 0;
             this.timeFactor = timeFactor;
@@ -189,7 +189,7 @@ namespace SequenceAutomation
                 // The current thread sleeps until the milisecond before the next entry
                 //Thread.Sleep(((int)(enumerator.Current - currentEntry - 1)));
 
-                while (watch.ElapsedMilliseconds < enumerator.Current) { } // Wait until the exact milisecond
+                while (watch.ElapsedMilliseconds < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
 
                 // The sendInput call, utilising three parameters
                 // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array

@@ -20,11 +20,14 @@ namespace SequenceAutomation
 
         public string recJson = "";
         public string recTitle = "";
-        public int recSpeed = 2;
+        public float recSpeed = 1;
+
+        public int recSpeedVal = 3;
 
         public TutorialPlayRec()
         {
             InitializeComponent();
+            onSpeedChange();
         }
 
         private void gotoPlay(object sender, EventArgs e)
@@ -91,6 +94,26 @@ namespace SequenceAutomation
             doneBtn.BackgroundImage = Properties.Resources.done_hover;
         }
 
+        private void increaseBtn_MouseLeave(object sender, EventArgs e)
+        {
+            increaseBtn.BackgroundImage = Properties.Resources.uparrow;
+        }
+
+        private void increaseBtn_MouseEnter(object sender, EventArgs e)
+        {
+            increaseBtn.BackgroundImage = Properties.Resources.uparrow_hover;
+        }
+
+        private void decreaseBtn_MouseLeave(object sender, EventArgs e)
+        {
+            decreaseBtn.BackgroundImage = Properties.Resources.downarrow;
+        }
+
+        private void decreaseBtn_MouseEnter(object sender, EventArgs e)
+        {
+            decreaseBtn.BackgroundImage = Properties.Resources.downarrow_hover;
+        }
+
         /*
          * Method: launchPlaying()
          * Summary: Begins the playback of keystrokes
@@ -105,9 +128,60 @@ namespace SequenceAutomation
                 MessageBox.Show("Error: There is no recording to play");
                 return;
             }
-            playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
+
+            Console.WriteLine("\nREC SPEED BEFORE EXEC {0}", recSpeed.ToString());
+            playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
 
+        private void increaseSpeed(object sender, EventArgs e)
+        {
+            if(recSpeedVal < 5)
+            {
+                recSpeedVal++;
+                onSpeedChange();
+            }
+
+            Console.WriteLine(recSpeedVal.ToString());
+        }
+
+        private void decreaseSpeed(object sender, EventArgs e)
+        {
+            if (recSpeedVal > 1)
+            {
+                recSpeedVal--;
+                onSpeedChange();
+            }
+            Console.WriteLine(recSpeedVal.ToString());
+        }
+
+        private void onSpeedChange()
+        {
+            switch (recSpeedVal.ToString())
+            {
+                case "1":
+                    recSpeedLabel.Text = "1 - Very slow";
+                    recSpeed = 3;
+                    break;
+                case "2":
+                    recSpeedLabel.Text = "2 - Slow";
+                    recSpeed = 2;
+                    break;
+                case "3":
+                    recSpeedLabel.Text = "3 - Normal";
+                    recSpeed = 1;
+                    break;
+                case "4":
+                    recSpeedLabel.Text = "4 - Fast";
+                    recSpeed = .75F;
+                    break;
+                case "5":
+                    recSpeedLabel.Text = "5 - Very fast";
+                    recSpeed = .5F;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

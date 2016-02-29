@@ -8,7 +8,7 @@ namespace SequenceAutomation
     {
         private string recJson;
         private string recTitle;
-        private int recSpeed;
+        private float recSpeed;
         /*
          * Method: ApplicationContainer()
          * Summary: Class constructor
@@ -32,14 +32,14 @@ namespace SequenceAutomation
             firstTimePlay.NoTutorialEvent += gotoPlay;
 
             tutorialSelectRec.goBackEvent += returnToLogin;
-            tutorialSelectRec.goNextEvent += new EventHandler<TextEventArgs>(gotoSelectSpeed);
+            tutorialSelectRec.goNextEvent += new EventHandler<TextEventArgs>(gotoPlayRec);
             tutorialSelectRec.gotoLoginEvent += returnToLogin;
 
             tutorialSelectSpeed.goBackEvent += gotoSelectRec;
             tutorialSelectSpeed.goNextEvent += new EventHandler<TextEventArgs>(gotoPlayRec);
             tutorialSelectSpeed.gotoLoginEvent += returnToLogin;
 
-            tutorialPlayRec.goBackEvent += new EventHandler<TextEventArgs>(gotoSelectSpeed);
+            tutorialPlayRec.goBackEvent += new EventHandler<TextEventArgs>(gotoSelectRec);
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
             tutorialPlayRec.gotoLoginEvent += returnToLogin;
 
@@ -92,11 +92,11 @@ namespace SequenceAutomation
         {
             if (e.json != "")
             {
-                tutorialPlayRec.recJson = recJson;
-                tutorialPlayRec.recTitle = recTitle;
-                tutorialPlayRec.recSpeed = e.speed;
+                tutorialPlayRec.recJson = e.json;
+                tutorialPlayRec.currentRecTitle.Text = e.name;
+                tutorialPlayRec.recTitle = e.name;
             }
-            ClientSize = new Size(847, 468);
+            ClientSize = new Size(917, 522);
             tutorialPlayRec.BringToFront();
             CenterToScreen();
         }

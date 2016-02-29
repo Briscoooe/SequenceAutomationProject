@@ -10,7 +10,7 @@ namespace SequenceAutomation
     {
         private string recJson;
         private string filename;
-        private int recSpeed;
+        private float recSpeed;
 
         public TextEventArgs(string recJson, string filename, int recSpeed)
         {
@@ -29,7 +29,7 @@ namespace SequenceAutomation
             get { return filename; }
         }
 
-        public int speed
+        public float speed
         {
             get { return recSpeed; }
         }
