@@ -16,7 +16,7 @@ namespace SequenceAutomation.Interface
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;
 
-        public string mergedJson;
+        public string mergedJson = "";
         private PlayRecording playRec;
 
         public TutorialTestRec()
@@ -53,7 +53,7 @@ namespace SequenceAutomation.Interface
 
         private void goNext(object sender, EventArgs e)
         {
-            returnJson(new TextEventArgs(mergedJson));
+            returnJson(new TextEventArgs(mergedJson, "", 1));
         }
 
         private void returnJson(TextEventArgs e)

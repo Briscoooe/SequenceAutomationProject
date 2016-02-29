@@ -8,16 +8,30 @@ namespace SequenceAutomation
 {
     public class TextEventArgs : EventArgs
     {
-        private string mergedJson;
+        private string recJson;
+        private string filename;
+        private int recSpeed;
 
-        public TextEventArgs(string mergedJson)
+        public TextEventArgs(string recJson, string filename, int recSpeed)
         {
-            this.mergedJson = mergedJson;
+            this.recJson = recJson;
+            this.filename = filename;
+            this.recSpeed = recSpeed;
         }
 
         public string json
         {
-            get { return mergedJson; }
+            get { return recJson; }
+        }
+
+        public string name
+        {
+            get { return filename; }
+        }
+
+        public int speed
+        {
+            get { return recSpeed; }
         }
     }
 }

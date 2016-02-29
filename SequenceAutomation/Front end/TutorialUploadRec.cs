@@ -40,7 +40,7 @@ namespace SequenceAutomation
 
         private void goBack(object sender, EventArgs e)
         {
-            returnJson(new TextEventArgs(mergedJson));
+            returnJson(new TextEventArgs(mergedJson, "", 1));
         }
 
         public void returnJson(TextEventArgs e)

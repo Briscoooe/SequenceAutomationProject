@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SequenceAutomation
@@ -10,6 +12,7 @@ namespace SequenceAutomation
         public event EventHandler ShowTutorialEvent;
 
         private CreateRecording createRec;
+        private RecordingManager recManager;
         private ConnectionManager conn;
         private PlayRecording playRec;
         private string mergedJson;
@@ -201,6 +204,42 @@ namespace SequenceAutomation
 
             else
                 Console.WriteLine("Failed");
+        }
+
+        public void saveFile(object sender, EventArgs e)
+        {
+            if (validateInput())
+            {
+
+                recManager = new RecordingManager(mergedJson);
+                recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.FileName = test;
+                dlg.DefaultExt = ".json";
+                dlg.Filter = "Recording file (.json) |*.json";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(dlg.FileName, mergedJson);
+                    MessageBox.Show("Saved successfully!");
+                    recTitleTb.Text = "";
+                    recDescTb.Text = "";
+                }
+            }
+
+        }
+
+        private bool validateInput()
+        {
+            if (recTitleTb.Text == "")
+            {
+                MessageBox.Show("You must enter a title");
+                return false;
+            }
+
+            else
+                return true;
         }
     }
 }

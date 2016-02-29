@@ -12,9 +12,15 @@ namespace SequenceAutomation
 {
     public partial class TutorialPlayRec : UserControl
     {
-        public event EventHandler goBackEvent;
+        public event EventHandler<TextEventArgs> goBackEvent;
         public event EventHandler gotoPlayEvent;
         public event EventHandler gotoLoginEvent;
+
+        private PlayRecording playRec;
+
+        public string recJson = "";
+        public string recTitle = "";
+        public int recSpeed = 2;
 
         public TutorialPlayRec()
         {
@@ -29,8 +35,14 @@ namespace SequenceAutomation
 
         private void goBack(object sender, EventArgs e)
         {
-            if (goBackEvent != null)
-                goBackEvent(this, e);
+            returnJson(new TextEventArgs(recJson, "", 1));
+        }
+
+        public void returnJson(TextEventArgs e)
+        {
+            EventHandler<TextEventArgs> eh = goBackEvent;
+            if (eh != null)
+                eh(this, e);
         }
 
         private void gotoLogin(object sender, EventArgs e)
@@ -77,6 +89,24 @@ namespace SequenceAutomation
         private void doneBtn_MouseEnter(object sender, EventArgs e)
         {
             doneBtn.BackgroundImage = Properties.Resources.done_hover;
+        }
+
+        /*
+         * Method: launchPlaying()
+         * Summary: Begins the playback of keystrokes
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
+        private void testRecording(object sender, EventArgs e)
+        {
+            // If there are no keys loaded to play, display a message informing the user of this
+            if (recJson == null)
+            {
+                MessageBox.Show("Error: There is no recording to play");
+                return;
+            }
+            playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
+            playRec.Start(); // Begin playback
         }
 
     }

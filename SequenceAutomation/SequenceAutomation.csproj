@@ -109,6 +109,9 @@
     <Compile Include="Front end\CreateRecUserControl.Designer.cs">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front end\SearchBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Front end\TutorialTestRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -301,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\favourite_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\browse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\browse_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

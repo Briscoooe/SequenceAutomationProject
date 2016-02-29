@@ -13,18 +13,33 @@ namespace SequenceAutomation
     public partial class TutorialSelectSpeed : UserControl
     {
         public event EventHandler goBackEvent;
-        public event EventHandler goNextEvent;
+        public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
+
+        private string recJson;
 
         public TutorialSelectSpeed()
         {
             InitializeComponent();
+            speedDropDown.Items.Add("1 - Very slow");
+            speedDropDown.Items.Add("2 - Slow");
+            speedDropDown.Items.Add("3 - Average");
+            speedDropDown.Items.Add("4 - Fast");
+            speedDropDown.Items.Add("5 - Very fast");
+            speedDropDown.SelectedIndex = 2;
+
         }
 
         private void goNext(object sender, EventArgs e)
         {
-            if (goNextEvent != null)
-                goNextEvent(this, e);
+            returnJson(new TextEventArgs(recJson, "", speedDropDown.SelectedIndex));
+        }
+
+        private void returnJson(TextEventArgs e)
+        {
+            EventHandler<TextEventArgs> eh = goNextEvent;
+            if (eh != null)
+                eh(this, e);
         }
 
         private void goBack(object sender, EventArgs e)

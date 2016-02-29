@@ -68,9 +68,8 @@ namespace SequenceAutomation
             this.currentRecTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.currentRecTitle.Location = new System.Drawing.Point(30, 177);
             this.currentRecTitle.Name = "currentRecTitle";
-            this.currentRecTitle.Size = new System.Drawing.Size(268, 42);
+            this.currentRecTitle.Size = new System.Drawing.Size(0, 42);
             this.currentRecTitle.TabIndex = 23;
-            this.currentRecTitle.Text = "Recording Title";
             // 
             // label1
             // 
@@ -165,6 +164,7 @@ namespace SequenceAutomation
             this.playRecBtn.Size = new System.Drawing.Size(150, 150);
             this.playRecBtn.TabIndex = 21;
             this.playRecBtn.UseVisualStyleBackColor = false;
+            this.playRecBtn.Click += new System.EventHandler(this.testRecording);
             this.playRecBtn.MouseEnter += new System.EventHandler(this.playRecBtn_MouseEnter);
             this.playRecBtn.MouseLeave += new System.EventHandler(this.playRecBtn_MouseLeave);
             // 

@@ -234,6 +234,7 @@ namespace SequenceAutomation
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
             this.saveBtn.TabIndex = 55;
             this.saveBtn.UseVisualStyleBackColor = false;
+            this.saveBtn.Click += new System.EventHandler(this.saveFile);
             this.saveBtn.MouseEnter += new System.EventHandler(this.saveBtn_MouseEnter);
             this.saveBtn.MouseLeave += new System.EventHandler(this.saveBtn_MouseLeave);
             // 

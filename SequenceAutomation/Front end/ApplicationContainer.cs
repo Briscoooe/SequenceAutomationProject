@@ -6,6 +6,9 @@ namespace SequenceAutomation
 {
     public partial class ApplicationContainer : Form
     {
+        private string recJson;
+        private string recTitle;
+        private int recSpeed;
         /*
          * Method: ApplicationContainer()
          * Summary: Class constructor
@@ -29,14 +32,14 @@ namespace SequenceAutomation
             firstTimePlay.NoTutorialEvent += gotoPlay;
 
             tutorialSelectRec.goBackEvent += returnToLogin;
-            tutorialSelectRec.goNextEvent += gotoSelectSpeed;
+            tutorialSelectRec.goNextEvent += new EventHandler<TextEventArgs>(gotoSelectSpeed);
             tutorialSelectRec.gotoLoginEvent += returnToLogin;
 
             tutorialSelectSpeed.goBackEvent += gotoSelectRec;
-            tutorialSelectSpeed.goNextEvent += gotoPlayRec;
+            tutorialSelectSpeed.goNextEvent += new EventHandler<TextEventArgs>(gotoPlayRec);
             tutorialSelectSpeed.gotoLoginEvent += returnToLogin;
 
-            tutorialPlayRec.goBackEvent += gotoSelectSpeed;
+            tutorialPlayRec.goBackEvent += new EventHandler<TextEventArgs>(gotoSelectSpeed);
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
             tutorialPlayRec.gotoLoginEvent += returnToLogin;
 
@@ -85,8 +88,14 @@ namespace SequenceAutomation
             CenterToScreen();
         }
 
-        private void gotoPlayRec(object sender, EventArgs e)
+        private void gotoPlayRec(object sender, TextEventArgs e)
         {
+            if (e.json != "")
+            {
+                tutorialPlayRec.recJson = recJson;
+                tutorialPlayRec.recTitle = recTitle;
+                tutorialPlayRec.recSpeed = e.speed;
+            }
             ClientSize = new Size(847, 468);
             tutorialPlayRec.BringToFront();
             CenterToScreen();
@@ -94,13 +103,18 @@ namespace SequenceAutomation
 
         private void gotoSelectRec(object sender, EventArgs e)
         {
-            ClientSize = new Size(990, 530);
+            ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
         }
 
-        private void gotoSelectSpeed(object sender, EventArgs e)
+        private void gotoSelectSpeed(object sender, TextEventArgs e)
         {
+            if (e.json != "")
+            {
+                recJson = e.json;
+                recTitle = e.name;
+            }
             ClientSize = new Size(955, 444);
             tutorialSelectSpeed.BringToFront();
             CenterToScreen();
@@ -147,7 +161,7 @@ namespace SequenceAutomation
 
         private void gotoPlayTutorial(object sender, EventArgs e)
         {
-            ClientSize = new Size(990, 530);
+            ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
         }

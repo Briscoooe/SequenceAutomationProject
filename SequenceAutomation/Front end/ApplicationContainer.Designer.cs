@@ -52,7 +52,7 @@
             // 
             // createRecUserControl
             // 
-            this.createRecUserControl.BackColor = System.Drawing.SystemColors.Control;
+            this.createRecUserControl.BackColor = System.Drawing.Color.MintCream;
             this.createRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.createRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.createRecUserControl.Name = "createRecUserControl";
@@ -98,7 +98,7 @@
             this.tutorialSelectRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialSelectRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectRec.Name = "tutorialSelectRec";
-            this.tutorialSelectRec.Size = new System.Drawing.Size(990, 530);
+            this.tutorialSelectRec.Size = new System.Drawing.Size(1168, 690);
             this.tutorialSelectRec.TabIndex = 4;
             // 
             // firstTimeCreate

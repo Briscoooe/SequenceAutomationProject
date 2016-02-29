@@ -17,7 +17,8 @@ namespace SequenceAutomation
         public event EventHandler goBackEvent;
 
         private CreateRecording createRec;
-        public string mergedJson;
+        private string mergedJson;
+
 
         public TutorialStartRec()
         {
@@ -98,7 +99,7 @@ namespace SequenceAutomation
                 return;
             }
 
-            returnJson(new TextEventArgs(mergedJson));
+            returnJson(new TextEventArgs(mergedJson, "", 1));
         }
 
         private void returnJson(TextEventArgs e)
