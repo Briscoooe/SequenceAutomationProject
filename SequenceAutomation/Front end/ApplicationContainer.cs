@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace SequenceAutomation
             MaximizeBox = false;
             MinimizeBox = false;
             CenterToScreen();
+
+            Properties.Settings.Default.PropertyChanged += new PropertyChangedEventHandler(Default_PropertyChanged);
 
             // Initialising the events to their appropriate methods
             loginUserControl.CreateButtonEvent += gotoCreateTutorialSelect;
@@ -62,6 +65,11 @@ namespace SequenceAutomation
             tutorialUploadRec.gotoLoginEvent += returnToLogin;
 
 
+        }
+
+        private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
 
         private void gotoUploadRec(object sender, TextEventArgs e)
@@ -173,7 +181,7 @@ namespace SequenceAutomation
 
         private void gotoPlayTutorialSelect(object sender, EventArgs e)
         {
-            if (firstTimePlay.rememberSelection)
+            if (Properties.Settings.Default.playRemember)
             {
                 gotoPlay(sender, e);
             }
@@ -187,7 +195,7 @@ namespace SequenceAutomation
 
         private void gotoCreateTutorialSelect(object sender, EventArgs e)
         {
-            if (firstTimeCreate.rememberSelection)
+            if (Properties.Settings.Default.createRemember)
             {
                 gotoCreate(sender, e);
             }

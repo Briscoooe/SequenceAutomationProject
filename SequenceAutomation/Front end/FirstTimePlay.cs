@@ -14,7 +14,6 @@ namespace SequenceAutomation
     {
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
-        public bool rememberSelection = false;
 
         public FirstTimePlay()
         {
@@ -38,12 +37,12 @@ namespace SequenceAutomation
         {
             if(rememberChoiceBtn.Checked)
             {
-                rememberSelection = true;
+                Properties.Settings.Default.playRemember = true;
             }
 
             else
             {
-                rememberSelection = false;
+                Properties.Settings.Default.playRemember = false;
             }
         }
     }

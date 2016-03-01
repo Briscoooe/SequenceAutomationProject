@@ -22,5 +22,29 @@ namespace SequenceAutomation.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool playRemember {
+            get {
+                return ((bool)(this["playRemember"]));
+            }
+            set {
+                this["playRemember"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool createRemember {
+            get {
+                return ((bool)(this["createRemember"]));
+            }
+            set {
+                this["createRemember"] = value;
+            }
+        }
     }
 }

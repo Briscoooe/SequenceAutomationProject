@@ -14,7 +14,6 @@ namespace SequenceAutomation.Interface
     {
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
-        public bool rememberSelection = false;
 
         public FirstTimeCreate()
         {
@@ -38,12 +37,12 @@ namespace SequenceAutomation.Interface
         {
             if (rememberChoiceBtn.Checked)
             {
-                rememberSelection = true;
+                Properties.Settings.Default.createRemember = true;
             }
 
             else
             {
-                rememberSelection = false;
+                Properties.Settings.Default.createRemember = false;
             }
         }
     }
