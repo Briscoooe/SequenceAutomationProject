@@ -40,8 +40,6 @@ namespace SequenceAutomation
             this.recordingsList = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.recNameLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.favouriteBtn = new System.Windows.Forms.Button();
@@ -148,25 +146,6 @@ namespace SequenceAutomation
             this.label8.Size = new System.Drawing.Size(363, 115);
             this.label8.TabIndex = 30;
             this.label8.Text = "OPTION 2: CHOOSE FROM COMPUTER";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(441, 632);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(245, 32);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "Recording Name:";
-            // 
-            // recNameLabel
-            // 
-            this.recNameLabel.AutoSize = true;
-            this.recNameLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recNameLabel.Location = new System.Drawing.Point(692, 630);
-            this.recNameLabel.Name = "recNameLabel";
-            this.recNameLabel.Size = new System.Drawing.Size(0, 33);
-            this.recNameLabel.TabIndex = 32;
             // 
             // label3
             // 
@@ -301,8 +280,6 @@ namespace SequenceAutomation
             this.Controls.Add(this.favouriteBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.browseBtn);
-            this.Controls.Add(this.recNameLabel);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.searchBox1);
             this.Controls.Add(this.homeBtn);
@@ -340,8 +317,6 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button homeBtn;
         private SearchBox searchBox1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label recNameLabel;
         private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button favouriteBtn;

@@ -19,6 +19,8 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
+        public RecordingManager recManager;
+
         private string recJson;
         private string recTitle;
 
@@ -26,6 +28,7 @@ namespace SequenceAutomation
         public TutorialSelectRec()
         {
             InitializeComponent();
+            recManager = new RecordingManager();
         }
 
         private void gotoLogin(object sender, EventArgs e)
@@ -61,10 +64,17 @@ namespace SequenceAutomation
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
-                recTitle = Path.GetFileNameWithoutExtension(fullPath);
-                recNameLabel.Text = recTitle;
-                recJson = File.ReadAllText(fullPath);
-                updateInfo();
+                if (recManager.validateJson(File.ReadAllText(fullPath)))
+                {
+                    Console.WriteLine("Valid");
+                    recJson = File.ReadAllText(fullPath);
+                    recTitle = Path.GetFileNameWithoutExtension(fullPath);
+                    updateInfo();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid");
+                }
             }
         }
 

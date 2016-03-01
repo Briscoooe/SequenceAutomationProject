@@ -20,7 +20,6 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
 
         private PlayRecording playRec;
-        private RecordingManager recManager;
         private ToolTip tooltip;
 
         public string recJson = "";

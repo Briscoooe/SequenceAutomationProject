@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace SequenceAutomation
 {
@@ -128,11 +129,10 @@ namespace SequenceAutomation
                 MessageBox.Show("Error: There is no recording to play");
                 return;
             }
-
-            Console.WriteLine("\nREC SPEED BEFORE EXEC {0}", recSpeed.ToString());
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
+
 
         private void increaseSpeed(object sender, EventArgs e)
         {

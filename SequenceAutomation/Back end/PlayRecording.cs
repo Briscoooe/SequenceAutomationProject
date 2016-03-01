@@ -111,7 +111,6 @@ namespace SequenceAutomation
         private Dictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
         private Stopwatch watch; // Timer used to compare the times of the recorded keys with the currently elapsed time
         private long currentEntry; // While playing, keeps the last keysDict frame that have been played.
-        private string inputJson; 
         
         #endregion
 

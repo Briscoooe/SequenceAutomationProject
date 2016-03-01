@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,7 +9,6 @@ namespace SequenceAutomation
     {
         private string recJson;
         private string recTitle;
-        private float recSpeed;
         /*
          * Method: ApplicationContainer()
          * Summary: Class constructor
@@ -95,8 +95,9 @@ namespace SequenceAutomation
         {
             if (e.json != "")
             {
+                dynamic tempObj = JsonConvert.DeserializeObject(e.json);
                 tutorialPlayRec.recJson = e.json;
-                tutorialPlayRec.currentRecTitle.Text = e.name;
+                tutorialPlayRec.currentRecTitle.Text = tempObj.Name;
                 tutorialPlayRec.recTitle = e.name;
             }
             ClientSize = new Size(917, 522);

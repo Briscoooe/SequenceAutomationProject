@@ -104,7 +104,7 @@ namespace SequenceAutomation
 
             // Merge the context and keys dictionaries into a single JSON string and return it
             recManager = new RecordingManager(savedKeys, contextDict);
-            keysJson = recManager.mergeToJson();
+            keysJson = recManager.keysJson;
             return keysJson;
         }
 
