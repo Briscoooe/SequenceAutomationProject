@@ -18,7 +18,7 @@ namespace SequenceAutomation.Tests
         string fullPath, rawJson, infoJson;
 
         [TestMethod()]
-        public void validateJsonTest()
+        public void RecManager_validateJsonTest()
         {
             fullPath = "C:\\Users\\Brian\\Desktop\\invalid_format.json";
             Assert.IsFalse(recManager.validateJson(File.ReadAllText(fullPath)));
@@ -55,7 +55,7 @@ namespace SequenceAutomation.Tests
         }
 
         [TestMethod()]
-        public void addInformationTest()
+        public void RecManager_addInformationTest()
         {
             fullPath = "C:\\Users\\Brian\\Desktop\\Helloworld_no_info.json";
             rawJson = File.ReadAllText(fullPath);

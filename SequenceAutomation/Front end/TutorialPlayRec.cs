@@ -42,7 +42,7 @@ namespace SequenceAutomation
             returnJson(new TextEventArgs(recJson, "", 1));
         }
 
-        public void returnJson(TextEventArgs e)
+        private void returnJson(TextEventArgs e)
         {
             EventHandler<TextEventArgs> eh = goBackEvent;
             if (eh != null)

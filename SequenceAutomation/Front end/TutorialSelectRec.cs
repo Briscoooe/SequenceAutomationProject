@@ -55,7 +55,7 @@ namespace SequenceAutomation
                 eh(this, e);
         }
 
-        public void chooseFile(object sender, EventArgs e)
+        private void chooseFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "";
             openFileDialog.DefaultExt = ".json";

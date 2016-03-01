@@ -90,7 +90,7 @@ namespace SequenceAutomation
             playRec.Start(); // Begin playback
         }
 
-        public void chooseFile(object sender, EventArgs e)
+        private void chooseFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "";
             openFileDialog.DefaultExt = ".json";
@@ -165,13 +165,13 @@ namespace SequenceAutomation
             }
         }
 
-        public void goBack(object sender, EventArgs e)
+        private void goBack(object sender, EventArgs e)
         {
             if (BackButtonEvent != null)
                 BackButtonEvent(this, e);
         }
 
-        public void showTutorial(object sender, EventArgs e)
+        private void showTutorial(object sender, EventArgs e)
         {
             if (TutorialEvent != null)
                 TutorialEvent(this, e);

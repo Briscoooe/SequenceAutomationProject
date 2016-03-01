@@ -101,12 +101,12 @@ namespace SequenceAutomation
 
         }
 
-        public string getCurrentCpuUsage()
+        private string getCurrentCpuUsage()
         {
             return cpuCounter.NextValue() + "%";
         }
 
-        public string getAvailableRAM()
+        private string getAvailableRAM()
         {
             return ramCounter.NextValue() + "MB";
         }

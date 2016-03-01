@@ -50,7 +50,7 @@ namespace SequenceAutomation
                 eh(this, e);
         }
 
-        public void saveFile(object sender, EventArgs e)
+        private void saveFile(object sender, EventArgs e)
         {
             if (validateInput())
             {

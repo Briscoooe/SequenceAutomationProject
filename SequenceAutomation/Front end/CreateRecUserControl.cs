@@ -122,7 +122,7 @@ namespace SequenceAutomation
          * Parameter: sender - The control that the action is for, in this case the button
          * Parameter: e - Any arguments the function may use
          */
-        public void goBack(object sender, EventArgs e)
+        private void goBack(object sender, EventArgs e)
         {
             if(BackButtonEvent != null)
                 BackButtonEvent(this, e);
@@ -206,7 +206,7 @@ namespace SequenceAutomation
                 Console.WriteLine("Failed");
         }
 
-        public void saveFile(object sender, EventArgs e)
+        private void saveFile(object sender, EventArgs e)
         {
             if (validateInput())
             {
