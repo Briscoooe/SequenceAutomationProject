@@ -58,7 +58,6 @@ namespace SequenceAutomation
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(328, 262);
             this.recDescLabel.TabIndex = 24;
-            this.recDescLabel.Text = "rec Description";
             // 
             // label7
             // 
@@ -77,7 +76,6 @@ namespace SequenceAutomation
             this.recTitleLabel.Name = "recTitleLabel";
             this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
             this.recTitleLabel.TabIndex = 22;
-            this.recTitleLabel.Text = "rec info";
             // 
             // label6
             // 

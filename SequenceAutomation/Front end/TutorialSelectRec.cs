@@ -41,7 +41,7 @@ namespace SequenceAutomation
         {
             if (recJson == null)
             {
-                MessageBox.Show("You must create a recording to continue to the next screen");
+                MessageBox.Show("You must choose a recording to continue to the next screen");
                 return;
             }
 
@@ -84,6 +84,16 @@ namespace SequenceAutomation
 
             recTitleLabel.Text = tempObj.Name;
             recDescLabel.Text = tempObj.Desc;
+
+            if(tempObj.Name == "" || tempObj.Name == null)
+            {
+                recTitleLabel.Text = "Unavailable";
+            }
+
+            if(tempObj.Desc == "" || tempObj.Desc == null)
+            {
+                recDescLabel.Text = "Unavailable";
+            }
         }
 
         private void goBack(object sender, EventArgs e)
