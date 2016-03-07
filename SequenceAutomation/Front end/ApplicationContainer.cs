@@ -153,6 +153,7 @@ namespace SequenceAutomation
          */
         public void gotoPlay(object sender, EventArgs e)
         {
+            playRecUserControl.prepareList();
             playRecUserControl.BringToFront();
             ClientSize = new Size(1178, 684);
             CenterToScreen();

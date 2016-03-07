@@ -137,6 +137,7 @@
             this.recordingsList.Name = "recordingsList";
             this.recordingsList.Size = new System.Drawing.Size(304, 340);
             this.recordingsList.TabIndex = 56;
+            this.recordingsList.SelectedIndexChanged += new System.EventHandler(this.updateList);
             // 
             // currentRecTitle
             // 

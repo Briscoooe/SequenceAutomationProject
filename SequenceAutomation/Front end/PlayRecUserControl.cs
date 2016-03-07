@@ -20,7 +20,10 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
 
         private PlayRecording playRec;
+        private ConnectionManager connectionManager;
         private ToolTip tooltip;
+
+        private string[] dirContents;
 
         public string recJson = "";
         public string recTitle = "";
@@ -34,6 +37,7 @@ namespace SequenceAutomation
         public PlayRecUserControl()
         {
             InitializeComponent();
+            prepareList();
             onSpeedChange();
 
             tooltip = new ToolTip();
@@ -54,6 +58,23 @@ namespace SequenceAutomation
             tooltip.SetToolTip(increaseBtn, "Increase the playback speed of the recording");
             tooltip.SetToolTip(decreaseBtn, "Decrease the playback speed of the recording");
 
+        }
+
+        public void prepareList()
+        {
+            connectionManager = new ConnectionManager();
+            dirContents = connectionManager.getRecordings();
+
+            foreach (string s in dirContents)
+            {
+                if (s == "." || s == "..")
+                {
+                    dirContents = dirContents.Where(val => val != s).ToArray();
+                }
+            }
+
+            recordingsList.DataSource = dirContents;
+            ActiveControl = recordingsList;
         }
 
         private void tooltip_Draw(object sender, DrawToolTipEventArgs e)
@@ -106,10 +127,16 @@ namespace SequenceAutomation
             }
         }
 
+        private void updateList(object sender, EventArgs e)
+        {
+            recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
+            updateInfo();
+        }
+
         private void updateInfo()
         {
+            Console.WriteLine("\nUPDATE INFO RECJSON: {0}", recJson);
             dynamic tempObj = JsonConvert.DeserializeObject(recJson);
-
             recTitleLabel.Text = tempObj.Name;
             recDescLabel.Text = tempObj.Desc;
 
@@ -262,6 +289,5 @@ namespace SequenceAutomation
         {
             addFavouriteBtn.BackgroundImage = Properties.Resources.addtofavourites;
         }
-
     }
 }
