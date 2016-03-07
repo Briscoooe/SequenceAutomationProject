@@ -15,7 +15,7 @@ namespace SequenceAutomation
         HttpWebResponse response;
         string responseStr;
 
-        string urlString = "http://finalyearproject.cloudapp.net/app/index.php/artists";
+        string urlString = "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings";
 
         public ConnectionManager()
         {
@@ -24,36 +24,35 @@ namespace SequenceAutomation
 
         public bool Upload(string jsonString)
         {
+            request = (HttpWebRequest)WebRequest.Create(urlString);
+            request.ContentType = "text/json";
+            request.Method = "POST";
 
-            using (FileStream fs = File.Open(@"C:\Users\Brian\NotepadHello.json", FileMode.CreateNew))
-            using (StreamWriter sw = new StreamWriter(fs))
-            using (JsonWriter jw = new JsonTextWriter(sw))
+            using (var writer = new StreamWriter(request.GetRequestStream()))
             {
-                jw.Formatting = Formatting.Indented;
-
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(jw, jsonString);
+                //jsonString = JsonConvert.SerializeObject(jsonString);
+                Console.WriteLine("\nUpload string: {0}", jsonString);
+                writer.Write(jsonString);
+                writer.Flush();
+                writer.Close();
             }
-                /*
-                request = (HttpWebRequest)WebRequest.Create(urlString);
-                request.Method = "POST";
-                request.ContentType = "application/json; charsetLutf-8";
 
-                using (var writer = new StreamWriter(request.GetRequestStream()))
-                {
-                    writer.Write(jsonString);
-                    writer.Flush();
-                    writer.Close();
-                }
-
+            try {
                 response = (HttpWebResponse)request.GetResponse();
-                using (var reader = new StreamReader(response.GetResponseStream()))
-                {
-                    responseStr = reader.ReadToEnd();
-                }
+            }
+            catch(WebException we)
+            {
+                Console.WriteLine(we.Message);
+                return false;
+            }
 
-                Console.WriteLine(responseStr);*/
-                return true;
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                responseStr = reader.ReadToEnd();
+            }
+
+            Console.WriteLine("\nResponseStr: {0}", responseStr);
+            return true;
         }
     }
 }

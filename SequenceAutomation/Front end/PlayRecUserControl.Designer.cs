@@ -49,6 +49,7 @@
             this.recSpeedLabel = new System.Windows.Forms.Label();
             this.decreaseBtn = new System.Windows.Forms.Button();
             this.increaseBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.searchBox1 = new SequenceAutomation.SearchBox();
             this.SuspendLayout();
             // 
@@ -290,7 +291,7 @@
             this.recSpeedLabel.BackColor = System.Drawing.Color.Transparent;
             this.recSpeedLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recSpeedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recSpeedLabel.Location = new System.Drawing.Point(110, 354);
+            this.recSpeedLabel.Location = new System.Drawing.Point(121, 384);
             this.recSpeedLabel.Name = "recSpeedLabel";
             this.recSpeedLabel.Size = new System.Drawing.Size(249, 37);
             this.recSpeedLabel.TabIndex = 88;
@@ -305,7 +306,7 @@
             this.decreaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.decreaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.decreaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.decreaseBtn.Location = new System.Drawing.Point(38, 394);
+            this.decreaseBtn.Location = new System.Drawing.Point(49, 424);
             this.decreaseBtn.Name = "decreaseBtn";
             this.decreaseBtn.Size = new System.Drawing.Size(75, 60);
             this.decreaseBtn.TabIndex = 87;
@@ -323,7 +324,7 @@
             this.increaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.increaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.increaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.increaseBtn.Location = new System.Drawing.Point(38, 289);
+            this.increaseBtn.Location = new System.Drawing.Point(49, 319);
             this.increaseBtn.Name = "increaseBtn";
             this.increaseBtn.Size = new System.Drawing.Size(75, 60);
             this.increaseBtn.TabIndex = 86;
@@ -331,6 +332,17 @@
             this.increaseBtn.Click += new System.EventHandler(this.increaseSpeed);
             this.increaseBtn.MouseEnter += new System.EventHandler(this.increaseBtn_MouseEnter);
             this.increaseBtn.MouseLeave += new System.EventHandler(this.increaseBtn_MouseLeave);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(28, 268);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(249, 48);
+            this.label1.TabIndex = 89;
+            this.label1.Text = "Speed";
             // 
             // searchBox1
             // 
@@ -346,6 +358,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.recSpeedLabel);
             this.Controls.Add(this.decreaseBtn);
             this.Controls.Add(this.increaseBtn);
@@ -398,5 +411,6 @@
         private System.Windows.Forms.Label recSpeedLabel;
         private System.Windows.Forms.Button decreaseBtn;
         private System.Windows.Forms.Button increaseBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -196,19 +196,23 @@ namespace SequenceAutomation
         /*
          *
          */
-        private void upload(object sender, EventArgs e)
+        private void uploadRecording(object sender, EventArgs e)
         {
-            Console.WriteLine("upload called");
-            if(conn.Upload(mergedJson))
-                Console.WriteLine("Uploaded");
-
-            else
-                Console.WriteLine("Failed");
+            if(validateInput(1))
+            {
+                recManager = new RecordingManager(mergedJson);
+                mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                if (conn.Upload(mergedJson))
+                    MessageBox.Show("Uploaded");
+                else
+                    MessageBox.Show("There was a problem with the server");
+            }
+           
         }
 
         private void saveFile(object sender, EventArgs e)
         {
-            if (validateInput())
+            if (validateInput(0))
             {
                 recManager = new RecordingManager(mergedJson);
                 mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
@@ -229,16 +233,28 @@ namespace SequenceAutomation
 
         }
 
-        private bool validateInput()
+        private bool validateInput(int option)
         {
+            if(mergedJson == null)
+            {
+                MessageBox.Show("You must create a recording");
+                return false;
+            }
+
             if (recTitleTb.Text == "")
             {
                 MessageBox.Show("You must enter a title");
                 return false;
             }
 
-            else
-                return true;
+            if(option == 1 && recDescTb.Text == "")
+            {
+                MessageBox.Show("You must enter a description");
+                return false;
+            }
+
+            Console.WriteLine("Input valid");
+            return true;
         }
     }
 }

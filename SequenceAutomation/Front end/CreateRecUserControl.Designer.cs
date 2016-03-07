@@ -254,6 +254,7 @@ namespace SequenceAutomation
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
             this.uploadBtn.TabIndex = 7;
             this.uploadBtn.UseVisualStyleBackColor = false;
+            this.uploadBtn.Click += new System.EventHandler(this.uploadRecording);
             this.uploadBtn.MouseEnter += new System.EventHandler(this.uploadBtn_MouseEnter);
             this.uploadBtn.MouseLeave += new System.EventHandler(this.uploadBtn_MouseLeave);
             // 
