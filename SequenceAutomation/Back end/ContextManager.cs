@@ -7,6 +7,10 @@ namespace SequenceAutomation
 {
     public class ContextManager
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         #region Variable declarations
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
 
@@ -71,7 +75,6 @@ namespace SequenceAutomation
                     }
                 }
 
-                Console.WriteLine(title);
                 // Add the dictionary of window handles and titles at to the dictionary at the current milisecond under the key "Open Windows"
                 currentContext[time]["Open windows"].Add(handle, title);
             }

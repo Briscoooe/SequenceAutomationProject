@@ -4,13 +4,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SequenceAutomation
 {
     public class ConnectionManager
     {
+
+        /* 
+         * TODO
+         * Commmenting
+         * Update method
+         * Delete method
+         */
+
         HttpWebRequest request;
         HttpWebResponse response;
         string responseStr;
@@ -19,11 +30,47 @@ namespace SequenceAutomation
 
         public ConnectionManager() {}
 
-        public string[] getRecordings()
+        public bool testConnection()
+        {
+            using (TcpClient client = new TcpClient())
+            {
+                try
+                {
+                    client.ConnectAsync(urlString, 80).Wait(2000); // Check if we can connect in 50ms
+                    Console.WriteLine("\nConnected");
+                    return true;
+                }
+                catch (WebException e)
+                {
+                    Console.WriteLine("\nWebException Not connected");
+                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine(e.Message);
+                    return false;
+                }
+                catch (SocketException e)
+                {
+                    Console.WriteLine("\nSocketException Not connected");
+                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine(e.Message);
+                    return false;
+                }
+
+                catch (AggregateException e)
+                {
+                    Console.WriteLine("\nAggregateException Not connected");
+                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine(e.Message);
+                    return false;
+                }
+            }
+
+        }
+
+        public List<string> getRecordings()
         {
             request = (HttpWebRequest)WebRequest.Create(urlString);
             request.Method = "GET";
-            string[] dirContents;
+            List<string> dirContents = new List<string>();
 
             try
             {
@@ -41,7 +88,11 @@ namespace SequenceAutomation
             }
 
             string tmp = string.Join("", responseStr.Split('"','[',']'));
-            dirContents = tmp.Split(',');
+            string[] tmp2 = tmp.Split(',');
+            foreach (string t in tmp2)
+            {
+                dirContents.Add(t);
+            }
             return dirContents;
         }
 

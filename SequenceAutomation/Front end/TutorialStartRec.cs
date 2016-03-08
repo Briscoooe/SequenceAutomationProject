@@ -12,6 +12,12 @@ namespace SequenceAutomation
 {
     public partial class TutorialStartRec : UserControl
     {
+
+        /* 
+         * TODO
+         * Commmenting
+         */
+
         public event EventHandler gotoLoginEvent;
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;

@@ -5,6 +5,10 @@ namespace SequenceAutomation
 {
     public partial class LoginUserControl : UserControl
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         public event EventHandler CreateButtonEvent;
         public event EventHandler PlayButtonEvent;
 

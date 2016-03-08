@@ -12,6 +12,10 @@ namespace SequenceAutomation
 {
     public class RecordingManager
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         #region Variable declaration
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)

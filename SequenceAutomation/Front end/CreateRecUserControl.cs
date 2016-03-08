@@ -8,6 +8,10 @@ namespace SequenceAutomation
 {
     public partial class CreateRecUserControl : UserControl
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         public event EventHandler BackButtonEvent;
         public event EventHandler ShowTutorialEvent;
 

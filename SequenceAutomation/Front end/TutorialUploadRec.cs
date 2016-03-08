@@ -14,6 +14,12 @@ namespace SequenceAutomation
 {
     public partial class TutorialUploadRec : UserControl
     {
+
+        /* 
+         * TODO
+         * Commmenting
+         */
+
         public event EventHandler gotoLoginEvent;
         public event EventHandler goNextEvent;
         public event EventHandler<TextEventArgs> goBackEvent;
@@ -58,7 +64,6 @@ namespace SequenceAutomation
                 recManager = new RecordingManager(mergedJson);
                 recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
                 string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
-                Console.WriteLine(test);
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = test;
                 dlg.DefaultExt = ".json";

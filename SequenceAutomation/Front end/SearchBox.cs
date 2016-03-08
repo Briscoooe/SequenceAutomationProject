@@ -6,6 +6,10 @@ namespace SequenceAutomation
 {
     public class SearchBox : TextBox
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
 
         private static Font SearchTextFont;
 

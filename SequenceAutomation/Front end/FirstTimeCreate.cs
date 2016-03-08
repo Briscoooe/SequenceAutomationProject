@@ -12,6 +12,10 @@ namespace SequenceAutomation.Interface
 {
     public partial class FirstTimeCreate : UserControl
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
 

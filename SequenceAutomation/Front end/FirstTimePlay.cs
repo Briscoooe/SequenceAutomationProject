@@ -12,6 +12,10 @@ namespace SequenceAutomation
 {
     public partial class FirstTimePlay : UserControl
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
 

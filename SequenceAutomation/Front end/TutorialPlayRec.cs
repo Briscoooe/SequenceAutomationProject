@@ -141,8 +141,6 @@ namespace SequenceAutomation
                 recSpeedVal++;
                 onSpeedChange();
             }
-
-            Console.WriteLine(recSpeedVal.ToString());
         }
 
         private void decreaseSpeed(object sender, EventArgs e)
@@ -152,7 +150,6 @@ namespace SequenceAutomation
                 recSpeedVal--;
                 onSpeedChange();
             }
-            Console.WriteLine(recSpeedVal.ToString());
         }
 
         private void onSpeedChange()

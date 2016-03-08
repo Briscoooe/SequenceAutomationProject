@@ -15,6 +15,11 @@ namespace SequenceAutomation
 {
     public partial class PlayRecUserControl : UserControl
     {
+        /* 
+         * TODO
+         * Commmenting
+         */
+
         public event EventHandler BackButtonEvent;
         public event EventHandler TutorialEvent;
         public event EventHandler gotoLoginEvent;
@@ -23,7 +28,7 @@ namespace SequenceAutomation
         private ConnectionManager connectionManager;
         private ToolTip tooltip;
 
-        private string[] dirContents;
+        private List<string> dirContents;
 
         public string recJson = "";
         public string recTitle = "";
@@ -39,56 +44,33 @@ namespace SequenceAutomation
             InitializeComponent();
             prepareList();
             onSpeedChange();
-
-            tooltip = new ToolTip();
-            tooltip.AutoPopDelay = 5000;
-            tooltip.InitialDelay = 1000;
-            tooltip.ReshowDelay = 500;
-            tooltip.Draw += new DrawToolTipEventHandler(tooltip_Draw);
-            tooltip.Popup += new PopupEventHandler(tooltip_Popup);
-
-            tooltip.ShowAlways = true;
-
-            tooltip.SetToolTip(playRecBtn, "Play the recording");
-            tooltip.SetToolTip(goBackBtn, "Return to the previous page");
-            tooltip.SetToolTip(homeBtn, "Go to the home screen");
-            tooltip.SetToolTip(addFavouriteBtn, "Add to favourites");
-            tooltip.SetToolTip(favouriteBtn, "Choose a recording from favourites");
-            tooltip.SetToolTip(browseBtn,  "Choose a recording from local storage");
-            tooltip.SetToolTip(increaseBtn, "Increase the playback speed of the recording");
-            tooltip.SetToolTip(decreaseBtn, "Decrease the playback speed of the recording");
-
         }
 
         public void prepareList()
         {
             connectionManager = new ConnectionManager();
-            dirContents = connectionManager.getRecordings();
-
-            foreach (string s in dirContents)
+            dirContents = new List<string>();
+            if(connectionManager.testConnection())
             {
-                if (s == "." || s == "..")
+                dirContents = connectionManager.getRecordings();
+
+                foreach (string s in dirContents.ToList())
                 {
-                    dirContents = dirContents.Where(val => val != s).ToArray();
+                    if (s == "." || s == "..")
+                    {
+                        dirContents.Remove(s);
+                    }
                 }
+
+                recordingsList.DataSource = dirContents;
             }
 
-            recordingsList.DataSource = dirContents;
+            else
+            {
+                recordingsList.Text = "Could not connect to server";
+            }
             ActiveControl = recordingsList;
-        }
 
-        private void tooltip_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            Font tooltipFont = new Font("calibri", 15.0f);
-            e.DrawBackground();
-            e.DrawBorder();
-            temptooltiptext = e.ToolTipText;
-            e.Graphics.DrawString(e.ToolTipText, tooltipFont, Brushes.Black, new PointF(2, 2));
-        }
-
-        private void tooltip_Popup(object sender, PopupEventArgs e)
-        {
-            e.ToolTipSize = TextRenderer.MeasureText(tooltip.GetToolTip(e.AssociatedControl), new Font("calibri", 15.0f));
         }
 
         /*
@@ -150,7 +132,6 @@ namespace SequenceAutomation
                 onSpeedChange();
             }
 
-            Console.WriteLine(recSpeedVal.ToString());
         }
 
         private void decreaseSpeed(object sender, EventArgs e)
@@ -160,7 +141,6 @@ namespace SequenceAutomation
                 recSpeedVal--;
                 onSpeedChange();
             }
-            Console.WriteLine(recSpeedVal.ToString());
         }
 
         private void onSpeedChange()
