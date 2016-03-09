@@ -27,43 +27,19 @@ namespace SequenceAutomation
         string responseStr;
 
         string urlString = "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings";
-
+        string domain = "finalyearproject.cloudapp.net";
+        IPAddress ip;
         public ConnectionManager() {}
 
         public bool testConnection()
         {
-            using (TcpClient client = new TcpClient())
+            TcpClient client = new TcpClient();
+            if (!client.ConnectAsync(domain, 80).Wait(1000))
             {
-                try
-                {
-                    client.ConnectAsync(urlString, 80).Wait(2000); // Check if we can connect in 50ms
-                    Console.WriteLine("\nConnected");
-                    return true;
-                }
-                catch (WebException e)
-                {
-                    Console.WriteLine("\nWebException Not connected");
-                    Console.WriteLine(e.StackTrace);
-                    Console.WriteLine(e.Message);
-                    return false;
-                }
-                catch (SocketException e)
-                {
-                    Console.WriteLine("\nSocketException Not connected");
-                    Console.WriteLine(e.StackTrace);
-                    Console.WriteLine(e.Message);
-                    return false;
-                }
-
-                catch (AggregateException e)
-                {
-                    Console.WriteLine("\nAggregateException Not connected");
-                    Console.WriteLine(e.StackTrace);
-                    Console.WriteLine(e.Message);
-                    return false;
-                }
+                return false;
             }
 
+            return true;
         }
 
         public List<string> getRecordings()
