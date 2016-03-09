@@ -26,9 +26,6 @@ namespace SequenceAutomation
 
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
-        private ToolTip tooltip;
-
-        private List<string> dirContents;
 
         public string recJson = "";
         public string recTitle = "";
@@ -49,28 +46,15 @@ namespace SequenceAutomation
         public void prepareList()
         {
             connectionManager = new ConnectionManager();
-            dirContents = new List<string>();
             if(connectionManager.testConnection())
-            {
-                dirContents = connectionManager.getRecordings();
-
-                foreach (string s in dirContents.ToList())
-                {
-                    if (s == "." || s == "..")
-                    {
-                        dirContents.Remove(s);
-                    }
-                }
-
-                recordingsList.DataSource = dirContents;
+            {              
+                recordingsList.DataSource = connectionManager.getRecordings();
+                ActiveControl = recordingsList;
             }
-
             else
             {
                 recordingsList.Text = "Could not connect to server";
             }
-            ActiveControl = recordingsList;
-
         }
 
         /*
@@ -85,10 +69,7 @@ namespace SequenceAutomation
             if (recJson == "")
             {
                 MessageBox.Show("Error: There is no recording to play");
-                return;
             }
-
-            Console.WriteLine("\nREC SPEED BEFORE EXEC {0}", recSpeed.ToString());
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
@@ -117,7 +98,6 @@ namespace SequenceAutomation
 
         private void updateInfo()
         {
-            Console.WriteLine("\nUPDATE INFO RECJSON: {0}", recJson);
             dynamic tempObj = JsonConvert.DeserializeObject(recJson);
             recTitleLabel.Text = tempObj.Name;
             recDescLabel.Text = tempObj.Desc;

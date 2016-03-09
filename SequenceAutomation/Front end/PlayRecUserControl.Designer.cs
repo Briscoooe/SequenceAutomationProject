@@ -85,8 +85,7 @@
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(361, 319);
             this.recDescLabel.TabIndex = 61;
-            this.recDescLabel.Text = "This paragraph is an example of what would be displayed in the description of a r" +
-    "ecording";
+            this.recDescLabel.Text = "Unavailable";
             // 
             // label7
             // 
@@ -104,9 +103,9 @@
             this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleLabel.Location = new System.Drawing.Point(728, 244);
             this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(199, 33);
+            this.recTitleLabel.Size = new System.Drawing.Size(173, 33);
             this.recTitleLabel.TabIndex = 59;
-            this.recTitleLabel.Text = "Test recording";
+            this.recTitleLabel.Text = "Unavailable";
             // 
             // label6
             // 

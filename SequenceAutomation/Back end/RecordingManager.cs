@@ -85,7 +85,6 @@ namespace SequenceAutomation
                     catch (FormatException e)
                     {
                         Console.WriteLine(e.Message);
-                        Console.WriteLine("Invalid");
                         return false;
                     }
                 }
@@ -140,6 +139,7 @@ namespace SequenceAutomation
                 {
                     Console.WriteLine("Valid key");
                 }
+
                 else {
                     try
                     {

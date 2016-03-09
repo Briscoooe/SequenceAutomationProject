@@ -2,13 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace SequenceAutomation
 {
@@ -51,7 +47,6 @@ namespace SequenceAutomation
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     responseStr = reader.ReadToEnd();
@@ -65,22 +60,29 @@ namespace SequenceAutomation
 
             string tmp = string.Join("", responseStr.Split('"','[',']'));
             string[] tmp2 = tmp.Split(',');
-            foreach (string t in tmp2)
+
+            foreach (string rec in tmp2)
             {
-                dirContents.Add(t);
+                while(rec != ".." || rec != ".")
+                {
+                    string rec1 = getRecInfo(rec.ToString());
+                    dynamic rec2 = JsonConvert.DeserializeObject(rec1);
+                    dirContents.Add(Convert.ToString(rec2.Name));
+                }
             }
+
             return dirContents;
         }
 
         public string getRecInfo(string recTitle)
         {
-            request = (HttpWebRequest)WebRequest.Create(urlString + "/" + recTitle);
+            string tmp = Regex.Replace(recTitle, @"[\W]", "") + ".json";
+            Console.WriteLine("\nTemp {0}", tmp);
+            request = (HttpWebRequest)WebRequest.Create(urlString + "/" + tmp);
             request.Method = "GET";
-
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     responseStr = reader.ReadToEnd();
@@ -102,13 +104,13 @@ namespace SequenceAutomation
 
             using (var writer = new StreamWriter(request.GetRequestStream()))
             {
-                Console.WriteLine("\nUpload string: {0}", jsonString);
                 writer.Write(jsonString);
                 writer.Flush();
                 writer.Close();
             }
 
-            try {
+            try
+            {
                 response = (HttpWebResponse)request.GetResponse();
             }
             catch(WebException we)
@@ -121,8 +123,6 @@ namespace SequenceAutomation
             {
                 responseStr = reader.ReadToEnd();
             }
-
-            Console.WriteLine("\nResponseStr: {0}", responseStr);
             return true;
         }
     }
