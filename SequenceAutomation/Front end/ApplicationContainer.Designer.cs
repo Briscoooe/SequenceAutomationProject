@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplicationContainer));
             this.loginUserControl = new SequenceAutomation.LoginUserControl();
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
             this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
@@ -45,74 +44,100 @@
             // loginUserControl
             // 
             this.loginUserControl.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.loginUserControl, "loginUserControl");
+            this.loginUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginUserControl.Location = new System.Drawing.Point(0, 0);
             this.loginUserControl.Name = "loginUserControl";
+            this.loginUserControl.Size = new System.Drawing.Size(990, 530);
+            this.loginUserControl.TabIndex = 0;
             // 
             // createRecUserControl
             // 
             this.createRecUserControl.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.createRecUserControl, "createRecUserControl");
+            this.createRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.createRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.createRecUserControl.Name = "createRecUserControl";
+            this.createRecUserControl.Size = new System.Drawing.Size(1208, 612);
+            this.createRecUserControl.TabIndex = 1;
             this.createRecUserControl.Tag = "startRecTag";
             // 
             // playRecUserControl
             // 
             this.playRecUserControl.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.playRecUserControl, "playRecUserControl");
+            this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.playRecUserControl.Name = "playRecUserControl";
+            this.playRecUserControl.Size = new System.Drawing.Size(1178, 684);
+            this.playRecUserControl.TabIndex = 2;
             // 
             // firstTimePlay
             // 
             this.firstTimePlay.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.firstTimePlay, "firstTimePlay");
+            this.firstTimePlay.Location = new System.Drawing.Point(0, 0);
             this.firstTimePlay.Name = "firstTimePlay";
+            this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
+            this.firstTimePlay.TabIndex = 3;
             // 
             // tutorialSelectSpeed
             // 
             this.tutorialSelectSpeed.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialSelectSpeed, "tutorialSelectSpeed");
+            this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
+            this.tutorialSelectSpeed.Size = new System.Drawing.Size(955, 444);
+            this.tutorialSelectSpeed.TabIndex = 4;
             // 
             // tutorialPlayRec
             // 
             this.tutorialPlayRec.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialPlayRec, "tutorialPlayRec");
+            this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialPlayRec.Name = "tutorialPlayRec";
+            this.tutorialPlayRec.Size = new System.Drawing.Size(917, 522);
+            this.tutorialPlayRec.TabIndex = 5;
             // 
             // tutorialSelectRec
             // 
             this.tutorialSelectRec.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialSelectRec, "tutorialSelectRec");
+            this.tutorialSelectRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectRec.Name = "tutorialSelectRec";
+            this.tutorialSelectRec.Size = new System.Drawing.Size(1168, 690);
+            this.tutorialSelectRec.TabIndex = 6;
             // 
             // firstTimeCreate
             // 
             this.firstTimeCreate.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.firstTimeCreate, "firstTimeCreate");
+            this.firstTimeCreate.Location = new System.Drawing.Point(0, 0);
             this.firstTimeCreate.Name = "firstTimeCreate";
+            this.firstTimeCreate.Size = new System.Drawing.Size(990, 530);
+            this.firstTimeCreate.TabIndex = 7;
             // 
             // tutorialStartRec
             // 
             this.tutorialStartRec.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialStartRec, "tutorialStartRec");
+            this.tutorialStartRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialStartRec.Name = "tutorialStartRec";
+            this.tutorialStartRec.Size = new System.Drawing.Size(961, 505);
+            this.tutorialStartRec.TabIndex = 8;
             // 
             // tutorialTestRec
             // 
             this.tutorialTestRec.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialTestRec, "tutorialTestRec");
+            this.tutorialTestRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialTestRec.Name = "tutorialTestRec";
+            this.tutorialTestRec.Size = new System.Drawing.Size(961, 505);
+            this.tutorialTestRec.TabIndex = 9;
             // 
             // tutorialUploadRec
             // 
             this.tutorialUploadRec.BackColor = System.Drawing.Color.MintCream;
-            resources.ApplyResources(this.tutorialUploadRec, "tutorialUploadRec");
+            this.tutorialUploadRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialUploadRec.Name = "tutorialUploadRec";
+            this.tutorialUploadRec.Size = new System.Drawing.Size(1065, 719);
+            this.tutorialUploadRec.TabIndex = 10;
             // 
             // ApplicationContainer
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(974, 491);
             this.Controls.Add(this.loginUserControl);
             this.Controls.Add(this.createRecUserControl);
             this.Controls.Add(this.playRecUserControl);

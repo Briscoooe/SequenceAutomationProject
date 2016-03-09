@@ -76,9 +76,9 @@ namespace SequenceAutomation
 
         public string getRecInfo(string recTitle)
         {
-            string tmp = Regex.Replace(recTitle, @"[\W]", "") + ".json";
-            Console.WriteLine("\nTemp {0}", tmp);
-            request = (HttpWebRequest)WebRequest.Create(urlString + "/" + tmp);
+            //string tmp = Regex.Replace(recTitle, @"[\W]", "") + ".json";
+            //Console.WriteLine("\nTemp {0}", tmp);
+            request = (HttpWebRequest)WebRequest.Create(urlString + "/" + recTitle);
             request.Method = "GET";
             try
             {

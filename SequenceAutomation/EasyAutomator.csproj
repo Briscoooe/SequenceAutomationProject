@@ -79,6 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Back end\ConnectionManager.cs" />
+    <Compile Include="Front end\ApplicationContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front end\ApplicationContainer.Designer.cs">
+      <DependentUpon>ApplicationContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Front end\FirstTimeCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,12 +97,6 @@
     <Compile Include="Front end\FirstTimePlay.Designer.cs">
       <DependentUpon>FirstTimePlay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\ApplicationContainer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Front end\ApplicationContainer.Designer.cs">
-      <DependentUpon>ApplicationContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Back end\ContextManager.cs" />
     <Compile Include="Back end\CreateRecording.cs" />
     <Compile Include="Front end\CreateRecUserControl.cs">
@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="Front end\CreateRecUserControl.Designer.cs">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front end\PlayRecUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front end\PlayRecUserControl.Designer.cs">
+      <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Front end\SearchBox.cs">
       <SubType>Component</SubType>
@@ -115,13 +121,7 @@
       <DependentUpon>TutorialTestRec.cs</DependentUpon>
     </Compile>
     <Compile Include="Back end\PlayRecording.cs" />
-    <Compile Include="Front end\PlayRecUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Front end\PlayRecUserControl.Designer.cs">
-      <DependentUpon>PlayRecUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Back end\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -166,20 +166,17 @@
       <DependentUpon>TutorialUploadRec.cs</DependentUpon>
     </Compile>
     <Compile Include="Back end\TextEventArgs.cs" />
+    <EmbeddedResource Include="Front end\ApplicationContainer.resx">
+      <DependentUpon>ApplicationContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Front end\FirstTimeCreate.resx">
       <DependentUpon>FirstTimeCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\FirstTimePlay.resx">
       <DependentUpon>FirstTimePlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\ApplicationContainer.resx">
-      <DependentUpon>ApplicationContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Front end\CreateRecUserControl.resx">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Front end\PlayRecUserControl.resx">
-      <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\TutorialTestRec.resx">
       <DependentUpon>TutorialTestRec.cs</DependentUpon>
@@ -224,7 +221,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

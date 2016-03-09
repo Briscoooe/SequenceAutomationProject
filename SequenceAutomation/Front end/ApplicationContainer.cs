@@ -96,7 +96,7 @@ namespace SequenceAutomation
 
         private void gotoTestRec(object sender, TextEventArgs e)
         {
-            if(e.json != "")
+            if (e.json != "")
                 tutorialTestRec.mergedJson = e.json;
 
             ClientSize = new Size(961, 505);

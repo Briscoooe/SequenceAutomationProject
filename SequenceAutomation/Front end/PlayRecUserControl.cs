@@ -45,16 +45,17 @@ namespace SequenceAutomation
 
         public void prepareList()
         {
+            /*
             connectionManager = new ConnectionManager();
-            if(connectionManager.testConnection())
-            {              
+            if (connectionManager.testConnection())
+            {
                 recordingsList.DataSource = connectionManager.getRecordings();
                 ActiveControl = recordingsList;
             }
             else
             {
                 recordingsList.Text = "Could not connect to server";
-            }
+            }*/
         }
 
         /*
