@@ -48,7 +48,7 @@ namespace SequenceAutomation
             this.nextBtn = new System.Windows.Forms.Button();
             this.goBackBtn = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.searchBox1 = new SequenceAutomation.SearchBox();
+            this.searchBox = new SequenceAutomation.SearchBox();
             this.SuspendLayout();
             // 
             // recDescLabel
@@ -126,6 +126,7 @@ namespace SequenceAutomation
             this.recordingsList.Name = "recordingsList";
             this.recordingsList.Size = new System.Drawing.Size(407, 436);
             this.recordingsList.TabIndex = 16;
+            this.recordingsList.SelectedIndexChanged += new System.EventHandler(this.updateList);
             // 
             // label1
             // 
@@ -261,13 +262,13 @@ namespace SequenceAutomation
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // searchBox1
+            // searchBox
             // 
-            this.searchBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox1.Location = new System.Drawing.Point(29, 176);
-            this.searchBox1.Name = "searchBox1";
-            this.searchBox1.Size = new System.Drawing.Size(407, 33);
-            this.searchBox1.TabIndex = 29;
+            this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Location = new System.Drawing.Point(29, 176);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(407, 33);
+            this.searchBox.TabIndex = 29;
             // 
             // TutorialSelectRec
             // 
@@ -279,7 +280,7 @@ namespace SequenceAutomation
             this.Controls.Add(this.label3);
             this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.searchBox1);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nextBtn);
@@ -313,7 +314,7 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button nextBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button homeBtn;
-        private SearchBox searchBox1;
+        private SearchBox searchBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.Label label3;

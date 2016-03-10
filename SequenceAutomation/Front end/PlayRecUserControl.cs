@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SequenceAutomation
 {
@@ -23,6 +16,9 @@ namespace SequenceAutomation
         public event EventHandler BackButtonEvent;
         public event EventHandler TutorialEvent;
         public event EventHandler gotoLoginEvent;
+        private RecStatus recStatus;
+
+        private List<string> recList;
 
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
@@ -38,24 +34,11 @@ namespace SequenceAutomation
 
         public PlayRecUserControl()
         {
+            recList = new List<string>();
             InitializeComponent();
-            prepareList();
             onSpeedChange();
-        }
 
-        public void prepareList()
-        {
-            /*
-            connectionManager = new ConnectionManager();
-            if (connectionManager.testConnection())
-            {
-                recordingsList.DataSource = connectionManager.getRecordings();
-                ActiveControl = recordingsList;
-            }
-            else
-            {
-                recordingsList.Text = "Could not connect to server";
-            }*/
+            recStatus = new RecStatus();
         }
 
         /*
@@ -71,8 +54,11 @@ namespace SequenceAutomation
             {
                 MessageBox.Show("Error: There is no recording to play");
             }
+            recStatus.Show();
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
-            playRec.Start(); // Begin playback
+            playRec.Start();
+            //recStatus.Hide();
+
         }
 
         private void chooseFile(object sender, EventArgs e)
@@ -84,10 +70,46 @@ namespace SequenceAutomation
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
-                recTitle = Path.GetFileNameWithoutExtension(fullPath);
-                recNameLabel.Text = recTitle;
-                recJson = File.ReadAllText(fullPath);
-                updateInfo();
+                RecordingManager recManager = new RecordingManager();
+                if (recManager.validateJson(File.ReadAllText(fullPath)))
+                {
+                    recJson = File.ReadAllText(fullPath);
+                    recTitle = Path.GetFileNameWithoutExtension(fullPath);
+                    updateInfo();
+                }
+                else
+                {
+                    MessageBox.Show("That file was not a valid recording file");
+                }
+            }
+        }
+
+        private void searchListUpdate(object sender, KeyEventArgs e)
+        {
+            List<string> temp = new List<string>();
+            for (int i = 0; i < recList.Count; i++)
+            {
+                if (recList[i].ToLower().Contains(searchBox.Text.ToLower()))
+                {
+                    temp.Add(recList[i]);
+                }
+            }
+            recordingsList.DataSource = temp;
+        }
+
+        public void prepareList()
+        {
+            connectionManager = new ConnectionManager();
+            if (connectionManager.testConnection())
+            {
+                recList = connectionManager.getRecordings();
+                recordingsList.DataSource = recList;
+                ActiveControl = recordingsList;
+            }
+
+            else
+            {
+                MessageBox.Show("Could not connect to server");
             }
         }
 

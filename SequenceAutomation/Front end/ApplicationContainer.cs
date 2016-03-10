@@ -120,6 +120,7 @@ namespace SequenceAutomation
 
         private void gotoSelectRec(object sender, EventArgs e)
         {
+            tutorialSelectRec.prepareList();
             ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
@@ -179,6 +180,7 @@ namespace SequenceAutomation
 
         private void gotoPlayTutorial(object sender, EventArgs e)
         {
+            tutorialSelectRec.prepareList();
             ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();

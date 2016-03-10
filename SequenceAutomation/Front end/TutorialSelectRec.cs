@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SequenceAutomation
 {
@@ -16,7 +17,11 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
+        private List<string> recList;
+
+
         public RecordingManager recManager;
+        public ConnectionManager connectionManager;
 
         private string recJson;
         private string recTitle;
@@ -25,6 +30,8 @@ namespace SequenceAutomation
         public TutorialSelectRec()
         {
             InitializeComponent();
+            recList = new List<string>();
+
             recManager = new RecordingManager();
         }
 
@@ -52,6 +59,42 @@ namespace SequenceAutomation
                 eh(this, e);
         }
 
+        public void prepareList()
+        {
+            connectionManager = new ConnectionManager();
+            if (connectionManager.testConnection())
+            {
+                recList = connectionManager.getRecordings();
+                recordingsList.DataSource = recList;
+                ActiveControl = recordingsList;
+            }
+
+            else
+            {
+                MessageBox.Show("Could not connect to server");
+            }
+        }
+
+        private void searchListUpdate(object sender, KeyEventArgs e)
+        {
+            List<string> temp = new List<string>();
+            for (int i = 0; i < recList.Count; i++)
+            {
+                if (recList[i].ToLower().Contains(searchBox.Text.ToLower()))
+                {
+                    temp.Add(recList[i]);
+                }
+            }
+            recordingsList.DataSource = temp;
+        }
+
+        private void updateList(object sender, EventArgs e)
+        {
+            Console.WriteLine("UpdateList");
+            recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
+            updateInfo();
+        }
+
         private void chooseFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "";
@@ -63,34 +106,23 @@ namespace SequenceAutomation
                 string fullPath = openFileDialog.FileName;
                 if (recManager.validateJson(File.ReadAllText(fullPath)))
                 {
-                    Console.WriteLine("Valid");
                     recJson = File.ReadAllText(fullPath);
                     recTitle = Path.GetFileNameWithoutExtension(fullPath);
                     updateInfo();
                 }
                 else
                 {
-                    Console.WriteLine("Invalid");
+                    MessageBox.Show("That file was not a valid recording file");
                 }
             }
         }
 
         private void updateInfo()
         {
+            Console.WriteLine("UpdateInfo");
             dynamic tempObj = JsonConvert.DeserializeObject(recJson);
-
             recTitleLabel.Text = tempObj.Name;
             recDescLabel.Text = tempObj.Desc;
-
-            if(tempObj.Name == "" || tempObj.Name == null)
-            {
-                recTitleLabel.Text = "Unavailable";
-            }
-
-            if(tempObj.Desc == "" || tempObj.Desc == null)
-            {
-                recDescLabel.Text = "Unavailable";
-            }
         }
 
         private void goBack(object sender, EventArgs e)

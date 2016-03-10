@@ -50,7 +50,7 @@
             this.decreaseBtn = new System.Windows.Forms.Button();
             this.increaseBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.searchBox1 = new SequenceAutomation.SearchBox();
+            this.searchBox = new SequenceAutomation.SearchBox();
             this.SuspendLayout();
             // 
             // showTutorialBtn
@@ -344,13 +344,14 @@
             this.label1.TabIndex = 89;
             this.label1.Text = "Speed";
             // 
-            // searchBox1
+            // searchBox
             // 
-            this.searchBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox1.Location = new System.Drawing.Point(418, 157);
-            this.searchBox1.Name = "searchBox1";
-            this.searchBox1.Size = new System.Drawing.Size(304, 33);
-            this.searchBox1.TabIndex = 64;
+            this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Location = new System.Drawing.Point(418, 157);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(304, 33);
+            this.searchBox.TabIndex = 64;
+            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
             // PlayRecUserControl
             // 
@@ -369,7 +370,7 @@
             this.Controls.Add(this.playRecBtn);
             this.Controls.Add(this.favouriteBtn);
             this.Controls.Add(this.browseBtn);
-            this.Controls.Add(this.searchBox1);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.homeBtn);
             this.Controls.Add(this.recDescLabel);
             this.Controls.Add(this.label7);
@@ -394,7 +395,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button favouriteBtn;
         private System.Windows.Forms.Button browseBtn;
-        private SearchBox searchBox1;
+        private SearchBox searchBox;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Label recDescLabel;
         private System.Windows.Forms.Label label7;

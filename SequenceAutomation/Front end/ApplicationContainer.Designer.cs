@@ -137,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 491);
+            this.ClientSize = new System.Drawing.Size(974, 527);
             this.Controls.Add(this.loginUserControl);
             this.Controls.Add(this.createRecUserControl);
             this.Controls.Add(this.playRecUserControl);
@@ -151,6 +151,7 @@
             this.Controls.Add(this.tutorialUploadRec);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ApplicationContainer";
+            this.Text = "Easy Automator";
             this.ResumeLayout(false);
 
         }

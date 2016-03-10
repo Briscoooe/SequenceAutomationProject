@@ -111,6 +111,12 @@
     <Compile Include="Front end\PlayRecUserControl.Designer.cs">
       <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front end\RecStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front end\RecStatus.Designer.cs">
+      <DependentUpon>RecStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Front end\SearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -177,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\CreateRecUserControl.resx">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\PlayRecUserControl.resx">
+      <DependentUpon>PlayRecUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\RecStatus.resx">
+      <DependentUpon>RecStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\TutorialTestRec.resx">
       <DependentUpon>TutorialTestRec.cs</DependentUpon>

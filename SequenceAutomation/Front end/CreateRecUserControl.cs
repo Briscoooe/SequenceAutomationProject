@@ -17,14 +17,13 @@ namespace SequenceAutomation
 
         private CreateRecording createRec;
         private RecordingManager recManager;
-        private ConnectionManager conn;
+        private ConnectionManager connectionManager;
         private PlayRecording playRec;
         private string mergedJson;
 
         public CreateRecUserControl()
         {
             InitializeComponent();
-            conn = new ConnectionManager();
         }
 
         private void showTutorial(object sender, EventArgs e)
@@ -160,6 +159,7 @@ namespace SequenceAutomation
         {
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             recButtonLabel.Text = "Stop recording";
+            clearText();
 
             startStopRecBtn.Tag = "stopRecTag";
 
@@ -204,12 +204,22 @@ namespace SequenceAutomation
         {
             if(validateInput(1))
             {
-                recManager = new RecordingManager(mergedJson);
-                mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
-                if (conn.Upload(mergedJson))
-                    MessageBox.Show("Uploaded");
+                connectionManager = new ConnectionManager();
+                if (connectionManager.testConnection())
+                {
+                    recManager = new RecordingManager(mergedJson);
+                    mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                    if (connectionManager.Upload(mergedJson))
+                        MessageBox.Show("Uploaded");
+                    else
+                        MessageBox.Show("There was a problem with the server");
+                }
+
                 else
-                    MessageBox.Show("There was a problem with the server");
+                {
+                    MessageBox.Show("Could not connect to server");
+                }
+               
             }
            
         }
@@ -230,11 +240,16 @@ namespace SequenceAutomation
                 {
                     File.WriteAllText(dlg.FileName, mergedJson);
                     MessageBox.Show("Saved successfully!");
-                    recTitleTb.Text = "";
-                    recDescTb.Text = "";
+                    clearText();
                 }
             }
 
+        }
+
+        private void clearText()
+        {
+            recTitleTb.Text = "";
+            recDescTb.Text = "";
         }
 
         private bool validateInput(int option)

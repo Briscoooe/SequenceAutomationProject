@@ -19,6 +19,7 @@ namespace SequenceAutomation
         private RecordingManager recManager;
 
         public string mergedJson = "";
+        private ConnectionManager connectionManager;
 
         public TutorialUploadRec()
         {
@@ -73,6 +74,33 @@ namespace SequenceAutomation
 
         }
 
+        /*
+         *
+         */
+        private void uploadRecording(object sender, EventArgs e)
+        {
+            if (validateInput(1))
+            {
+                connectionManager = new ConnectionManager();
+                if (connectionManager.testConnection())
+                {
+                    recManager = new RecordingManager(mergedJson);
+                    mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                    if (connectionManager.Upload(mergedJson))
+                        MessageBox.Show("Uploaded");
+                    else
+                        MessageBox.Show("There was a problem with the server");
+                }
+
+                else
+                {
+                    MessageBox.Show("Could not connect to server");
+                }
+
+            }
+
+        }
+
         private bool validateInput()
         {
             if (recTitleTb.Text == "")
@@ -83,6 +111,30 @@ namespace SequenceAutomation
 
             else
                 return true;
+        }
+
+        private bool validateInput(int option)
+        {
+            if (mergedJson == null)
+            {
+                MessageBox.Show("You must create a recording");
+                return false;
+            }
+
+            if (recTitleTb.Text == "")
+            {
+                MessageBox.Show("You must enter a title");
+                return false;
+            }
+
+            if (option == 1 && recDescTb.Text == "")
+            {
+                MessageBox.Show("You must enter a description");
+                return false;
+            }
+
+            Console.WriteLine("Input valid");
+            return true;
         }
 
         private void goBackBtn_MouseLeave(object sender, EventArgs e)

@@ -29,8 +29,15 @@ namespace SequenceAutomation
 
         public bool testConnection()
         {
-            TcpClient client = new TcpClient();
-            if (!client.ConnectAsync(domain, 80).Wait(1000))
+            try
+            {
+                TcpClient client = new TcpClient();
+                if (!client.ConnectAsync(domain, 80).Wait(1000))
+                {
+                    return false;
+                }
+            }
+            catch (AggregateException e)
             {
                 return false;
             }
@@ -58,19 +65,16 @@ namespace SequenceAutomation
                 dirContents = null;
             }
 
-            string tmp = string.Join("", responseStr.Split('"','[',']'));
+            string tmp = string.Join("", responseStr.Split('"', '[', ']'));
             string[] tmp2 = tmp.Split(',');
-
-            foreach (string rec in tmp2)
+            foreach (string t in tmp2)
             {
-                while(rec != ".." || rec != ".")
+                if(t != "." && t != "..")
                 {
-                    string rec1 = getRecInfo(rec.ToString());
-                    dynamic rec2 = JsonConvert.DeserializeObject(rec1);
-                    dirContents.Add(Convert.ToString(rec2.Name));
+                    dirContents.Add(t);
                 }
             }
-
+            dirContents.Sort();
             return dirContents;
         }
 
