@@ -37,8 +37,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.recordingsList = new System.Windows.Forms.ListBox();
             this.currentRecTitle = new System.Windows.Forms.Label();
-            this.recNameLabel = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.addFavouriteBtn = new System.Windows.Forms.Button();
             this.playRecBtn = new System.Windows.Forms.Button();
             this.favouriteBtn = new System.Windows.Forms.Button();
@@ -81,7 +79,7 @@
             // recDescLabel
             // 
             this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescLabel.Location = new System.Drawing.Point(728, 342);
+            this.recDescLabel.Location = new System.Drawing.Point(728, 294);
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(361, 319);
             this.recDescLabel.TabIndex = 61;
@@ -91,7 +89,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(728, 296);
+            this.label7.Location = new System.Drawing.Point(728, 248);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 32);
             this.label7.TabIndex = 60;
@@ -101,7 +99,7 @@
             // 
             this.recTitleLabel.AutoSize = true;
             this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recTitleLabel.Location = new System.Drawing.Point(728, 244);
+            this.recTitleLabel.Location = new System.Drawing.Point(728, 196);
             this.recTitleLabel.Name = "recTitleLabel";
             this.recTitleLabel.Size = new System.Drawing.Size(173, 33);
             this.recTitleLabel.TabIndex = 59;
@@ -111,7 +109,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(728, 205);
+            this.label6.Location = new System.Drawing.Point(728, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 32);
             this.label6.TabIndex = 58;
@@ -121,7 +119,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(728, 158);
+            this.label5.Location = new System.Drawing.Point(728, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 32);
             this.label5.TabIndex = 57;
@@ -132,9 +130,9 @@
             this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recordingsList.FormattingEnabled = true;
             this.recordingsList.ItemHeight = 24;
-            this.recordingsList.Location = new System.Drawing.Point(418, 205);
+            this.recordingsList.Location = new System.Drawing.Point(418, 158);
             this.recordingsList.Name = "recordingsList";
-            this.recordingsList.Size = new System.Drawing.Size(304, 340);
+            this.recordingsList.Size = new System.Drawing.Size(304, 388);
             this.recordingsList.TabIndex = 56;
             this.recordingsList.SelectedIndexChanged += new System.EventHandler(this.updateList);
             // 
@@ -147,28 +145,6 @@
             this.currentRecTitle.Name = "currentRecTitle";
             this.currentRecTitle.Size = new System.Drawing.Size(0, 42);
             this.currentRecTitle.TabIndex = 72;
-            // 
-            // recNameLabel
-            // 
-            this.recNameLabel.AutoSize = true;
-            this.recNameLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recNameLabel.Location = new System.Drawing.Point(679, 102);
-            this.recNameLabel.Name = "recNameLabel";
-            this.recNameLabel.Size = new System.Drawing.Size(293, 33);
-            this.recNameLabel.TabIndex = 84;
-            this.recNameLabel.Text = "No recording loaded";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(412, 102);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(261, 32);
-            this.label9.TabIndex = 83;
-            this.label9.Text = "Current Recording:\r\n";
             // 
             // addFavouriteBtn
             // 
@@ -347,7 +323,7 @@
             // searchBox
             // 
             this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox.Location = new System.Drawing.Point(418, 157);
+            this.searchBox.Location = new System.Drawing.Point(418, 115);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(304, 33);
             this.searchBox.TabIndex = 64;
@@ -364,8 +340,6 @@
             this.Controls.Add(this.decreaseBtn);
             this.Controls.Add(this.increaseBtn);
             this.Controls.Add(this.addFavouriteBtn);
-            this.Controls.Add(this.recNameLabel);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.currentRecTitle);
             this.Controls.Add(this.playRecBtn);
             this.Controls.Add(this.favouriteBtn);
@@ -405,8 +379,6 @@
         private System.Windows.Forms.ListBox recordingsList;
         public System.Windows.Forms.Label currentRecTitle;
         private System.Windows.Forms.Button playRecBtn;
-        private System.Windows.Forms.Label recNameLabel;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button addFavouriteBtn;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label recSpeedLabel;

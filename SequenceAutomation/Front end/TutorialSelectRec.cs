@@ -65,14 +65,17 @@ namespace SequenceAutomation
             if (connectionManager.testConnection())
             {
                 recList = connectionManager.getRecordings();
-                recordingsList.DataSource = recList;
-                ActiveControl = recordingsList;
             }
 
             else
             {
+                recList.Clear();
+                recList.Add("Could not connect to server");
                 MessageBox.Show("Could not connect to server");
             }
+
+            recordingsList.DataSource = recList;
+            ActiveControl = recordingsList;
         }
 
         private void searchListUpdate(object sender, KeyEventArgs e)
@@ -85,12 +88,15 @@ namespace SequenceAutomation
                     temp.Add(recList[i]);
                 }
             }
+            if(temp.Count == 0)
+            {
+                temp.Add("No results");
+            }
             recordingsList.DataSource = temp;
         }
 
         private void updateList(object sender, EventArgs e)
         {
-            Console.WriteLine("UpdateList");
             recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
             updateInfo();
         }
@@ -119,8 +125,18 @@ namespace SequenceAutomation
 
         private void updateInfo()
         {
-            Console.WriteLine("UpdateInfo");
             dynamic tempObj = JsonConvert.DeserializeObject(recJson);
+
+            if (tempObj.Name == "" || tempObj.Name == null)
+            {
+                tempObj.Name = "Unavailable";
+            }
+
+            if(tempObj.Desc == "" || tempObj.Desc == null)
+            {
+                tempObj.Desc = "Unavailable";
+            }
+
             recTitleLabel.Text = tempObj.Name;
             recDescLabel.Text = tempObj.Desc;
         }

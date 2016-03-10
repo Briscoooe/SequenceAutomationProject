@@ -71,7 +71,10 @@ namespace SequenceAutomation
             {
                 if(t != "." && t != "..")
                 {
-                    dirContents.Add(t);
+                    string tmp3 = getRecInfo(t);
+                    dynamic tempObj = JsonConvert.DeserializeObject(tmp3);
+                    string tempName = Convert.ToString(tempObj.Name);
+                    dirContents.Add(tempName);
                 }
             }
             dirContents.Sort();
@@ -80,8 +83,11 @@ namespace SequenceAutomation
 
         public string getRecInfo(string recTitle)
         {
-            //string tmp = Regex.Replace(recTitle, @"[\W]", "") + ".json";
-            //Console.WriteLine("\nTemp {0}", tmp);
+            if(recTitle.Substring(recTitle.Length -5) != ".json")
+            {
+                recTitle = string.Join("", recTitle.Split(' ', '_')) + ".json";
+                Console.WriteLine("\nTMP = {0}", recTitle);
+            }
             request = (HttpWebRequest)WebRequest.Create(urlString + "/" + recTitle);
             request.Method = "GET";
             try
@@ -100,7 +106,7 @@ namespace SequenceAutomation
             return responseStr;
         }
 
-        public bool Upload(string jsonString)
+        public bool upload(string jsonString)
         {
             request = (HttpWebRequest)WebRequest.Create(urlString);
             request.ContentType = "text/json";

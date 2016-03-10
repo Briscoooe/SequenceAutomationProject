@@ -86,7 +86,7 @@ namespace SequenceAutomation
                 {
                     recManager = new RecordingManager(mergedJson);
                     mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.Upload(mergedJson))
+                    if (connectionManager.upload(mergedJson))
                         MessageBox.Show("Uploaded");
                     else
                         MessageBox.Show("There was a problem with the server");

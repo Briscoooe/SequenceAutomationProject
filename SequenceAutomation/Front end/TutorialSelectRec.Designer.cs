@@ -58,6 +58,7 @@ namespace SequenceAutomation
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(328, 262);
             this.recDescLabel.TabIndex = 24;
+            this.recDescLabel.Text = "Unavailable";
             // 
             // label7
             // 
@@ -76,6 +77,7 @@ namespace SequenceAutomation
             this.recTitleLabel.Name = "recTitleLabel";
             this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
             this.recTitleLabel.TabIndex = 22;
+            this.recTitleLabel.Text = "Unavailable";
             // 
             // label6
             // 
@@ -269,6 +271,7 @@ namespace SequenceAutomation
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(407, 33);
             this.searchBox.TabIndex = 29;
+            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
             // TutorialSelectRec
             // 
