@@ -46,10 +46,6 @@ namespace SequenceAutomation
             tutorialSelectRec.goNextEvent += new EventHandler<TextEventArgs>(gotoPlayRec);
             tutorialSelectRec.gotoLoginEvent += returnToLogin;
 
-            tutorialSelectSpeed.goBackEvent += gotoSelectRec;
-            tutorialSelectSpeed.goNextEvent += new EventHandler<TextEventArgs>(gotoPlayRec);
-            tutorialSelectSpeed.gotoLoginEvent += returnToLogin;
-
             tutorialPlayRec.goBackEvent += new EventHandler<TextEventArgs>(gotoSelectRec);
             tutorialPlayRec.gotoPlayEvent += gotoPlay;
             tutorialPlayRec.gotoLoginEvent += returnToLogin;
@@ -123,18 +119,6 @@ namespace SequenceAutomation
             tutorialSelectRec.prepareList();
             ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
-            CenterToScreen();
-        }
-
-        private void gotoSelectSpeed(object sender, TextEventArgs e)
-        {
-            if (e.json != "")
-            {
-                recJson = e.json;
-                recTitle = e.name;
-            }
-            ClientSize = new Size(955, 444);
-            tutorialSelectSpeed.BringToFront();
             CenterToScreen();
         }
 

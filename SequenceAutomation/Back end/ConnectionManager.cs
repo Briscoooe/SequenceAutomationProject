@@ -24,7 +24,6 @@ namespace SequenceAutomation
 
         string urlString = "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings";
         string domain = "finalyearproject.cloudapp.net";
-        IPAddress ip;
         public ConnectionManager() {}
 
         public bool testConnection()
@@ -39,6 +38,7 @@ namespace SequenceAutomation
             }
             catch (AggregateException e)
             {
+                Console.WriteLine(e.InnerException.Message);
                 return false;
             }
 
@@ -86,7 +86,6 @@ namespace SequenceAutomation
             if(recTitle.Substring(recTitle.Length -5) != ".json")
             {
                 recTitle = string.Join("", recTitle.Split(' ', '_')) + ".json";
-                Console.WriteLine("\nTMP = {0}", recTitle);
             }
             request = (HttpWebRequest)WebRequest.Create(urlString + "/" + recTitle);
             request.Method = "GET";

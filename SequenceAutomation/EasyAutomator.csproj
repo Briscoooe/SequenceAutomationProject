@@ -85,6 +85,12 @@
     <Compile Include="Front end\ApplicationContainer.Designer.cs">
       <DependentUpon>ApplicationContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front end\BigMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front end\BigMessageBox.Designer.cs">
+      <DependentUpon>BigMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Front end\FirstTimeCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,12 +159,6 @@
     <Compile Include="Front end\TutorialSelectRec.Designer.cs">
       <DependentUpon>TutorialSelectRec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\TutorialSelectSpeed.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Front end\TutorialSelectSpeed.Designer.cs">
-      <DependentUpon>TutorialSelectSpeed.cs</DependentUpon>
-    </Compile>
     <Compile Include="Front end\TutorialStartRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +174,9 @@
     <Compile Include="Back end\TextEventArgs.cs" />
     <EmbeddedResource Include="Front end\ApplicationContainer.resx">
       <DependentUpon>ApplicationContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\BigMessageBox.resx">
+      <DependentUpon>BigMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\FirstTimeCreate.resx">
       <DependentUpon>FirstTimeCreate.cs</DependentUpon>
@@ -206,9 +209,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\TutorialSelectRec.resx">
       <DependentUpon>TutorialSelectRec.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialSelectSpeed.resx">
-      <DependentUpon>TutorialSelectSpeed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\TutorialStartRec.resx">
       <DependentUpon>TutorialStartRec.cs</DependentUpon>

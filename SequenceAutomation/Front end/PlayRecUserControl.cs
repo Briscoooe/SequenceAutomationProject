@@ -55,7 +55,7 @@ namespace SequenceAutomation
             {
                 MessageBox.Show("Error: There is no recording to play");
             }
-            recStatus.Show();
+            //recStatus.Show();
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start();
             //recStatus.Hide();
@@ -171,11 +171,11 @@ namespace SequenceAutomation
             {
                 case "1":
                     recSpeedLabel.Text = "1 - Very slow";
-                    recSpeed = 3;
+                    recSpeed = 6;
                     break;
                 case "2":
                     recSpeedLabel.Text = "2 - Slow";
-                    recSpeed = 2;
+                    recSpeed = 3;
                     break;
                 case "3":
                     recSpeedLabel.Text = "3 - Normal";

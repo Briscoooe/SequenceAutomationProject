@@ -32,7 +32,6 @@
             this.createRecUserControl = new SequenceAutomation.CreateRecUserControl();
             this.playRecUserControl = new SequenceAutomation.PlayRecUserControl();
             this.firstTimePlay = new SequenceAutomation.FirstTimePlay();
-            this.tutorialSelectSpeed = new SequenceAutomation.TutorialSelectSpeed();
             this.tutorialPlayRec = new SequenceAutomation.TutorialPlayRec();
             this.tutorialSelectRec = new SequenceAutomation.TutorialSelectRec();
             this.firstTimeCreate = new SequenceAutomation.Interface.FirstTimeCreate();
@@ -76,14 +75,6 @@
             this.firstTimePlay.Name = "firstTimePlay";
             this.firstTimePlay.Size = new System.Drawing.Size(990, 530);
             this.firstTimePlay.TabIndex = 3;
-            // 
-            // tutorialSelectSpeed
-            // 
-            this.tutorialSelectSpeed.BackColor = System.Drawing.Color.MintCream;
-            this.tutorialSelectSpeed.Location = new System.Drawing.Point(0, 0);
-            this.tutorialSelectSpeed.Name = "tutorialSelectSpeed";
-            this.tutorialSelectSpeed.Size = new System.Drawing.Size(955, 444);
-            this.tutorialSelectSpeed.TabIndex = 4;
             // 
             // tutorialPlayRec
             // 
@@ -142,7 +133,6 @@
             this.Controls.Add(this.createRecUserControl);
             this.Controls.Add(this.playRecUserControl);
             this.Controls.Add(this.firstTimePlay);
-            this.Controls.Add(this.tutorialSelectSpeed);
             this.Controls.Add(this.tutorialPlayRec);
             this.Controls.Add(this.tutorialSelectRec);
             this.Controls.Add(this.firstTimeCreate);
@@ -163,7 +153,6 @@
         private LoginUserControl loginUserControl;
         private TutorialSelectRec tutorialSelectRec;
         private TutorialPlayRec tutorialPlayRec;
-        private TutorialSelectSpeed tutorialSelectSpeed;
         private Interface.FirstTimeCreate firstTimeCreate;
         private TutorialStartRec tutorialStartRec;
         private Interface.TutorialTestRec tutorialTestRec;

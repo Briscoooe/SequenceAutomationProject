@@ -73,7 +73,7 @@
             this.recDescTb.Location = new System.Drawing.Point(51, 333);
             this.recDescTb.Name = "recDescTb";
             this.recDescTb.Size = new System.Drawing.Size(348, 329);
-            this.recDescTb.TabIndex = 43;
+            this.recDescTb.TabIndex = 1;
             this.recDescTb.Text = "";
             // 
             // recTitleTb
@@ -82,7 +82,7 @@
             this.recTitleTb.Location = new System.Drawing.Point(51, 209);
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(348, 31);
-            this.recTitleTb.TabIndex = 44;
+            this.recTitleTb.TabIndex = 0;
             this.recTitleTb.Text = "";
             // 
             // label1
@@ -147,7 +147,7 @@
             this.favouriteBtn.Location = new System.Drawing.Point(755, 456);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
-            this.favouriteBtn.TabIndex = 52;
+            this.favouriteBtn.TabIndex = 4;
             this.favouriteBtn.UseVisualStyleBackColor = false;
             this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
             this.favouriteBtn.MouseLeave += new System.EventHandler(this.favouriteBtn_MouseLeave);
@@ -165,7 +165,7 @@
             this.saveBtn.Location = new System.Drawing.Point(755, 324);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
-            this.saveBtn.TabIndex = 48;
+            this.saveBtn.TabIndex = 3;
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveFile);
             this.saveBtn.MouseEnter += new System.EventHandler(this.saveBtn_MouseEnter);
@@ -184,7 +184,7 @@
             this.uploadBtn.Location = new System.Drawing.Point(745, 196);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
-            this.uploadBtn.TabIndex = 47;
+            this.uploadBtn.TabIndex = 2;
             this.uploadBtn.UseVisualStyleBackColor = false;
             this.uploadBtn.Click += new System.EventHandler(this.uploadRecording);
             this.uploadBtn.MouseEnter += new System.EventHandler(this.uploadBtn_MouseEnter);

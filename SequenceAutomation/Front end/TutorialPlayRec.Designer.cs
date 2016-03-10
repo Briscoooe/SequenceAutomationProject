@@ -216,9 +216,9 @@ namespace SequenceAutomation
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(369, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(323, 82);
+            this.label3.Size = new System.Drawing.Size(501, 82);
             this.label3.TabIndex = 34;
-            this.label3.Text = "Too slow or too fast?";
+            this.label3.Text = "Didn\'t work correctly? Try decreasing the speed";
             // 
             // label4
             // 

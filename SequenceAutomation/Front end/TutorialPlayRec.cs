@@ -150,11 +150,11 @@ namespace SequenceAutomation
             {
                 case "1":
                     recSpeedLabel.Text = "1 - Very slow";
-                    recSpeed = 3;
+                    recSpeed = 6;
                     break;
                 case "2":
                     recSpeedLabel.Text = "2 - Slow";
-                    recSpeed = 2;
+                    recSpeed = 3;
                     break;
                 case "3":
                     recSpeedLabel.Text = "3 - Normal";

@@ -142,7 +142,7 @@ namespace SequenceAutomation
             // If there are no keys loaded to play, display a message informing the user of this
             if (mergedJson == null)
             {
-                MessageBox.Show("Error: There is no recording to play");
+                BigMessageBox.Show("Error: There is no recording to play");
                 return;
             }
             playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
@@ -210,14 +210,14 @@ namespace SequenceAutomation
                     recManager = new RecordingManager(mergedJson);
                     mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
                     if (connectionManager.upload(mergedJson))
-                        MessageBox.Show("Uploaded");
+                        BigMessageBox.Show("Uploaded");
                     else
-                        MessageBox.Show("There was a problem with the server");
+                        BigMessageBox.Show("There was a problem with the server");
                 }
 
                 else
                 {
-                    MessageBox.Show("Could not connect to server");
+                    BigMessageBox.Show("Could not connect to server");
                 }
                
             }
@@ -239,7 +239,7 @@ namespace SequenceAutomation
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(dlg.FileName, mergedJson);
-                    MessageBox.Show("Saved successfully!");
+                    BigMessageBox.Show("Saved successfully!");
                     clearText();
                 }
             }
@@ -256,23 +256,21 @@ namespace SequenceAutomation
         {
             if(mergedJson == null)
             {
-                MessageBox.Show("You must create a recording");
+                BigMessageBox.Show("You must create a recording", "Error");
                 return false;
             }
 
             if (recTitleTb.Text == "")
             {
-                MessageBox.Show("You must enter a title");
+                BigMessageBox.Show("You must enter a title");
                 return false;
             }
 
             if(option == 1 && recDescTb.Text == "")
             {
-                MessageBox.Show("You must enter a description");
+                BigMessageBox.Show("You must enter a description");
                 return false;
             }
-
-            Console.WriteLine("Input valid");
             return true;
         }
     }
