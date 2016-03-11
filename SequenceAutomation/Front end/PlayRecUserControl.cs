@@ -42,6 +42,68 @@ namespace SequenceAutomation
             recStatus = new RecStatus();
         }
 
+        private void addToFavourites(object sender, EventArgs e)
+        {
+            if(recJson != "" && recJson != null)
+            {
+                List<string> tmp = new List<string>();
+                tmp = Properties.Settings.Default.favouriteRecordings;
+                int x = 0;
+
+                if (tmp.Count > 0)
+                {
+                    foreach (string s in tmp)
+                    {
+                        if (recJson == s)
+                        {
+                            x++;
+                        }
+                    }
+
+                    if (x == 0)
+                    {
+                        Properties.Settings.Default.favouriteRecordings.Add(recJson);
+                        BigMessageBox.Show("Added to favourites");
+                    }
+                    else
+                    {
+                        BigMessageBox.Show("This recording is already in your favourites");
+                    }
+                }
+
+                else
+                {
+                    Properties.Settings.Default.favouriteRecordings = new List<string>();
+                    Properties.Settings.Default.favouriteRecordings.Add("");
+                    addToFavourites(sender, e);
+                }
+            }
+
+            else
+            {
+                BigMessageBox.Show("There is no recording to be added to favourites");
+            }
+        }
+
+        private void showFavourites(object sender, EventArgs e)
+        {
+            FavouritesBox fave = new FavouritesBox();
+            fave.Show();
+            if (Properties.Settings.Default.favouriteRecordings != null)
+            {
+                foreach (string s in Properties.Settings.Default.favouriteRecordings)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+
+            else
+            {
+                BigMessageBox.Show("You have no favourites to show");
+            }
+
+        }
+
         /*
          * Method: launchPlaying()
          * Summary: Begins the playback of keystrokes
@@ -53,7 +115,7 @@ namespace SequenceAutomation
             // If there are no keys loaded to play, display a message informing the user of this
             if (recJson == "")
             {
-                MessageBox.Show("Error: There is no recording to play");
+                BigMessageBox.Show("Error: There is no recording to play");
             }
             //recStatus.Show();
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
@@ -80,7 +142,7 @@ namespace SequenceAutomation
                 }
                 else
                 {
-                    MessageBox.Show("That file was not a valid recording file");
+                    BigMessageBox.Show("That file was not a valid recording file");
                 }
             }
         }
@@ -114,7 +176,7 @@ namespace SequenceAutomation
             {
                 recList.Clear();
                 recList.Add("Could not connect to server");
-                MessageBox.Show("Could not connect to server");
+                BigMessageBox.Show("Could not connect to server");
             }
 
             recordingsList.DataSource = recList;

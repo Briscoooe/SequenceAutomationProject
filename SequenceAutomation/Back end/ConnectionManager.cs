@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text.RegularExpressions;
 
 namespace SequenceAutomation
 {
@@ -22,9 +21,13 @@ namespace SequenceAutomation
         HttpWebResponse response;
         string responseStr;
 
-        string urlString = "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings";
-        string domain = "finalyearproject.cloudapp.net";
-        public ConnectionManager() {}
+        string domain, urlString;
+
+        public ConnectionManager()
+        {
+            urlString = Properties.Settings.Default.urlString;
+            domain = Properties.Settings.Default.domain;
+        }
 
         public bool testConnection()
         {

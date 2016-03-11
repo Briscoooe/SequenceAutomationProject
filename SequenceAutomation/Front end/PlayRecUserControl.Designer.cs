@@ -161,6 +161,7 @@
             this.addFavouriteBtn.Size = new System.Drawing.Size(150, 129);
             this.addFavouriteBtn.TabIndex = 85;
             this.addFavouriteBtn.UseVisualStyleBackColor = false;
+            this.addFavouriteBtn.Click += new System.EventHandler(this.addToFavourites);
             this.addFavouriteBtn.MouseEnter += new System.EventHandler(this.addFavouriteBtn_MouseEnter);
             this.addFavouriteBtn.MouseLeave += new System.EventHandler(this.addFavouriteBtn_MouseLeave);
             // 
@@ -199,6 +200,7 @@
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 68;
             this.favouriteBtn.UseVisualStyleBackColor = false;
+            this.favouriteBtn.Click += new System.EventHandler(this.showFavourites);
             this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
             this.favouriteBtn.MouseLeave += new System.EventHandler(this.favouriteBtn_MouseLeave);
             // 

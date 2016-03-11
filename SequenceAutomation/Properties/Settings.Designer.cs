@@ -46,5 +46,46 @@ namespace SequenceAutomation.Properties {
                 this["createRemember"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("finalyearproject.cloudapp.net")]
+        public string domain {
+            get {
+                return ((string)(this["domain"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings")]
+        public string urlString {
+            get {
+                return ((string)(this["urlString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Generic.List<System.String> favourites {
+            get {
+                return ((global::System.Collections.Generic.List<System.String>)(this["favourites"]));
+            }
+            set {
+                this["favourites"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Generic.List<System.String> favouriteRecordings {
+            get {
+                return ((global::System.Collections.Generic.List<System.String>)(this["favouriteRecordings"]));
+            }
+            set {
+                this["favouriteRecordings"] = value;
+            }
+        }
     }
 }

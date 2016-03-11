@@ -91,6 +91,12 @@
     <Compile Include="Front end\BigMessageBox.Designer.cs">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front end\FavouritesBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front end\FavouritesBox.Designer.cs">
+      <DependentUpon>FavouritesBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Front end\FirstTimeCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\BigMessageBox.resx">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\FavouritesBox.resx">
+      <DependentUpon>FavouritesBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\FirstTimeCreate.resx">
       <DependentUpon>FirstTimeCreate.cs</DependentUpon>
@@ -335,6 +344,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\addtofavourites_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\delete_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
