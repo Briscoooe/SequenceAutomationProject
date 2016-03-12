@@ -66,34 +66,26 @@ namespace SequenceAutomation
 
         public bool validateJson(string recJson)
         {
-            // Store the inputJson string into a dynamic object
-            dynamic timeKeys = JsonConvert.DeserializeObject(recJson);
-
-            // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
-            foreach (dynamic timeVal in timeKeys)
+            try
             {
-                if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc")
-                {
-                    return true;
-                }
-                else
-                {
-                    try
-                    {
-                        // Store the time value as a long, necessary for a dictionary entry
-                        long time = Convert.ToInt64(timeVal.Name);
-                    }
+                Recording recording = new Recording(recJson);
+                Console.WriteLine(recording.Title);
+                Console.WriteLine(recording.Description);
+                Console.WriteLine(recording.Id);
+                Console.WriteLine(recording.Username);
 
-                    catch (FormatException e)
-                    {
-                        Console.WriteLine(e.Message);
-                        return false;
-                    }
+                if (recording.Title == null || recording.Description == null 
+                    || recording.Id == null || recording.Username == null)
+                {
+                    return false;
                 }
-               
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
 
-           return true;
         }
 
         /*

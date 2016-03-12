@@ -20,7 +20,6 @@ namespace SequenceAutomation
         private RecordingManager recManager;
         private ConnectionManager connectionManager;
         private PlayRecording playRec;
-        private string mergedJson;
         private string recJson;
 
         public CreateRecUserControl()
@@ -142,12 +141,12 @@ namespace SequenceAutomation
         private void testRecording(object sender, EventArgs e)
         {
             // If there are no keys loaded to play, display a message informing the user of this
-            if (mergedJson == null)
+            if (recJson == null)
             {
                 BigMessageBox.Show("Error: There is no recording to play");
                 return;
             }
-            playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
+            playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
         }
 
@@ -161,7 +160,8 @@ namespace SequenceAutomation
         {
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             recButtonLabel.Text = "Stop recording";
-            clearText();
+            recTitleTb.Text = "";
+            recDescTb.Text = "";
 
             startStopRecBtn.Tag = "stopRecTag";
 
@@ -196,7 +196,7 @@ namespace SequenceAutomation
             // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
-            mergedJson = createRec.Stop(); // Stop recording  
+            recJson = createRec.Stop(); // Stop recording  
         }
 
         /*
@@ -209,9 +209,9 @@ namespace SequenceAutomation
                 connectionManager = new ConnectionManager();
                 if (connectionManager.testConnection())
                 {
-                    recManager = new RecordingManager(mergedJson);
-                    mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.upload(mergedJson))
+                    recManager = new RecordingManager(recJson);
+                    recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    if (connectionManager.upload(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
                         BigMessageBox.Show("There was a problem with the server");
@@ -230,8 +230,8 @@ namespace SequenceAutomation
         {
             if (validateInput(0))
             {
-                recManager = new RecordingManager(mergedJson);
-                mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                recManager = new RecordingManager(recJson);
+                recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                 string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = test;
@@ -240,23 +240,17 @@ namespace SequenceAutomation
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(dlg.FileName, mergedJson);
+                    File.WriteAllText(dlg.FileName, recJson);
                     BigMessageBox.Show("Saved successfully!");
-                    clearText();
                 }
             }
 
         }
 
-        private void clearText()
-        {
-            recTitleTb.Text = "";
-            recDescTb.Text = "";
-        }
 
         private bool validateInput(int option)
         {
-            if(mergedJson == null)
+            if(recJson == null)
             {
                 BigMessageBox.Show("You must create a recording", "Error");
                 return false;

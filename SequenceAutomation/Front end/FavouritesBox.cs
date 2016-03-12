@@ -21,6 +21,9 @@ namespace SequenceAutomation
         public FavouritesBox()
         {
             InitializeComponent();
+            CenterToScreen();
+            MaximizeBox = false;
+            MinimizeBox = false;
             prepareList();
         }
 
@@ -127,13 +130,14 @@ namespace SequenceAutomation
             {
                 if(rec != "")
                 {
-                    recording = new Recording(recJson);
+                    recording = new Recording(rec);
 
                     if (Convert.ToString(recording.Title) == recordingsList.SelectedItem.ToString())
                     {
                         Properties.Settings.Default.favouriteRecordings.Remove(rec);
                         BigMessageBox.Show("Removed from favourites");
                         prepareList();
+                        Properties.Settings.Default.Save();
                         break;
                     }
                 }

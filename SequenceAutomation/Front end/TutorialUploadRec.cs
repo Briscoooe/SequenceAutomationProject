@@ -121,8 +121,6 @@ namespace SequenceAutomation
                 {
                     File.WriteAllText(dlg.FileName, recJson);
                     BigMessageBox.Show("Saved successfully!");
-                    recTitleTb.Text = "";
-                    recDescTb.Text = "";
                 }
             }
 

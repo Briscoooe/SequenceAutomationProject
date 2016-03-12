@@ -55,6 +55,10 @@ namespace SequenceAutomation
         {
             if(recJson != "" && recJson != null)
             {
+                if(Properties.Settings.Default.favouriteRecordings == null)
+                {
+                    Properties.Settings.Default.favouriteRecordings = new List<string>();
+                }
                 List<string> tmp = new List<string>();
                 tmp = Properties.Settings.Default.favouriteRecordings;
                 int x = 0;
