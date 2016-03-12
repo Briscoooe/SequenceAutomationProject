@@ -17,6 +17,8 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
+        private FavouritesBox fave;
+
         private List<string> recList;
 
 
@@ -99,6 +101,28 @@ namespace SequenceAutomation
         {
             recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
             updateInfo();
+        }
+
+
+        private void doneSelecting(object sender, EventArgs e)
+        {
+            recJson = fave.recJson;
+            updateInfo();
+        }
+
+        private void showFavourites(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.favouriteRecordings != null)
+            {
+                fave = new FavouritesBox();
+                fave.doneSelectingEvent += doneSelecting;
+                fave.Show();
+            }
+
+            else
+            {
+                BigMessageBox.Show("You have no favourites to show");
+            }
         }
 
         private void chooseFile(object sender, EventArgs e)

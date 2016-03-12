@@ -53,11 +53,13 @@ namespace SequenceAutomation
 
         public string addInformation(string keysString, string title, string description)
         {
-            JToken token = JObject.Parse(keysString);
-
+            Guid guid = Guid.NewGuid();
+            string recId = guid.ToString();
             dynamic tempObj = JsonConvert.DeserializeObject(keysString);
             tempObj.Name = title;
             tempObj.Desc = description;
+            tempObj.recId = recId;
+            tempObj.userName = "";
 
             return JsonConvert.SerializeObject(tempObj);
         }

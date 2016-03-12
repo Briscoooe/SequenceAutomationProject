@@ -182,6 +182,7 @@ namespace SequenceAutomation
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 54;
             this.favouriteBtn.UseVisualStyleBackColor = false;
+            this.favouriteBtn.Click += new System.EventHandler(this.showFavourites);
             this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
             this.favouriteBtn.MouseLeave += new System.EventHandler(this.favouriteBtn_MouseLeave);
             // 

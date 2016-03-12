@@ -78,7 +78,7 @@ namespace SequenceAutomation
         private void gotoUploadRec(object sender, TextEventArgs e)
         {
             if (e.json != "")
-                tutorialUploadRec.mergedJson = e.json;
+                tutorialUploadRec.recJson = e.json;
             ClientSize = new Size(1065, 719);
             tutorialUploadRec.BringToFront();
             CenterToScreen();

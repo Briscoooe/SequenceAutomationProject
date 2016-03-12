@@ -88,7 +88,7 @@ namespace SequenceAutomation
         {
             if(recTitle.Substring(recTitle.Length -5) != ".json")
             {
-                recTitle = string.Join("", recTitle.Split(' ', '_')) + ".json";
+                recTitle = string.Join("", recTitle.Split(' ', '_', '-')) + ".json";
             }
             request = (HttpWebRequest)WebRequest.Create(urlString + "/" + recTitle);
             request.Method = "GET";

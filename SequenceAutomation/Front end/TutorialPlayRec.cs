@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SequenceAutomation
@@ -22,6 +23,7 @@ namespace SequenceAutomation
             InitializeComponent();
             onSpeedChange();
         }
+
 
         private void gotoPlay(object sender, EventArgs e)
         {

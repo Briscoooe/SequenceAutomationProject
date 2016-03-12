@@ -22,6 +22,7 @@ namespace SequenceAutomation
 
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
+        private FavouritesBox fave;
 
         public string recJson = "";
         public string recTitle = "";
@@ -39,7 +40,14 @@ namespace SequenceAutomation
             InitializeComponent();
             onSpeedChange();
 
+
             recStatus = new RecStatus();
+        }
+
+        private void doneSelecting(object sender, EventArgs e)
+        {
+            recJson = fave.recJson;
+            updateInfo();
         }
 
         private void addToFavourites(object sender, EventArgs e)
@@ -87,14 +95,11 @@ namespace SequenceAutomation
 
         private void showFavourites(object sender, EventArgs e)
         {
-            FavouritesBox fave = new FavouritesBox();
-            fave.Show();
             if (Properties.Settings.Default.favouriteRecordings != null)
             {
-                foreach (string s in Properties.Settings.Default.favouriteRecordings)
-                {
-                    Console.WriteLine(s);
-                }
+                fave = new FavouritesBox();
+                fave.doneSelectingEvent += doneSelecting;
+                fave.Show();
             }
 
             else

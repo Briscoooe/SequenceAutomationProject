@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ namespace SequenceAutomation
         private ConnectionManager connectionManager;
         private PlayRecording playRec;
         private string mergedJson;
+        private string recJson;
 
         public CreateRecUserControl()
         {
@@ -272,6 +274,58 @@ namespace SequenceAutomation
                 return false;
             }
             return true;
+        }
+
+        private void addToFavourites(object sender, EventArgs e)
+        {
+            if (validateInput(1))
+            {
+                if (recJson != "" && recJson != null)
+                {
+                    Console.WriteLine("recJson {0}", recJson);
+                    recManager = new RecordingManager(recJson);
+                    string test = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    List<string> tmp = new List<string>();
+
+                    Console.WriteLine("test: {0}", test);
+                    tmp = Properties.Settings.Default.favouriteRecordings;
+                    int x = 0;
+
+                    if (tmp.Count > 0)
+                    {
+                        foreach (string s in tmp)
+                        {
+                            if (recJson == s)
+                            {
+                                x++;
+                            }
+                        }
+
+                        if (x == 0)
+                        {
+                            Properties.Settings.Default.favouriteRecordings.Add(test);
+                            BigMessageBox.Show("Added to favourites");
+                        }
+                        else
+                        {
+                            BigMessageBox.Show("This recording is already in your favourites");
+                        }
+                    }
+
+                    else
+                    {
+                        Properties.Settings.Default.favouriteRecordings = new List<string>();
+                        Properties.Settings.Default.favouriteRecordings.Add("");
+                        addToFavourites(sender, e);
+                    }
+                }
+
+                else
+                {
+                    BigMessageBox.Show("There is no recording to be added to favourites");
+                }
+            }
+
         }
     }
 }

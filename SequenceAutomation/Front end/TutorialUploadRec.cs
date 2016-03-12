@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Collections.Generic;
 
 namespace SequenceAutomation
 {
@@ -18,7 +19,7 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goBackEvent;
         private RecordingManager recManager;
 
-        public string mergedJson = "";
+        public string recJson = "";
         private ConnectionManager connectionManager;
 
         public TutorialUploadRec()
@@ -40,7 +41,7 @@ namespace SequenceAutomation
 
         private void goBack(object sender, EventArgs e)
         {
-            returnJson(new TextEventArgs(mergedJson, "", 1));
+            returnJson(new TextEventArgs(recJson, "", 1));
         }
 
         public void returnJson(TextEventArgs e)
@@ -50,13 +51,64 @@ namespace SequenceAutomation
                 eh(this, e);
         }
 
+        private void addToFavourites(object sender, EventArgs e)
+        {
+            if(validateInput(1))
+            {
+                if (recJson != "" && recJson != null)
+                {
+                    Console.WriteLine("recJson {0}", recJson);
+                    recManager = new RecordingManager(recJson);
+                    string test = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    List<string> tmp = new List<string>();
+
+                    Console.WriteLine("test: {0}", test);
+                    tmp = Properties.Settings.Default.favouriteRecordings;
+                    int x = 0;
+
+                    if (tmp.Count > 0)
+                    {
+                        foreach (string s in tmp)
+                        {
+                            if (recJson == s)
+                            {
+                                x++;
+                            }
+                        }
+
+                        if (x == 0)
+                        {
+                            Properties.Settings.Default.favouriteRecordings.Add(test);
+                            BigMessageBox.Show("Added to favourites");
+                        }
+                        else
+                        {
+                            BigMessageBox.Show("This recording is already in your favourites");
+                        }
+                    }
+
+                    else
+                    {
+                        Properties.Settings.Default.favouriteRecordings = new List<string>();
+                        Properties.Settings.Default.favouriteRecordings.Add("");
+                        addToFavourites(sender, e);
+                    }
+                }
+
+                else
+                {
+                    BigMessageBox.Show("There is no recording to be added to favourites");
+                }
+            }
+            
+        }
+
         private void saveFile(object sender, EventArgs e)
         {
             if (validateInput())
             {
-
-                recManager = new RecordingManager(mergedJson);
-                recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
+                recManager = new RecordingManager(recJson);
+                recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                 string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = test;
@@ -65,8 +117,8 @@ namespace SequenceAutomation
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(dlg.FileName, mergedJson);
-                    MessageBox.Show("Saved successfully!");
+                    File.WriteAllText(dlg.FileName, recJson);
+                    BigMessageBox.Show("Saved successfully!");
                     recTitleTb.Text = "";
                     recDescTb.Text = "";
                 }
@@ -84,17 +136,17 @@ namespace SequenceAutomation
                 connectionManager = new ConnectionManager();
                 if (connectionManager.testConnection())
                 {
-                    recManager = new RecordingManager(mergedJson);
-                    mergedJson = recManager.addInformation(mergedJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.upload(mergedJson))
-                        MessageBox.Show("Uploaded");
+                    recManager = new RecordingManager(recJson);
+                    recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    if (connectionManager.upload(recJson))
+                        BigMessageBox.Show("Uploaded");
                     else
-                        MessageBox.Show("There was a problem with the server");
+                        BigMessageBox.Show("There was a problem with the server");
                 }
 
                 else
                 {
-                    MessageBox.Show("Could not connect to server");
+                    BigMessageBox.Show("Could not connect to server");
                 }
 
             }
@@ -105,7 +157,7 @@ namespace SequenceAutomation
         {
             if (recTitleTb.Text == "")
             {
-                MessageBox.Show("You must enter a title");
+                BigMessageBox.Show("You must enter a title");
                 return false;
             }
 
@@ -115,21 +167,21 @@ namespace SequenceAutomation
 
         private bool validateInput(int option)
         {
-            if (mergedJson == null)
+            if (recJson == null)
             {
-                MessageBox.Show("You must create a recording");
+                BigMessageBox.Show("You must create a recording");
                 return false;
             }
 
             if (recTitleTb.Text == "")
             {
-                MessageBox.Show("You must enter a title");
+                BigMessageBox.Show("You must enter a title");
                 return false;
             }
 
             if (option == 1 && recDescTb.Text == "")
             {
-                MessageBox.Show("You must enter a description");
+                BigMessageBox.Show("You must enter a description");
                 return false;
             }
 
@@ -196,5 +248,6 @@ namespace SequenceAutomation
         {
             favouriteBtn.BackgroundImage = Properties.Resources.favourite;
         }
+
     }
 }
