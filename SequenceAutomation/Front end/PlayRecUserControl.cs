@@ -23,6 +23,7 @@ namespace SequenceAutomation
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
         private FavouritesBox fave;
+        private Recording recording;
 
         public string recJson = "";
         public string recTitle = "";
@@ -177,17 +178,19 @@ namespace SequenceAutomation
             if (connectionManager.testConnection())
             {
                 recList = connectionManager.getRecordings();
+                recordingsList.Enabled = true;
+                ActiveControl = recordingsList;
             }
 
             else
             {
                 recList.Clear();
                 recList.Add("Could not connect to server");
+                recordingsList.Enabled = false;
                 BigMessageBox.Show("Could not connect to server");
             }
 
             recordingsList.DataSource = recList;
-            ActiveControl = recordingsList;
         }
 
         private void updateList(object sender, EventArgs e)
@@ -198,20 +201,26 @@ namespace SequenceAutomation
 
         private void updateInfo()
         {
-            dynamic tempObj = JsonConvert.DeserializeObject(recJson);
-
-            if (tempObj.Name == "" || tempObj.Name == null)
+            if (recJson != null && recJson != "")
             {
-                tempObj.Name = "Unavailable";
-            }
+                recording = new Recording(recJson);
 
-            if (tempObj.Desc == "" || tempObj.Desc == null)
-            {
-                tempObj.Desc = "Unavailable";
-            }
+                string title = recording.Title;
+                string description = recording.Description;
 
-            recTitleLabel.Text = tempObj.Name;
-            recDescLabel.Text = tempObj.Desc;
+                if (recording.Title == "" || recording.Title == null)
+                {
+                    title = "Unavailable";
+                }
+
+                if (recording.Description == "" || recording.Description == null)
+                {
+                    description = "Unavailable";
+                }
+
+                recTitleLabel.Text = title;
+                recDescLabel.Text = description;
+            }
 
         }
 

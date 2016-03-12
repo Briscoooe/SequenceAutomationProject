@@ -33,14 +33,14 @@ namespace SequenceAutomation.Interface
             // If there are no keys loaded to play, display a message informing the user of this
             if (mergedJson == null)
             {
-                MessageBox.Show("Error: There is no recording to play");
+                BigMessageBox.Show("Error: There is no recording to play");
                 return;
             }
             playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
 
             // Begin playback
             if (playRec.Start())
-                MessageBox.Show("Complete");
+                BigMessageBox.Show("Complete");
         }
 
         private void gotoLogin(object sender, EventArgs e)

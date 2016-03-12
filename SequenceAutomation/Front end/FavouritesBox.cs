@@ -16,6 +16,7 @@ namespace SequenceAutomation
         public string recJson;
         private Dictionary<string,string> recList;
         public event EventHandler doneSelectingEvent;
+        public Recording recording;
 
         public FavouritesBox()
         {
@@ -51,12 +52,11 @@ namespace SequenceAutomation
                 if (rec != "")
                 {
                     Console.WriteLine(recList.Count);
-                    dynamic tempObj = JsonConvert.DeserializeObject(rec);
-                    string recName = tempObj.Name;
+                    recording = new Recording(rec);
 
-                    if (!recList.ContainsKey(recName))
+                    if (!recList.ContainsKey(recording.Title))
                     {
-                        recList.Add(recName, rec);
+                        recList.Add(recording.Title, rec);
                     }
 
                 }
@@ -89,35 +89,34 @@ namespace SequenceAutomation
                 }
             }
 
-            string name = "Unavailable";
+            string title = "Unavailable";
             string description = "Unavailable";
 
             if (recJson != "")
             {
-                dynamic tempObj = JsonConvert.DeserializeObject(recJson);
-
-                if (tempObj.Name == "" || tempObj.Name == null)
+                recording = new Recording(recJson);
+                if (recording.Title == "" || recording.Title == null)
                 {
-                    name = "Unavailable";
+                    title = "Unavailable";
                 }
 
                 else
                 {
-                    name = tempObj.Name;
+                    title = recording.Title;
                 }
 
-                if (tempObj.Desc == "" || tempObj.Desc == null)
+                if (recording.Description == "" || recording.Description == null)
                 {
                     description = "Unavailable";
                 }
 
                 else
                 {
-                    description = tempObj.Desc;
+                    description = recording.Description;
                 }
             }
 
-            recTitleLabel.Text = name;
+            recTitleLabel.Text = title;
             recDescLabel.Text = description;
 
         }
@@ -128,9 +127,9 @@ namespace SequenceAutomation
             {
                 if(rec != "")
                 {
-                    dynamic tempObj = JsonConvert.DeserializeObject(rec);
+                    recording = new Recording(recJson);
 
-                    if (Convert.ToString(tempObj.Name) == recordingsList.SelectedItem.ToString())
+                    if (Convert.ToString(recording.Title) == recordingsList.SelectedItem.ToString())
                     {
                         Properties.Settings.Default.favouriteRecordings.Remove(rec);
                         BigMessageBox.Show("Removed from favourites");

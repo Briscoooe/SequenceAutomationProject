@@ -75,8 +75,8 @@ namespace SequenceAutomation
                 if(t != "." && t != "..")
                 {
                     string tmp3 = getRecInfo(t);
-                    dynamic tempObj = JsonConvert.DeserializeObject(tmp3);
-                    string tempName = Convert.ToString(tempObj.Name);
+                    Recording recording = new Recording(tmp3);
+                    string tempName = Convert.ToString(recording.Title);
                     dirContents.Add(tempName);
                 }
             }

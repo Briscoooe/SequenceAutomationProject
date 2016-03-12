@@ -120,7 +120,7 @@ namespace SequenceAutomation
             // If there are no keys loaded to play, display a message informing the user of this
             if (recJson == null)
             {
-                MessageBox.Show("Error: There is no recording to play");
+                BigMessageBox.Show("Error: There is no recording to play");
                 return;
             }
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class

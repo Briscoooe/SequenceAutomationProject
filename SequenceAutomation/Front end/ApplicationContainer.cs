@@ -106,9 +106,9 @@ namespace SequenceAutomation
         {
             if (e.json != "")
             {
-                dynamic tempObj = JsonConvert.DeserializeObject(e.json);
+                Recording recording = new Recording(e.json);
                 tutorialPlayRec.recJson = e.json;
-                tutorialPlayRec.currentRecTitle.Text = tempObj.Name;
+                tutorialPlayRec.currentRecTitle.Text = recording.Title;
                 tutorialPlayRec.recTitle = e.name;
             }
             ClientSize = new Size(917, 522);

@@ -19,7 +19,7 @@ namespace SequenceAutomation
 
         private void showMessage(object sender, EventArgs e)
         {
-            MessageBox.Show("Test");
+            BigMessageBox.Show("Test");
         }
     }
 }

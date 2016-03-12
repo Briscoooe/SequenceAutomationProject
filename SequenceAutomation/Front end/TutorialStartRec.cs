@@ -101,7 +101,7 @@ namespace SequenceAutomation
         {
             if(mergedJson == null)
             {
-                MessageBox.Show("You must create a recording to continue to the next screen");
+                BigMessageBox.Show("You must create a recording to continue to the next screen");
                 return;
             }
 

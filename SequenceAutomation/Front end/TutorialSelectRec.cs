@@ -17,6 +17,8 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
+        public Recording recording;
+
         private FavouritesBox fave;
 
         private List<string> recList;
@@ -47,7 +49,7 @@ namespace SequenceAutomation
         {
             if (recJson == null)
             {
-                MessageBox.Show("You must choose a recording to continue to the next screen");
+                BigMessageBox.Show("You must choose a recording to continue to the next screen");
                 return;
             }
 
@@ -73,7 +75,7 @@ namespace SequenceAutomation
             {
                 recList.Clear();
                 recList.Add("Could not connect to server");
-                MessageBox.Show("Could not connect to server");
+                BigMessageBox.Show("Could not connect to server");
             }
 
             recordingsList.DataSource = recList;
@@ -141,27 +143,33 @@ namespace SequenceAutomation
                 }
                 else
                 {
-                    MessageBox.Show("That file was not a valid recording file");
+                    BigMessageBox.Show("That file was not a valid recording file");
                 }
             }
         }
 
         private void updateInfo()
         {
-            dynamic tempObj = JsonConvert.DeserializeObject(recJson);
-
-            if (tempObj.Name == "" || tempObj.Name == null)
+            if (recJson != null && recJson != "")
             {
-                tempObj.Name = "Unavailable";
-            }
+                recording = new Recording(recJson);
 
-            if(tempObj.Desc == "" || tempObj.Desc == null)
-            {
-                tempObj.Desc = "Unavailable";
-            }
+                string title = recording.Title;
+                string description = recording.Description;
 
-            recTitleLabel.Text = tempObj.Name;
-            recDescLabel.Text = tempObj.Desc;
+                if (recording.Title == "" || recording.Title == null)
+                {
+                    title = "Unavailable";
+                }
+
+                if (recording.Description == "" || recording.Description == null)
+                {
+                    description = "Unavailable";
+                }
+
+                recTitleLabel.Text = title;
+                recDescLabel.Text = description;
+            }
         }
 
         private void goBack(object sender, EventArgs e)

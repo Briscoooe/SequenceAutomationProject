@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Back end\ConnectionManager.cs" />
+    <Compile Include="Back end\Recording.cs" />
     <Compile Include="Front end\ApplicationContainer.cs">
       <SubType>Form</SubType>
     </Compile>
