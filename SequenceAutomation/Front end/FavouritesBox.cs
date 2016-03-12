@@ -25,20 +25,20 @@ namespace SequenceAutomation
 
         private void searchListUpdate(object sender, KeyEventArgs e)
         {
-           /*
             List<string> temp = new List<string>();
-            for (int i = 0; i < recList.Count; i++)
+            foreach (KeyValuePair<string, string> kvp in recList)
             {
-                if (recList[i].ToLower().Contains(searchBox.Text.ToLower()))
+                if (kvp.Key.ToLower().Contains(searchBox.Text.ToLower()))
                 {
-                    temp.Add(recList[i]);
+                    temp.Add(kvp.Key);
                 }
             }
+
             if (temp.Count == 0)
             {
                 temp.Add("No results");
             }
-            recordingsList.DataSource = temp;*/
+            recordingsList.DataSource = temp;
         }
 
         public void prepareList()
@@ -167,7 +167,6 @@ namespace SequenceAutomation
         {
             deleteBtn.BackgroundImage = Properties.Resources.delete_hover;
         }
-
 
     }
 }

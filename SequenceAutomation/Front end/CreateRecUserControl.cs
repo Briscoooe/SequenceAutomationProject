@@ -326,6 +326,9 @@ namespace SequenceAutomation
                 }
             }
 
+            Properties.Settings.Default.Save();
+
+
         }
     }
 }

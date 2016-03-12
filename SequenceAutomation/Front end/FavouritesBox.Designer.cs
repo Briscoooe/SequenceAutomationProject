@@ -136,6 +136,7 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(304, 33);
             this.searchBox.TabIndex = 71;
+            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
             // doneBtn
             // 

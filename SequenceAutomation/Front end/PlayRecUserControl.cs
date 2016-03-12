@@ -91,6 +91,8 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("There is no recording to be added to favourites");
             }
+
+            Properties.Settings.Default.Save();
         }
 
         private void showFavourites(object sender, EventArgs e)
@@ -155,11 +157,11 @@ namespace SequenceAutomation
         private void searchListUpdate(object sender, KeyEventArgs e)
         {
             List<string> temp = new List<string>();
-            for (int i = 0; i < recList.Count; i++)
+            foreach (string name in recList)
             {
-                if (recList[i].ToLower().Contains(searchBox.Text.ToLower()))
+                if (name.ToLower().Contains(searchBox.Text.ToLower()))
                 {
-                    temp.Add(recList[i]);
+                    temp.Add(name);
                 }
             }
             if (temp.Count == 0)

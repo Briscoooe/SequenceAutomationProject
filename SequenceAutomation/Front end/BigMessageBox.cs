@@ -13,7 +13,6 @@ namespace SequenceAutomation
     {
 
         static BigMessageBox newMessageBox;
-        int disposeFormTimer;
 
         public BigMessageBox()
         {

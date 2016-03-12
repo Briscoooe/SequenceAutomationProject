@@ -100,7 +100,9 @@ namespace SequenceAutomation
                     BigMessageBox.Show("There is no recording to be added to favourites");
                 }
             }
-            
+
+            Properties.Settings.Default.Save();
+
         }
 
         private void saveFile(object sender, EventArgs e)
