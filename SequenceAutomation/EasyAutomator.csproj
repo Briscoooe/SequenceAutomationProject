@@ -79,64 +79,89 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Back end\ConnectionManager.cs" />
+    <Compile Include="Back end\DatabaseManager.cs" />
     <Compile Include="Back end\Recording.cs" />
-    <Compile Include="Front end\ApplicationContainer.cs">
+    <Compile Include="Front end\AccountsInterface\AccountContainer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front end\ApplicationContainer.Designer.cs">
-      <DependentUpon>ApplicationContainer.cs</DependentUpon>
+    <Compile Include="Front end\AccountsInterface\AccountContainer.Designer.cs">
+      <DependentUpon>AccountContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\BigMessageBox.cs">
+    <Compile Include="Front end\AccountsInterface\Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front end\AccountsInterface\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front end\AccountsInterface\Options.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front end\AccountsInterface\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front end\AccountsInterface\Register.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Front end\AccountsInterface\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front end\MainInterface\MainContainer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front end\BigMessageBox.Designer.cs">
+    <Compile Include="Front end\MainInterface\MainContainer.Designer.cs">
+      <DependentUpon>MainContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front end\MainInterface\BigMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front end\MainInterface\BigMessageBox.Designer.cs">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\FavouritesBox.cs">
+    <Compile Include="Front end\MainInterface\FavouritesBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front end\FavouritesBox.Designer.cs">
+    <Compile Include="Front end\MainInterface\FavouritesBox.Designer.cs">
       <DependentUpon>FavouritesBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\FirstTimeCreate.cs">
+    <Compile Include="Front end\MainInterface\FirstTimeCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\FirstTimeCreate.Designer.cs">
+    <Compile Include="Front end\MainInterface\FirstTimeCreate.Designer.cs">
       <DependentUpon>FirstTimeCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\FirstTimePlay.cs">
+    <Compile Include="Front end\MainInterface\FirstTimePlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\FirstTimePlay.Designer.cs">
+    <Compile Include="Front end\MainInterface\FirstTimePlay.Designer.cs">
       <DependentUpon>FirstTimePlay.cs</DependentUpon>
     </Compile>
     <Compile Include="Back end\ContextManager.cs" />
     <Compile Include="Back end\CreateRecording.cs" />
-    <Compile Include="Front end\CreateRecUserControl.cs">
+    <Compile Include="Front end\MainInterface\CreateRecUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\CreateRecUserControl.Designer.cs">
+    <Compile Include="Front end\MainInterface\CreateRecUserControl.Designer.cs">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\PlayRecUserControl.cs">
+    <Compile Include="Front end\MainInterface\PlayRecUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\PlayRecUserControl.Designer.cs">
+    <Compile Include="Front end\MainInterface\PlayRecUserControl.Designer.cs">
       <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\RecStatus.cs">
+    <Compile Include="Front end\MainInterface\RecStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front end\RecStatus.Designer.cs">
+    <Compile Include="Front end\MainInterface\RecStatus.Designer.cs">
       <DependentUpon>RecStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\SearchBox.cs">
+    <Compile Include="Front end\MainInterface\SearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialTestRec.cs">
+    <Compile Include="Front end\MainInterface\TutorialTestRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialTestRec.Designer.cs">
+    <Compile Include="Front end\MainInterface\TutorialTestRec.Designer.cs">
       <DependentUpon>TutorialTestRec.cs</DependentUpon>
     </Compile>
     <Compile Include="Back end\PlayRecording.cs" />
@@ -148,62 +173,74 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Back end\RecordingManager.cs" />
-    <Compile Include="Front end\LoginUserControl.cs">
+    <Compile Include="Front end\MainInterface\LoginUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\LoginUserControl.Designer.cs">
+    <Compile Include="Front end\MainInterface\LoginUserControl.Designer.cs">
       <DependentUpon>LoginUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\TutorialPlayRec.cs">
+    <Compile Include="Front end\MainInterface\TutorialPlayRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialPlayRec.Designer.cs">
+    <Compile Include="Front end\MainInterface\TutorialPlayRec.Designer.cs">
       <DependentUpon>TutorialPlayRec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\TutorialSelectRec.cs">
+    <Compile Include="Front end\MainInterface\TutorialSelectRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialSelectRec.Designer.cs">
+    <Compile Include="Front end\MainInterface\TutorialSelectRec.Designer.cs">
       <DependentUpon>TutorialSelectRec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\TutorialStartRec.cs">
+    <Compile Include="Front end\MainInterface\TutorialStartRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialStartRec.Designer.cs">
+    <Compile Include="Front end\MainInterface\TutorialStartRec.Designer.cs">
       <DependentUpon>TutorialStartRec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\TutorialUploadRec.cs">
+    <Compile Include="Front end\MainInterface\TutorialUploadRec.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Front end\TutorialUploadRec.Designer.cs">
+    <Compile Include="Front end\MainInterface\TutorialUploadRec.Designer.cs">
       <DependentUpon>TutorialUploadRec.cs</DependentUpon>
     </Compile>
     <Compile Include="Back end\TextEventArgs.cs" />
-    <EmbeddedResource Include="Front end\ApplicationContainer.resx">
-      <DependentUpon>ApplicationContainer.cs</DependentUpon>
+    <EmbeddedResource Include="Front end\AccountsInterface\AccountContainer.resx">
+      <DependentUpon>AccountContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\BigMessageBox.resx">
+    <EmbeddedResource Include="Front end\AccountsInterface\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\AccountsInterface\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\AccountsInterface\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\MainInterface\MainContainer.resx">
+      <DependentUpon>MainContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front end\MainInterface\BigMessageBox.resx">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\FavouritesBox.resx">
+    <EmbeddedResource Include="Front end\MainInterface\FavouritesBox.resx">
       <DependentUpon>FavouritesBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\FirstTimeCreate.resx">
+    <EmbeddedResource Include="Front end\MainInterface\FirstTimeCreate.resx">
       <DependentUpon>FirstTimeCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\FirstTimePlay.resx">
+    <EmbeddedResource Include="Front end\MainInterface\FirstTimePlay.resx">
       <DependentUpon>FirstTimePlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\CreateRecUserControl.resx">
+    <EmbeddedResource Include="Front end\MainInterface\CreateRecUserControl.resx">
       <DependentUpon>CreateRecUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\PlayRecUserControl.resx">
+    <EmbeddedResource Include="Front end\MainInterface\PlayRecUserControl.resx">
       <DependentUpon>PlayRecUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\RecStatus.resx">
+    <EmbeddedResource Include="Front end\MainInterface\RecStatus.resx">
       <DependentUpon>RecStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialTestRec.resx">
+    <EmbeddedResource Include="Front end\MainInterface\TutorialTestRec.resx">
       <DependentUpon>TutorialTestRec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -211,19 +248,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\LoginUserControl.resx">
+    <EmbeddedResource Include="Front end\MainInterface\LoginUserControl.resx">
       <DependentUpon>LoginUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialPlayRec.resx">
+    <EmbeddedResource Include="Front end\MainInterface\TutorialPlayRec.resx">
       <DependentUpon>TutorialPlayRec.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialSelectRec.resx">
+    <EmbeddedResource Include="Front end\MainInterface\TutorialSelectRec.resx">
       <DependentUpon>TutorialSelectRec.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialStartRec.resx">
+    <EmbeddedResource Include="Front end\MainInterface\TutorialStartRec.resx">
       <DependentUpon>TutorialStartRec.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\TutorialUploadRec.resx">
+    <EmbeddedResource Include="Front end\MainInterface\TutorialUploadRec.resx">
       <DependentUpon>TutorialUploadRec.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
