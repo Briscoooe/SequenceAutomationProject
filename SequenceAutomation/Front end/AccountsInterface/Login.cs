@@ -8,13 +8,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SequenceAutomation.Front_end.AccountsInterface
+namespace SequenceAutomation
 {
     public partial class Login : UserControl
     {
+        public event EventHandler LoginEvent;
+        public event EventHandler GoBackEvent;
+
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            if (LoginEvent != null)
+                LoginEvent(this, new EventArgs());
+        }
+
+        private void goBackEvent(object sender, EventArgs e)
+        {
+            if (GoBackEvent != null)
+                GoBackEvent(this, e);
+        }
+
+        private void checkChanged(object sender, EventArgs e)
+        {
+            if (loggedInCheck.Checked)
+            {
+                Properties.Settings.Default.keepLoggedIn = true;
+            }
+
+            else
+            {
+                Properties.Settings.Default.keepLoggedIn = false;
+            }
+        }
+
+        private void goBackBtn_MouseLeave(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
+        }
+
+        private void goBackBtn_MouseEnter(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
         }
     }
 }

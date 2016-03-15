@@ -41,6 +41,8 @@ namespace SequenceAutomation
             if (temp.Count == 0)
             {
                 temp.Add("No results");
+                recTitleLabel.Text = "Unavailable";
+                recDescLabel.Text = "Unavailable";
             }
             recordingsList.DataSource = temp;
         }
@@ -73,6 +75,8 @@ namespace SequenceAutomation
             if(recList.Count == 0)
             {
                 recList.Add("No favourites", "");
+                recTitleLabel.Text = "Unavailable";
+                recDescLabel.Text = "Unavailable";
             }
             recordingsList.DataSource = (from keys in recList.Keys select keys).ToList();
             ActiveControl = recordingsList;

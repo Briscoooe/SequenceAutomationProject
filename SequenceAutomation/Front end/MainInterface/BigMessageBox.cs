@@ -11,7 +11,6 @@ namespace SequenceAutomation
 {
     public partial class BigMessageBox : Form
     {
-
         static BigMessageBox newMessageBox;
 
         public BigMessageBox()
@@ -26,18 +25,9 @@ namespace SequenceAutomation
             newMessageBox.ShowDialog();
         }
 
-        public static void Show(string txtMessage, string txtTitle)
-        {
-            newMessageBox = new BigMessageBox();
-            newMessageBox.messageTitle.Text = txtTitle;
-            newMessageBox.messageBody.Text = txtMessage;
-            newMessageBox.ShowDialog();
-        }
-
         private void Close(object sender, EventArgs e)
         {
             newMessageBox.Dispose();
         }
-
     }
 }

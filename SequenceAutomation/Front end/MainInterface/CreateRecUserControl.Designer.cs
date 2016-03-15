@@ -50,6 +50,7 @@ namespace SequenceAutomation
             this.recDescTb = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.showTutorialBtn = new System.Windows.Forms.Button();
+            this.loginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // testRecBtn
@@ -182,7 +183,7 @@ namespace SequenceAutomation
             this.favouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.favouriteBtn.Location = new System.Drawing.Point(995, 397);
+            this.favouriteBtn.Location = new System.Drawing.Point(995, 289);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 9;
@@ -195,7 +196,7 @@ namespace SequenceAutomation
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(719, 431);
+            this.label7.Location = new System.Drawing.Point(729, 321);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(243, 33);
             this.label7.TabIndex = 58;
@@ -205,7 +206,7 @@ namespace SequenceAutomation
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(719, 172);
+            this.label6.Location = new System.Drawing.Point(740, 458);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 33);
             this.label6.TabIndex = 57;
@@ -215,7 +216,7 @@ namespace SequenceAutomation
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(719, 303);
+            this.label5.Location = new System.Drawing.Point(729, 191);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(254, 33);
             this.label5.TabIndex = 56;
@@ -231,7 +232,7 @@ namespace SequenceAutomation
             this.saveBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.saveBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveBtn.Location = new System.Drawing.Point(995, 265);
+            this.saveBtn.Location = new System.Drawing.Point(1005, 153);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
             this.saveBtn.TabIndex = 8;
@@ -250,7 +251,7 @@ namespace SequenceAutomation
             this.uploadBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.uploadBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uploadBtn.Location = new System.Drawing.Point(985, 137);
+            this.uploadBtn.Location = new System.Drawing.Point(995, 423);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
             this.uploadBtn.TabIndex = 7;
@@ -321,12 +322,28 @@ namespace SequenceAutomation
             this.showTutorialBtn.UseVisualStyleBackColor = false;
             this.showTutorialBtn.Click += new System.EventHandler(this.showTutorial);
             // 
+            // loginBtn
+            // 
+            this.loginBtn.BackColor = System.Drawing.Color.White;
+            this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginBtn.FlatAppearance.BorderSize = 3;
+            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Location = new System.Drawing.Point(964, 529);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(151, 69);
+            this.loginBtn.TabIndex = 67;
+            this.loginBtn.Text = "Login";
+            this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.login);
+            // 
             // CreateRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.showTutorialBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -376,5 +393,6 @@ namespace SequenceAutomation
         private System.Windows.Forms.RichTextBox recDescTb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button showTutorialBtn;
+        private System.Windows.Forms.Button loginBtn;
     }
 }

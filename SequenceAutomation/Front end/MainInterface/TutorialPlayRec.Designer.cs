@@ -45,6 +45,8 @@ namespace SequenceAutomation
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.recSpeedLabel = new System.Windows.Forms.Label();
+            this.addFavouriteBtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label12
@@ -125,7 +127,7 @@ namespace SequenceAutomation
             this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeBtn.Location = new System.Drawing.Point(804, 3);
+            this.homeBtn.Location = new System.Drawing.Point(1212, 3);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(110, 110);
             this.homeBtn.TabIndex = 30;
@@ -144,7 +146,7 @@ namespace SequenceAutomation
             this.doneBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.doneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doneBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doneBtn.Location = new System.Drawing.Point(770, 399);
+            this.doneBtn.Location = new System.Drawing.Point(1178, 399);
             this.doneBtn.Name = "doneBtn";
             this.doneBtn.Size = new System.Drawing.Size(144, 120);
             this.doneBtn.TabIndex = 28;
@@ -251,11 +253,42 @@ namespace SequenceAutomation
             this.recSpeedLabel.TabIndex = 37;
             this.recSpeedLabel.Text = " 3 - Normal";
             // 
+            // addFavouriteBtn
+            // 
+            this.addFavouriteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.addtofavourites;
+            this.addFavouriteBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.addFavouriteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addFavouriteBtn.FlatAppearance.BorderSize = 0;
+            this.addFavouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.addFavouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addFavouriteBtn.Location = new System.Drawing.Point(940, 281);
+            this.addFavouriteBtn.Name = "addFavouriteBtn";
+            this.addFavouriteBtn.Size = new System.Drawing.Size(150, 129);
+            this.addFavouriteBtn.TabIndex = 86;
+            this.addFavouriteBtn.UseVisualStyleBackColor = false;
+            this.addFavouriteBtn.Click += new System.EventHandler(this.addToFavourites);
+            this.addFavouriteBtn.MouseEnter += new System.EventHandler(this.addFavouriteBtn_MouseEnter);
+            this.addFavouriteBtn.MouseLeave += new System.EventHandler(this.addFavouriteBtn_MouseLeave);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(866, 154);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(456, 124);
+            this.label6.TabIndex = 87;
+            this.label6.Text = "If you wish to use this recording for later use, save it to your favourites";
+            // 
             // TutorialPlayRec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.addFavouriteBtn);
             this.Controls.Add(this.recSpeedLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -272,7 +305,7 @@ namespace SequenceAutomation
             this.Controls.Add(this.label1);
             this.Controls.Add(this.playRecBtn);
             this.Name = "TutorialPlayRec";
-            this.Size = new System.Drawing.Size(917, 522);
+            this.Size = new System.Drawing.Size(1325, 522);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +327,7 @@ namespace SequenceAutomation
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label recSpeedLabel;
+        private System.Windows.Forms.Button addFavouriteBtn;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -36,13 +36,10 @@
             // 
             // messageTimer
             // 
-            this.messageTimer.AutoSize = true;
-            this.messageTimer.BackColor = System.Drawing.Color.Transparent;
-            this.messageTimer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageTimer.Location = new System.Drawing.Point(9, 120);
+            this.messageTimer.Location = new System.Drawing.Point(0, 0);
             this.messageTimer.Name = "messageTimer";
-            this.messageTimer.Size = new System.Drawing.Size(0, 16);
-            this.messageTimer.TabIndex = 4;
+            this.messageTimer.Size = new System.Drawing.Size(100, 23);
+            this.messageTimer.TabIndex = 12;
             // 
             // OkBtn
             // 
@@ -74,9 +71,9 @@
             // messageBody
             // 
             this.messageBody.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageBody.Location = new System.Drawing.Point(74, 35);
+            this.messageBody.Location = new System.Drawing.Point(42, 35);
             this.messageBody.Name = "messageBody";
-            this.messageBody.Size = new System.Drawing.Size(388, 138);
+            this.messageBody.Size = new System.Drawing.Size(472, 169);
             this.messageBody.TabIndex = 9;
             // 
             // BigMessageBox

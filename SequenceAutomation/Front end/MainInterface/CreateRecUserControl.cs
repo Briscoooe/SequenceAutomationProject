@@ -250,9 +250,15 @@ namespace SequenceAutomation
 
         private bool validateInput(int option)
         {
-            if(recJson == null)
+            if (Properties.Settings.Default.currentUser == "" && option == 1)
             {
-                BigMessageBox.Show("You must create a recording", "Error");
+                BigMessageBox.Show("You must be logged in to upload recordings. You can do this using the \"login\" option below");
+                return false;
+            }
+
+            if (recJson == null)
+            {
+                BigMessageBox.Show("You must create a recording");
                 return false;
             }
 
@@ -323,6 +329,12 @@ namespace SequenceAutomation
             Properties.Settings.Default.Save();
 
 
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            AccountContainer accountsContainer = new AccountContainer();
+            accountsContainer.Show();
         }
     }
 }

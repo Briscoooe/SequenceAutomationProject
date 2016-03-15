@@ -87,5 +87,29 @@ namespace SequenceAutomation.Properties {
                 this["favouriteRecordings"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string currentUser {
+            get {
+                return ((string)(this["currentUser"]));
+            }
+            set {
+                this["currentUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool keepLoggedIn {
+            get {
+                return ((bool)(this["keepLoggedIn"]));
+            }
+            set {
+                this["keepLoggedIn"] = value;
+            }
+        }
     }
 }

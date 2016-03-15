@@ -109,6 +109,65 @@ namespace SequenceAutomation
             decreaseBtn.BackgroundImage = Properties.Resources.downarrow_hover;
         }
 
+        private void addFavouriteBtn_MouseEnter(object sender, EventArgs e)
+        {
+            addFavouriteBtn.BackgroundImage = Properties.Resources.addtofavourites_hover;
+        }
+
+        private void addFavouriteBtn_MouseLeave(object sender, EventArgs e)
+        {
+            addFavouriteBtn.BackgroundImage = Properties.Resources.addtofavourites;
+        }
+
+        private void addToFavourites(object sender, EventArgs e)
+        {
+            if (recJson != "" && recJson != null)
+            {
+                if (Properties.Settings.Default.favouriteRecordings == null)
+                {
+                    Properties.Settings.Default.favouriteRecordings = new List<string>();
+                }
+                List<string> tmp = new List<string>();
+                tmp = Properties.Settings.Default.favouriteRecordings;
+                int x = 0;
+
+                if (tmp.Count > 0)
+                {
+                    foreach (string s in tmp)
+                    {
+                        if (recJson == s)
+                        {
+                            x++;
+                        }
+                    }
+
+                    if (x == 0)
+                    {
+                        Properties.Settings.Default.favouriteRecordings.Add(recJson);
+                        BigMessageBox.Show("Added to favourites");
+                    }
+                    else
+                    {
+                        BigMessageBox.Show("This recording is already in your favourites");
+                    }
+                }
+
+                else
+                {
+                    Properties.Settings.Default.favouriteRecordings = new List<string>();
+                    Properties.Settings.Default.favouriteRecordings.Add("");
+                    addToFavourites(sender, e);
+                }
+            }
+
+            else
+            {
+                BigMessageBox.Show("There is no recording to be added to favourites");
+            }
+
+            Properties.Settings.Default.Save();
+        }
+
         /*
          * Method: launchPlaying()
          * Summary: Begins the playback of keystrokes

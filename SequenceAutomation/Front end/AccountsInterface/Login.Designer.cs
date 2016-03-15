@@ -1,4 +1,4 @@
-﻿namespace SequenceAutomation.Front_end.AccountsInterface
+﻿namespace SequenceAutomation
 {
     partial class Login
     {
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.showTutorialBtn = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.loginBtn = new System.Windows.Forms.Button();
+            this.loggedInCheck = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,30 +38,32 @@
             this.goBackBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // showTutorialBtn
+            // loginBtn
             // 
-            this.showTutorialBtn.BackColor = System.Drawing.Color.White;
-            this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showTutorialBtn.FlatAppearance.BorderSize = 3;
-            this.showTutorialBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showTutorialBtn.Location = new System.Drawing.Point(214, 291);
-            this.showTutorialBtn.Name = "showTutorialBtn";
-            this.showTutorialBtn.Size = new System.Drawing.Size(196, 60);
-            this.showTutorialBtn.TabIndex = 88;
-            this.showTutorialBtn.Text = "Login";
-            this.showTutorialBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.BackColor = System.Drawing.Color.White;
+            this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginBtn.FlatAppearance.BorderSize = 3;
+            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Location = new System.Drawing.Point(214, 315);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(196, 60);
+            this.loginBtn.TabIndex = 88;
+            this.loginBtn.Text = "Login";
+            this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.login);
             // 
-            // checkBox1
+            // loggedInCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(125, 239);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(285, 36);
-            this.checkBox1.TabIndex = 87;
-            this.checkBox1.Text = "Keep me logged in";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.loggedInCheck.AutoSize = true;
+            this.loggedInCheck.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loggedInCheck.Location = new System.Drawing.Point(125, 257);
+            this.loggedInCheck.Name = "loggedInCheck";
+            this.loggedInCheck.Size = new System.Drawing.Size(285, 36);
+            this.loggedInCheck.TabIndex = 87;
+            this.loggedInCheck.Text = "Keep me logged in";
+            this.loggedInCheck.UseVisualStyleBackColor = true;
+            this.loggedInCheck.Click += new System.EventHandler(this.checkChanged);
             // 
             // label4
             // 
@@ -76,7 +78,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(30, 161);
+            this.label3.Location = new System.Drawing.Point(30, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(304, 37);
             this.label3.TabIndex = 85;
@@ -96,6 +98,7 @@
             // 
             this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTb.Location = new System.Drawing.Point(36, 118);
+            this.usernameTb.Multiline = false;
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(374, 31);
             this.usernameTb.TabIndex = 82;
@@ -104,7 +107,8 @@
             // passwordTb
             // 
             this.passwordTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTb.Location = new System.Drawing.Point(34, 201);
+            this.passwordTb.Location = new System.Drawing.Point(34, 217);
+            this.passwordTb.Multiline = false;
             this.passwordTb.Name = "passwordTb";
             this.passwordTb.Size = new System.Drawing.Size(376, 34);
             this.passwordTb.TabIndex = 83;
@@ -125,6 +129,9 @@
             this.goBackBtn.Size = new System.Drawing.Size(169, 73);
             this.goBackBtn.TabIndex = 89;
             this.goBackBtn.UseVisualStyleBackColor = true;
+            this.goBackBtn.Click += new System.EventHandler(this.goBackEvent);
+            this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
+            this.goBackBtn.MouseLeave += new System.EventHandler(this.goBackBtn_MouseLeave);
             // 
             // Login
             // 
@@ -132,15 +139,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.Controls.Add(this.goBackBtn);
-            this.Controls.Add(this.showTutorialBtn);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.loginBtn);
+            this.Controls.Add(this.loggedInCheck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usernameTb);
             this.Controls.Add(this.passwordTb);
             this.Name = "Login";
-            this.Size = new System.Drawing.Size(583, 378);
+            this.Size = new System.Drawing.Size(515, 415);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,8 +156,8 @@
         #endregion
 
         private System.Windows.Forms.Button goBackBtn;
-        private System.Windows.Forms.Button showTutorialBtn;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.CheckBox loggedInCheck;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
