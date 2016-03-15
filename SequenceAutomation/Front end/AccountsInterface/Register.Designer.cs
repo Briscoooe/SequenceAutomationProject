@@ -42,7 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.password2Tb = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.emailTb = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // goBackBtn
@@ -74,7 +74,7 @@
             this.registerBtn.Location = new System.Drawing.Point(420, 644);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(196, 60);
-            this.registerBtn.TabIndex = 96;
+            this.registerBtn.TabIndex = 7;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = false;
             this.registerBtn.Click += new System.EventHandler(this.register);
@@ -115,7 +115,7 @@
             this.firstnameTb.Multiline = false;
             this.firstnameTb.Name = "firstnameTb";
             this.firstnameTb.Size = new System.Drawing.Size(408, 31);
-            this.firstnameTb.TabIndex = 90;
+            this.firstnameTb.TabIndex = 1;
             this.firstnameTb.Text = "";
             // 
             // surnameTb
@@ -125,7 +125,7 @@
             this.surnameTb.Multiline = false;
             this.surnameTb.Name = "surnameTb";
             this.surnameTb.Size = new System.Drawing.Size(410, 34);
-            this.surnameTb.TabIndex = 91;
+            this.surnameTb.TabIndex = 2;
             this.surnameTb.Text = "";
             // 
             // password
@@ -154,7 +154,7 @@
             this.usernameTb.Multiline = false;
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(408, 31);
-            this.usernameTb.TabIndex = 98;
+            this.usernameTb.TabIndex = 4;
             this.usernameTb.Text = "";
             // 
             // password1Tb
@@ -164,7 +164,7 @@
             this.password1Tb.Multiline = false;
             this.password1Tb.Name = "password1Tb";
             this.password1Tb.Size = new System.Drawing.Size(410, 34);
-            this.password1Tb.TabIndex = 99;
+            this.password1Tb.TabIndex = 5;
             this.password1Tb.Text = "";
             // 
             // label6
@@ -183,7 +183,7 @@
             this.password2Tb.Multiline = false;
             this.password2Tb.Name = "password2Tb";
             this.password2Tb.Size = new System.Drawing.Size(410, 34);
-            this.password2Tb.TabIndex = 102;
+            this.password2Tb.TabIndex = 6;
             this.password2Tb.Text = "";
             // 
             // label1
@@ -195,15 +195,15 @@
             this.label1.TabIndex = 105;
             this.label1.Text = "Email (optional)";
             // 
-            // richTextBox1
+            // emailTb
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(30, 313);
-            this.richTextBox1.Multiline = false;
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(410, 34);
-            this.richTextBox1.TabIndex = 104;
-            this.richTextBox1.Text = "";
+            this.emailTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTb.Location = new System.Drawing.Point(30, 313);
+            this.emailTb.Multiline = false;
+            this.emailTb.Name = "emailTb";
+            this.emailTb.Size = new System.Drawing.Size(410, 34);
+            this.emailTb.TabIndex = 3;
+            this.emailTb.Text = "";
             // 
             // Register
             // 
@@ -211,7 +211,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.emailTb);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.password2Tb);
             this.Controls.Add(this.password);
@@ -248,6 +248,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox password2Tb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox emailTb;
     }
 }

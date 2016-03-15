@@ -97,6 +97,8 @@ namespace SequenceAutomation
                 temp.Add("No results");
             }
 
+            recordingsList.DataSource = temp;
+
         }
         private void updateList(object sender, EventArgs e)
         {

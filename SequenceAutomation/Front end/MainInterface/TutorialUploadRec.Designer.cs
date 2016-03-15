@@ -45,6 +45,7 @@
             this.goBackBtn = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.loginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label4
@@ -108,7 +109,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(479, 356);
+            this.label5.Location = new System.Drawing.Point(479, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(254, 33);
             this.label5.TabIndex = 49;
@@ -118,7 +119,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(479, 231);
+            this.label6.Location = new System.Drawing.Point(479, 498);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 33);
             this.label6.TabIndex = 50;
@@ -128,7 +129,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(479, 490);
+            this.label7.Location = new System.Drawing.Point(479, 353);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(243, 33);
             this.label7.TabIndex = 51;
@@ -144,7 +145,7 @@
             this.favouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.favouriteBtn.Location = new System.Drawing.Point(755, 456);
+            this.favouriteBtn.Location = new System.Drawing.Point(755, 319);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 4;
@@ -163,7 +164,7 @@
             this.saveBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.saveBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveBtn.Location = new System.Drawing.Point(755, 324);
+            this.saveBtn.Location = new System.Drawing.Point(755, 187);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
             this.saveBtn.TabIndex = 3;
@@ -182,7 +183,7 @@
             this.uploadBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.uploadBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uploadBtn.Location = new System.Drawing.Point(745, 196);
+            this.uploadBtn.Location = new System.Drawing.Point(745, 463);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
             this.uploadBtn.TabIndex = 2;
@@ -269,11 +270,27 @@
             this.label9.TabIndex = 54;
             this.label9.Text = "Enter the relevant information here";
             // 
+            // loginBtn
+            // 
+            this.loginBtn.BackColor = System.Drawing.Color.White;
+            this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginBtn.FlatAppearance.BorderSize = 3;
+            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Location = new System.Drawing.Point(714, 576);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(151, 69);
+            this.loginBtn.TabIndex = 68;
+            this.loginBtn.Text = "Login";
+            this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.login);
+            // 
             // TutorialUploadRec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.favouriteBtn);
@@ -316,5 +333,6 @@
         private System.Windows.Forms.Button favouriteBtn;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button loginBtn;
     }
 }

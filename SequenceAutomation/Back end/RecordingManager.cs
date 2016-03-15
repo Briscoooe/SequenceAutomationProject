@@ -93,7 +93,7 @@ namespace SequenceAutomation
          * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
          * Return: A string comprising both the savedKeys and contexts as one organised JSON string
          */
-        private void mergeToJson()
+        private bool mergeToJson()
         {
             // Convert the dictionaries to JSON strings
             string keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
@@ -108,6 +108,8 @@ namespace SequenceAutomation
             keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
 
             keysJson =  keysObject.ToString();
+
+            return true;
 
         }
 

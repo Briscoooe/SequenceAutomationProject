@@ -22,8 +22,19 @@ namespace SequenceAutomation
 
         private void login(object sender, EventArgs e)
         {
-            if (LoginEvent != null)
-                LoginEvent(this, new EventArgs());
+            DatabaseManager dbManager = new DatabaseManager();
+            if (dbManager.login(usernameTb.Text, passwordTb.Text))
+            {
+                BigMessageBox.Show("Logged in successfully");
+                Properties.Settings.Default.currentUser = "Test";
+                if (LoginEvent != null)
+                    LoginEvent(this, new EventArgs());
+            }
+
+            else
+            {
+                BigMessageBox.Show("Username/email or password is incorrect");
+            }
         }
 
         private void goBackEvent(object sender, EventArgs e)

@@ -27,6 +27,21 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
+        public bool checkLogin()
+        {
+            if (Properties.Settings.Default.currentUser == "")
+            {
+                loginBtn.Text = "Login";
+            }
+
+            else
+            {
+                loginBtn.Text = "Logout";
+            }
+
+            return true;
+        }
+
         private void gotoLogin(object sender, EventArgs e)
         {
             if (gotoLoginEvent != null)
@@ -167,6 +182,12 @@ namespace SequenceAutomation
 
         private bool validateInput(int option)
         {
+            if (Properties.Settings.Default.currentUser == "" && option == 1)
+            {
+                BigMessageBox.Show("You must be logged in to upload recordings. You can do this using the \"login\" option below");
+                return false;
+            }
+
             if (recJson == null)
             {
                 BigMessageBox.Show("You must create a recording");
@@ -187,6 +208,12 @@ namespace SequenceAutomation
 
             Console.WriteLine("Input valid");
             return true;
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            AccountContainer accountsContainer = new AccountContainer();
+            accountsContainer.Show();
         }
 
         private void goBackBtn_MouseLeave(object sender, EventArgs e)

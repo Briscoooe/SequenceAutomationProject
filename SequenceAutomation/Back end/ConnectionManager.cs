@@ -34,7 +34,7 @@ namespace SequenceAutomation
             try
             {
                 TcpClient client = new TcpClient();
-                if (!client.ConnectAsync(domain, 80).Wait(1000))
+                if (!client.ConnectAsync(domain, 80).Wait(2000))
                 {
                     return false;
                 }

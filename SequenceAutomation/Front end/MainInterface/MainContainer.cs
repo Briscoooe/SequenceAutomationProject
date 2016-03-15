@@ -80,6 +80,7 @@ namespace SequenceAutomation
             if (e.json != "")
                 tutorialUploadRec.recJson = e.json;
             ClientSize = new Size(1065, 719);
+            tutorialUploadRec.checkLogin();
             tutorialUploadRec.BringToFront();
             CenterToScreen();
         }
@@ -160,6 +161,7 @@ namespace SequenceAutomation
         protected void gotoCreate(object sender, EventArgs e)
         {
             createRecUserControl.BringToFront();
+            createRecUserControl.checkLogin();
             ClientSize = new Size(1208, 612);
             CenterToScreen();
         }

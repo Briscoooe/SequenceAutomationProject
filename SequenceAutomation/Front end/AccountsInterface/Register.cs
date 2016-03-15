@@ -22,8 +22,20 @@ namespace SequenceAutomation
 
         private void register(object sender, EventArgs e)
         {
-            if (RegisterEvent != null)
-                RegisterEvent(this, new EventArgs());
+
+            DatabaseManager dbManager = new DatabaseManager();
+            if (dbManager.register(firstnameTb.Text, surnameTb.Text, emailTb.Text, usernameTb.Text, password1Tb.Text))
+            {
+                BigMessageBox.Show("Account created! You may now log in");
+                if (RegisterEvent != null)
+                    RegisterEvent(this, new EventArgs());
+            }
+
+            else
+            {
+                BigMessageBox.Show("Username or password is incorrect");
+            }
+            
         }
 
         private void goBack(object sender, EventArgs e)

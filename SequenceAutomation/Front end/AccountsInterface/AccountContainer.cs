@@ -12,6 +12,8 @@ namespace SequenceAutomation
 {
     public partial class AccountContainer : Form
     {
+        public event EventHandler loggedInEvent;
+
         public AccountContainer()
         {
             InitializeComponent();
@@ -24,10 +26,17 @@ namespace SequenceAutomation
             options.RegisterEvent += gotoRegister;
 
             register1.GoBackEvent += gotoOptions;
-            register1.RegisterEvent += gotoOptions;
+            register1.RegisterEvent += gotoLogin;
 
             login1.GoBackEvent += gotoOptions;
-            login1.LoginEvent += close;
+            login1.LoginEvent += loggedIn;
+        }
+
+        private void loggedIn(object sender, EventArgs e)
+        {
+            if (loggedInEvent != null)
+                loggedInEvent(this, e);
+            Dispose();
         }
 
         private void gotoOptions(object sender, EventArgs e)

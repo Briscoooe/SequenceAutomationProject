@@ -182,8 +182,6 @@ namespace SequenceAutomation
             if (connectionManager.testConnection())
             {
                 recList = connectionManager.getRecordings();
-                recordingsList.Enabled = true;
-                ActiveControl = recordingsList;
             }
 
             else
@@ -195,6 +193,7 @@ namespace SequenceAutomation
             }
 
             recordingsList.DataSource = recList;
+            ActiveControl = recordingsList;
         }
 
         private void updateList(object sender, EventArgs e)

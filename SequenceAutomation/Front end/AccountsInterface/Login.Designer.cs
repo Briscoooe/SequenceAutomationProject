@@ -48,7 +48,7 @@
             this.loginBtn.Location = new System.Drawing.Point(214, 315);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(196, 60);
-            this.loginBtn.TabIndex = 88;
+            this.loginBtn.TabIndex = 4;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.login);
@@ -60,7 +60,7 @@
             this.loggedInCheck.Location = new System.Drawing.Point(125, 257);
             this.loggedInCheck.Name = "loggedInCheck";
             this.loggedInCheck.Size = new System.Drawing.Size(285, 36);
-            this.loggedInCheck.TabIndex = 87;
+            this.loggedInCheck.TabIndex = 3;
             this.loggedInCheck.Text = "Keep me logged in";
             this.loggedInCheck.UseVisualStyleBackColor = true;
             this.loggedInCheck.Click += new System.EventHandler(this.checkChanged);
@@ -101,7 +101,7 @@
             this.usernameTb.Multiline = false;
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(374, 31);
-            this.usernameTb.TabIndex = 82;
+            this.usernameTb.TabIndex = 1;
             this.usernameTb.Text = "";
             // 
             // passwordTb
@@ -111,7 +111,7 @@
             this.passwordTb.Multiline = false;
             this.passwordTb.Name = "passwordTb";
             this.passwordTb.Size = new System.Drawing.Size(376, 34);
-            this.passwordTb.TabIndex = 83;
+            this.passwordTb.TabIndex = 2;
             this.passwordTb.Text = "";
             // 
             // goBackBtn

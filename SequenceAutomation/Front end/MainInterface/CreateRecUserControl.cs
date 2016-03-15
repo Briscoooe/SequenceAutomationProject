@@ -17,6 +17,7 @@ namespace SequenceAutomation
         public event EventHandler ShowTutorialEvent;
 
         private CreateRecording createRec;
+        private AccountContainer accountContainer;
         private RecordingManager recManager;
         private ConnectionManager connectionManager;
         private PlayRecording playRec;
@@ -331,10 +332,42 @@ namespace SequenceAutomation
 
         }
 
+        public bool checkLogin()
+        {
+            if(Properties.Settings.Default.currentUser == "")
+            {
+                loginBtn.Text = "Login";
+            }
+
+            else
+            {
+                loginBtn.Text = "Logout";
+            }
+
+            return true;
+        }
+
+        private void returnLogin(object sender, EventArgs e)
+        {
+            checkLogin();
+        }
+
         private void login(object sender, EventArgs e)
         {
-            AccountContainer accountsContainer = new AccountContainer();
-            accountsContainer.Show();
+            accountContainer = new AccountContainer();
+
+            if(loginBtn.Text == "Login")
+            {
+                accountContainer.Show();
+                accountContainer.loggedInEvent += returnLogin;
+            }
+
+            else
+            {
+                Properties.Settings.Default.currentUser = "";
+                BigMessageBox.Show("Logged out");
+                checkLogin();
+            }
         }
     }
 }
