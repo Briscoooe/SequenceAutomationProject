@@ -18,6 +18,7 @@ namespace SequenceAutomation
         public event EventHandler goNextEvent;
         public event EventHandler<TextEventArgs> goBackEvent;
         private RecordingManager recManager;
+        private AccountContainer accountContainer;
 
         public string recJson = "";
         private ConnectionManager connectionManager;
@@ -27,20 +28,6 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
-        public bool checkLogin()
-        {
-            if (Properties.Settings.Default.currentUser == "")
-            {
-                loginBtn.Text = "Login";
-            }
-
-            else
-            {
-                loginBtn.Text = "Logout";
-            }
-
-            return true;
-        }
 
         private void gotoLogin(object sender, EventArgs e)
         {
@@ -153,7 +140,7 @@ namespace SequenceAutomation
                 {
                     recManager = new RecordingManager(recJson);
                     recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.upload(recJson))
+                    if (connectionManager.uploadRecording(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
                         BigMessageBox.Show("There was a problem with the server");
@@ -210,11 +197,44 @@ namespace SequenceAutomation
             return true;
         }
 
+        public bool checkLogin()
+        {
+            if (Properties.Settings.Default.currentUser == "")
+            {
+                loginBtn.Text = "Login";
+            }
+
+            else
+            {
+                loginBtn.Text = "Logout";
+            }
+
+            return true;
+        }
+
+        private void returnLogin(object sender, EventArgs e)
+        {
+            checkLogin();
+        }
+
         private void login(object sender, EventArgs e)
         {
-            AccountContainer accountsContainer = new AccountContainer();
-            accountsContainer.Show();
+            accountContainer = new AccountContainer();
+
+            if (loginBtn.Text == "Login")
+            {
+                accountContainer.Show();
+                accountContainer.loggedInEvent += returnLogin;
+            }
+
+            else
+            {
+                Properties.Settings.Default.currentUser = "";
+                BigMessageBox.Show("Logged out");
+                checkLogin();
+            }
         }
+
 
         private void goBackBtn_MouseLeave(object sender, EventArgs e)
         {

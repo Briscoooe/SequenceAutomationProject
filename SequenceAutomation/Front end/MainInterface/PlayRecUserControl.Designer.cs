@@ -48,6 +48,9 @@
             this.decreaseBtn = new System.Windows.Forms.Button();
             this.increaseBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.recAuthorLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.searchBox = new SequenceAutomation.SearchBox();
             this.SuspendLayout();
             // 
@@ -79,9 +82,9 @@
             // recDescLabel
             // 
             this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescLabel.Location = new System.Drawing.Point(728, 294);
+            this.recDescLabel.Location = new System.Drawing.Point(856, 361);
             this.recDescLabel.Name = "recDescLabel";
-            this.recDescLabel.Size = new System.Drawing.Size(361, 319);
+            this.recDescLabel.Size = new System.Drawing.Size(361, 295);
             this.recDescLabel.TabIndex = 61;
             this.recDescLabel.Text = "Unavailable";
             // 
@@ -89,7 +92,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(728, 248);
+            this.label7.Location = new System.Drawing.Point(856, 319);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 32);
             this.label7.TabIndex = 60;
@@ -99,7 +102,7 @@
             // 
             this.recTitleLabel.AutoSize = true;
             this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recTitleLabel.Location = new System.Drawing.Point(728, 196);
+            this.recTitleLabel.Location = new System.Drawing.Point(856, 194);
             this.recTitleLabel.Name = "recTitleLabel";
             this.recTitleLabel.Size = new System.Drawing.Size(173, 33);
             this.recTitleLabel.TabIndex = 59;
@@ -109,7 +112,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(728, 157);
+            this.label6.Location = new System.Drawing.Point(856, 158);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 32);
             this.label6.TabIndex = 58;
@@ -119,7 +122,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(728, 116);
+            this.label5.Location = new System.Drawing.Point(856, 114);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 32);
             this.label5.TabIndex = 57;
@@ -132,7 +135,7 @@
             this.recordingsList.ItemHeight = 24;
             this.recordingsList.Location = new System.Drawing.Point(418, 158);
             this.recordingsList.Name = "recordingsList";
-            this.recordingsList.Size = new System.Drawing.Size(304, 388);
+            this.recordingsList.Size = new System.Drawing.Size(409, 364);
             this.recordingsList.TabIndex = 56;
             this.recordingsList.SelectedIndexChanged += new System.EventHandler(this.updateList);
             // 
@@ -195,7 +198,7 @@
             this.favouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.favouriteBtn.Location = new System.Drawing.Point(612, 559);
+            this.favouriteBtn.Location = new System.Drawing.Point(418, 554);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 68;
@@ -214,7 +217,7 @@
             this.browseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.browseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.browseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.browseBtn.Location = new System.Drawing.Point(418, 567);
+            this.browseBtn.Location = new System.Drawing.Point(555, 562);
             this.browseBtn.Name = "browseBtn";
             this.browseBtn.Size = new System.Drawing.Size(131, 94);
             this.browseBtn.TabIndex = 66;
@@ -232,7 +235,7 @@
             this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeBtn.Location = new System.Drawing.Point(1065, 3);
+            this.homeBtn.Location = new System.Drawing.Point(1148, 4);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(110, 110);
             this.homeBtn.TabIndex = 63;
@@ -322,12 +325,51 @@
             this.label1.TabIndex = 89;
             this.label1.Text = "Speed";
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.delete;
+            this.deleteBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.deleteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteBtn.FlatAppearance.BorderSize = 0;
+            this.deleteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.deleteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteBtn.Location = new System.Drawing.Point(727, 544);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(100, 120);
+            this.deleteBtn.TabIndex = 90;
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteRec);
+            this.deleteBtn.MouseEnter += new System.EventHandler(this.deleteBtn_mouseEnter);
+            this.deleteBtn.MouseLeave += new System.EventHandler(this.deleteBtn_mouseLeave);
+            // 
+            // recAuthorLabel
+            // 
+            this.recAuthorLabel.AutoSize = true;
+            this.recAuthorLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recAuthorLabel.Location = new System.Drawing.Point(856, 274);
+            this.recAuthorLabel.Name = "recAuthorLabel";
+            this.recAuthorLabel.Size = new System.Drawing.Size(173, 33);
+            this.recAuthorLabel.TabIndex = 92;
+            this.recAuthorLabel.Text = "Unavailable";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(856, 236);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 32);
+            this.label4.TabIndex = 91;
+            this.label4.Text = "Author";
+            // 
             // searchBox
             // 
             this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.Location = new System.Drawing.Point(418, 115);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(304, 33);
+            this.searchBox.Size = new System.Drawing.Size(409, 33);
             this.searchBox.TabIndex = 64;
             this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
@@ -337,6 +379,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.recAuthorLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.recSpeedLabel);
             this.Controls.Add(this.decreaseBtn);
@@ -359,7 +404,7 @@
             this.Controls.Add(this.showTutorialBtn);
             this.DoubleBuffered = true;
             this.Name = "PlayRecUserControl";
-            this.Size = new System.Drawing.Size(1178, 684);
+            this.Size = new System.Drawing.Size(1270, 680);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,5 +432,8 @@
         private System.Windows.Forms.Button decreaseBtn;
         private System.Windows.Forms.Button increaseBtn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Label recAuthorLabel;
+        private System.Windows.Forms.Label label4;
     }
 }

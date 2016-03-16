@@ -60,9 +60,9 @@ namespace SequenceAutomation.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings")]
-        public string urlString {
+        public string recordingUrl {
             get {
-                return ((string)(this["urlString"]));
+                return ((string)(this["recordingUrl"]));
             }
         }
         
@@ -109,6 +109,18 @@ namespace SequenceAutomation.Properties {
             }
             set {
                 this["keepLoggedIn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/users")]
+        public string usersUrl {
+            get {
+                return ((string)(this["usersUrl"]));
+            }
+            set {
+                this["usersUrl"] = value;
             }
         }
     }

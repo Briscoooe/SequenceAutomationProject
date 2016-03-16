@@ -16,7 +16,7 @@ namespace SequenceAutomation
         public string recJson;
         private Dictionary<string,string> recList;
         public event EventHandler doneSelectingEvent;
-        public Recording recording;
+        public RecordingManager recording;
 
         public FavouritesBox()
         {
@@ -57,7 +57,7 @@ namespace SequenceAutomation
                 if (rec != "")
                 {
                     Console.WriteLine(recList.Count);
-                    recording = new Recording(rec);
+                    recording = new RecordingManager(rec);
 
                     if (!recList.ContainsKey(recording.Title))
                     {
@@ -101,7 +101,7 @@ namespace SequenceAutomation
 
             if (recJson != "")
             {
-                recording = new Recording(recJson);
+                recording = new RecordingManager(recJson);
                 if (recording.Title == "" || recording.Title == null)
                 {
                     title = "Unavailable";
@@ -134,7 +134,7 @@ namespace SequenceAutomation
             {
                 if(rec != "")
                 {
-                    recording = new Recording(rec);
+                    recording = new RecordingManager(rec);
 
                     if (Convert.ToString(recording.Title) == recordingsList.SelectedItem.ToString())
                     {

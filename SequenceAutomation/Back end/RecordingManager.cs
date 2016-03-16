@@ -21,11 +21,31 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         public Random randomNum;
-        public string keysJson;
+        public string keysJson, recTitle, recDescription, recId, recUsername;
 
         #endregion
 
         #region Public methods
+
+        public string Title
+        {
+            get { return recTitle; }
+        }
+
+        public string Description
+        {
+            get { return recDescription; }
+        }
+
+        public string Id
+        {
+            get { return recId; }
+        }
+
+        public string Username
+        {
+            get { return recUsername; }
+        }
 
         /*
          * Method: RecordingManager()
@@ -33,6 +53,11 @@ namespace SequenceAutomation
          */
         public RecordingManager(string inputJson)
         {
+            dynamic recObj = JsonConvert.DeserializeObject(inputJson);
+            recTitle = recObj.Name;
+            recDescription = recObj.Desc;
+            recId = recObj.recId;
+            recUsername = recObj.userName;
             getDictionaries(inputJson);
         }
 
@@ -59,7 +84,7 @@ namespace SequenceAutomation
             tempObj.Name = title;
             tempObj.Desc = description;
             tempObj.recId = recId;
-            tempObj.userName = "";
+            tempObj.userName = Properties.Settings.Default.currentUser;
 
             return JsonConvert.SerializeObject(tempObj);
         }

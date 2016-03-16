@@ -15,8 +15,7 @@ namespace SequenceAutomation
          * Commmenting
          */
 
-        private string recJson;
-        private string recTitle;
+
         /*
          * Method: ApplicationContainer()
          * Summary: Class constructor
@@ -107,7 +106,7 @@ namespace SequenceAutomation
         {
             if (e.json != "")
             {
-                Recording recording = new Recording(e.json);
+                RecordingManager recording = new RecordingManager(e.json);
                 tutorialPlayRec.recJson = e.json;
                 tutorialPlayRec.currentRecTitle.Text = recording.Title;
                 tutorialPlayRec.recTitle = e.name;
@@ -148,7 +147,7 @@ namespace SequenceAutomation
         {
             playRecUserControl.prepareList();
             playRecUserControl.BringToFront();
-            ClientSize = new Size(1178, 684);
+            ClientSize = new Size(1270, 680);
             CenterToScreen();
         }
 

@@ -33,9 +33,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.usernameTb = new System.Windows.Forms.RichTextBox();
-            this.passwordTb = new System.Windows.Forms.RichTextBox();
             this.goBackBtn = new System.Windows.Forms.Button();
+            this.passwordTb = new System.Windows.Forms.TextBox();
+            this.usernameTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // loginBtn
@@ -94,26 +94,6 @@
             this.label2.TabIndex = 84;
             this.label2.Text = "Username or email adress";
             // 
-            // usernameTb
-            // 
-            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTb.Location = new System.Drawing.Point(36, 118);
-            this.usernameTb.Multiline = false;
-            this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(374, 31);
-            this.usernameTb.TabIndex = 1;
-            this.usernameTb.Text = "";
-            // 
-            // passwordTb
-            // 
-            this.passwordTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTb.Location = new System.Drawing.Point(34, 217);
-            this.passwordTb.Multiline = false;
-            this.passwordTb.Name = "passwordTb";
-            this.passwordTb.Size = new System.Drawing.Size(376, 34);
-            this.passwordTb.TabIndex = 2;
-            this.passwordTb.Text = "";
-            // 
             // goBackBtn
             // 
             this.goBackBtn.BackgroundImage = global::SequenceAutomation.Properties.Resources.backbutton;
@@ -133,19 +113,36 @@
             this.goBackBtn.MouseEnter += new System.EventHandler(this.goBackBtn_MouseEnter);
             this.goBackBtn.MouseLeave += new System.EventHandler(this.goBackBtn_MouseLeave);
             // 
+            // passwordTb
+            // 
+            this.passwordTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTb.Location = new System.Drawing.Point(36, 218);
+            this.passwordTb.Name = "passwordTb";
+            this.passwordTb.Size = new System.Drawing.Size(408, 33);
+            this.passwordTb.TabIndex = 2;
+            this.passwordTb.UseSystemPasswordChar = true;
+            // 
+            // usernameTb
+            // 
+            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTb.Location = new System.Drawing.Point(36, 130);
+            this.usernameTb.Name = "usernameTb";
+            this.usernameTb.Size = new System.Drawing.Size(408, 33);
+            this.usernameTb.TabIndex = 1;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.usernameTb);
+            this.Controls.Add(this.passwordTb);
             this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.loggedInCheck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.usernameTb);
-            this.Controls.Add(this.passwordTb);
             this.Name = "Login";
             this.Size = new System.Drawing.Size(515, 415);
             this.ResumeLayout(false);
@@ -161,7 +158,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox usernameTb;
-        private System.Windows.Forms.RichTextBox passwordTb;
+        private System.Windows.Forms.TextBox passwordTb;
+        private System.Windows.Forms.TextBox usernameTb;
     }
 }

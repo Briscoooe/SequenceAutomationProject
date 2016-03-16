@@ -22,18 +22,25 @@ namespace SequenceAutomation
 
         private void login(object sender, EventArgs e)
         {
-            DatabaseManager dbManager = new DatabaseManager();
-            if (dbManager.login(usernameTb.Text, passwordTb.Text))
+            ConnectionManager connectionManager= new ConnectionManager();
+            if (usernameTb.Text != "" && passwordTb.Text != "")
             {
-                BigMessageBox.Show("Logged in successfully");
-                Properties.Settings.Default.currentUser = "Test";
-                if (LoginEvent != null)
-                    LoginEvent(this, new EventArgs());
-            }
+                if (connectionManager.loginUser(usernameTb.Text, passwordTb.Text))
+                {
+                    BigMessageBox.Show("Logged in successfully");
+                    Properties.Settings.Default.currentUser = usernameTb.Text;
+                    if (LoginEvent != null)
+                        LoginEvent(this, new EventArgs());
+                }
 
+                else
+                {
+                    BigMessageBox.Show("Username/email or password is incorrect");
+                }
+            }
             else
             {
-                BigMessageBox.Show("Username/email or password is incorrect");
+                BigMessageBox.Show("You must fill in both fields");
             }
         }
 

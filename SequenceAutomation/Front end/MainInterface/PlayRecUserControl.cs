@@ -23,17 +23,17 @@ namespace SequenceAutomation
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
         private FavouritesBox fave;
-        private Recording recording;
+        private RecordingManager recording;
 
         public string recJson = "";
         public string recTitle = "";
         public string recFileName = "";
+        public string author = "";
         public float recSpeed = 1;
 
         public int recSpeedVal = 3;
 
         public string temptooltiptext = "";
-
 
         public PlayRecUserControl()
         {
@@ -206,10 +206,11 @@ namespace SequenceAutomation
         {
             if (recJson != null && recJson != "")
             {
-                recording = new Recording(recJson);
+                recording = new RecordingManager(recJson);
 
                 string title = recording.Title;
                 string description = recording.Description;
+                author = recording.Username;
 
                 if (recording.Title == "" || recording.Title == null)
                 {
@@ -223,6 +224,7 @@ namespace SequenceAutomation
 
                 recTitleLabel.Text = title;
                 recDescLabel.Text = description;
+                recAuthorLabel.Text = author;
             }
 
         }
@@ -272,6 +274,34 @@ namespace SequenceAutomation
                     break;
                 default:
                     break;
+            }
+        }
+
+        private bool validateAuthor()
+        {
+            if (Properties.Settings.Default.currentUser == "")
+            {
+                BigMessageBox.Show("You must be logged in to delete recordings");
+                return false;
+            }
+
+            if (author == Properties.Settings.Default.currentUser)
+            {
+                return true;
+            }
+            else
+            {
+                BigMessageBox.Show("You cannot delete recordings that you did not create");
+                return false;
+            }
+        }
+
+        private void deleteRec(object sender, EventArgs e)
+        {
+            if(validateAuthor())
+            {
+                connectionManager.deleteRecording(recJson);
+                BigMessageBox.Show("Deleted");
             }
         }
 
@@ -371,6 +401,16 @@ namespace SequenceAutomation
         private void addFavouriteBtn_MouseLeave(object sender, EventArgs e)
         {
             addFavouriteBtn.BackgroundImage = Properties.Resources.addtofavourites;
+        }
+
+        private void deleteBtn_mouseEnter(object sender, EventArgs e)
+        {
+            deleteBtn.BackgroundImage = Properties.Resources.delete_hover;
+        }
+
+        private void deleteBtn_mouseLeave(object sender, EventArgs e)
+        {
+            deleteBtn.BackgroundImage = Properties.Resources.delete;
         }
     }
 }

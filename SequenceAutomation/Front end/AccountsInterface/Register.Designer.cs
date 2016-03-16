@@ -33,16 +33,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.firstnameTb = new System.Windows.Forms.RichTextBox();
-            this.surnameTb = new System.Windows.Forms.RichTextBox();
             this.password = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.usernameTb = new System.Windows.Forms.RichTextBox();
-            this.password1Tb = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.password2Tb = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.emailTb = new System.Windows.Forms.RichTextBox();
+            this.password1Tb = new System.Windows.Forms.TextBox();
+            this.password2Tb = new System.Windows.Forms.TextBox();
+            this.usernameTb = new System.Windows.Forms.TextBox();
+            this.emailTb = new System.Windows.Forms.TextBox();
+            this.surnameTb = new System.Windows.Forms.TextBox();
+            this.firstnameTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // goBackBtn
@@ -108,26 +108,6 @@
             this.label2.TabIndex = 92;
             this.label2.Text = "Firstname";
             // 
-            // firstnameTb
-            // 
-            this.firstnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstnameTb.Location = new System.Drawing.Point(32, 140);
-            this.firstnameTb.Multiline = false;
-            this.firstnameTb.Name = "firstnameTb";
-            this.firstnameTb.Size = new System.Drawing.Size(408, 31);
-            this.firstnameTb.TabIndex = 1;
-            this.firstnameTb.Text = "";
-            // 
-            // surnameTb
-            // 
-            this.surnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameTb.Location = new System.Drawing.Point(30, 227);
-            this.surnameTb.Multiline = false;
-            this.surnameTb.Name = "surnameTb";
-            this.surnameTb.Size = new System.Drawing.Size(410, 34);
-            this.surnameTb.TabIndex = 2;
-            this.surnameTb.Text = "";
-            // 
             // password
             // 
             this.password.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,26 +127,6 @@
             this.label5.TabIndex = 100;
             this.label5.Text = "Username";
             // 
-            // usernameTb
-            // 
-            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameTb.Location = new System.Drawing.Point(32, 404);
-            this.usernameTb.Multiline = false;
-            this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(408, 31);
-            this.usernameTb.TabIndex = 4;
-            this.usernameTb.Text = "";
-            // 
-            // password1Tb
-            // 
-            this.password1Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password1Tb.Location = new System.Drawing.Point(30, 498);
-            this.password1Tb.Multiline = false;
-            this.password1Tb.Name = "password1Tb";
-            this.password1Tb.Size = new System.Drawing.Size(410, 34);
-            this.password1Tb.TabIndex = 5;
-            this.password1Tb.Text = "";
-            // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -175,16 +135,6 @@
             this.label6.Size = new System.Drawing.Size(304, 37);
             this.label6.TabIndex = 103;
             this.label6.Text = "Re-type password";
-            // 
-            // password2Tb
-            // 
-            this.password2Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password2Tb.Location = new System.Drawing.Point(32, 604);
-            this.password2Tb.Multiline = false;
-            this.password2Tb.Name = "password2Tb";
-            this.password2Tb.Size = new System.Drawing.Size(410, 34);
-            this.password2Tb.TabIndex = 6;
-            this.password2Tb.Text = "";
             // 
             // label1
             // 
@@ -195,41 +145,88 @@
             this.label1.TabIndex = 105;
             this.label1.Text = "Email (optional)";
             // 
+            // password1Tb
+            // 
+            this.password1Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password1Tb.Location = new System.Drawing.Point(34, 507);
+            this.password1Tb.Name = "password1Tb";
+            this.password1Tb.Size = new System.Drawing.Size(406, 33);
+            this.password1Tb.TabIndex = 5;
+            this.password1Tb.UseSystemPasswordChar = true;
+            this.password1Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(passwordKeyPress);
+            // 
+            // password2Tb
+            // 
+            this.password2Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password2Tb.Location = new System.Drawing.Point(32, 605);
+            this.password2Tb.Name = "password2Tb";
+            this.password2Tb.Size = new System.Drawing.Size(408, 33);
+            this.password2Tb.TabIndex = 6;
+            this.password2Tb.UseSystemPasswordChar = true;
+            this.password2Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(passwordKeyPress);
+            // 
+            // usernameTb
+            // 
+            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTb.Location = new System.Drawing.Point(34, 404);
+            this.usernameTb.Name = "usernameTb";
+            this.usernameTb.Size = new System.Drawing.Size(406, 33);
+            this.usernameTb.TabIndex = 4;
+            // 
             // emailTb
             // 
             this.emailTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTb.Location = new System.Drawing.Point(30, 313);
-            this.emailTb.Multiline = false;
+            this.emailTb.Location = new System.Drawing.Point(34, 322);
             this.emailTb.Name = "emailTb";
-            this.emailTb.Size = new System.Drawing.Size(410, 34);
+            this.emailTb.Size = new System.Drawing.Size(406, 33);
             this.emailTb.TabIndex = 3;
-            this.emailTb.Text = "";
+            // 
+            // surnameTb
+            // 
+            this.surnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.surnameTb.Location = new System.Drawing.Point(32, 237);
+            this.surnameTb.Name = "surnameTb";
+            this.surnameTb.Size = new System.Drawing.Size(406, 33);
+            this.surnameTb.TabIndex = 2;
+            // 
+            // firstnameTb
+            // 
+            this.firstnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstnameTb.Location = new System.Drawing.Point(32, 142);
+            this.firstnameTb.Name = "firstnameTb";
+            this.firstnameTb.Size = new System.Drawing.Size(406, 33);
+            this.firstnameTb.TabIndex = 1;
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.firstnameTb);
+            this.Controls.Add(this.surnameTb);
             this.Controls.Add(this.emailTb);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.usernameTb);
             this.Controls.Add(this.password2Tb);
+            this.Controls.Add(this.password1Tb);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.password);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.usernameTb);
-            this.Controls.Add(this.password1Tb);
             this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.registerBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.firstnameTb);
-            this.Controls.Add(this.surnameTb);
             this.Name = "Register";
             this.Size = new System.Drawing.Size(628, 723);
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void Password1Tb_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -239,15 +236,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox firstnameTb;
-        private System.Windows.Forms.RichTextBox surnameTb;
         private System.Windows.Forms.Label password;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RichTextBox usernameTb;
-        private System.Windows.Forms.RichTextBox password1Tb;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RichTextBox password2Tb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox emailTb;
+        private System.Windows.Forms.TextBox password1Tb;
+        private System.Windows.Forms.TextBox password2Tb;
+        private System.Windows.Forms.TextBox usernameTb;
+        private System.Windows.Forms.TextBox emailTb;
+        private System.Windows.Forms.TextBox surnameTb;
+        private System.Windows.Forms.TextBox firstnameTb;
     }
 }

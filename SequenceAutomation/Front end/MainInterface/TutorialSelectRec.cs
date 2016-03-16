@@ -17,14 +17,12 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler gotoLoginEvent;
 
-        public Recording recording;
+        public RecordingManager recording;
 
         private FavouritesBox fave;
 
         private List<string> recList;
 
-
-        public RecordingManager recManager;
         public ConnectionManager connectionManager;
 
         private string recJson;
@@ -36,7 +34,7 @@ namespace SequenceAutomation
             InitializeComponent();
             recList = new List<string>();
 
-            recManager = new RecordingManager();
+            recording = new RecordingManager();
         }
 
         private void gotoLogin(object sender, EventArgs e)
@@ -137,7 +135,7 @@ namespace SequenceAutomation
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
-                if (recManager.validateJson(File.ReadAllText(fullPath)))
+                if (recording.validateJson(File.ReadAllText(fullPath)))
                 {
                     recJson = File.ReadAllText(fullPath);
                     recTitle = Path.GetFileNameWithoutExtension(fullPath);
@@ -154,7 +152,7 @@ namespace SequenceAutomation
         {
             if (recJson != null && recJson != "")
             {
-                recording = new Recording(recJson);
+                recording = new RecordingManager(recJson);
 
                 string title = recording.Title;
                 string description = recording.Description;

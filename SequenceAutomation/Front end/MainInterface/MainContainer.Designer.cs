@@ -65,7 +65,7 @@
             this.playRecUserControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.playRecUserControl.Location = new System.Drawing.Point(0, 0);
             this.playRecUserControl.Name = "playRecUserControl";
-            this.playRecUserControl.Size = new System.Drawing.Size(1178, 684);
+            this.playRecUserControl.Size = new System.Drawing.Size(1270, 680);
             this.playRecUserControl.TabIndex = 2;
             // 
             // firstTimePlay

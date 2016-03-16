@@ -212,7 +212,7 @@ namespace SequenceAutomation
                 {
                     recManager = new RecordingManager(recJson);
                     recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.upload(recJson))
+                    if (connectionManager.uploadRecording(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
                         BigMessageBox.Show("There was a problem with the server");
