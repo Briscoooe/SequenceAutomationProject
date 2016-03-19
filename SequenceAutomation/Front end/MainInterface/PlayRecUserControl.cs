@@ -19,7 +19,7 @@ namespace SequenceAutomation
         private RecStatus recStatus;
 
         private List<string> recList;
-
+        private List<RecordingManager> recObjectList;
         private PlayRecording playRec;
         private ConnectionManager connectionManager;
         private FavouritesBox fave;
@@ -38,6 +38,7 @@ namespace SequenceAutomation
         public PlayRecUserControl()
         {
             recList = new List<string>();
+            recObjectList = new List<RecordingManager>();
             InitializeComponent();
             onSpeedChange();
 
@@ -181,7 +182,11 @@ namespace SequenceAutomation
             connectionManager = new ConnectionManager();
             if (connectionManager.testConnection())
             {
-                recList = connectionManager.getRecordings();
+                foreach (RecordingManager rec in connectionManager.getRecordings())
+                {
+                    recObjectList.Add(rec);
+                    recList.Add(rec.Title);
+                }
             }
 
             else
@@ -198,8 +203,25 @@ namespace SequenceAutomation
 
         private void updateList(object sender, EventArgs e)
         {
-            recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
-            updateInfo();
+            foreach(RecordingManager rec in recObjectList)
+            {
+                if (rec.Title == recordingsList.SelectedItem.ToString())
+                {
+                    recJson = connectionManager.getRecInfo(rec.Id);
+                    updateInfo(rec);
+                }
+            }
+        }
+
+        private void updateInfo(RecordingManager rec)
+        {
+            if (rec != null)
+            {
+                recTitleLabel.Text = rec.Title;
+                recDescLabel.Text = rec.Description;
+                recAuthorLabel.Text = rec.Username;
+            }
+
         }
 
         private void updateInfo()
@@ -207,7 +229,7 @@ namespace SequenceAutomation
             if (recJson != null && recJson != "")
             {
                 recording = new RecordingManager(recJson);
-
+                
                 string title = recording.Title;
                 string description = recording.Description;
                 author = recording.Username;
@@ -298,11 +320,15 @@ namespace SequenceAutomation
 
         private void deleteRec(object sender, EventArgs e)
         {
-            if(validateAuthor())
+            if (Properties.Settings.Default.currentUser != "")
             {
-                connectionManager.deleteRecording(recJson);
-                BigMessageBox.Show("Deleted");
+                if (connectionManager.deleteRecording(recJson))
+                    BigMessageBox.Show("Deleted");
+                else
+                    BigMessageBox.Show("You cannot delete recordings you did not create");
             }
+            else
+                BigMessageBox.Show("You must be logged in to delete recordings");
         }
 
         private void goBack(object sender, EventArgs e)

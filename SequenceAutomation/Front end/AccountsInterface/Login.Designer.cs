@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.loginBtn = new System.Windows.Forms.Button();
-            this.loggedInCheck = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,25 +44,13 @@
             this.loginBtn.FlatAppearance.BorderSize = 3;
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginBtn.Location = new System.Drawing.Point(214, 315);
+            this.loginBtn.Location = new System.Drawing.Point(248, 293);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(196, 60);
             this.loginBtn.TabIndex = 4;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.login);
-            // 
-            // loggedInCheck
-            // 
-            this.loggedInCheck.AutoSize = true;
-            this.loggedInCheck.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loggedInCheck.Location = new System.Drawing.Point(125, 257);
-            this.loggedInCheck.Name = "loggedInCheck";
-            this.loggedInCheck.Size = new System.Drawing.Size(285, 36);
-            this.loggedInCheck.TabIndex = 3;
-            this.loggedInCheck.Text = "Keep me logged in";
-            this.loggedInCheck.UseVisualStyleBackColor = true;
-            this.loggedInCheck.Click += new System.EventHandler(this.checkChanged);
             // 
             // label4
             // 
@@ -139,7 +126,6 @@
             this.Controls.Add(this.passwordTb);
             this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.loggedInCheck);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -154,7 +140,6 @@
 
         private System.Windows.Forms.Button goBackBtn;
         private System.Windows.Forms.Button loginBtn;
-        private System.Windows.Forms.CheckBox loggedInCheck;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

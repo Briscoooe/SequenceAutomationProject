@@ -18,7 +18,7 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
 
         public RecordingManager recording;
-
+        private List<RecordingManager> recObjectList;
         private FavouritesBox fave;
 
         private List<string> recList;
@@ -33,6 +33,7 @@ namespace SequenceAutomation
         {
             InitializeComponent();
             recList = new List<string>();
+            recObjectList = new List<RecordingManager>();
 
             recording = new RecordingManager();
         }
@@ -66,13 +67,18 @@ namespace SequenceAutomation
             connectionManager = new ConnectionManager();
             if (connectionManager.testConnection())
             {
-                recList = connectionManager.getRecordings();
+                foreach (RecordingManager rec in connectionManager.getRecordings())
+                {
+                    recObjectList.Add(rec);
+                    recList.Add(rec.Title);
+                }
             }
 
             else
             {
                 recList.Clear();
                 recList.Add("Could not connect to server");
+                recordingsList.Enabled = false;
                 BigMessageBox.Show("Could not connect to server");
             }
 
@@ -98,10 +104,17 @@ namespace SequenceAutomation
             recordingsList.DataSource = temp;
 
         }
+
         private void updateList(object sender, EventArgs e)
         {
-            recJson = connectionManager.getRecInfo(recordingsList.SelectedItem.ToString());
-            updateInfo();
+            foreach (RecordingManager rec in recObjectList)
+            {
+                if (rec.Title == recordingsList.SelectedItem.ToString())
+                {
+                    recJson = connectionManager.getRecInfo(rec.Id);
+                    updateInfo(rec);
+                }
+            }
         }
 
 
@@ -148,6 +161,17 @@ namespace SequenceAutomation
             }
         }
 
+        private void updateInfo(RecordingManager rec)
+        {
+            if (rec != null)
+            {
+                recTitleLabel.Text = rec.Title;
+                recDescLabel.Text = rec.Description;
+                recAuthorLabel.Text = rec.Username;
+            }
+
+        }
+
         private void updateInfo()
         {
             if (recJson != null && recJson != "")
@@ -156,6 +180,7 @@ namespace SequenceAutomation
 
                 string title = recording.Title;
                 string description = recording.Description;
+                string author = recording.Username;
 
                 if (recording.Title == "" || recording.Title == null)
                 {
@@ -169,7 +194,9 @@ namespace SequenceAutomation
 
                 recTitleLabel.Text = title;
                 recDescLabel.Text = description;
+                recAuthorLabel.Text = author;
             }
+
         }
 
         private void goBack(object sender, EventArgs e)

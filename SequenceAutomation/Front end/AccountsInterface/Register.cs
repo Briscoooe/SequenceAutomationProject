@@ -23,49 +23,51 @@ namespace SequenceAutomation
         private void register(object sender, EventArgs e)
         {
             ConnectionManager connectionManager = new ConnectionManager();
-            if (password1Tb.Text == password2Tb.Text)
+            List<string> userInfo = new List<string>();
+            userInfo.Add(firstnameTb.Text);
+            userInfo.Add(surnameTb.Text);
+            userInfo.Add(emailTb.Text);
+            userInfo.Add(usernameTb.Text);
+            userInfo.Add(password1Tb.Text);
+            userInfo.Add(password2Tb.Text);
+
+            string result = connectionManager.register(userInfo);
+
+            switch (result)
             {
-                if (connectionManager.validateEmail(emailTb.Text) == 1)
-                {
-                    if (!connectionManager.validateUsername(usernameTb.Text))
-                    {
-                        List<string> userInfo = new List<string>();
-                        userInfo.Add(firstnameTb.Text);
-                        userInfo.Add(surnameTb.Text);
-                        userInfo.Add(emailTb.Text);
-                        userInfo.Add(usernameTb.Text);
-                        userInfo.Add(password1Tb.Text);
-
-                        if (connectionManager.register(userInfo))
-                        {
-                            BigMessageBox.Show("Account created! You may now log in");
-                            if (RegisterEvent != null)
-                                RegisterEvent(this, new EventArgs());
-                            firstnameTb.Text = "";
-                            surnameTb.Text = "";
-                            emailTb.Text = "";
-                            usernameTb.Text = "";
-                            password1Tb.Text = "";
-                            password2Tb.Text = "";
-                        }
-
-                        else
-                            BigMessageBox.Show("Something went wrong");
-                    }
-
-                    else
-                        BigMessageBox.Show("This username is already in use");
-                }
-
-                else if (connectionManager.validateEmail(emailTb.Text) == 0)
-                    BigMessageBox.Show("This email adress is already in use");
-
-                else if (connectionManager.validateEmail(emailTb.Text) ==2)
-                    BigMessageBox.Show("This is not a valid email address");
+                case "REGISTER_SUCCESSFUL":
+                    BigMessageBox.Show("Account created! You may now log in");
+                    if (RegisterEvent != null)
+                        RegisterEvent(this, new EventArgs());
+                    firstnameTb.Text = "";
+                    surnameTb.Text = "";
+                    emailTb.Text = "";
+                    usernameTb.Text = "";
+                    password1Tb.Text = "";
+                    password2Tb.Text = "";
+                    break;
+                case "CONNECTION_ERROR":
+                    BigMessageBox.Show("There was a problem connecting to the server");
+                    break;
+                case "USERNAME_EXISTS":
+                    BigMessageBox.Show("This username is already taken");
+                    break;
+                case "EMAIL_EXISTS":
+                    BigMessageBox.Show("There is already an account registered to this email address");
+                    break;
+                case "EMAIL_INVALID":
+                    BigMessageBox.Show("The email address you entered was not valid");
+                    break;
+                case "PASSWORD_NO_MATCH":
+                    BigMessageBox.Show("The passwords you entered did not match");
+                    break;
+                case "ERROR":
+                    BigMessageBox.Show("There was a problem with the registration. Please try again");
+                    break;
+                default:
+                    break;
             }
-            else
-                BigMessageBox.Show("Passwords do not match");
-            
+
         }
 
         private void goBack(object sender, EventArgs e)

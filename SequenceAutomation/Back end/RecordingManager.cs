@@ -53,12 +53,20 @@ namespace SequenceAutomation
          */
         public RecordingManager(string inputJson)
         {
-            dynamic recObj = JsonConvert.DeserializeObject(inputJson);
-            recTitle = recObj.Name;
-            recDescription = recObj.Desc;
-            recId = recObj.recId;
-            recUsername = recObj.userName;
-            getDictionaries(inputJson);
+            try
+            {
+                dynamic recObj = JsonConvert.DeserializeObject(inputJson);
+                recTitle = recObj.Name;
+                recDescription = recObj.Desc;
+                recId = recObj.recId;
+                recUsername = recObj.userName;
+                getDictionaries(inputJson);
+            }
+            catch (JsonReaderException j)
+            {
+                Console.WriteLine(j.Message);
+                throw;
+            }
         }
 
         public RecordingManager() {}
@@ -158,7 +166,7 @@ namespace SequenceAutomation
             {
                 if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc")
                 {
-                    Console.WriteLine("Valid key");
+                    //Console.WriteLine("Valid key");
                 }
 
                 else {
@@ -259,8 +267,8 @@ namespace SequenceAutomation
 
                     catch (FormatException e)
                     {
-                        Console.WriteLine("\nInvalid key");
-                        Console.WriteLine(e.Message);
+                        //Console.WriteLine("\nInvalid key");
+                        //Console.WriteLine(e.Message);
                     }
                 }
             }

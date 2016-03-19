@@ -32,8 +32,6 @@ namespace SequenceAutomation
         {
             this.recDescLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.recTitleLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,14 +47,18 @@ namespace SequenceAutomation
             this.goBackBtn = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.searchBox = new SequenceAutomation.SearchBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.recTitleLabel = new System.Windows.Forms.Label();
+            this.recAuthorLabel = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // recDescLabel
             // 
             this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescLabel.Location = new System.Drawing.Point(442, 370);
+            this.recDescLabel.Location = new System.Drawing.Point(442, 419);
             this.recDescLabel.Name = "recDescLabel";
-            this.recDescLabel.Size = new System.Drawing.Size(328, 262);
+            this.recDescLabel.Size = new System.Drawing.Size(328, 245);
             this.recDescLabel.TabIndex = 24;
             this.recDescLabel.Text = "Unavailable";
             // 
@@ -64,30 +66,11 @@ namespace SequenceAutomation
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(442, 324);
+            this.label7.Location = new System.Drawing.Point(442, 387);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 32);
             this.label7.TabIndex = 23;
             this.label7.Text = "Description";
-            // 
-            // recTitleLabel
-            // 
-            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recTitleLabel.Location = new System.Drawing.Point(442, 272);
-            this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
-            this.recTitleLabel.TabIndex = 22;
-            this.recTitleLabel.Text = "Unavailable";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(442, 228);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 32);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Title";
             // 
             // label5
             // 
@@ -274,11 +257,51 @@ namespace SequenceAutomation
             this.searchBox.TabIndex = 29;
             this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(442, 228);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 32);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Title";
+            // 
+            // recTitleLabel
+            // 
+            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recTitleLabel.Location = new System.Drawing.Point(442, 272);
+            this.recTitleLabel.Name = "recTitleLabel";
+            this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
+            this.recTitleLabel.TabIndex = 22;
+            this.recTitleLabel.Text = "Unavailable";
+            // 
+            // recAuthorLabel
+            // 
+            this.recAuthorLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recAuthorLabel.Location = new System.Drawing.Point(442, 349);
+            this.recAuthorLabel.Name = "recAuthorLabel";
+            this.recAuthorLabel.Size = new System.Drawing.Size(343, 33);
+            this.recAuthorLabel.TabIndex = 57;
+            this.recAuthorLabel.Text = "Unavailable";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(442, 317);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(101, 32);
+            this.label10.TabIndex = 56;
+            this.label10.Text = "Author";
+            // 
             // TutorialSelectRec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.recAuthorLabel);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.favouriteBtn);
             this.Controls.Add(this.label3);
@@ -308,8 +331,6 @@ namespace SequenceAutomation
 
         private System.Windows.Forms.Label recDescLabel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label recTitleLabel;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -325,5 +346,9 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button favouriteBtn;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label recTitleLabel;
+        private System.Windows.Forms.Label recAuthorLabel;
+        private System.Windows.Forms.Label label10;
     }
 }

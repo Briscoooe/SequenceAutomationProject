@@ -50,19 +50,6 @@ namespace SequenceAutomation
                 GoBackEvent(this, e);
         }
 
-        private void checkChanged(object sender, EventArgs e)
-        {
-            if (loggedInCheck.Checked)
-            {
-                Properties.Settings.Default.keepLoggedIn = true;
-            }
-
-            else
-            {
-                Properties.Settings.Default.keepLoggedIn = false;
-            }
-        }
-
         private void goBackBtn_MouseLeave(object sender, EventArgs e)
         {
             goBackBtn.BackgroundImage = Properties.Resources.backbutton;
