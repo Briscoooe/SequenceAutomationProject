@@ -18,6 +18,36 @@ namespace SequenceAutomation.Tests
         string fullPath, rawJson, infoJson;
 
         [TestMethod()]
+        public void RecordingManagerTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void RecordingManagerTest1()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void RecordingManagerTest2()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void addInformationTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void validateJsonTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
         public void RecManager_validateJsonTest()
         {
             fullPath = "C:\\Users\\Brian\\Desktop\\invalid_format.json";
