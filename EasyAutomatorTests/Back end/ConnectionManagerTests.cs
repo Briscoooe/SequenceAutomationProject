@@ -32,9 +32,9 @@ namespace SequenceAutomation.Tests
             // Assert that login will not be successful with invalid credentials 
             // i.e. credentials that do not exist on the database
             Assert.IsFalse(conn.loginUser("username", "password"));
-            Assert.IsFalse(conn.loginUser("test", "test"));
+            Assert.IsFalse(conn.loginUser("random name", "random password"));
             Assert.IsFalse(conn.loginUser("", ""));
-            Assert.IsFalse(conn.loginUser("aaa", "aaa"));
+            Assert.IsFalse(conn.loginUser("0-20", "a!124"));
         }
 
         [TestMethod()]

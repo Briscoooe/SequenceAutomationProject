@@ -104,6 +104,7 @@
     <Compile Include="Front end\AccountsInterface\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front end\MainInterface\KeyboardShortcut.cs" />
     <Compile Include="Front end\MainInterface\MainContainer.cs">
       <SubType>Form</SubType>
     </Compile>

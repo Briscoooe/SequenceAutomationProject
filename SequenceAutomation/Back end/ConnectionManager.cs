@@ -202,7 +202,7 @@ namespace SequenceAutomation
             catch (WebException we)
             {
                 Console.WriteLine("CATCH getRecInfo");
-                //throw;
+                throw;
             }
 
             return responseStr;

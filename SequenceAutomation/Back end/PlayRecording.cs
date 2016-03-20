@@ -140,6 +140,7 @@ namespace SequenceAutomation
 
             // Instantiate the RecordingManager with the input JSON string and initialise the dictionaries accordingly
             recManager = new RecordingManager(inputJson);
+            recManager.getDictionaries(inputJson);
             keysDict = recManager.keysDict;
             contextDict = recManager.contextDict;
 
@@ -174,12 +175,16 @@ namespace SequenceAutomation
                         // Check the current context against the stored context
                         if(contextManager.checkContext(currentEntry, contextDict))
                         {
-                            Console.WriteLine("Passed");
+                            //Console.WriteLine("Passed");
+                            BigMessageBox.Show("Passed");
+                            break;
                         }
 
                         else
                         {
-                            Console.WriteLine("Failed");
+                            //Console.WriteLine("Failed");
+                            BigMessageBox.Show("Failed");
+                            break;
                         }
                     }
                 }

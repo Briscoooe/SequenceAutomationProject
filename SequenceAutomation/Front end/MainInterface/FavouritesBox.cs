@@ -42,7 +42,7 @@ namespace SequenceAutomation
             recordingsList.DataSource = temp;
         }
 
-        public void prepareList()
+        private void prepareList()
         {
             recList = new Dictionary<string, string>();
 

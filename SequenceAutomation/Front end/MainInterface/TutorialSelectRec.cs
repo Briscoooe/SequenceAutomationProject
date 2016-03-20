@@ -64,6 +64,7 @@ namespace SequenceAutomation
         public void prepareList()
         {
             connectionManager = new ConnectionManager();
+            recList.Clear();
             if (connectionManager.testConnection())
             {
                 foreach (RecordingManager rec in connectionManager.getRecordings())

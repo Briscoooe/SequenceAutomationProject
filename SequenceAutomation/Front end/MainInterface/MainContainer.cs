@@ -12,6 +12,7 @@ namespace SequenceAutomation
          * Commmenting
          */
 
+        public KeyboardShortcut shortcut;
 
         /*
          * Method: ApplicationContainer()
@@ -63,7 +64,33 @@ namespace SequenceAutomation
             tutorialUploadRec.goNextEvent += gotoCreate;
             tutorialUploadRec.gotoLoginEvent += returnToLogin;
 
+            shortcut = new KeyboardShortcut();
 
+            shortcut.RegisterGlobalHotKey((int)Keys.F11, KeyboardShortcut.MOD_CONTROL);
+            shortcut.UnregisterGlobalHotKey();
+
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_HOTKEY = 0x0312;
+
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    {
+                        if ((short)m.WParam == shortcut.HotkeyID)
+                        {
+                            BigMessageBox.Show("Pressed");
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        base.WndProc(ref m);
+                        break;
+                    }
+            }
         }
 
         private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -140,7 +167,7 @@ namespace SequenceAutomation
          * Parameter: sender - The control that the action is for, in this case the button
          * Parameter: e - Any arguments the function may use
          */
-        public void gotoPlay(object sender, EventArgs e)
+        private void gotoPlay(object sender, EventArgs e)
         {
             playRecUserControl.prepareList();
             playRecUserControl.BringToFront();
@@ -154,7 +181,7 @@ namespace SequenceAutomation
         * Parameter: sender - The control that the action is for, in this case the button
          * Parameter: e - Any arguments the function may use
         */
-        protected void gotoCreate(object sender, EventArgs e)
+        private void gotoCreate(object sender, EventArgs e)
         {
             createRecUserControl.BringToFront();
             createRecUserControl.checkLogin();

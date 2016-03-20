@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Back end\ConnectionManagerTests.cs" />
+    <Compile Include="Back end\ContextManagerTests.cs" />
     <Compile Include="Back end\CreateRecordingTests.cs" />
     <Compile Include="Back end\Keys.cs" />
     <Compile Include="Back end\PlayRecordingTests.cs" />
@@ -71,7 +72,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Front end\" />
+    <Folder Include="Front end\MainInterface\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

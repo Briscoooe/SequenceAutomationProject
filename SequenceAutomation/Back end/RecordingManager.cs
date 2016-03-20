@@ -19,7 +19,7 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        public Random randomNum;
+        private Random randomNum;
         public string keysJson, recTitle, recDescription, recId, recUsername;
 
         #endregion
@@ -59,7 +59,6 @@ namespace SequenceAutomation
                 recDescription = recObj.Desc;
                 recId = recObj.recId;
                 recUsername = recObj.userName;
-                getDictionaries(inputJson);
             }
             catch (JsonReaderException j)
             {
@@ -121,38 +120,12 @@ namespace SequenceAutomation
             }
 
         }
-
         /*
-         * Method: toJson()
-         * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
-         * Return: A string comprising both the savedKeys and contexts as one organised JSON string
-         */
-        private bool mergeToJson()
-        {
-            // Convert the dictionaries to JSON strings
-            string keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
-            string contextJsonStr = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
-
-            // Convert the JSON strings to JSON objects
-            JObject keysObject = JObject.Parse(keysJsonStr);
-            JObject contextObject = JObject.Parse(contextJsonStr);
-
-            // Merge the two JSON objects together at matching values
-            // This process merges each each context recorded with the specific enter key press at the exact same milisecond
-            keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
-
-            keysJson =  keysObject.ToString();
-
-            return true;
-
-        }
-
-        /*
-         * Method: getDictionaries()
-         * Summary: Translates a single, merged JSON string back into two separate dictionaries for keys and context
-         * Parameter: inputJson - The merged JSON string storing both dictionaries
-         */
-        private void getDictionaries(string inputJson)
+        * Method: getDictionaries()
+        * Summary: Translates a single, merged JSON string back into two separate dictionaries for keys and context
+        * Parameter: inputJson - The merged JSON string storing both dictionaries
+        */
+        public void getDictionaries(string inputJson)
         {
             // Initialise the dictionaries and randomNum variable
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
@@ -165,12 +138,13 @@ namespace SequenceAutomation
             // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
             foreach (dynamic timeVal in timeKeys)
             {
-                if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc")
+                if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc" ||
+                    Convert.ToString(timeVal.Name) == "recId" || Convert.ToString(timeVal.Name) == "userName")
                 {
-                    //Console.WriteLine("Valid key");
+                    Console.WriteLine("Not time val");
                 }
-
-                else {
+                else
+                {
                     try
                     {
                         // Store the time value as a long, necessary for a dictionary entry
@@ -185,6 +159,8 @@ namespace SequenceAutomation
                             // Store the key name in a string variable
                             // In this instance it will be either a key name or the "Open windows"
                             string keyNameStr = nameVal.Name;
+
+                            Console.WriteLine("\nkeynamestr: {0}", keyNameStr);
 
                             // Iterate over the nameVal.Values, in this instance it will be either a window title or key action 
                             foreach (dynamic windowVal in nameVal.Value)
@@ -268,13 +244,44 @@ namespace SequenceAutomation
 
                     catch (FormatException e)
                     {
-                        Console.WriteLine("getDictionaries try/catch");
-                        //Console.WriteLine("\nInvalid key");
-                        //Console.WriteLine(e.Message);
+                        Console.WriteLine("\ngetDictionaries try/catch");
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.StackTrace);
                     }
                 }
             }
         }
+
+        #endregion
+
+        #region Private methods
+
+        /*
+         * Method: toJson()
+         * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
+         * Return: A string comprising both the savedKeys and contexts as one organised JSON string
+         */
+        private bool mergeToJson()
+        {
+            // Convert the dictionaries to JSON strings
+            string keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
+            string contextJsonStr = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
+
+            // Convert the JSON strings to JSON objects
+            JObject keysObject = JObject.Parse(keysJsonStr);
+            JObject contextObject = JObject.Parse(contextJsonStr);
+
+            // Merge the two JSON objects together at matching values
+            // This process merges each each context recorded with the specific enter key press at the exact same milisecond
+            keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
+
+            keysJson =  keysObject.ToString();
+
+            return true;
+
+        }
+
+       
 
         #endregion
     }

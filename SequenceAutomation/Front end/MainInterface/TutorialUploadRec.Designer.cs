@@ -72,6 +72,7 @@
             // 
             this.recDescTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescTb.Location = new System.Drawing.Point(51, 333);
+            this.recDescTb.MaxLength = 500;
             this.recDescTb.Name = "recDescTb";
             this.recDescTb.Size = new System.Drawing.Size(348, 329);
             this.recDescTb.TabIndex = 1;
@@ -81,6 +82,7 @@
             // 
             this.recTitleTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleTb.Location = new System.Drawing.Point(51, 209);
+            this.recTitleTb.MaxLength = 30;
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(348, 31);
             this.recTitleTb.TabIndex = 0;

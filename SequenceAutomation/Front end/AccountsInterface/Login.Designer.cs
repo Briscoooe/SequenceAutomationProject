@@ -104,6 +104,7 @@
             // 
             this.passwordTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordTb.Location = new System.Drawing.Point(36, 218);
+            this.passwordTb.MaxLength = 16;
             this.passwordTb.Name = "passwordTb";
             this.passwordTb.Size = new System.Drawing.Size(408, 33);
             this.passwordTb.TabIndex = 2;
@@ -113,6 +114,7 @@
             // 
             this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTb.Location = new System.Drawing.Point(36, 130);
+            this.usernameTb.MaxLength = 30;
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(408, 33);
             this.usernameTb.TabIndex = 1;

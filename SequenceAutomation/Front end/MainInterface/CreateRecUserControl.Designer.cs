@@ -283,6 +283,7 @@ namespace SequenceAutomation
             // 
             this.recTitleTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleTb.Location = new System.Drawing.Point(351, 153);
+            this.recTitleTb.MaxLength = 30;
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(300, 31);
             this.recTitleTb.TabIndex = 4;
@@ -292,6 +293,7 @@ namespace SequenceAutomation
             // 
             this.recDescTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescTb.Location = new System.Drawing.Point(351, 277);
+            this.recDescTb.MaxLength = 500;
             this.recDescTb.Name = "recDescTb";
             this.recDescTb.Size = new System.Drawing.Size(300, 288);
             this.recDescTb.TabIndex = 5;

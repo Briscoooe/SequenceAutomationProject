@@ -179,6 +179,7 @@ namespace SequenceAutomation
         public void prepareList()
         {
             connectionManager = new ConnectionManager();
+            recList.Clear();
             if (connectionManager.testConnection())
             {
                 foreach (RecordingManager rec in connectionManager.getRecordings())
@@ -326,25 +327,27 @@ namespace SequenceAutomation
         {
             if (Properties.Settings.Default.currentUser != "")
             {
-                if (connectionManager.deleteRecording(recJson))
-                {
-                    BigMessageBox.Show("Deleted");
+                //if (connectionManager.deleteRecording(recJson))
+                //{
                     RecordingManager rec = new RecordingManager(recJson);
 
-                    foreach (RecordingManager recording in recObjectList)
+                    foreach (RecordingManager recording in recObjectList.ToArray())
                     {
                         if(rec.Id == recording.Id)
                         {
+                            BigMessageBox.Show("Deleted");
                             recObjectList.Remove(recording);
                         }
                     }
-                    refreshList();
-                }
-                else
-                    BigMessageBox.Show("You cannot delete recordings you did not create");
+                //}
+                //else
+                    //BigMessageBox.Show("You cannot delete recordings you did not create");
             }
             else
                 BigMessageBox.Show("You must be logged in to delete recordings");
+
+            prepareList();
+
         }
 
         private void goBack(object sender, EventArgs e)

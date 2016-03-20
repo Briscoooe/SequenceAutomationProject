@@ -113,6 +113,9 @@ namespace SequenceAutomation
                         }
                     }
 
+            Console.WriteLine("Matches");
+            Console.WriteLine(numOfMatches);
+            Console.WriteLine(numOfContextWindows);
             // If the number of windows listed in the context is equal to the number of matches calculated, return true
             if(numOfContextWindows == numOfMatches)
                 return true;
