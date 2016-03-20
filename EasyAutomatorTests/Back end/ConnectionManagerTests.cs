@@ -272,10 +272,32 @@ namespace SequenceAutomation.Tests
         [TestMethod()]
         public void deleteRecordingTest()
         {
+            string json = "{ \"593\":{ \"LWin\":{ \"value\":256} },\"683\":{ \"LWin\":{ \"value\":257} },\"1332\":{ \"T\":{ \"value\":256} },\"1402\":{ \"E\":{ \"value\":256} },\"1488\":{ \"T\":{ \"value\":257},\"E\":{ \"value\":257} },\"1582\":{ \"S\":{ \"value\":256} },\"1686\":{ \"T\":{ \"value\":256} },\"1766\":{ \"S\":{ \"value\":257},\"T\":{ \"value\":257} },\"Name\":\"test\",\"Desc\":\"test\",\"recId\":\"5fe03f40-b67f-4fc8-8c57-0a84fd4c9441\",\"userName\":\"test\"}";
             conn = new ConnectionManager();
 
-            conn.deleteRecording("6543a052-c2ad-45b6-86ef-df6ee40d5080");
-            string test = Properties.Settings.Default.currentUser;
+            // Assert that a recording with a valid ID will be deleted
+            Properties.Settings.Default.currentUser = "test";
+            //Assert.IsTrue(conn.deleteRecording(json));
+
+            // Assert that a recording with a valid ID cannot be deleted by a user who didn't create it
+            json = "{ \"593\":{ \"LWin\":{ \"value\":256} },\"683\":{ \"LWin\":{ \"value\":257} },\"1332\":{ \"T\":{ \"value\":256} },\"1402\":{ \"E\":{ \"value\":256} },\"1488\":{ \"T\":{ \"value\":257},\"E\":{ \"value\":257} },\"1582\":{ \"S\":{ \"value\":256} },\"1686\":{ \"T\":{ \"value\":256} },\"1766\":{ \"S\":{ \"value\":257},\"T\":{ \"value\":257} },\"Name\":\"test\",\"Desc\":\"test\",\"recId\":\"6e78d018-e3c9-4f75-9b78-7a4f17f07e07\",\"userName\":\"test\"}";
+            Properties.Settings.Default.currentUser = "INVALIDUSERNAME";
+            Assert.IsFalse(conn.deleteRecording(json));
+
+            // Assert that a recording not present on the server cannot be deleted
+            // note, the ID is "1234"
+
+            try
+            {
+                json = "{ \"593\":{ \"LWin\":{ \"value\":256} },\"683\":{ \"LWin\":{ \"value\":257} },\"1332\":{ \"T\":{ \"value\":256} },\"1402\":{ \"E\":{ \"value\":256} },\"1488\":{ \"T\":{ \"value\":257},\"E\":{ \"value\":257} },\"1582\":{ \"S\":{ \"value\":256} },\"1686\":{ \"T\":{ \"value\":256} },\"1766\":{ \"S\":{ \"value\":257},\"T\":{ \"value\":257} },\"Name\":\"test\",\"Desc\":\"test\",\"recId\":\"1234\",\"userName\":\"test\"}";
+                Properties.Settings.Default.currentUser = "test";
+                Assert.IsFalse(conn.deleteRecording(json));
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex is WebException);
+            }
+
         }
     }
 }

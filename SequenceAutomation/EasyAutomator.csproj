@@ -81,7 +81,6 @@
   <ItemGroup>
     <Compile Include="Back end\ConnectionManager.cs" />
     <Compile Include="Back end\DatabaseManager.cs" />
-    <Compile Include="Back end\Recording.cs" />
     <Compile Include="Front end\AccountsInterface\AccountContainer.cs">
       <SubType>Form</SubType>
     </Compile>

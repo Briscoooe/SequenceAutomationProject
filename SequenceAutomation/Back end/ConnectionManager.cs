@@ -259,11 +259,25 @@ namespace SequenceAutomation
 
         public bool deleteRecording(string recJson)
         {
-            Recording rec = new Recording(recJson);
+            RecordingManager rec = new RecordingManager(recJson);
 
             if(rec.Username == Properties.Settings.Default.currentUser)
             {
-                prepareRequest(recordingUrl + "/" + rec.Id, "text/json", "DELETE");
+                prepareRequest(recordingUrl + "/" + rec.Id, "", "DELETE");
+                try
+                {
+                    Console.WriteLine(rec.Id);
+                    response = (HttpWebResponse)request.GetResponse();
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        responseStr = reader.ReadToEnd();
+                    }
+                }
+                catch (WebException we)
+                {
+                    Console.WriteLine(we.Message);
+                    throw;
+                }
                 return true;
             }
 
@@ -271,6 +285,7 @@ namespace SequenceAutomation
             {
                 return false;
             }
+
         }
 
         private string encryptPassword(string plaintextPassword)

@@ -101,7 +101,7 @@ namespace SequenceAutomation
         {
             try
             {
-                Recording recording = new Recording(recJson);
+                RecordingManager recording = new RecordingManager(recJson);
                 Console.WriteLine(recording.Title);
                 Console.WriteLine(recording.Description);
                 Console.WriteLine(recording.Id);
