@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +23,7 @@ namespace SequenceAutomation
         HttpWebResponse response;
         string responseStr;
 
-        public string domain, recordingUrl, usersUrl;
+        private string domain, recordingUrl, usersUrl;
 
         public ConnectionManager()
         {
@@ -87,24 +86,8 @@ namespace SequenceAutomation
             return true;
         }
 
-        private bool prepareRequest(string url, string content, string method)
-        {
-            request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = method;
-            if(content != "")
-            {
-                request.ContentType = "text/json";
-            }
-
-            return true;
-        }
-
         public string register(List<string> userList)
         {
-            foreach(string s in userList)
-            {
-                Console.WriteLine(s);
-            }
             if (userList[4] == userList[5])
             {
                 if (validateEmail(userList[2]) == 1)
@@ -177,6 +160,7 @@ namespace SequenceAutomation
             }
             catch (WebException we)
             {
+                Console.WriteLine("CATCH getRecordings");
                 Console.WriteLine(we.Message);
                 dirContents = null;
             }
@@ -199,9 +183,14 @@ namespace SequenceAutomation
 
         public string getRecInfo(string recId)
         {
-            prepareRequest(recordingUrl + "/" + recId, "", "GET");
+            string extension = recId.Substring(recId.Length - 5);
 
-            Console.WriteLine(recId);
+            if(extension == ".json")
+            {
+                recId = recId.Remove(recId.Length - 5);
+            }
+            prepareRequest(recordingUrl + "/" + recId, "", "GET");
+            Console.WriteLine("\nURL: {0}" , (recordingUrl + "/" + recId));
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
@@ -212,7 +201,7 @@ namespace SequenceAutomation
             }
             catch (WebException we)
             {
-                Console.WriteLine(we.Message);
+                Console.WriteLine("CATCH getRecInfo");
                 //throw;
             }
 
@@ -261,6 +250,8 @@ namespace SequenceAutomation
         {
             RecordingManager rec = new RecordingManager(recJson);
 
+            Console.WriteLine(Properties.Settings.Default.currentUser);
+            Console.WriteLine(rec.Username);
             if(rec.Username == Properties.Settings.Default.currentUser)
             {
                 prepareRequest(recordingUrl + "/" + rec.Id, "", "DELETE");
@@ -297,6 +288,18 @@ namespace SequenceAutomation
                 hashBytes = algorithm.ComputeHash(bytes);
             }
             return Convert.ToBase64String(hashBytes);
+        }
+
+        private bool prepareRequest(string url, string content, string method)
+        {
+            request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = method;
+            if (content != "")
+            {
+                request.ContentType = "text/json";
+            }
+
+            return true;
         }
 
         private bool validateUsername(string username)

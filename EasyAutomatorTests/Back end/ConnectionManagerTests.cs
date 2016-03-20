@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
-using SequenceAutomation;
 
 namespace SequenceAutomation.Tests
 {
@@ -13,24 +12,12 @@ namespace SequenceAutomation.Tests
         ConnectionManager conn;
 
         [TestMethod()]
-        public void ConnectionManagerTest()
+        public void connectionManagerTest()
         {
             conn = new ConnectionManager();
 
-            // Assert that the class variables are not null
-            Assert.IsNotNull(conn.recordingUrl);
-            Assert.IsNotNull(conn.usersUrl);
-            Assert.IsNotNull(conn.domain);
-
-            // Assert that the class variables are assigned correctly
-            Assert.AreEqual(conn.recordingUrl, "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings");
-            Assert.AreEqual(conn.usersUrl, "http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/users");
-            Assert.AreEqual(conn.domain, "finalyearproject.cloudapp.net");
-
-            // Assert that the class variables are not equal to incorrect values
-            Assert.AreNotEqual(conn.recordingUrl, "http://www.facebook.com/recordings");
-            Assert.AreNotEqual(conn.usersUrl, "http://www.facebook.com/users");
-            Assert.AreNotEqual(conn.recordingUrl, "facebook.com");
+            // Assert that the variable can be instantiated
+            Assert.IsNotNull(conn);
         }
 
         [TestMethod()]
@@ -55,24 +42,16 @@ namespace SequenceAutomation.Tests
         {
             conn = new ConnectionManager();
 
-            // Assert the connection can be established with the domain domain specified in the constructor
+            // Assert the connection can be established
             Assert.IsTrue(conn.testConnection());
-
-            // Assert that invalid domain strings will result in a failure in testing the connection
-            conn.domain = "http://wwww.finalyearproject.cloudapp.net";
-            Assert.IsFalse(conn.testConnection());
-
-            conn.domain = "http://wwww.finalyearproject.cloudapp.net/app/index.php/recordings";
-            Assert.IsFalse(conn.testConnection());
-
-            conn.domain = "wwww.finalyearproject.cloudapp.net";
-            Assert.IsFalse(conn.testConnection());
         }
 
 
         [TestMethod()]
         public void registerTest()
         {
+            // REMINDER: Delete TESTUSER1 from database before executing
+
             conn = new ConnectionManager();
             string result;
 
@@ -163,35 +142,19 @@ namespace SequenceAutomation.Tests
             }
             Assert.IsInstanceOfType(recList, typeof(List<RecordingManager>));
 
-            // Assert that an invalid URI will not return the appropriate data
-            try
-            {
-                conn.recordingUrl = "http://www.facebook.com/recordings";
-                foreach (RecordingManager rec in conn.getRecordings())
-                {
-                    recList.Add(rec);
-                }
-                Assert.Fail("No exception thrown");
-            }
-            catch (Exception ex)
-            {
-                Assert.IsTrue(ex is WebException);
-            }
         }
 
         [TestMethod()]
         public void getRecInfoTest()
         {
+            // NOTE: Throw exception in method
             conn = new ConnectionManager();
 
-            // Assert that a valid recording will be returned
-            string rec = conn.getRecInfo("Facebook in Firefox");
+            // Assert that a valid recording will be returned by a valid ID
+            string rec = conn.getRecInfo("10aeae36-1ff1-4cb0-b4fe-89113ef1e47e");
             Assert.IsInstanceOfType(rec, typeof(string));
 
-            rec = conn.getRecInfo("Gmail - Chrome");
-            Assert.IsInstanceOfType(rec, typeof(string));
-
-            // Assert that an invalid recording name will not return the appropriate data
+            // Assert that a non existent recording name will raise an exception
             try
             {
                 string rec2 = conn.getRecInfo("123456abcdef");
@@ -201,18 +164,6 @@ namespace SequenceAutomation.Tests
             {
                 Assert.IsTrue(ex is WebException);
             }
-
-            // Assert that an invalid recording name will not return the appropriate data
-            try
-            {
-                string rec2 = conn.getRecInfo("!!£6@");
-                Assert.Fail("No exception thrown");
-            }
-            catch (WebException ex)
-            {
-                Assert.IsTrue(ex is WebException);
-            }
-
 
         }
 

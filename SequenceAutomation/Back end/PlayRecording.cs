@@ -206,9 +206,10 @@ namespace SequenceAutomation
          * Method: Stop()
          * Summary: Stops execution of keystrokes
          */
-        public void Stop()
+        public bool Stop()
         {
             watch.Stop();
+            return true;
         }
 
         #endregion

@@ -55,6 +55,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Back end\ConnectionManagerTests.cs" />
+    <Compile Include="Back end\CreateRecordingTests.cs" />
+    <Compile Include="Back end\Keys.cs" />
     <Compile Include="Back end\PlayRecordingTests.cs" />
     <Compile Include="Back end\RecordingManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

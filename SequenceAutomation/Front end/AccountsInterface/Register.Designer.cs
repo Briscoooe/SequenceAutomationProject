@@ -149,26 +149,30 @@
             // 
             this.password1Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password1Tb.Location = new System.Drawing.Point(34, 507);
+            this.password1Tb.MaxLength = 18;
             this.password1Tb.Name = "password1Tb";
             this.password1Tb.Size = new System.Drawing.Size(406, 33);
             this.password1Tb.TabIndex = 5;
             this.password1Tb.UseSystemPasswordChar = true;
-            this.password1Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(passwordKeyPress);
+            this.password1Tb.Enter += new System.EventHandler(this.showPasswordInfo);
+            this.password1Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordKeyPress);
             // 
             // password2Tb
             // 
             this.password2Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password2Tb.Location = new System.Drawing.Point(32, 605);
+            this.password2Tb.MaxLength = 18;
             this.password2Tb.Name = "password2Tb";
             this.password2Tb.Size = new System.Drawing.Size(408, 33);
             this.password2Tb.TabIndex = 6;
             this.password2Tb.UseSystemPasswordChar = true;
-            this.password2Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(passwordKeyPress);
+            this.password2Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordKeyPress);
             // 
             // usernameTb
             // 
             this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTb.Location = new System.Drawing.Point(34, 404);
+            this.usernameTb.MaxLength = 30;
             this.usernameTb.Name = "usernameTb";
             this.usernameTb.Size = new System.Drawing.Size(406, 33);
             this.usernameTb.TabIndex = 4;
@@ -177,6 +181,7 @@
             // 
             this.emailTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailTb.Location = new System.Drawing.Point(34, 322);
+            this.emailTb.MaxLength = 40;
             this.emailTb.Name = "emailTb";
             this.emailTb.Size = new System.Drawing.Size(406, 33);
             this.emailTb.TabIndex = 3;
@@ -185,6 +190,7 @@
             // 
             this.surnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.surnameTb.Location = new System.Drawing.Point(32, 237);
+            this.surnameTb.MaxLength = 30;
             this.surnameTb.Name = "surnameTb";
             this.surnameTb.Size = new System.Drawing.Size(406, 33);
             this.surnameTb.TabIndex = 2;
@@ -193,6 +199,7 @@
             // 
             this.firstnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstnameTb.Location = new System.Drawing.Point(32, 142);
+            this.firstnameTb.MaxLength = 30;
             this.firstnameTb.Name = "firstnameTb";
             this.firstnameTb.Size = new System.Drawing.Size(406, 33);
             this.firstnameTb.TabIndex = 1;
@@ -222,11 +229,6 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void Password1Tb_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion

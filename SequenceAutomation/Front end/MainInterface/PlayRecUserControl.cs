@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace SequenceAutomation
@@ -203,7 +202,12 @@ namespace SequenceAutomation
 
         private void updateList(object sender, EventArgs e)
         {
-            foreach(RecordingManager rec in recObjectList)
+            refreshList();
+        }
+
+        private void refreshList()
+        {
+            foreach (RecordingManager rec in recObjectList)
             {
                 if (rec.Title == recordingsList.SelectedItem.ToString())
                 {
@@ -323,7 +327,19 @@ namespace SequenceAutomation
             if (Properties.Settings.Default.currentUser != "")
             {
                 if (connectionManager.deleteRecording(recJson))
+                {
                     BigMessageBox.Show("Deleted");
+                    RecordingManager rec = new RecordingManager(recJson);
+
+                    foreach (RecordingManager recording in recObjectList)
+                    {
+                        if(rec.Id == recording.Id)
+                        {
+                            recObjectList.Remove(recording);
+                        }
+                    }
+                    refreshList();
+                }
                 else
                     BigMessageBox.Show("You cannot delete recordings you did not create");
             }

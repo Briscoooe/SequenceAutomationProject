@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Input;
 
 namespace SequenceAutomation
 {
@@ -107,8 +106,10 @@ namespace SequenceAutomation
                 Console.WriteLine(recording.Id);
                 Console.WriteLine(recording.Username);
 
-                if (recording.Title == null || recording.Description == null 
-                    || recording.Id == null || recording.Username == null)
+                if (recording.Title == null || recording.Title == "" ||
+                    recording.Description == null || recording.Description == "" ||
+                    recording.Id == null || recording.Id == "" ||
+                    recording.Username == null || recording.Username == "")
                 {
                     return false;
                 }
@@ -267,6 +268,7 @@ namespace SequenceAutomation
 
                     catch (FormatException e)
                     {
+                        Console.WriteLine("getDictionaries try/catch");
                         //Console.WriteLine("\nInvalid key");
                         //Console.WriteLine(e.Message);
                     }
