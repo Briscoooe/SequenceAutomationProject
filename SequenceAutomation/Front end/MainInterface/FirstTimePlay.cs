@@ -26,6 +26,7 @@ namespace SequenceAutomation
 
         private void gotoPlay(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (NoTutorialEvent != null)
                 NoTutorialEvent(this, e);
         }

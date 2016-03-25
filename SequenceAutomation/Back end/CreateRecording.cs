@@ -24,11 +24,11 @@ namespace SequenceAutomation
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
-        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
-        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
-        public static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
+        private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
+        private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
+        private static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
-        public string keysJson, recDescription;
+        public string keysJson;
 
         #endregion
 

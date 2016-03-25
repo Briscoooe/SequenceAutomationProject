@@ -20,7 +20,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         private Random randomNum;
-        public string keysJson, recTitle, recDescription, recId, recUsername;
+        public string keysJson, recTitle, recDescription, recId, recAuthor, userId;
 
         #endregion
 
@@ -41,9 +41,14 @@ namespace SequenceAutomation
             get { return recId; }
         }
 
-        public string Username
+        public string Author
         {
-            get { return recUsername; }
+            get { return recAuthor; }
+        }
+
+        public string UserId
+        {
+            get { return userId; }
         }
 
         /*
@@ -58,7 +63,12 @@ namespace SequenceAutomation
                 recTitle = recObj.Name;
                 recDescription = recObj.Desc;
                 recId = recObj.recId;
-                recUsername = recObj.userName;
+                userId = recObj.userId;
+
+                if(recObj.AuthorFirstname != null)
+                {
+                    recAuthor = Convert.ToString(recObj.AuthorFirstname) + " " + Convert.ToString(recObj.AuthorSurname);
+                }
             }
             catch (JsonReaderException j)
             {
@@ -90,7 +100,9 @@ namespace SequenceAutomation
             tempObj.Name = title;
             tempObj.Desc = description;
             tempObj.recId = recId;
-            tempObj.userName = Properties.Settings.Default.currentUser;
+            tempObj.AuthorFirstname = Properties.Settings.Default.currentUserFirstname;
+            tempObj.AuthorSurname = Properties.Settings.Default.currentUserSurname;
+            tempObj.UserId = Properties.Settings.Default.currentUser;
 
             return JsonConvert.SerializeObject(tempObj);
         }
@@ -100,15 +112,12 @@ namespace SequenceAutomation
             try
             {
                 RecordingManager recording = new RecordingManager(recJson);
-                Console.WriteLine(recording.Title);
-                Console.WriteLine(recording.Description);
-                Console.WriteLine(recording.Id);
-                Console.WriteLine(recording.Username);
 
                 if (recording.Title == null || recording.Title == "" ||
                     recording.Description == null || recording.Description == "" ||
                     recording.Id == null || recording.Id == "" ||
-                    recording.Username == null || recording.Username == "")
+                    recording.Author == null || recording.Author == "" ||
+                    recording.UserId == null || recording.UserId == "")
                 {
                     return false;
                 }

@@ -102,8 +102,8 @@ namespace SequenceAutomation
 
         private RecordingManager recManager;
         private ContextManager contextManager;
-        public static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
-        public static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
+        private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
+        private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         private float timeFactor; // The time factor used to determine the speed at which the recording should play
         private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
@@ -117,7 +117,7 @@ namespace SequenceAutomation
 
         // Importation of native libraries
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputStructure);
+        private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputStructure);
 
         [DllImport("kernel32.dll")]
         static extern uint GetLastError();

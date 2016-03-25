@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace SequenceAutomation
 {
@@ -34,37 +36,48 @@ namespace SequenceAutomation
 
         public bool loginUser(string username, string password)
         {
-            prepareRequest(usersUrl + "/" + username, "text/json", "GET");
+
+            prepareRequest(usersUrl, "text/json", "POST");
+
+            password = encryptPassword(password);
+            Console.WriteLine(password);
+
+            JObject userInfo = new JObject(new JProperty("requestType", "login"),
+                            new JProperty("username", username),
+                            new JProperty("password", password));
+
+            using (var writer = new StreamWriter(request.GetRequestStream()))
+            {
+                writer.Write(userInfo.ToString());
+                writer.Flush();
+                writer.Close();
+            }
 
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-
-                using (var reader = new StreamReader(response.GetResponseStream()))
-                {
-                    responseStr = reader.ReadToEnd();
-                }
-                string tmp = string.Join("", responseStr.Split('{', '}', '"'));
-                string[] tmp2 = tmp.Split(':');
-                foreach (string t in tmp2)
-                {
-                    string temp;
-                    Console.WriteLine("\n{0}", t);
-                    temp = string.Join("", t.Split('\\'));
-                    Console.WriteLine("{0}", encryptPassword(password));
-                    if(temp == encryptPassword(password))
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
             }
-            catch (Exception e)
+            catch (WebException we)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(we.Message);
                 return false;
             }
+
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                responseStr = reader.ReadToEnd();
+            }
+
+            string tmp = string.Join("", responseStr.Split('"', '{', '}', '\n'));
+            string[] tmp2 = tmp.Split(':',',');
+            Properties.Settings.Default.currentUser = tmp2[1];
+            Properties.Settings.Default.currentUserFirstname = tmp2[3];
+            Properties.Settings.Default.currentUserSurname= tmp2[5];
+
+            if (response.StatusCode == HttpStatusCode.Accepted)
+                return true;
+            else
+                return false;
         }
 
         public bool testConnection()
@@ -98,7 +111,8 @@ namespace SequenceAutomation
 
                         string password = encryptPassword(userList[4]);
 
-                        JObject userInfo = new JObject(new JProperty("firstname", userList[0]),
+                        JObject userInfo = new JObject(new JProperty("requestType", "register"),
+                                        new JProperty("firstname", userList[0]),
                                         new JProperty("surname", userList[1]),
                                         new JProperty("email", userList[2]),
                                         new JProperty("username", userList[3]),
@@ -177,7 +191,6 @@ namespace SequenceAutomation
                     dirContents.Add(recording);
                 }
             }
-
             return dirContents;
         }
 
@@ -212,6 +225,7 @@ namespace SequenceAutomation
         {
             prepareRequest(recordingUrl, "text/json", "POST");
 
+            Console.WriteLine(jsonString);
             try
             {
                 RecordingManager rec = new RecordingManager(jsonString);
@@ -239,43 +253,53 @@ namespace SequenceAutomation
                 return false;
             }
 
-            using (var reader = new StreamReader(response.GetResponseStream()))
-            {
-                responseStr = reader.ReadToEnd();
-            }
-            return true;
+            if (response.StatusCode == HttpStatusCode.Created)
+                return true;
+            else
+                return false;
         }
 
         public bool deleteRecording(string recJson)
         {
-            RecordingManager rec = new RecordingManager(recJson);
+            prepareRequest(recordingUrl, "text/json", "DELETE");
+            RecordingManager recording = new RecordingManager(recJson);
 
-            Console.WriteLine(Properties.Settings.Default.currentUser);
-            Console.WriteLine(rec.Username);
-            if(rec.Username == Properties.Settings.Default.currentUser)
+            try
             {
-                prepareRequest(recordingUrl + "/" + rec.Id, "", "DELETE");
+                Console.WriteLine(recording.Id);
+                Console.WriteLine(Properties.Settings.Default.currentUser);
+                JObject recInfo = new JObject(
+                    new JProperty("recId", recording.Id),
+                    new JProperty("UserId", Properties.Settings.Default.currentUser));
+
+                using (var writer = new StreamWriter(request.GetRequestStream()))
+                {
+                    writer.Write(recInfo.ToString());
+                    writer.Flush();
+                    writer.Close();
+                }
+
                 try
                 {
-                    Console.WriteLine(rec.Id);
                     response = (HttpWebResponse)request.GetResponse();
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        responseStr = reader.ReadToEnd();
-                    }
                 }
                 catch (WebException we)
                 {
                     Console.WriteLine(we.Message);
-                    throw;
                 }
-                return true;
-            }
 
-            else
+                response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                    return true;
+            }
+            catch (WebException we)
             {
+                Console.WriteLine(we.Message);
                 return false;
             }
+
+            return false;
 
         }
 
@@ -287,7 +311,10 @@ namespace SequenceAutomation
             {
                 hashBytes = algorithm.ComputeHash(bytes);
             }
-            return Convert.ToBase64String(hashBytes);
+            string encryptedPassword = Convert.ToBase64String(hashBytes);
+            encryptedPassword = string.Join("", encryptedPassword.Split('\\', '/'));
+
+            return encryptedPassword;
         }
 
         private bool prepareRequest(string url, string content, string method)
@@ -299,6 +326,8 @@ namespace SequenceAutomation
                 request.ContentType = "text/json";
             }
 
+            // Accept all certificates
+            ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
             return true;
         }
 

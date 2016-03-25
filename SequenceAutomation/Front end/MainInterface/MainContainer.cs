@@ -146,6 +146,7 @@ namespace SequenceAutomation
             ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
+            Cursor.Current = Cursors.Arrow;
         }
 
         /* 
@@ -173,6 +174,7 @@ namespace SequenceAutomation
             playRecUserControl.BringToFront();
             ClientSize = new Size(1270, 680);
             CenterToScreen();
+            Cursor.Current = Cursors.Arrow;
         }
 
         /* 

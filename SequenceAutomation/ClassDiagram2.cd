@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="SequenceAutomation.ConnectionManager">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAAAAAAAAAAACAAiAECAAAIgEIQAAAQCEAEA=</HashCode>
+      <FileName>Back end\ConnectionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.ContextManager">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="SequenceAutomation.ContextManager.EnumWindowsProc" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ContextManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAACAABQgABQQAAACgAAAAAAABAAgAAA=</HashCode>
+      <FileName>Back end\ContextManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.CreateRecording">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="SequenceAutomation.CreateRecording.HookDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CreateRecording.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCCAAAAAEYAgDAAAMQBAIAAAIAAEQAAgAAA=</HashCode>
+      <FileName>Back end\CreateRecording.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.PlayRecording">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAwABACCCAAAAAIZAABAAAIAAAEAAAIAAAQAAAAAA=</HashCode>
+      <FileName>Back end\PlayRecording.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequenceAutomation.RecordingManager" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAABAAAAgwkAAAQgAAAAQAQBAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Back end\RecordingManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

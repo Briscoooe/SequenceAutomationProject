@@ -21,7 +21,6 @@ namespace SequenceAutomation
                 if (connectionManager.loginUser(usernameTb.Text, passwordTb.Text))
                 {
                     BigMessageBox.Show("Logged in successfully");
-                    Properties.Settings.Default.currentUser = usernameTb.Text;
                     if (LoginEvent != null)
                         LoginEvent(this, new EventArgs());
                 }

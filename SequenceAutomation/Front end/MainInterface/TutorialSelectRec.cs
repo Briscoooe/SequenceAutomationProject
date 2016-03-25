@@ -167,7 +167,7 @@ namespace SequenceAutomation
             {
                 recTitleLabel.Text = rec.Title;
                 recDescLabel.Text = rec.Description;
-                recAuthorLabel.Text = rec.Username;
+                recAuthorLabel.Text = rec.Author;
             }
 
         }
@@ -180,7 +180,7 @@ namespace SequenceAutomation
 
                 string title = recording.Title;
                 string description = recording.Description;
-                string author = recording.Username;
+                string author = recording.Author;
 
                 if (recording.Title == "" || recording.Title == null)
                 {

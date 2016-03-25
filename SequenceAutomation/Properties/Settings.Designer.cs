@@ -59,7 +59,7 @@ namespace SequenceAutomation.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://finalyearproject.cloudapp.net/easyautomator/app/index.php/recordings")]
         public string recordingUrl {
             get {
                 return ((string)(this["recordingUrl"]));
@@ -112,15 +112,36 @@ namespace SequenceAutomation.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/users")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://finalyearproject.cloudapp.net/easyautomator/app/index.php/users")]
         public string usersUrl {
             get {
                 return ((string)(this["usersUrl"]));
             }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string currentUserFirstname {
+            get {
+                return ((string)(this["currentUserFirstname"]));
+            }
             set {
-                this["usersUrl"] = value;
+                this["currentUserFirstname"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string currentUserSurname {
+            get {
+                return ((string)(this["currentUserSurname"]));
+            }
+            set {
+                this["currentUserSurname"] = value;
             }
         }
     }

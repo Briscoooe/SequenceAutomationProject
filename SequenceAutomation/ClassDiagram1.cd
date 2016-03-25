@@ -45,32 +45,32 @@
     <Position X="7.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Back end\Program.cs</FileName>
+      <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.RecordingManager">
     <Position X="9.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAABAAAAAggAAAQAAAAAQAABAAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgCAABAAAAgwkAAAQgAAAAQAQBAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Back end\RecordingManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Properties.Resources" Collapsed="true">
     <Position X="0.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgANEADAQkCAAAAIQDABEAAAAQGoAQAMIAAEMACAEIA=</HashCode>
+      <HashCode>AgANEADAQkCAAAAIQDABEQAAAQGoAQAMIAAEMACAEIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Properties.Settings" Collapsed="true">
     <Position X="0.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABgAARACAAAACIAgAAAABAAAAAAAAAIAEAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.ConnectionManager" Collapsed="true">
     <Position X="9.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAQAIAAA=</HashCode>
+      <HashCode>AAAAAGAAAAAAAAAAAAACAAiAECAAAIgEIQAAAQCEAEA=</HashCode>
       <FileName>Back end\ConnectionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -84,57 +84,57 @@
   <Class Name="SequenceAutomation.ApplicationContainer" Collapsed="true">
     <Position X="7.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAgAAgACADBQAAlBABCAAgECBAAQIAAAAAgAAAAFECg=</HashCode>
-      <FileName>Front end\ApplicationContainer.cs</FileName>
+      <HashCode>IAAAAgACADBQAAkBAACEAgECAAAQIAAAAAgAQAAVECg=</HashCode>
+      <FileName>Front end\MainInterface\MainContainer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.CreateRecUserControl" Collapsed="true">
     <Position X="11.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AoAACBAAAGGQBhAQIQCAAogCUAydSoCAAmEBQAAAAAg=</HashCode>
-      <FileName>Front end\CreateRecUserControl.cs</FileName>
+      <HashCode>AoAACFAAAGGQBhAQIQCAAoiCVAwlSoCAEmMBQAAgEAg=</HashCode>
+      <FileName>Front end\MainInterface\CreateRecUserControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.FirstTimePlay" Collapsed="true">
     <Position X="7.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAACAACAACFAAAQCAAAACAAAAAAAAAAAIQACQAAA=</HashCode>
-      <FileName>Front end\FirstTimePlay.cs</FileName>
+      <HashCode>IAAAAACAACAAAFAAAQCAAAACAAAAAAAAAAAIQACQAAA=</HashCode>
+      <FileName>Front end\MainInterface\FirstTimePlay.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.LoginUserControl" Collapsed="true">
     <Position X="9.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAACACQAABAAAACAwAACAAAAAAAAAAgAAAAAAAA=</HashCode>
-      <FileName>Front end\LoginUserControl.cs</FileName>
+      <FileName>Front end\MainInterface\LoginUserControl.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SequenceAutomation.PlayRecUserControl" Collapsed="true">
-    <Position X="11.25" Y="5" Width="1.5" />
+  <Class Name="SequenceAutomation.PlayRecUserControl">
+    <Position X="6" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AokAABBADGAEBBAgAyCKYEBCnEQgQQQEpkgBQQAwgCw=</HashCode>
-      <FileName>Front end\PlayRecUserControl.cs</FileName>
+      <HashCode>AIkAABBgDGAEBBAwCyCCZMDWnEQgQSYkLmwBQYAwgAg=</HashCode>
+      <FileName>Front end\MainInterface\PlayRecUserControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.SearchBox" Collapsed="true">
     <Position X="13" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAAQAAABAA=</HashCode>
-      <FileName>Front end\SearchBox.cs</FileName>
+      <FileName>Front end\MainInterface\SearchBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.TutorialPlayRec" Collapsed="true">
     <Position X="9.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YAgAAABACGAEBhAAAyCAIMBChEQgUQAEBkgFAAAAgAg=</HashCode>
-      <FileName>Front end\TutorialPlayRec.cs</FileName>
+      <HashCode>YAgAAABACGAEBhAAAyCCIMBCjEQgUQAEBkgFAAAAgAg=</HashCode>
+      <FileName>Front end\MainInterface\TutorialPlayRec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.TutorialSelectRec" Collapsed="true">
     <Position X="11.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAkAEBAAAGCAAJAAIwCIYAACFEQAQAQAIEgBQQAAEAg=</HashCode>
-      <FileName>Front end\TutorialSelectRec.cs</FileName>
+      <HashCode>MAkAEBAgAGAAAJAQIwCAYACGFEQAQAYALGwBQYAAEAg=</HashCode>
+      <FileName>Front end\MainInterface\TutorialSelectRec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.TutorialSelectSpeed" Collapsed="true">
@@ -148,28 +148,28 @@
     <Position X="7.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAEAAEAGAQAJAAIwCAAoACQEyASgCAAGgBAAQAEAg=</HashCode>
-      <FileName>Front end\TutorialStartRec.cs</FileName>
+      <FileName>Front end\MainInterface\TutorialStartRec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.TutorialUploadRec" Collapsed="true">
     <Position X="11.25" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AggAGBAAAGCAAJAQIwCAAAgCEESEQIAAAkgBQAAAEAg=</HashCode>
-      <FileName>Front end\TutorialUploadRec.cs</FileName>
+      <HashCode>AggAGFAAAGCAAJAQIwCAAAiCFEQkQIAAEkoBQAAAEAg=</HashCode>
+      <FileName>Front end\MainInterface\TutorialUploadRec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Interface.FirstTimeCreate" Collapsed="true">
     <Position X="13" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAACAACFAAAQCAAAACAAAAAAAAAAgIQACQAAA=</HashCode>
-      <FileName>Front end\FirstTimeCreate.cs</FileName>
+      <HashCode>AAAAAACAACAAAFAAAQCAAAACAAAAAAAAAAgIQACQAAA=</HashCode>
+      <FileName>Front end\MainInterface\FirstTimeCreate.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SequenceAutomation.Interface.TutorialTestRec" Collapsed="true">
     <Position X="9.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAEAAAAWAABpAAIwCAAAACAESAQACAAEkBAAAAEAg=</HashCode>
-      <FileName>Front end\TutorialTestRec.cs</FileName>
+      <FileName>Front end\MainInterface\TutorialTestRec.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="SequenceAutomation.MOUSEINPUT" Collapsed="true">

@@ -224,7 +224,7 @@ namespace SequenceAutomation
             {
                 recTitleLabel.Text = rec.Title;
                 recDescLabel.Text = rec.Description;
-                recAuthorLabel.Text = rec.Username;
+                recAuthorLabel.Text = rec.Author;
             }
 
         }
@@ -237,7 +237,7 @@ namespace SequenceAutomation
                 
                 string title = recording.Title;
                 string description = recording.Description;
-                author = recording.Username;
+                author = recording.Author;
 
                 if (recording.Title == "" || recording.Title == null)
                 {
@@ -304,44 +304,29 @@ namespace SequenceAutomation
             }
         }
 
-        private bool validateAuthor()
-        {
-            if (Properties.Settings.Default.currentUser == "")
-            {
-                BigMessageBox.Show("You must be logged in to delete recordings");
-                return false;
-            }
-
-            if (author == Properties.Settings.Default.currentUser)
-            {
-                return true;
-            }
-            else
-            {
-                BigMessageBox.Show("You cannot delete recordings that you did not create");
-                return false;
-            }
-        }
-
         private void deleteRec(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.currentUser != "")
             {
-                //if (connectionManager.deleteRecording(recJson))
-                //{
+                if (connectionManager.deleteRecording(recJson))
+                {
                     RecordingManager rec = new RecordingManager(recJson);
 
                     foreach (RecordingManager recording in recObjectList.ToArray())
                     {
-                        if(rec.Id == recording.Id)
+                        if (rec.Id == recording.Id)
                         {
                             BigMessageBox.Show("Deleted");
                             recObjectList.Remove(recording);
                         }
                     }
-                //}
-                //else
-                    //BigMessageBox.Show("You cannot delete recordings you did not create");
+                    refreshList();
+                }
+
+                else
+                {
+                    BigMessageBox.Show("You cannot delete recordings you did not create");
+                }
             }
             else
                 BigMessageBox.Show("You must be logged in to delete recordings");
@@ -358,6 +343,7 @@ namespace SequenceAutomation
 
         private void showTutorial(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (TutorialEvent != null)
                 TutorialEvent(this, e);
         }

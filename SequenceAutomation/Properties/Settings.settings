@@ -12,7 +12,7 @@
       <Value Profile="(Default)">finalyearproject.cloudapp.net</Value>
     </Setting>
     <Setting Name="recordingUrl" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/recordings</Value>
+      <Value Profile="(Default)">https://finalyearproject.cloudapp.net/easyautomator/app/index.php/recordings</Value>
     </Setting>
     <Setting Name="favourites" Type="System.Collections.Generic.List&lt;System.String&gt;" Scope="User">
       <Value Profile="(Default)" />
@@ -26,8 +26,14 @@
     <Setting Name="keepLoggedIn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="usersUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://finalyearproject.cloudapp.net/easyAutomator/app/index.php/users</Value>
+    <Setting Name="usersUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://finalyearproject.cloudapp.net/easyautomator/app/index.php/users</Value>
+    </Setting>
+    <Setting Name="currentUserFirstname" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="currentUserSurname" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
