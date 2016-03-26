@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 /*
@@ -100,6 +101,7 @@ namespace SequenceAutomation
     {
         #region Variable declarations
 
+        public bool stopPlayback;
         private RecordingManager recManager;
         private ContextManager contextManager;
         private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
@@ -135,6 +137,7 @@ namespace SequenceAutomation
         {
             currentEntry = 0;
             this.timeFactor = timeFactor;
+            stopPlayback = false;
             watch = new Stopwatch();
             contextManager = new ContextManager();
 
@@ -147,7 +150,6 @@ namespace SequenceAutomation
             // Initialise the keysToPlay dictoinary and load the keys into it
             keysToPlay = new Dictionary<long, INPUT[]>();
             prepareKeysToPlay();
-
         }
 
         /*
@@ -155,7 +157,7 @@ namespace SequenceAutomation
          * Summary: Begins the execution of the inputs in the keysToPlay dictionary
          */
         public bool Start()
-        {   
+        {
             currentEntry = 0; 
             watch.Reset();
             watch.Start();
@@ -176,14 +178,14 @@ namespace SequenceAutomation
                         if(contextManager.checkContext(currentEntry, contextDict))
                         {
                             //Console.WriteLine("Passed");
-                            BigMessageBox.Show("Passed");
+                            //BigMessageBox.Show("Passed");
                             break;
                         }
 
                         else
                         {
                             //Console.WriteLine("Failed");
-                            BigMessageBox.Show("Failed");
+                            BigMessageBox.Show("The recording is not behaving as it should. Try reducing the speed or closing unnecessary windows");
                             break;
                         }
                     }
@@ -194,12 +196,15 @@ namespace SequenceAutomation
 
                 while (watch.ElapsedMilliseconds < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
 
-                // The sendInput call, utilising three parameters
-                // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
-                // keysToPlay[enumerator.Current] is the current entry in the array of INPUT structures, keysToPlay
-                // Marshal.SizeOf(typeof(INPUT)) is the size of an INPUT structure
-                // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if blocked by another thread
-                uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
+                if(!stopPlayback)
+                {
+                    // The sendInput call, utilising three parameters
+                    // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
+                    // keysToPlay[enumerator.Current] is the current entry in the array of INPUT structures, keysToPlay
+                    // Marshal.SizeOf(typeof(INPUT)) is the size of an INPUT structure
+                    // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if blocked by another thread
+                    uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
+                }
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }

@@ -15,7 +15,8 @@ namespace SequenceAutomation
 
         private void login(object sender, EventArgs e)
         {
-            ConnectionManager connectionManager= new ConnectionManager();
+            Cursor.Current = Cursors.WaitCursor;
+            ConnectionManager connectionManager = new ConnectionManager();
             if (usernameTb.Text != "" && passwordTb.Text != "")
             {
                 if (connectionManager.loginUser(usernameTb.Text, passwordTb.Text))
@@ -34,6 +35,8 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("You must fill in both fields");
             }
+            Cursor.Current = Cursors.Arrow;
+
         }
 
         private void goBackEvent(object sender, EventArgs e)

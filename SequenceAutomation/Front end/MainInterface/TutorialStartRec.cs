@@ -17,6 +17,7 @@ namespace SequenceAutomation
         public event EventHandler goBackEvent;
 
         private CreateRecording createRec;
+        private RecStatus recStatus;
         private string mergedJson;
 
 
@@ -29,6 +30,12 @@ namespace SequenceAutomation
         {
             recCreatedLabel.Hide();
         }
+
+        private void recStatus_StopCreate(object sender, EventArgs e)
+        {
+            stopRecording(sender, e);
+        }
+
 
         /*
          * Method: startRecording()
@@ -49,9 +56,13 @@ namespace SequenceAutomation
 
             recCreatedLabel.Hide();
 
-
             recStatusText.ForeColor = Color.Green;
             recStatusText.Text = "Recording active";
+
+            // Display the status box containing the elapsed time and a stopbutton
+            recStatus = new RecStatus(1);
+            recStatus.stopButtonEvent += recStatus_StopCreate;
+            recStatus.Show();
 
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;
@@ -75,13 +86,14 @@ namespace SequenceAutomation
 
 
             recButtonLabel2.Show();
-
             recCreatedLabel.Show();
 
             // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
             mergedJson = createRec.Stop(); // Stop recording  
+            recStatus.Dispose();
+
         }
 
 

@@ -75,6 +75,7 @@
             this.messageBody.Name = "messageBody";
             this.messageBody.Size = new System.Drawing.Size(472, 169);
             this.messageBody.TabIndex = 9;
+            this.messageBody.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BigMessageBox
             // 

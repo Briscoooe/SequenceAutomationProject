@@ -122,7 +122,6 @@
             this.tutorialUploadRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialUploadRec.Name = "tutorialUploadRec";
             this.tutorialUploadRec.Size = new System.Drawing.Size(1065, 719);
-            this.tutorialUploadRec.TabIndex = 10;
             // 
             // ApplicationContainer
             // 
@@ -140,7 +139,9 @@
             this.Controls.Add(this.tutorialTestRec);
             this.Controls.Add(this.tutorialUploadRec);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.Name = "ApplicationContainer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Easy Automator";
             this.ResumeLayout(false);
 

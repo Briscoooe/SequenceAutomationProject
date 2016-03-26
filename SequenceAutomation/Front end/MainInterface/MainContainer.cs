@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SequenceAutomation
 {
@@ -64,33 +65,7 @@ namespace SequenceAutomation
             tutorialUploadRec.goNextEvent += gotoCreate;
             tutorialUploadRec.gotoLoginEvent += returnToLogin;
 
-            shortcut = new KeyboardShortcut();
-
-            shortcut.RegisterGlobalHotKey((int)Keys.F11, KeyboardShortcut.MOD_CONTROL);
-            shortcut.UnregisterGlobalHotKey();
-
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_HOTKEY = 0x0312;
-
-            switch (m.Msg)
-            {
-                case WM_HOTKEY:
-                    {
-                        if ((short)m.WParam == shortcut.HotkeyID)
-                        {
-                            BigMessageBox.Show("Pressed");
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        base.WndProc(ref m);
-                        break;
-                    }
-            }
+        
         }
 
         private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -146,7 +121,7 @@ namespace SequenceAutomation
             ClientSize = new Size(1168, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
-            Cursor.Current = Cursors.Arrow;
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Arrow;
         }
 
         /* 
@@ -174,7 +149,7 @@ namespace SequenceAutomation
             playRecUserControl.BringToFront();
             ClientSize = new Size(1270, 680);
             CenterToScreen();
-            Cursor.Current = Cursors.Arrow;
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Arrow;
         }
 
         /* 

@@ -23,6 +23,7 @@ namespace SequenceAutomation
         private ConnectionManager connectionManager;
         private FavouritesBox fave;
         private RecordingManager recording;
+        private RecStatus recStatusBox;
 
         public string recJson = "";
         public string recTitle = "";
@@ -32,17 +33,12 @@ namespace SequenceAutomation
 
         public int recSpeedVal = 3;
 
-        public string temptooltiptext = "";
-
         public PlayRecUserControl()
         {
             recList = new List<string>();
             recObjectList = new List<RecordingManager>();
             InitializeComponent();
             onSpeedChange();
-
-
-            recStatus = new RecStatus();
         }
 
         private void doneSelecting(object sender, EventArgs e)
@@ -306,6 +302,7 @@ namespace SequenceAutomation
 
         private void deleteRec(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (Properties.Settings.Default.currentUser != "")
             {
                 if (connectionManager.deleteRecording(recJson))
@@ -320,7 +317,6 @@ namespace SequenceAutomation
                             recObjectList.Remove(recording);
                         }
                     }
-                    refreshList();
                 }
 
                 else
@@ -331,7 +327,8 @@ namespace SequenceAutomation
             else
                 BigMessageBox.Show("You must be logged in to delete recordings");
 
-            prepareList();
+            refreshList();
+            Cursor.Current = Cursors.Arrow;
 
         }
 

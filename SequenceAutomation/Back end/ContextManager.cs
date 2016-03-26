@@ -105,11 +105,16 @@ namespace SequenceAutomation
                         // context dictionary
                         foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
                         {
+                            Console.WriteLine("\nDict, window");
+                            Console.WriteLine(kvp3.Value);
+                            Console.WriteLine(window.Value);
+          
                             // If the window stored matches one of the current windows, increment the matches variable by one
                             if (kvp3.Value == window.Value)
                             {
                                 numOfMatches += 1;
                             }
+ 
                         }
                     }
 
@@ -157,7 +162,8 @@ namespace SequenceAutomation
                 // For the window with the given windowHandle, add the text to the titleBuffer until the maximum number of characters (length + 1) has been reached
                 GetWindowText(windowHandle, titleBuffer, length + 1);
 
-                openWindows[windowHandle] = titleBuffer.ToString(); // For the entry in the dictionary with the given windowHandle, add the title stored in the titleBuffer
+                if(titleBuffer.ToString() != "Recording Status")
+                    openWindows[windowHandle] = titleBuffer.ToString(); // For the entry in the dictionary with the given windowHandle, add the title stored in the titleBuffer
 
                 // Continue execution
                 return true;

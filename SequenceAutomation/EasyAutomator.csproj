@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -49,6 +49,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
@@ -104,17 +106,17 @@
     <Compile Include="Front end\AccountsInterface\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\MainInterface\KeyboardShortcut.cs" />
+    <Compile Include="Back end\KeyboardShortcut.cs" />
     <Compile Include="Front end\MainInterface\MainContainer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Front end\MainInterface\MainContainer.Designer.cs">
       <DependentUpon>MainContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front end\MainInterface\BigMessageBox.cs">
+    <Compile Include="Front end\BigMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front end\MainInterface\BigMessageBox.Designer.cs">
+    <Compile Include="Front end\BigMessageBox.Designer.cs">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Front end\MainInterface\FavouritesBox.cs">
@@ -219,7 +221,7 @@
     <EmbeddedResource Include="Front end\MainInterface\MainContainer.resx">
       <DependentUpon>MainContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front end\MainInterface\BigMessageBox.resx">
+    <EmbeddedResource Include="Front end\BigMessageBox.resx">
       <DependentUpon>BigMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front end\MainInterface\FavouritesBox.resx">

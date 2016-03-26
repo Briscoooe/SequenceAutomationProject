@@ -11,6 +11,7 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
 
         private PlayRecording playRec;
+        private RecStatus recStatus;
 
         public string recJson = "";
         public string recTitle = "";

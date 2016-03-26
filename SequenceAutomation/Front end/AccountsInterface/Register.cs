@@ -16,6 +16,7 @@ namespace SequenceAutomation
 
         private void register(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             ConnectionManager connectionManager = new ConnectionManager();
 
             if (firstnameTb.Text != "" || surnameTb.Text != "" || usernameTb.Text != "" ||
@@ -80,6 +81,8 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("Please fill in all fields");
             }
+
+            Cursor.Current = Cursors.Arrow;
 
         }
 

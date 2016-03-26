@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -19,6 +20,7 @@ namespace SequenceAutomation
         private CreateRecording createRec;
         private AccountContainer accountContainer;
         private RecordingManager recManager;
+        private RecStatus recStatus;
         private ConnectionManager connectionManager;
         private PlayRecording playRec;
         private string recJson;
@@ -28,11 +30,43 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
+        private void recStatus_StopCreate(object sender, EventArgs e)
+        {
+            stopRecording(sender, e);
+        }
+
+        private void recStatus_StopPlay(object sender, EventArgs e)
+        {
+            playRec.stopPlayback = true;
+        }
+
+        #region Navigation events
         private void showTutorial(object sender, EventArgs e)
         {
             if (ShowTutorialEvent != null)
                 ShowTutorialEvent(this, e);
         }
+
+        private void returnLogin(object sender, EventArgs e)
+        {
+            checkLogin();
+        }
+
+        /*
+         * Method: goBack()
+         * Summary: Returns to the previous screen
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
+        private void goBack(object sender, EventArgs e)
+        {
+            if (BackButtonEvent != null)
+                BackButtonEvent(this, e);
+        }
+
+        #endregion
+
+        #region Button hover events
 
         private void startStopRecBtn_MouseEnter(object sender, EventArgs e)
         {
@@ -121,17 +155,7 @@ namespace SequenceAutomation
             favouriteBtn.BackgroundImage = Properties.Resources.favourite;
         }
 
-        /*
-         * Method: goBack()
-         * Summary: Returns to the previous screen
-         * Parameter: sender - The control that the action is for, in this case the button
-         * Parameter: e - Any arguments the function may use
-         */
-        private void goBack(object sender, EventArgs e)
-        {
-            if(BackButtonEvent != null)
-                BackButtonEvent(this, e);
-        }
+        #endregion
 
         /*
          * Method: launchPlaying()
@@ -141,14 +165,22 @@ namespace SequenceAutomation
          */
         private void testRecording(object sender, EventArgs e)
         {
+
+            // Display the status box containing the elapsed time and a stopbutton
+            RecStatus recStatusbox = new RecStatus(2);
+            recStatusbox.stopButtonEvent += recStatus_StopPlay;
+            recStatusbox.Show();
+
             // If there are no keys loaded to play, display a message informing the user of this
             if (recJson == null)
             {
                 BigMessageBox.Show("Error: There is no recording to play");
                 return;
             }
+
             playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
+            recStatus.Dispose();
         }
 
         /*
@@ -166,12 +198,16 @@ namespace SequenceAutomation
 
             startStopRecBtn.Tag = "stopRecTag";
 
-
             createRec = new CreateRecording(); // Reinitialise the createRec variable, restarting the clock and clearning the dictionary of recorded keys
             createRec.Start(); // Begin recording
 
             recStatusText.ForeColor = Color.Green;
             recStatusText.Text = "Recording active";
+
+            // Display the status box containing the elapsed time and a stopbutton
+            recStatus = new RecStatus(1);
+            recStatus.stopButtonEvent += recStatus_StopCreate;
+            recStatus.Show();
 
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;
@@ -193,19 +229,21 @@ namespace SequenceAutomation
 
             startStopRecBtn.Tag = "startRecTag";
 
-
-            // Alter the button so that clicking no longer invokes the stopRecording method, but instead the launchRecording method
+            // Alter the button rso that clicking no longer invokes the stopRecording method, but instead the launchRecording method
             startStopRecBtn.Click += startRecording;
             startStopRecBtn.Click -= stopRecording;
             recJson = createRec.Stop(); // Stop recording  
+            recStatus.Dispose();
         }
+
 
         /*
          *
          */
         private void uploadRecording(object sender, EventArgs e)
         {
-            if(validateInput(1))
+            Cursor.Current = Cursors.WaitCursor;
+            if (validateInput(1))
             {
                 connectionManager = new ConnectionManager();
                 if (connectionManager.testConnection())
@@ -224,7 +262,8 @@ namespace SequenceAutomation
                 }
                
             }
-           
+            Cursor.Current = Cursors.Arrow;
+
         }
 
         private void saveFile(object sender, EventArgs e)
@@ -347,10 +386,6 @@ namespace SequenceAutomation
             return true;
         }
 
-        private void returnLogin(object sender, EventArgs e)
-        {
-            checkLogin();
-        }
 
         private void login(object sender, EventArgs e)
         {
