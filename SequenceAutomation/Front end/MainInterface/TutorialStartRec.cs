@@ -16,6 +16,8 @@ namespace SequenceAutomation
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;
 
+        private KeyboardShortcut shortcut;
+
         private CreateRecording createRec;
         private RecStatus recStatus;
         private string mergedJson;
@@ -45,6 +47,7 @@ namespace SequenceAutomation
          */
         private void startRecording(object sender, EventArgs e)
         {
+            BigMessageBox.Show("Recording has now begun. Press control and space to end the recording, or use the buttons in the application");
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             recButtonLabel.Text = "Press the red button again to stop the recording";
             recButtonLabel2.Hide();
@@ -59,6 +62,10 @@ namespace SequenceAutomation
             recStatusText.ForeColor = Color.Green;
             recStatusText.Text = "Recording active";
 
+            // Initialise the keyboard shortcut
+            shortcut = new KeyboardShortcut();
+            shortcut.KeyPressed += new EventHandler<KeyPressedEventArgs>(shortcut_Pressed);
+
             // Display the status box containing the elapsed time and a stopbutton
             recStatus = new RecStatus(1);
             recStatus.stopButtonEvent += recStatus_StopCreate;
@@ -67,6 +74,11 @@ namespace SequenceAutomation
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;
             startStopRecBtn.Click += stopRecording;
+        }
+
+        private void shortcut_Pressed(object sender, KeyPressedEventArgs e)
+        {
+            stopRecording(sender, e);
         }
 
         /*
@@ -84,7 +96,6 @@ namespace SequenceAutomation
 
             startStopRecBtn.Tag = "startRecTag";
 
-
             recButtonLabel2.Show();
             recCreatedLabel.Show();
 
@@ -93,6 +104,7 @@ namespace SequenceAutomation
             startStopRecBtn.Click -= stopRecording;
             mergedJson = createRec.Stop(); // Stop recording  
             recStatus.Dispose();
+            shortcut.Dispose();
 
         }
 

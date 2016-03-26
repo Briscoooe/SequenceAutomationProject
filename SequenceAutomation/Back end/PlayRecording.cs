@@ -196,7 +196,7 @@ namespace SequenceAutomation
 
                 while (watch.ElapsedMilliseconds < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
 
-                if(!stopPlayback)
+                if (!stopPlayback)
                 {
                     // The sendInput call, utilising three parameters
                     // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
@@ -205,6 +205,9 @@ namespace SequenceAutomation
                     // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if blocked by another thread
                     uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
                 }
+
+                else
+                    return false;
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }

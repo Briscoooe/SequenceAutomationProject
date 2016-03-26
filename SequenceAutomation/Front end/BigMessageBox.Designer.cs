@@ -70,7 +70,7 @@
             // 
             // messageBody
             // 
-            this.messageBody.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageBody.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageBody.Location = new System.Drawing.Point(42, 35);
             this.messageBody.Name = "messageBody";
             this.messageBody.Size = new System.Drawing.Size(472, 169);

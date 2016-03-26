@@ -17,6 +17,7 @@ namespace SequenceAutomation
         public event EventHandler BackButtonEvent;
         public event EventHandler ShowTutorialEvent;
 
+        private KeyboardShortcut shortcut;
         private CreateRecording createRec;
         private AccountContainer accountContainer;
         private RecordingManager recManager;
@@ -165,11 +166,9 @@ namespace SequenceAutomation
          */
         private void testRecording(object sender, EventArgs e)
         {
-
-            // Display the status box containing the elapsed time and a stopbutton
-            RecStatus recStatusbox = new RecStatus(2);
-            recStatusbox.stopButtonEvent += recStatus_StopPlay;
-            recStatusbox.Show();
+            // Initialise the keyboard shortcut
+            shortcut = new KeyboardShortcut();
+            shortcut.KeyPressed += new EventHandler<KeyPressedEventArgs>(shortcut_PressedPlay);
 
             // If there are no keys loaded to play, display a message informing the user of this
             if (recJson == null)
@@ -181,6 +180,14 @@ namespace SequenceAutomation
             playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
             recStatus.Dispose();
+            shortcut.Dispose();
+        }
+
+        private void shortcut_PressedPlay(object sender, KeyPressedEventArgs e)
+        {
+            BigMessageBox.Show("aaa");
+            playRec.stopPlayback = true;
+            shortcut.Dispose();
         }
 
         /*
@@ -191,6 +198,7 @@ namespace SequenceAutomation
          */
         private void startRecording(object sender, EventArgs e)
         {
+            BigMessageBox.Show("Recording has now begun. Press control and space to end the recording, or use the buttons in the application");
             startStopRecBtn.BackgroundImage = Properties.Resources.stop;
             recButtonLabel.Text = "Stop recording";
             recTitleTb.Text = "";
@@ -204,6 +212,10 @@ namespace SequenceAutomation
             recStatusText.ForeColor = Color.Green;
             recStatusText.Text = "Recording active";
 
+            // Initialise the keyboard shortcut
+            shortcut = new KeyboardShortcut();
+            shortcut.KeyPressed += new EventHandler<KeyPressedEventArgs>(shortcut_PressedCreate);
+
             // Display the status box containing the elapsed time and a stopbutton
             recStatus = new RecStatus(1);
             recStatus.stopButtonEvent += recStatus_StopCreate;
@@ -212,6 +224,11 @@ namespace SequenceAutomation
             // Alter the button so that clicking no longer invokes the launchRecording method, but instead the stopRecording method
             startStopRecBtn.Click -= startRecording;
             startStopRecBtn.Click += stopRecording;
+        }
+
+        private void shortcut_PressedCreate(object sender, KeyPressedEventArgs e)
+        {
+            stopRecording(sender, e);
         }
 
         /*
@@ -234,6 +251,7 @@ namespace SequenceAutomation
             startStopRecBtn.Click -= stopRecording;
             recJson = createRec.Stop(); // Stop recording  
             recStatus.Dispose();
+            shortcut.Dispose();
         }
 
 
