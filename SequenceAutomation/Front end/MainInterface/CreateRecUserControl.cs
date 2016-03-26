@@ -340,12 +340,10 @@ namespace SequenceAutomation
             {
                 if (recJson != "" && recJson != null)
                 {
-                    Console.WriteLine("recJson {0}", recJson);
                     recManager = new RecordingManager(recJson);
                     string test = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                     List<string> tmp = new List<string>();
 
-                    Console.WriteLine("test: {0}", test);
                     tmp = Properties.Settings.Default.favouriteRecordings;
                     int x = 0;
 

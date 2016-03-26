@@ -51,7 +51,6 @@ namespace SequenceAutomation
 
                 if (rec != "")
                 {
-                    Console.WriteLine(recList.Count);
                     recording = new RecordingManager(rec);
 
                     if (!recList.ContainsKey(recording.Title))
@@ -61,10 +60,6 @@ namespace SequenceAutomation
 
                 }
 
-                else
-                {
-                    Console.WriteLine( recList.Count);
-                }
             }
 
             if(recList.Count == 0)

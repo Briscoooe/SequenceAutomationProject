@@ -197,8 +197,6 @@ namespace SequenceAutomation
                             // In this instance it will be either a key name or the "Open windows"
                             string keyNameStr = nameVal.Name;
 
-                            Console.WriteLine("\nkeynamestr: {0}", keyNameStr);
-
                             // Iterate over the nameVal.Values, in this instance it will be either a window title or key action 
                             foreach (dynamic windowVal in nameVal.Value)
                             {
@@ -281,9 +279,7 @@ namespace SequenceAutomation
 
                     catch (FormatException e)
                     {
-                        Console.WriteLine("\ngetDictionaries try/catch");
                         Console.WriteLine(e.Message);
-                        Console.WriteLine(e.StackTrace);
                     }
                 }
             }

@@ -105,9 +105,6 @@ namespace SequenceAutomation
                         // context dictionary
                         foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
                         {
-                            Console.WriteLine("\nDict, window");
-                            Console.WriteLine(kvp3.Value);
-                            Console.WriteLine(window.Value);
           
                             // If the window stored matches one of the current windows, increment the matches variable by one
                             if (kvp3.Value == window.Value)
@@ -118,9 +115,6 @@ namespace SequenceAutomation
                         }
                     }
 
-            Console.WriteLine("Matches");
-            Console.WriteLine(numOfMatches);
-            Console.WriteLine(numOfContextWindows);
             // If the number of windows listed in the context is equal to the number of matches calculated, return true
             if(numOfContextWindows == numOfMatches)
                 return true;

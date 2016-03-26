@@ -40,8 +40,6 @@ namespace SequenceAutomation
             prepareRequest(usersUrl, "text/json", "POST");
 
             password = encryptPassword(password);
-            Console.WriteLine(password);
-
             JObject userInfo = new JObject(new JProperty("requestType", "login"),
                             new JProperty("username", username),
                             new JProperty("password", password));
@@ -174,7 +172,6 @@ namespace SequenceAutomation
             }
             catch (WebException we)
             {
-                Console.WriteLine("CATCH getRecordings");
                 Console.WriteLine(we.Message);
                 dirContents = null;
             }
@@ -213,7 +210,7 @@ namespace SequenceAutomation
             }
             catch (WebException we)
             {
-                Console.WriteLine("CATCH getRecInfo");
+                Console.WriteLine(we.Message);
                 throw;
             }
 
@@ -224,7 +221,6 @@ namespace SequenceAutomation
         {
             prepareRequest(recordingUrl, "text/json", "POST");
 
-            Console.WriteLine(jsonString);
             try
             {
                 RecordingManager rec = new RecordingManager(jsonString);
@@ -265,8 +261,7 @@ namespace SequenceAutomation
 
             try
             {
-                Console.WriteLine(recording.Id);
-                Console.WriteLine(Properties.Settings.Default.currentUser);
+
                 JObject recInfo = new JObject(
                     new JProperty("recId", recording.Id),
                     new JProperty("UserId", Properties.Settings.Default.currentUser));

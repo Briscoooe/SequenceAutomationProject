@@ -177,14 +177,11 @@ namespace SequenceAutomation
                         // Check the current context against the stored context
                         if(contextManager.checkContext(currentEntry, contextDict))
                         {
-                            //Console.WriteLine("Passed");
-                            //BigMessageBox.Show("Passed");
                             break;
                         }
 
                         else
                         {
-                            //Console.WriteLine("Failed");
                             BigMessageBox.Show("The recording is not behaving as it should. Try reducing the speed or closing unnecessary windows");
                             break;
                         }
