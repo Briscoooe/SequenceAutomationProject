@@ -15,7 +15,6 @@ namespace SequenceAutomation.Interface
         public event EventHandler goBackEvent;
 
         public string mergedJson = "";
-        private RecStatus recStatus;
         private PlayRecording playRec;
 
         public TutorialTestRec()

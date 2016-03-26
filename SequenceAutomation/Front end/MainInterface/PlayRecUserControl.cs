@@ -15,7 +15,6 @@ namespace SequenceAutomation
         public event EventHandler BackButtonEvent;
         public event EventHandler TutorialEvent;
         public event EventHandler gotoLoginEvent;
-        private RecStatus recStatus;
 
         private List<string> recList;
         private List<RecordingManager> recObjectList;
@@ -23,7 +22,6 @@ namespace SequenceAutomation
         private ConnectionManager connectionManager;
         private FavouritesBox fave;
         private RecordingManager recording;
-        private RecStatus recStatusBox;
 
         public string recJson = "";
         public string recTitle = "";

@@ -228,6 +228,7 @@ namespace SequenceAutomation
 
             catch (NullReferenceException e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
 
