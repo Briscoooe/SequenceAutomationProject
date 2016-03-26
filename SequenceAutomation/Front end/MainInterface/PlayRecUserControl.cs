@@ -125,10 +125,8 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("Error: There is no recording to play");
             }
-            //recStatus.Show();
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start();
-            //recStatus.Hide();
 
         }
 
@@ -194,7 +192,6 @@ namespace SequenceAutomation
             }
 
             recordingsList.DataSource = recList;
-            ActiveControl = recordingsList;
         }
 
         private void updateList(object sender, EventArgs e)

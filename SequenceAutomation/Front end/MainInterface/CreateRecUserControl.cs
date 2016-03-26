@@ -326,17 +326,17 @@ namespace SequenceAutomation
                 return false;
             }
 
-            if(option == 1 && recDescTb.Text == "")
+            if (recDescTb.Text == "")
             {
                 BigMessageBox.Show("You must enter a description");
                 return false;
             }
             return true;
-        }
+        }  
 
         private void addToFavourites(object sender, EventArgs e)
         {
-            if (validateInput(1))
+            if (validateInput(0))
             {
                 if (recJson != "" && recJson != null)
                 {

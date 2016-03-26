@@ -112,22 +112,50 @@ namespace SequenceAutomation
             try
             {
                 RecordingManager recording = new RecordingManager(recJson);
-
                 if (recording.Title == null || recording.Title == "" ||
-                    recording.Description == null || recording.Description == "" ||
-                    recording.Id == null || recording.Id == "" ||
-                    recording.Author == null || recording.Author == "" ||
-                    recording.UserId == null || recording.UserId == "")
+                    recording.Description == null || recording.Description == "")
                 {
                     return false;
                 }
+
+                // Store the inputJson string into a dynamic object
+                dynamic timeKeys = JsonConvert.DeserializeObject(recJson);
+                // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
+                foreach (dynamic timeVal in timeKeys)
+                {
+
+                    if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc" ||
+                    Convert.ToString(timeVal.Name) == "recId" || Convert.ToString(timeVal.Name) == "userName" || 
+                    Convert.ToString(timeVal.Name) == "AuthorFirstname" || Convert.ToString(timeVal.Name) == "AuthorSurname" ||
+                    Convert.ToString(timeVal.Name) == "UserId")
+                    {
+                        Console.WriteLine("Not time val");
+                    }
+
+                    else
+                    {
+                        try
+                        {
+                            // Store the time value as a long, necessary for a dictionary entry
+                            long time = Convert.ToInt64(timeVal.Name);
+                        }
+
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            return false;
+                        }
+
+                    }
+                }
                 return true;
+
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
-
         }
         /*
         * Method: getDictionaries()

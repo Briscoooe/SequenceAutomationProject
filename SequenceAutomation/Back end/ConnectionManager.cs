@@ -203,7 +203,6 @@ namespace SequenceAutomation
                 recId = recId.Remove(recId.Length - 5);
             }
             prepareRequest(recordingUrl + "/" + recId, "", "GET");
-            Console.WriteLine("\nURL: {0}" , (recordingUrl + "/" + recId));
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
