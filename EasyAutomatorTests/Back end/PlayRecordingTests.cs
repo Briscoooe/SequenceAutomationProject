@@ -40,7 +40,7 @@ namespace SequenceAutomation.Tests
 
             play = new PlayRecording(json, 1);
 
-            Assert.IsTrue(play.Start());
+            Assert.AreEqual(play.Start(), 0);
         }
 
         [TestMethod()]
