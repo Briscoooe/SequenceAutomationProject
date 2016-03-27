@@ -110,7 +110,7 @@ namespace SequenceAutomation
                 tutorialPlayRec.currentRecTitle.Text = recording.Title;
                 tutorialPlayRec.recTitle = e.name;
             }
-            ClientSize = new Size(1325, 522);
+            ClientSize = new Size(1017, 740);
             tutorialPlayRec.BringToFront();
             CenterToScreen();
         }
@@ -118,7 +118,7 @@ namespace SequenceAutomation
         private void gotoSelectRec(object sender, EventArgs e)
         {
             tutorialSelectRec.prepareList();
-            ClientSize = new Size(1168, 690);
+            ClientSize = new Size(1294, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
             System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Arrow;
@@ -169,7 +169,7 @@ namespace SequenceAutomation
         private void gotoPlayTutorial(object sender, EventArgs e)
         {
             tutorialSelectRec.prepareList();
-            ClientSize = new Size(1168, 690);
+            ClientSize = new Size(1294, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
         }

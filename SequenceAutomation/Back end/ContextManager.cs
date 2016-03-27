@@ -100,16 +100,22 @@ namespace SequenceAutomation
                 foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
                     foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
                     {
+   
                         numOfContextWindows += 1;
                         // Get the open windows and compare the results to the ones stored in the
                         // context dictionary
                         foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
                         {
-          
                             // If the window stored matches one of the current windows, increment the matches variable by one
                             if (kvp3.Value == window.Value)
                             {
+                                Console.WriteLine("\nMatch: \n{0}", Convert.ToString(window.Value));
                                 numOfMatches += 1;
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("\nNot a match: \n{0}\n{1}", Convert.ToString(kvp3.Value), Convert.ToString(window.Value));
                             }
  
                         }

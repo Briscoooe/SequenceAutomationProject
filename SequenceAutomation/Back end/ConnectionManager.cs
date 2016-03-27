@@ -36,7 +36,7 @@ namespace SequenceAutomation
 
         public bool loginUser(string username, string password)
         {
-
+            bool result;
             prepareRequest(usersUrl, "text/json", "POST");
 
             password = encryptPassword(password);
@@ -58,7 +58,7 @@ namespace SequenceAutomation
             catch (WebException we)
             {
                 Console.WriteLine(we.Message);
-                return false;
+                result = false;
             }
 
             using (var reader = new StreamReader(response.GetResponseStream()))
@@ -73,9 +73,11 @@ namespace SequenceAutomation
             Properties.Settings.Default.currentUserSurname= tmp2[5];
 
             if (response.StatusCode == HttpStatusCode.Accepted)
-                return true;
+                result = true;
             else
-                return false;
+                result = false;
+            response.Dispose();
+            return result;
         }
 
         public bool testConnection()
@@ -99,6 +101,7 @@ namespace SequenceAutomation
 
         public string register(List<string> userList)
         {
+            string responseStr = "ERROR";
             if (userList[4] == userList[5])
             {
                 if (validateEmail(userList[2]) == 1)
@@ -130,7 +133,7 @@ namespace SequenceAutomation
                         catch (WebException we)
                         {
                             Console.WriteLine(we.Message);
-                            return "CONNECTION_ERROR";
+                            responseStr = "CONNECTION_ERROR";
                         }
 
                         using (var reader = new StreamReader(response.GetResponseStream()))
@@ -138,22 +141,24 @@ namespace SequenceAutomation
                             responseStr = reader.ReadToEnd();
                         }
 
-                        return "REGISTER_SUCCESSFUL";
+                        responseStr = "REGISTER_SUCCESSFUL";
                     }
 
                     else
-                        return "USERNAME_EXISTS";
+                        responseStr = "USERNAME_EXISTS";
                 }
                 else if (validateEmail(userList[2]) == 0)
-                    return "EMAIL_EXISTS";
+                    responseStr = "EMAIL_EXISTS";
 
                 else if (validateEmail(userList[2]) == 2)
-                    return "EMAIL_INVALID";
+                    responseStr = "EMAIL_INVALID";
             }
             else
-                return "PASSWORD_NO_MATCH";
+                responseStr = "PASSWORD_NO_MATCH";
 
-            return "ERROR";
+            if (response != null)
+                response.Dispose();
+            return responseStr;
         }
 
         public List<RecordingManager> getRecordings()
@@ -188,6 +193,9 @@ namespace SequenceAutomation
                     dirContents.Add(recording);
                 }
             }
+
+            if (response != null)
+                response.Dispose();
             return dirContents;
         }
 
@@ -214,13 +222,15 @@ namespace SequenceAutomation
                 throw;
             }
 
+            if (response != null)
+                response.Dispose();
             return responseStr;
         }
 
         public bool uploadRecording(string jsonString)
         {
             prepareRequest(recordingUrl, "text/json", "POST");
-
+            bool result;
             try
             {
                 RecordingManager rec = new RecordingManager(jsonString);
@@ -246,19 +256,26 @@ namespace SequenceAutomation
             catch(WebException we)
             {
                 Console.WriteLine(we.Message);
-                return false;
+                result = false;
             }
-
-            if (response.StatusCode == HttpStatusCode.Created)
-                return true;
+            HttpStatusCode code = response.StatusCode;
+            response.Dispose();
+            if (code == HttpStatusCode.Created)
+                result = true;
             else
-                return false;
+                result = false;
+
+            if (response != null)
+                response.Dispose();
+            return result;
+
         }
 
         public bool deleteRecording(string recJson)
         {
             prepareRequest(recordingUrl, "text/json", "DELETE");
             RecordingManager recording = new RecordingManager(recJson);
+            bool result = false;
 
             try
             {
@@ -286,15 +303,17 @@ namespace SequenceAutomation
                 response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode == HttpStatusCode.OK)
-                    return true;
+                    result = true;
             }
             catch (WebException we)
             {
                 Console.WriteLine(we.Message);
-                return false;
+                result = false;
             }
 
-            return false;
+            if (response != null)
+                response.Dispose();
+            return result;
 
         }
 
@@ -332,17 +351,21 @@ namespace SequenceAutomation
         {
             prepareRequest(usersUrl + "/" + username, "text/json", "GET");
 
+            bool result;
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
-                return true;
+                result = true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                result = false;
             }
 
+            if (response != null)
+                response.Dispose();
+            return result;
 
         }
 
@@ -350,25 +373,29 @@ namespace SequenceAutomation
         {
 
             prepareRequest(usersUrl + "/emails/" + email, "text/json", "GET");
-
+            int result;
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);
 
                 response = (HttpWebResponse)request.GetResponse();
-                return 0;
+                result = 0;
             }
 
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
-                return 2;
+                result = 2;
             }
             catch (WebException e)
             {
                 Console.WriteLine(e.Message);
-                return 1;
+                result = 1;
             }
+
+            if(response != null)
+                response.Dispose();
+            return result;
         }
     }
 }

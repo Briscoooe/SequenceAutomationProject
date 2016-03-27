@@ -81,7 +81,7 @@
             this.tutorialPlayRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialPlayRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialPlayRec.Name = "tutorialPlayRec";
-            this.tutorialPlayRec.Size = new System.Drawing.Size(1325, 522);
+            this.tutorialPlayRec.Size = new System.Drawing.Size(1017, 740);
             this.tutorialPlayRec.TabIndex = 5;
             // 
             // tutorialSelectRec
@@ -89,7 +89,7 @@
             this.tutorialSelectRec.BackColor = System.Drawing.Color.MintCream;
             this.tutorialSelectRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialSelectRec.Name = "tutorialSelectRec";
-            this.tutorialSelectRec.Size = new System.Drawing.Size(1168, 690);
+            this.tutorialSelectRec.Size = new System.Drawing.Size(1294, 690);
             this.tutorialSelectRec.TabIndex = 6;
             // 
             // firstTimeCreate
@@ -122,6 +122,7 @@
             this.tutorialUploadRec.Location = new System.Drawing.Point(0, 0);
             this.tutorialUploadRec.Name = "tutorialUploadRec";
             this.tutorialUploadRec.Size = new System.Drawing.Size(1065, 719);
+            this.tutorialUploadRec.TabIndex = 10;
             // 
             // ApplicationContainer
             // 

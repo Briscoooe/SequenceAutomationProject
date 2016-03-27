@@ -58,7 +58,7 @@ namespace SequenceAutomation
             this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescLabel.Location = new System.Drawing.Point(442, 419);
             this.recDescLabel.Name = "recDescLabel";
-            this.recDescLabel.Size = new System.Drawing.Size(328, 245);
+            this.recDescLabel.Size = new System.Drawing.Size(441, 245);
             this.recDescLabel.TabIndex = 24;
             this.recDescLabel.Text = "Unavailable";
             // 
@@ -125,7 +125,7 @@ namespace SequenceAutomation
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(776, 118);
+            this.label8.Location = new System.Drawing.Point(902, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(363, 115);
             this.label8.TabIndex = 30;
@@ -134,7 +134,7 @@ namespace SequenceAutomation
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(776, 324);
+            this.label3.Location = new System.Drawing.Point(902, 324);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(363, 115);
             this.label3.TabIndex = 34;
@@ -160,7 +160,7 @@ namespace SequenceAutomation
             this.favouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.favouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.favouriteBtn.Location = new System.Drawing.Point(967, 412);
+            this.favouriteBtn.Location = new System.Drawing.Point(1093, 412);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
             this.favouriteBtn.TabIndex = 54;
@@ -179,7 +179,7 @@ namespace SequenceAutomation
             this.browseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.browseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.browseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.browseBtn.Location = new System.Drawing.Point(958, 211);
+            this.browseBtn.Location = new System.Drawing.Point(1084, 211);
             this.browseBtn.Name = "browseBtn";
             this.browseBtn.Size = new System.Drawing.Size(131, 94);
             this.browseBtn.TabIndex = 33;
@@ -197,7 +197,7 @@ namespace SequenceAutomation
             this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeBtn.Location = new System.Drawing.Point(1055, 2);
+            this.homeBtn.Location = new System.Drawing.Point(1181, 4);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(110, 110);
             this.homeBtn.TabIndex = 28;
@@ -216,7 +216,7 @@ namespace SequenceAutomation
             this.nextBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextBtn.Location = new System.Drawing.Point(996, 614);
+            this.nextBtn.Location = new System.Drawing.Point(1122, 614);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(169, 73);
             this.nextBtn.TabIndex = 25;
@@ -272,7 +272,7 @@ namespace SequenceAutomation
             this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleLabel.Location = new System.Drawing.Point(442, 272);
             this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(343, 33);
+            this.recTitleLabel.Size = new System.Drawing.Size(441, 33);
             this.recTitleLabel.TabIndex = 22;
             this.recTitleLabel.Text = "Unavailable";
             // 
@@ -281,7 +281,7 @@ namespace SequenceAutomation
             this.recAuthorLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recAuthorLabel.Location = new System.Drawing.Point(442, 349);
             this.recAuthorLabel.Name = "recAuthorLabel";
-            this.recAuthorLabel.Size = new System.Drawing.Size(343, 33);
+            this.recAuthorLabel.Size = new System.Drawing.Size(441, 33);
             this.recAuthorLabel.TabIndex = 57;
             this.recAuthorLabel.Text = "Unavailable";
             // 
@@ -321,7 +321,7 @@ namespace SequenceAutomation
             this.Controls.Add(this.goBackBtn);
             this.Controls.Add(this.recordingsList);
             this.Name = "TutorialSelectRec";
-            this.Size = new System.Drawing.Size(1168, 690);
+            this.Size = new System.Drawing.Size(1294, 690);
             this.ResumeLayout(false);
             this.PerformLayout();
 

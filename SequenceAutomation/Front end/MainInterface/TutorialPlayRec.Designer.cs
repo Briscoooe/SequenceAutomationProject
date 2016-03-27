@@ -109,7 +109,7 @@ namespace SequenceAutomation
             this.increaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.increaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.increaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.increaseBtn.Location = new System.Drawing.Point(580, 245);
+            this.increaseBtn.Location = new System.Drawing.Point(235, 419);
             this.increaseBtn.Name = "increaseBtn";
             this.increaseBtn.Size = new System.Drawing.Size(75, 60);
             this.increaseBtn.TabIndex = 31;
@@ -127,7 +127,7 @@ namespace SequenceAutomation
             this.homeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeBtn.Location = new System.Drawing.Point(1212, 3);
+            this.homeBtn.Location = new System.Drawing.Point(877, 3);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(110, 110);
             this.homeBtn.TabIndex = 30;
@@ -146,7 +146,7 @@ namespace SequenceAutomation
             this.doneBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.doneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doneBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doneBtn.Location = new System.Drawing.Point(1178, 399);
+            this.doneBtn.Location = new System.Drawing.Point(825, 562);
             this.doneBtn.Name = "doneBtn";
             this.doneBtn.Size = new System.Drawing.Size(144, 120);
             this.doneBtn.TabIndex = 28;
@@ -185,7 +185,7 @@ namespace SequenceAutomation
             this.playRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.playRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playRecBtn.Location = new System.Drawing.Point(28, 260);
+            this.playRecBtn.Location = new System.Drawing.Point(346, 155);
             this.playRecBtn.Name = "playRecBtn";
             this.playRecBtn.Size = new System.Drawing.Size(150, 150);
             this.playRecBtn.TabIndex = 21;
@@ -203,7 +203,7 @@ namespace SequenceAutomation
             this.decreaseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.decreaseBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.decreaseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.decreaseBtn.Location = new System.Drawing.Point(580, 350);
+            this.decreaseBtn.Location = new System.Drawing.Point(235, 524);
             this.decreaseBtn.Name = "decreaseBtn";
             this.decreaseBtn.Size = new System.Drawing.Size(75, 60);
             this.decreaseBtn.TabIndex = 33;
@@ -216,7 +216,7 @@ namespace SequenceAutomation
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(369, 155);
+            this.label3.Location = new System.Drawing.Point(24, 329);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(501, 82);
             this.label3.TabIndex = 34;
@@ -226,7 +226,7 @@ namespace SequenceAutomation
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(369, 260);
+            this.label4.Location = new System.Drawing.Point(24, 434);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 45);
             this.label4.TabIndex = 35;
@@ -236,7 +236,7 @@ namespace SequenceAutomation
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(369, 343);
+            this.label5.Location = new System.Drawing.Point(24, 517);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(214, 45);
             this.label5.TabIndex = 36;
@@ -247,7 +247,7 @@ namespace SequenceAutomation
             this.recSpeedLabel.BackColor = System.Drawing.Color.Transparent;
             this.recSpeedLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recSpeedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recSpeedLabel.Location = new System.Drawing.Point(652, 308);
+            this.recSpeedLabel.Location = new System.Drawing.Point(307, 482);
             this.recSpeedLabel.Name = "recSpeedLabel";
             this.recSpeedLabel.Size = new System.Drawing.Size(249, 37);
             this.recSpeedLabel.TabIndex = 37;
@@ -263,7 +263,7 @@ namespace SequenceAutomation
             this.addFavouriteBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.addFavouriteBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.addFavouriteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addFavouriteBtn.Location = new System.Drawing.Point(940, 281);
+            this.addFavouriteBtn.Location = new System.Drawing.Point(819, 308);
             this.addFavouriteBtn.Name = "addFavouriteBtn";
             this.addFavouriteBtn.Size = new System.Drawing.Size(150, 129);
             this.addFavouriteBtn.TabIndex = 86;
@@ -274,13 +274,13 @@ namespace SequenceAutomation
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(866, 154);
+            this.label6.Location = new System.Drawing.Point(549, 155);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(456, 124);
+            this.label6.Size = new System.Drawing.Size(456, 150);
             this.label6.TabIndex = 87;
-            this.label6.Text = "If you wish to use this recording for later use, save it to your favourites";
+            this.label6.Text = "If you wish to save this recording for later use, save it to your favourites";
             // 
             // TutorialPlayRec
             // 
@@ -305,7 +305,7 @@ namespace SequenceAutomation
             this.Controls.Add(this.label1);
             this.Controls.Add(this.playRecBtn);
             this.Name = "TutorialPlayRec";
-            this.Size = new System.Drawing.Size(1325, 522);
+            this.Size = new System.Drawing.Size(1000, 697);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -43,7 +43,7 @@ namespace SequenceAutomation
         private void gotoRegister(object sender, EventArgs e)
         {
             register1.BringToFront();
-            ClientSize = new Size(628, 723);
+            ClientSize = new Size(613, 713);
             CenterToScreen();
         }
 

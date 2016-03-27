@@ -39,7 +39,7 @@ namespace SequenceAutomation.Interface
             playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
 
             // Begin playback
-            if (playRec.Start())
+            if (playRec.Start() == 0)
                 BigMessageBox.Show("Complete");
         }
 

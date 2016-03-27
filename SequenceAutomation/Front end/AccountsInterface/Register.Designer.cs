@@ -71,9 +71,9 @@
             this.registerBtn.FlatAppearance.BorderSize = 3;
             this.registerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.registerBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerBtn.Location = new System.Drawing.Point(420, 644);
+            this.registerBtn.Location = new System.Drawing.Point(314, 644);
             this.registerBtn.Name = "registerBtn";
-            this.registerBtn.Size = new System.Drawing.Size(196, 60);
+            this.registerBtn.Size = new System.Drawing.Size(286, 60);
             this.registerBtn.TabIndex = 7;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = false;
@@ -143,7 +143,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(304, 37);
             this.label1.TabIndex = 105;
-            this.label1.Text = "Email (optional)";
+            this.label1.Text = "Email address";
             // 
             // password1Tb
             // 
@@ -225,7 +225,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "Register";
-            this.Size = new System.Drawing.Size(628, 723);
+            this.Size = new System.Drawing.Size(613, 713);
             this.ResumeLayout(false);
             this.PerformLayout();
 

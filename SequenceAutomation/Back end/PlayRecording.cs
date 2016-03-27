@@ -156,12 +156,12 @@ namespace SequenceAutomation
          * Method: Start()
          * Summary: Begins the execution of the inputs in the keysToPlay dictionary
          */
-        public bool Start()
+        public int Start()
         {
             currentEntry = 0; 
             watch.Reset();
             watch.Start();
-
+            int result = 0;
             // The keysToPlay enumerator, used to jump from one entry to another
             IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); 
 
@@ -177,11 +177,13 @@ namespace SequenceAutomation
                         // Check the current context against the stored context
                         if(contextManager.checkContext(currentEntry, contextDict))
                         {
+                            result = 0;
                             break;
                         }
 
                         else
                         {
+                            result = 1;
                             BigMessageBox.Show("The recording is not behaving as it should. Try reducing the speed or closing unnecessary windows");
                             break;
                         }
@@ -204,12 +206,12 @@ namespace SequenceAutomation
                 }
 
                 else
-                    return false;
+                    result = 0;
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }
 
-            return true;
+            return result;
         }
 
         /*

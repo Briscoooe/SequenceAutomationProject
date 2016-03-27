@@ -162,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
-            this.ClientSize = new System.Drawing.Size(745, 643);
+            this.ClientSize = new System.Drawing.Size(758, 650);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.doneBtn);

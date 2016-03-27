@@ -124,7 +124,12 @@ namespace SequenceAutomation
                 BigMessageBox.Show("Error: There is no recording to play");
             }
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
-            playRec.Start();
+            int result = playRec.Start();
+
+            if(result == 1)
+            {
+                BigMessageBox.Show("The recording may not have behaved correctly. Try reducing the speed or closing unnecessary windows");
+            }
 
         }
 
