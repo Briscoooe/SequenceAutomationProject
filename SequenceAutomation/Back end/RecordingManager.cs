@@ -77,8 +77,6 @@ namespace SequenceAutomation
             }
         }
 
-        public RecordingManager() {}
-
         /*
          * Method: RecordingManager()
          * Summary: Class Constructor
@@ -107,7 +105,7 @@ namespace SequenceAutomation
             return JsonConvert.SerializeObject(tempObj);
         }
 
-        public bool validateJson(string recJson)
+        public static bool validateJson(string recJson)
         {
             try
             {

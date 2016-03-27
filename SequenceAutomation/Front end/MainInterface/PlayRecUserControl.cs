@@ -142,8 +142,7 @@ namespace SequenceAutomation
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
-                RecordingManager recManager = new RecordingManager();
-                if (recManager.validateJson(File.ReadAllText(fullPath)))
+                if (RecordingManager.validateJson(File.ReadAllText(fullPath)))
                 {
                     recJson = File.ReadAllText(fullPath);
                     recTitle = Path.GetFileNameWithoutExtension(fullPath);

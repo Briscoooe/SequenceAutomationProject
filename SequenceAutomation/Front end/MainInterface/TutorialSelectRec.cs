@@ -33,8 +33,6 @@ namespace SequenceAutomation
             InitializeComponent();
             recList = new List<string>();
             recObjectList = new List<RecordingManager>();
-
-            recording = new RecordingManager();
         }
 
         private void gotoLogin(object sender, EventArgs e)
@@ -148,7 +146,7 @@ namespace SequenceAutomation
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
-                if (recording.validateJson(File.ReadAllText(fullPath)))
+                if (RecordingManager.validateJson(File.ReadAllText(fullPath)))
                 {
                     recJson = File.ReadAllText(fullPath);
                     recTitle = Path.GetFileNameWithoutExtension(fullPath);
