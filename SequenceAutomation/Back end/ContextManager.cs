@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SequenceAutomation
 {
-    public class ContextManager
+    public static class ContextManager
     {
         /* 
          * TODO
@@ -41,12 +41,6 @@ namespace SequenceAutomation
         #endregion
 
         #region Public methods
-        /*
-         * Method: ContextManager()
-         * Summary: Class constructor for the ContextManager class
-         */
-        public ContextManager(){}
-
         /*
          * Method: ContextManager()
          * Summary: Retrieve the context of the program when the enter key is pressed
@@ -132,7 +126,7 @@ namespace SequenceAutomation
          * Returns: Dictionary of the handle and titles of all open windows on the system
          * References: http://www.tcx.be/blog/2006/list-open-windows/
          */
-        public static Dictionary<IntPtr, string> GetOpenWindows()
+        private static Dictionary<IntPtr, string> GetOpenWindows()
         {
             shellWindow = GetShellWindow(); // Get the shell window handle, to be omitted from the dictionary
             openWindows = new Dictionary<IntPtr, string>(); // Initialise the openWindows dictionary

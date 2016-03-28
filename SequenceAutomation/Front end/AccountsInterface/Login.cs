@@ -16,10 +16,9 @@ namespace SequenceAutomation
         private void login(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            ConnectionManager connectionManager = new ConnectionManager();
             if (usernameTb.Text != "" && passwordTb.Text != "")
             {
-                if (connectionManager.loginUser(usernameTb.Text, passwordTb.Text))
+                if (ConnectionManager.loginUser(usernameTb.Text, passwordTb.Text))
                 {
                     BigMessageBox.Show("Logged in successfully");
                     if (LoginEvent != null)

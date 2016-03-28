@@ -19,7 +19,6 @@ namespace SequenceAutomation
         private List<string> recList;
         private List<RecordingManager> recObjectList;
         private PlayRecording playRec;
-        private ConnectionManager connectionManager;
         private FavouritesBox fave;
         private RecordingManager recording;
 
@@ -174,11 +173,10 @@ namespace SequenceAutomation
 
         public void prepareList()
         {
-            connectionManager = new ConnectionManager();
             recList.Clear();
-            if (connectionManager.testConnection())
+            if (ConnectionManager.testConnection())
             {
-                foreach (RecordingManager rec in connectionManager.getRecordings())
+                foreach (RecordingManager rec in ConnectionManager.getRecordings())
                 {
                     recObjectList.Add(rec);
                     recList.Add(rec.Title);
@@ -207,7 +205,7 @@ namespace SequenceAutomation
             {
                 if (rec.Title == recordingsList.SelectedItem.ToString())
                 {
-                    recJson = connectionManager.getRecInfo(rec.Id);
+                    recJson = ConnectionManager.getRecInfo(rec.Id);
                     updateInfo(rec);
                 }
             }
@@ -304,7 +302,7 @@ namespace SequenceAutomation
             Cursor.Current = Cursors.WaitCursor;
             if (Properties.Settings.Default.currentUser != "")
             {
-                if (connectionManager.deleteRecording(recJson))
+                if (ConnectionManager.deleteRecording(recJson))
                 {
                     RecordingManager rec = new RecordingManager(recJson);
 

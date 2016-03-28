@@ -21,7 +21,6 @@ namespace SequenceAutomation
         private AccountContainer accountContainer;
 
         public string recJson = "";
-        private ConnectionManager connectionManager;
 
         public TutorialUploadRec()
         {
@@ -133,12 +132,11 @@ namespace SequenceAutomation
         {
             if (validateInput(1))
             {
-                connectionManager = new ConnectionManager();
-                if (connectionManager.testConnection())
+                if (ConnectionManager.testConnection())
                 {
                     recManager = new RecordingManager(recJson);
                     recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.uploadRecording(recJson))
+                    if (ConnectionManager.uploadRecording(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
                         BigMessageBox.Show("There was a problem with the server");

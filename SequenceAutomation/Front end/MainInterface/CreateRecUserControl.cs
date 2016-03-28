@@ -21,7 +21,6 @@ namespace SequenceAutomation
         private AccountContainer accountContainer;
         private RecordingManager recManager;
         private RecStatus recStatus;
-        private ConnectionManager connectionManager;
         private PlayRecording playRec;
         private string recJson;
 
@@ -252,12 +251,11 @@ namespace SequenceAutomation
             Cursor.Current = Cursors.WaitCursor;
             if (validateInput(1))
             {
-                connectionManager = new ConnectionManager();
-                if (connectionManager.testConnection())
+                if (ConnectionManager.testConnection())
                 {
                     recManager = new RecordingManager(recJson);
                     recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
-                    if (connectionManager.uploadRecording(recJson))
+                    if (ConnectionManager.uploadRecording(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
                         BigMessageBox.Show("There was a problem with the server");

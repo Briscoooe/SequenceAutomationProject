@@ -17,12 +17,11 @@ namespace SequenceAutomation
         private void register(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            ConnectionManager connectionManager = new ConnectionManager();
 
             if (firstnameTb.Text != "" || surnameTb.Text != "" || usernameTb.Text != "" ||
                 password1Tb.Text != "" || password2Tb.Text != "")
             {
-                if(connectionManager.testConnection())
+                if(ConnectionManager.testConnection())
                 {
                     List<string> userInfo = new List<string>();
                     userInfo.Add(firstnameTb.Text);
@@ -32,7 +31,7 @@ namespace SequenceAutomation
                     userInfo.Add(password1Tb.Text);
                     userInfo.Add(password2Tb.Text);
 
-                    string result = connectionManager.register(userInfo);
+                    string result = ConnectionManager.register(userInfo);
 
                     switch (result)
                     {

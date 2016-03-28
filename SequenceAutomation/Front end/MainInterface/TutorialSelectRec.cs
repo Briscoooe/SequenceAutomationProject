@@ -22,8 +22,6 @@ namespace SequenceAutomation
 
         private List<string> recList;
 
-        public ConnectionManager connectionManager;
-
         private string recJson;
         private string recTitle;
 
@@ -61,11 +59,10 @@ namespace SequenceAutomation
 
         public void prepareList()
         {
-            connectionManager = new ConnectionManager();
             recList.Clear();
-            if (connectionManager.testConnection())
+            if (ConnectionManager.testConnection())
             {
-                foreach (RecordingManager rec in connectionManager.getRecordings())
+                foreach (RecordingManager rec in ConnectionManager.getRecordings())
                 {
                     recObjectList.Add(rec);
                     recList.Add(rec.Title);
@@ -109,7 +106,7 @@ namespace SequenceAutomation
             {
                 if (rec.Title == recordingsList.SelectedItem.ToString())
                 {
-                    recJson = connectionManager.getRecInfo(rec.Id);
+                    recJson = ConnectionManager.getRecInfo(rec.Id);
                     updateInfo(rec);
                 }
             }

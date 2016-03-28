@@ -56,19 +56,5 @@ namespace SequenceAutomation.Tests
             Assert.IsFalse(ContextManager.checkContext(5, contextDict));
         }
 
-        [TestMethod()]
-        public void GetOpenWindowsTest()
-        {
-            Dictionary<IntPtr, string> windows = new Dictionary<IntPtr, string>();
-
-            // Assert that the list of open windows can be successfully obtained
-            windows = ContextManager.GetOpenWindows();
-
-            foreach(KeyValuePair<IntPtr, string> kvp in windows)
-            {
-                Assert.IsNotNull(kvp.Key);
-                Assert.IsNotNull(kvp.Value);
-            }
-        }
     }
 }

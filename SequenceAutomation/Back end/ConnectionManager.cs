@@ -11,7 +11,7 @@ using System.Net.Security;
 
 namespace SequenceAutomation
 {
-    public class ConnectionManager
+    public static class ConnectionManager
     {
 
         /* 
@@ -21,20 +21,15 @@ namespace SequenceAutomation
          * Delete method
          */
 
-        HttpWebRequest request;
-        HttpWebResponse response;
-        string responseStr;
+        private static HttpWebRequest request;
+        private static HttpWebResponse response;
+        private static string responseStr;
 
-        private string domain, recordingUrl, usersUrl;
+        private static string recordingUrl = Properties.Settings.Default.recordingUrl;
+        private static string usersUrl = Properties.Settings.Default.usersUrl;
+        private static string domain = Properties.Settings.Default.domain;
 
-        public ConnectionManager()
-        {
-            recordingUrl = Properties.Settings.Default.recordingUrl;
-            usersUrl = Properties.Settings.Default.usersUrl;
-            domain = Properties.Settings.Default.domain;
-        }
-
-        public bool loginUser(string username, string password)
+        public static bool loginUser(string username, string password)
         {
             bool result;
             prepareRequest(usersUrl, "text/json", "POST");
@@ -80,7 +75,7 @@ namespace SequenceAutomation
             return result;
         }
 
-        public bool testConnection()
+        public static bool testConnection()
         {
             try
             {
@@ -99,7 +94,7 @@ namespace SequenceAutomation
             return true;
         }
 
-        public string register(List<string> userList)
+        public static string register(List<string> userList)
         {
             string responseStr = "ERROR";
             if (userList[4] == userList[5])
@@ -162,7 +157,7 @@ namespace SequenceAutomation
             return responseStr;
         }
 
-        public List<RecordingManager> getRecordings()
+        public static List<RecordingManager> getRecordings()
         {
             prepareRequest(recordingUrl, "", "GET");
 
@@ -200,7 +195,7 @@ namespace SequenceAutomation
             return dirContents;
         }
 
-        public string getRecInfo(string recId)
+        public static string getRecInfo(string recId)
         {
             string extension = recId.Substring(recId.Length - 5);
 
@@ -228,7 +223,7 @@ namespace SequenceAutomation
             return responseStr;
         }
 
-        public bool uploadRecording(string jsonString)
+        public static bool uploadRecording(string jsonString)
         {
             prepareRequest(recordingUrl, "text/json", "POST");
             bool result = false;
@@ -273,7 +268,7 @@ namespace SequenceAutomation
 
         }
 
-        public bool deleteRecording(string recJson)
+        public static bool deleteRecording(string recJson)
         {
             prepareRequest(recordingUrl, "text/json", "DELETE");
             RecordingManager recording = new RecordingManager(recJson);
@@ -319,7 +314,7 @@ namespace SequenceAutomation
 
         }
 
-        private string encryptPassword(string plaintextPassword)
+        private static string encryptPassword(string plaintextPassword)
         {
             var bytes = new UTF8Encoding().GetBytes(plaintextPassword);
             byte[] hashBytes;
@@ -333,7 +328,7 @@ namespace SequenceAutomation
             return encryptedPassword;
         }
 
-        private bool prepareRequest(string url, string content, string method)
+        private static bool prepareRequest(string url, string content, string method)
         {
             request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
@@ -349,7 +344,7 @@ namespace SequenceAutomation
             return true;
         }
 
-        private bool validateUsername(string username)
+        private static bool validateUsername(string username)
         {
             prepareRequest(usersUrl + "/" + username, "text/json", "GET");
 
@@ -374,7 +369,7 @@ namespace SequenceAutomation
 
         }
 
-        private int validateEmail(string email)
+        private static int validateEmail(string email)
         {
 
             prepareRequest(usersUrl + "/email/" + email, "text/json", "GET");
