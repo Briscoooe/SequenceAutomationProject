@@ -19,7 +19,7 @@ namespace SequenceAutomation
 
         public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
         private RecordingManager recManager;
-        private ContextManager contextManager;
+
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
@@ -61,7 +61,6 @@ namespace SequenceAutomation
          */
         public CreateRecording()
         {
-            contextManager = new ContextManager();
             savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             watch = new Stopwatch();
@@ -78,6 +77,7 @@ namespace SequenceAutomation
             // This line ensures that the program will not try set another hook if one already exists
             if (callbackDelegate != null)
                 throw new InvalidOperationException("Cannot hook more than once");
+
 
             IntPtr hInstance = LoadLibrary("User32"); // Loads the User32 library and returns the module value, assigning it to the hInstance variable
             callbackDelegate = new HookDelegate(onActivity); // Initialises the callbackDelegate using the onActivity method
@@ -129,7 +129,7 @@ namespace SequenceAutomation
 
                 // If the enter key is pressed down, get the current context
                 if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
-                    contextDict = contextManager.getContext(time);
+                    contextDict = ContextManager.getContext(time);
 
                 // If the savedKeys dictionary contains no entry for the current elapsed time, create one
                 if (!savedKeys.ContainsKey(time))

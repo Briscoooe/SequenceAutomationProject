@@ -22,6 +22,7 @@ namespace SequenceAutomation.Tests
             Assert.IsNotNull(rec.Description);
             Assert.IsNotNull(rec.Author);
 
+
             // Assert that an invalid JSON string will raise an exception
             try
             {

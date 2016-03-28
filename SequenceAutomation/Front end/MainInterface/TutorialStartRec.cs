@@ -15,9 +15,7 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;
-
         private KeyboardShortcut shortcut;
-
         private CreateRecording createRec;
         private RecStatus recStatus;
         private string mergedJson;
@@ -65,7 +63,6 @@ namespace SequenceAutomation
             // Initialise the keyboard shortcut
             shortcut = new KeyboardShortcut();
             shortcut.KeyPressed += new EventHandler<KeyPressedEventArgs>(shortcut_Pressed);
-
             // Display the status box containing the elapsed time and a stopbutton
             recStatus = new RecStatus(1);
             recStatus.stopButtonEvent += recStatus_StopCreate;
@@ -105,6 +102,7 @@ namespace SequenceAutomation
             mergedJson = createRec.Stop(); // Stop recording  
             recStatus.Dispose();
             shortcut.Dispose();
+
 
         }
 

@@ -103,7 +103,6 @@ namespace SequenceAutomation
 
         public bool stopPlayback;
         private RecordingManager recManager;
-        private ContextManager contextManager;
         private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         private float timeFactor; // The time factor used to determine the speed at which the recording should play
@@ -139,7 +138,6 @@ namespace SequenceAutomation
             this.timeFactor = timeFactor;
             stopPlayback = false;
             watch = new Stopwatch();
-            contextManager = new ContextManager();
 
             // Instantiate the RecordingManager with the input JSON string and initialise the dictionaries accordingly
             recManager = new RecordingManager(inputJson);
@@ -175,7 +173,7 @@ namespace SequenceAutomation
                     if (currentEntry == kvp.Key)
                     {
                         // Check the current context against the stored context
-                        if(contextManager.checkContext(currentEntry, contextDict))
+                        if(ContextManager.checkContext(currentEntry, contextDict))
                         {
                             result = 0;
                             break;

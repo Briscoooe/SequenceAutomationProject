@@ -14,10 +14,10 @@ namespace SequenceAutomation
         #region Variable declarations
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
 
-        private Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
-        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext;
-        private IntPtr shellWindow;
-        private StringBuilder titleBuffer;
+        private static Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
+        private static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+        private static IntPtr shellWindow;
+        private static StringBuilder titleBuffer;
 
         #endregion
 
@@ -45,17 +45,14 @@ namespace SequenceAutomation
          * Method: ContextManager()
          * Summary: Class constructor for the ContextManager class
          */
-        public ContextManager()
-        {
-            currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
-        }
+        public ContextManager(){}
 
         /*
          * Method: ContextManager()
          * Summary: Retrieve the context of the program when the enter key is pressed
          * Returns: A dictionary containing key value pairs of relevant context information
          */
-        public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(long time)
+        public static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(long time)
         {
             // Loop through the open windows dicionary returned by GetOpenWindows
             foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
@@ -89,7 +86,7 @@ namespace SequenceAutomation
          * Parameter: contextDict - The dictionary that stores the context
          * Return: True or false depending on the outcome of the context check
          */
-        public bool checkContext(long time, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
+        public static bool checkContext(long time, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
         {
             // Initialise the number windows stored in the context and the number of matches to 0
             int numOfContextWindows = 0;
@@ -135,7 +132,7 @@ namespace SequenceAutomation
          * Returns: Dictionary of the handle and titles of all open windows on the system
          * References: http://www.tcx.be/blog/2006/list-open-windows/
          */
-        public Dictionary<IntPtr, string> GetOpenWindows()
+        public static Dictionary<IntPtr, string> GetOpenWindows()
         {
             shellWindow = GetShellWindow(); // Get the shell window handle, to be omitted from the dictionary
             openWindows = new Dictionary<IntPtr, string>(); // Initialise the openWindows dictionary

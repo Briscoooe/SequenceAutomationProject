@@ -16,7 +16,6 @@ namespace SequenceAutomation
          */
         public event EventHandler BackButtonEvent;
         public event EventHandler ShowTutorialEvent;
-
         private KeyboardShortcut shortcut;
         private CreateRecording createRec;
         private AccountContainer accountContainer;
@@ -166,10 +165,6 @@ namespace SequenceAutomation
          */
         private void testRecording(object sender, EventArgs e)
         {
-            // Initialise the keyboard shortcut
-            shortcut = new KeyboardShortcut();
-            shortcut.KeyPressed += new EventHandler<KeyPressedEventArgs>(shortcut_PressedPlay);
-
             // If there are no keys loaded to play, display a message informing the user of this
             if (recJson == null)
             {
@@ -180,15 +175,8 @@ namespace SequenceAutomation
             playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
             playRec.Start(); // Begin playback
             recStatus.Dispose();
-            shortcut.Dispose();
         }
 
-        private void shortcut_PressedPlay(object sender, KeyPressedEventArgs e)
-        {
-            BigMessageBox.Show("aaa");
-            playRec.stopPlayback = true;
-            shortcut.Dispose();
-        }
 
         /*
          * Method: startRecording()
@@ -252,6 +240,7 @@ namespace SequenceAutomation
             recJson = createRec.Stop(); // Stop recording  
             recStatus.Dispose();
             shortcut.Dispose();
+
         }
 
 
