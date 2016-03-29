@@ -17,7 +17,7 @@ namespace SequenceAutomation
     {
         #region Variable declarations
 
-        public delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
+        private delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
         private RecordingManager recManager;
 
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
@@ -28,7 +28,7 @@ namespace SequenceAutomation
         private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         private static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
         private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
-        public string keysJson;
+        private string keysJson;
 
         #endregion
 
