@@ -44,57 +44,57 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(241, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 41);
+            this.label4.Size = new System.Drawing.Size(133, 47);
             this.label4.TabIndex = 32;
             this.label4.Text = "Step 1:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(368, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(369, 41);
+            this.label2.Size = new System.Drawing.Size(361, 47);
             this.label2.TabIndex = 31;
             this.label2.Text = "Create the recording";
             // 
             // recButtonLabel
             // 
             this.recButtonLabel.AutoSize = true;
-            this.recButtonLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recButtonLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recButtonLabel.Location = new System.Drawing.Point(33, 104);
             this.recButtonLabel.Name = "recButtonLabel";
-            this.recButtonLabel.Size = new System.Drawing.Size(572, 32);
+            this.recButtonLabel.Size = new System.Drawing.Size(574, 37);
             this.recButtonLabel.TabIndex = 34;
             this.recButtonLabel.Text = "Press the red button to begin the recording";
             // 
             // recStatusText
             // 
             this.recStatusText.AutoSize = true;
-            this.recStatusText.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recStatusText.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recStatusText.ForeColor = System.Drawing.Color.Red;
             this.recStatusText.Location = new System.Drawing.Point(280, 429);
             this.recStatusText.Name = "recStatusText";
-            this.recStatusText.Size = new System.Drawing.Size(195, 32);
+            this.recStatusText.Size = new System.Drawing.Size(198, 37);
             this.recStatusText.TabIndex = 36;
             this.recStatusText.Text = "Not recording";
             // 
             // recStatusLabel
             // 
             this.recStatusLabel.AutoSize = true;
-            this.recStatusLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recStatusLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recStatusLabel.Location = new System.Drawing.Point(33, 429);
             this.recStatusLabel.Name = "recStatusLabel";
-            this.recStatusLabel.Size = new System.Drawing.Size(241, 32);
+            this.recStatusLabel.Size = new System.Drawing.Size(241, 37);
             this.recStatusLabel.TabIndex = 35;
             this.recStatusLabel.Text = "Recording Status:";
             // 
             // recCreatedLabel
             // 
-            this.recCreatedLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recCreatedLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recCreatedLabel.Location = new System.Drawing.Point(585, 200);
             this.recCreatedLabel.Name = "recCreatedLabel";
             this.recCreatedLabel.Size = new System.Drawing.Size(373, 150);
@@ -164,10 +164,10 @@
             // recButtonLabel2
             // 
             this.recButtonLabel2.AutoSize = true;
-            this.recButtonLabel2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recButtonLabel2.Location = new System.Drawing.Point(33, 136);
+            this.recButtonLabel2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recButtonLabel2.Location = new System.Drawing.Point(33, 141);
             this.recButtonLabel2.Name = "recButtonLabel2";
-            this.recButtonLabel2.Size = new System.Drawing.Size(663, 32);
+            this.recButtonLabel2.Size = new System.Drawing.Size(637, 37);
             this.recButtonLabel2.TabIndex = 38;
             this.recButtonLabel2.Text = "Once pressed, all keyboard activity will be saved";
             // 

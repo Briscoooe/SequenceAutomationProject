@@ -110,7 +110,7 @@ namespace SequenceAutomation
                 tutorialPlayRec.currentRecTitle.Text = recording.Title;
                 tutorialPlayRec.recTitle = e.name;
             }
-            ClientSize = new Size(1017, 740);
+            ClientSize = new Size(1000, 697);
             tutorialPlayRec.BringToFront();
             CenterToScreen();
         }

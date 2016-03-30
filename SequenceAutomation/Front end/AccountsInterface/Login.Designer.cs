@@ -43,7 +43,7 @@
             this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginBtn.FlatAppearance.BorderSize = 3;
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.Location = new System.Drawing.Point(248, 293);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(196, 60);
@@ -55,16 +55,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(190, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 41);
+            this.label4.Size = new System.Drawing.Size(112, 47);
             this.label4.TabIndex = 86;
             this.label4.Text = "Login";
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(30, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(304, 37);
@@ -74,10 +74,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(30, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(350, 33);
+            this.label2.Size = new System.Drawing.Size(322, 37);
             this.label2.TabIndex = 84;
             this.label2.Text = "Username or email adress";
             // 
@@ -102,21 +102,21 @@
             // 
             // passwordTb
             // 
-            this.passwordTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordTb.Location = new System.Drawing.Point(36, 218);
             this.passwordTb.MaxLength = 16;
             this.passwordTb.Name = "passwordTb";
-            this.passwordTb.Size = new System.Drawing.Size(408, 33);
+            this.passwordTb.Size = new System.Drawing.Size(408, 35);
             this.passwordTb.TabIndex = 2;
             this.passwordTb.UseSystemPasswordChar = true;
             // 
             // usernameTb
             // 
-            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTb.Location = new System.Drawing.Point(36, 130);
             this.usernameTb.MaxLength = 30;
             this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(408, 33);
+            this.usernameTb.Size = new System.Drawing.Size(408, 35);
             this.usernameTb.TabIndex = 1;
             // 
             // Login

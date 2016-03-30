@@ -41,20 +41,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(240, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 41);
+            this.label4.Size = new System.Drawing.Size(133, 47);
             this.label4.TabIndex = 42;
             this.label4.Text = "Step 2:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(367, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(316, 41);
+            this.label2.Size = new System.Drawing.Size(320, 47);
             this.label2.TabIndex = 41;
             this.label2.Text = "Test the recording";
             // 
@@ -119,7 +119,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(46, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(347, 75);
@@ -149,7 +149,7 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(483, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(358, 190);

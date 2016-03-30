@@ -52,20 +52,20 @@ namespace SequenceAutomation
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(373, 19);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(325, 41);
+            this.label12.Size = new System.Drawing.Size(324, 47);
             this.label12.TabIndex = 26;
             this.label12.Text = "Play the recording";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(235, 19);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 41);
+            this.label11.Size = new System.Drawing.Size(133, 47);
             this.label11.TabIndex = 25;
             this.label11.Text = "Step 2:";
             // 
@@ -82,18 +82,18 @@ namespace SequenceAutomation
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(21, 91);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(333, 41);
+            this.label1.Size = new System.Drawing.Size(332, 47);
             this.label1.TabIndex = 22;
             this.label1.Text = "Current Recording:\r\n";
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(308, 96);
@@ -214,7 +214,7 @@ namespace SequenceAutomation
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(24, 329);
             this.label3.Name = "label3";
@@ -225,7 +225,7 @@ namespace SequenceAutomation
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(24, 434);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 45);
@@ -235,7 +235,7 @@ namespace SequenceAutomation
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(24, 517);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(214, 45);
@@ -245,11 +245,11 @@ namespace SequenceAutomation
             // recSpeedLabel
             // 
             this.recSpeedLabel.BackColor = System.Drawing.Color.Transparent;
-            this.recSpeedLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recSpeedLabel.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recSpeedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.recSpeedLabel.Location = new System.Drawing.Point(307, 482);
             this.recSpeedLabel.Name = "recSpeedLabel";
-            this.recSpeedLabel.Size = new System.Drawing.Size(249, 37);
+            this.recSpeedLabel.Size = new System.Drawing.Size(249, 39);
             this.recSpeedLabel.TabIndex = 37;
             this.recSpeedLabel.Text = " 3 - Normal";
             // 
@@ -274,7 +274,7 @@ namespace SequenceAutomation
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label6.Location = new System.Drawing.Point(549, 155);
             this.label6.Name = "label6";

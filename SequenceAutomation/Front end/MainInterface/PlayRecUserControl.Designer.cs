@@ -60,10 +60,10 @@
             this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showTutorialBtn.FlatAppearance.BorderSize = 3;
             this.showTutorialBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTutorialBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showTutorialBtn.Location = new System.Drawing.Point(569, 14);
             this.showTutorialBtn.Name = "showTutorialBtn";
-            this.showTutorialBtn.Size = new System.Drawing.Size(302, 52);
+            this.showTutorialBtn.Size = new System.Drawing.Size(302, 62);
             this.showTutorialBtn.TabIndex = 21;
             this.showTutorialBtn.Text = "Show Tutorial";
             this.showTutorialBtn.UseVisualStyleBackColor = false;
@@ -72,16 +72,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(222, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(295, 41);
+            this.label2.Size = new System.Drawing.Size(289, 47);
             this.label2.TabIndex = 30;
             this.label2.Text = "Play a recording";
             // 
             // recDescLabel
             // 
-            this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescLabel.Location = new System.Drawing.Point(856, 361);
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(361, 295);
@@ -91,48 +91,48 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(856, 319);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 32);
+            this.label7.Size = new System.Drawing.Size(165, 37);
             this.label7.TabIndex = 60;
             this.label7.Text = "Description";
             // 
             // recTitleLabel
             // 
             this.recTitleLabel.AutoSize = true;
-            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recTitleLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleLabel.Location = new System.Drawing.Point(856, 194);
             this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(173, 33);
+            this.recTitleLabel.Size = new System.Drawing.Size(157, 37);
             this.recTitleLabel.TabIndex = 59;
             this.recTitleLabel.Text = "Unavailable";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(856, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 32);
+            this.label6.Size = new System.Drawing.Size(75, 37);
             this.label6.TabIndex = 58;
             this.label6.Text = "Title";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(856, 114);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 32);
+            this.label5.Size = new System.Drawing.Size(207, 37);
             this.label5.TabIndex = 57;
             this.label5.Text = "Recording Info";
             // 
             // recordingsList
             // 
-            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordingsList.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recordingsList.FormattingEnabled = true;
-            this.recordingsList.ItemHeight = 24;
+            this.recordingsList.ItemHeight = 30;
             this.recordingsList.Location = new System.Drawing.Point(418, 158);
             this.recordingsList.Name = "recordingsList";
             this.recordingsList.Size = new System.Drawing.Size(409, 364);
@@ -270,11 +270,11 @@
             // recSpeedLabel
             // 
             this.recSpeedLabel.BackColor = System.Drawing.Color.Transparent;
-            this.recSpeedLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recSpeedLabel.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recSpeedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recSpeedLabel.Location = new System.Drawing.Point(121, 384);
+            this.recSpeedLabel.Location = new System.Drawing.Point(130, 384);
             this.recSpeedLabel.Name = "recSpeedLabel";
-            this.recSpeedLabel.Size = new System.Drawing.Size(249, 37);
+            this.recSpeedLabel.Size = new System.Drawing.Size(249, 50);
             this.recSpeedLabel.TabIndex = 88;
             this.recSpeedLabel.Text = " 3 - Normal";
             // 
@@ -317,7 +317,7 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(28, 268);
             this.label1.Name = "label1";
@@ -347,29 +347,29 @@
             // recAuthorLabel
             // 
             this.recAuthorLabel.AutoSize = true;
-            this.recAuthorLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recAuthorLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recAuthorLabel.Location = new System.Drawing.Point(856, 274);
             this.recAuthorLabel.Name = "recAuthorLabel";
-            this.recAuthorLabel.Size = new System.Drawing.Size(173, 33);
+            this.recAuthorLabel.Size = new System.Drawing.Size(157, 37);
             this.recAuthorLabel.TabIndex = 92;
             this.recAuthorLabel.Text = "Unavailable";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(856, 236);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 32);
+            this.label4.Size = new System.Drawing.Size(107, 37);
             this.label4.TabIndex = 91;
             this.label4.Text = "Author";
             // 
             // searchBox
             // 
-            this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBox.Location = new System.Drawing.Point(418, 115);
             this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(409, 33);
+            this.searchBox.Size = new System.Drawing.Size(409, 35);
             this.searchBox.TabIndex = 64;
             this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 

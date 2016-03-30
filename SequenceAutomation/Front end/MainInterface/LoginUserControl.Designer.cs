@@ -42,7 +42,7 @@ namespace SequenceAutomation
             this.loginCreateRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.loginCreateRec.FlatAppearance.BorderSize = 3;
             this.loginCreateRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginCreateRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginCreateRec.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginCreateRec.Location = new System.Drawing.Point(575, 249);
             this.loginCreateRec.Name = "loginCreateRec";
             this.loginCreateRec.Size = new System.Drawing.Size(220, 220);
@@ -58,7 +58,7 @@ namespace SequenceAutomation
             this.loginPlayRec.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.loginPlayRec.FlatAppearance.BorderSize = 3;
             this.loginPlayRec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginPlayRec.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginPlayRec.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginPlayRec.Location = new System.Drawing.Point(156, 249);
             this.loginPlayRec.Name = "loginPlayRec";
             this.loginPlayRec.Size = new System.Drawing.Size(220, 220);
@@ -71,10 +71,10 @@ namespace SequenceAutomation
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(146, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(655, 112);
+            this.label1.Size = new System.Drawing.Size(647, 130);
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome!\r\nWhat would you like to do?";
             // 

@@ -70,7 +70,7 @@
             this.registerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.registerBtn.FlatAppearance.BorderSize = 3;
             this.registerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.registerBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerBtn.Location = new System.Drawing.Point(314, 644);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(286, 60);
@@ -82,16 +82,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(227, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(338, 41);
+            this.label4.Size = new System.Drawing.Size(317, 47);
             this.label4.TabIndex = 94;
             this.label4.Text = "Create an account";
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(26, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(304, 37);
@@ -101,16 +101,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(26, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 33);
+            this.label2.Size = new System.Drawing.Size(132, 37);
             this.label2.TabIndex = 92;
             this.label2.Text = "Firstname";
             // 
             // password
             // 
-            this.password.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password.Location = new System.Drawing.Point(26, 458);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(304, 37);
@@ -120,16 +120,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(26, 358);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 33);
+            this.label5.Size = new System.Drawing.Size(136, 37);
             this.label5.TabIndex = 100;
             this.label5.Text = "Username";
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(28, 564);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(304, 37);
@@ -138,7 +138,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(26, 273);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(304, 37);
@@ -147,11 +147,11 @@
             // 
             // password1Tb
             // 
-            this.password1Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password1Tb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password1Tb.Location = new System.Drawing.Point(34, 507);
             this.password1Tb.MaxLength = 18;
             this.password1Tb.Name = "password1Tb";
-            this.password1Tb.Size = new System.Drawing.Size(406, 33);
+            this.password1Tb.Size = new System.Drawing.Size(406, 35);
             this.password1Tb.TabIndex = 5;
             this.password1Tb.UseSystemPasswordChar = true;
             this.password1Tb.Enter += new System.EventHandler(this.showPasswordInfo);
@@ -159,49 +159,49 @@
             // 
             // password2Tb
             // 
-            this.password2Tb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password2Tb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password2Tb.Location = new System.Drawing.Point(32, 605);
             this.password2Tb.MaxLength = 18;
             this.password2Tb.Name = "password2Tb";
-            this.password2Tb.Size = new System.Drawing.Size(408, 33);
+            this.password2Tb.Size = new System.Drawing.Size(408, 35);
             this.password2Tb.TabIndex = 6;
             this.password2Tb.UseSystemPasswordChar = true;
             this.password2Tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordKeyPress);
             // 
             // usernameTb
             // 
-            this.usernameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameTb.Location = new System.Drawing.Point(34, 404);
             this.usernameTb.MaxLength = 30;
             this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(406, 33);
+            this.usernameTb.Size = new System.Drawing.Size(406, 35);
             this.usernameTb.TabIndex = 4;
             // 
             // emailTb
             // 
-            this.emailTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailTb.Location = new System.Drawing.Point(34, 322);
             this.emailTb.MaxLength = 40;
             this.emailTb.Name = "emailTb";
-            this.emailTb.Size = new System.Drawing.Size(406, 33);
+            this.emailTb.Size = new System.Drawing.Size(406, 35);
             this.emailTb.TabIndex = 3;
             // 
             // surnameTb
             // 
-            this.surnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.surnameTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.surnameTb.Location = new System.Drawing.Point(32, 237);
             this.surnameTb.MaxLength = 30;
             this.surnameTb.Name = "surnameTb";
-            this.surnameTb.Size = new System.Drawing.Size(406, 33);
+            this.surnameTb.Size = new System.Drawing.Size(406, 35);
             this.surnameTb.TabIndex = 2;
             // 
             // firstnameTb
             // 
-            this.firstnameTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstnameTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstnameTb.Location = new System.Drawing.Point(32, 142);
             this.firstnameTb.MaxLength = 30;
             this.firstnameTb.Name = "firstnameTb";
-            this.firstnameTb.Size = new System.Drawing.Size(406, 33);
+            this.firstnameTb.Size = new System.Drawing.Size(406, 35);
             this.firstnameTb.TabIndex = 1;
             // 
             // Register

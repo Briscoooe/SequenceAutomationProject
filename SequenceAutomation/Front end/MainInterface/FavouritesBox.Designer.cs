@@ -36,13 +36,13 @@
             this.recordingsList = new System.Windows.Forms.ListBox();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.searchBox = new SequenceAutomation.SearchBox();
             this.doneBtn = new System.Windows.Forms.Button();
+            this.searchBox = new SequenceAutomation.SearchBox();
             this.SuspendLayout();
             // 
             // recDescLabel
             // 
-            this.recDescLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recDescLabel.Location = new System.Drawing.Point(326, 239);
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(411, 252);
@@ -52,20 +52,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(326, 193);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 32);
+            this.label7.Size = new System.Drawing.Size(165, 37);
             this.label7.TabIndex = 69;
             this.label7.Text = "Description";
             // 
             // recTitleLabel
             // 
             this.recTitleLabel.AutoSize = true;
-            this.recTitleLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recTitleLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recTitleLabel.Location = new System.Drawing.Point(326, 141);
             this.recTitleLabel.Name = "recTitleLabel";
-            this.recTitleLabel.Size = new System.Drawing.Size(173, 33);
+            this.recTitleLabel.Size = new System.Drawing.Size(157, 37);
             this.recTitleLabel.TabIndex = 68;
             this.recTitleLabel.Text = "Unavailable";
             // 
@@ -82,21 +82,21 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(326, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 32);
+            this.label5.Size = new System.Drawing.Size(207, 37);
             this.label5.TabIndex = 66;
             this.label5.Text = "Recording Info";
             // 
             // recordingsList
             // 
-            this.recordingsList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordingsList.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recordingsList.FormattingEnabled = true;
-            this.recordingsList.ItemHeight = 24;
+            this.recordingsList.ItemHeight = 30;
             this.recordingsList.Location = new System.Drawing.Point(16, 103);
             this.recordingsList.Name = "recordingsList";
-            this.recordingsList.Size = new System.Drawing.Size(304, 532);
+            this.recordingsList.Size = new System.Drawing.Size(304, 514);
             this.recordingsList.TabIndex = 65;
             this.recordingsList.SelectedIndexChanged += new System.EventHandler(this.updateInfo);
             // 
@@ -122,21 +122,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(439, 41);
+            this.label2.Size = new System.Drawing.Size(439, 47);
             this.label2.TabIndex = 74;
             this.label2.Text = "Your favourite recordings";
-            // 
-            // searchBox
-            // 
-            this.searchBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchBox.Location = new System.Drawing.Point(16, 60);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(304, 33);
-            this.searchBox.TabIndex = 71;
-            this.searchBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchListUpdate);
             // 
             // doneBtn
             // 
@@ -157,16 +148,24 @@
             this.doneBtn.MouseEnter += new System.EventHandler(this.doneBtn_MouseEnter);
             this.doneBtn.MouseLeave += new System.EventHandler(this.doneBtn_MouseLeave);
             // 
+            // searchBox
+            // 
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBox.Location = new System.Drawing.Point(16, 58);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(304, 35);
+            this.searchBox.TabIndex = 75;
+            // 
             // FavouritesBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(758, 650);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.doneBtn);
-            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.recDescLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.recTitleLabel);
@@ -181,8 +180,6 @@
         }
 
         #endregion
-
-        private SearchBox searchBox;
         private System.Windows.Forms.Label recDescLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label recTitleLabel;
@@ -192,5 +189,6 @@
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button doneBtn;
+        private SearchBox searchBox;
     }
 }

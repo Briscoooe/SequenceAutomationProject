@@ -46,11 +46,11 @@ namespace SequenceAutomation
             this.uploadBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.recTitleTb = new System.Windows.Forms.RichTextBox();
             this.recDescTb = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.showTutorialBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
+            this.recTitleTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // testRecBtn
@@ -63,7 +63,7 @@ namespace SequenceAutomation
             this.testRecBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.testRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.testRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.testRecBtn.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.testRecBtn.Location = new System.Drawing.Point(80, 397);
             this.testRecBtn.Name = "testRecBtn";
             this.testRecBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -77,21 +77,21 @@ namespace SequenceAutomation
             // recStatusLabel
             // 
             this.recStatusLabel.AutoSize = true;
-            this.recStatusLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recStatusLabel.Location = new System.Drawing.Point(343, 81);
+            this.recStatusLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recStatusLabel.Location = new System.Drawing.Point(344, 73);
             this.recStatusLabel.Name = "recStatusLabel";
-            this.recStatusLabel.Size = new System.Drawing.Size(241, 32);
+            this.recStatusLabel.Size = new System.Drawing.Size(257, 40);
             this.recStatusLabel.TabIndex = 3;
             this.recStatusLabel.Text = "Recording Status:";
             // 
             // recStatusText
             // 
             this.recStatusText.AutoSize = true;
-            this.recStatusText.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recStatusText.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recStatusText.ForeColor = System.Drawing.Color.Red;
-            this.recStatusText.Location = new System.Drawing.Point(590, 81);
+            this.recStatusText.Location = new System.Drawing.Point(596, 74);
             this.recStatusText.Name = "recStatusText";
-            this.recStatusText.Size = new System.Drawing.Size(195, 32);
+            this.recStatusText.Size = new System.Drawing.Size(211, 40);
             this.recStatusText.TabIndex = 4;
             this.recStatusText.Text = "Not recording";
             // 
@@ -123,7 +123,7 @@ namespace SequenceAutomation
             this.startStopRecBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.startStopRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.startStopRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startStopRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startStopRecBtn.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startStopRecBtn.Location = new System.Drawing.Point(80, 162);
             this.startStopRecBtn.Name = "startStopRecBtn";
             this.startStopRecBtn.Size = new System.Drawing.Size(150, 150);
@@ -137,20 +137,20 @@ namespace SequenceAutomation
             // recButtonLabel
             // 
             this.recButtonLabel.AutoSize = true;
-            this.recButtonLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recButtonLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recButtonLabel.Location = new System.Drawing.Point(50, 116);
             this.recButtonLabel.Name = "recButtonLabel";
-            this.recButtonLabel.Size = new System.Drawing.Size(223, 32);
+            this.recButtonLabel.Size = new System.Drawing.Size(219, 40);
             this.recButtonLabel.TabIndex = 7;
             this.recButtonLabel.Text = "Begin recording";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(56, 351);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 32);
+            this.label1.Size = new System.Drawing.Size(199, 40);
             this.label1.TabIndex = 8;
             this.label1.Text = "Play recording";
             // 
@@ -195,30 +195,30 @@ namespace SequenceAutomation
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(729, 321);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(243, 33);
+            this.label7.Size = new System.Drawing.Size(238, 40);
             this.label7.TabIndex = 58;
             this.label7.Text = "Add to favourites";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(740, 458);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(232, 33);
+            this.label6.Size = new System.Drawing.Size(229, 40);
             this.label6.TabIndex = 57;
             this.label6.Text = "Upload to server";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(729, 191);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(254, 33);
+            this.label5.Size = new System.Drawing.Size(242, 40);
             this.label5.TabIndex = 56;
             this.label5.Text = "Save to computer";
             // 
@@ -262,50 +262,40 @@ namespace SequenceAutomation
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(345, 196);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(304, 78);
+            this.label3.Size = new System.Drawing.Size(304, 47);
             this.label3.TabIndex = 63;
             this.label3.Text = "Recording description (optional)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(345, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 33);
+            this.label2.Size = new System.Drawing.Size(202, 40);
             this.label2.TabIndex = 62;
             this.label2.Text = "Recording title";
             // 
-            // recTitleTb
-            // 
-            this.recTitleTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recTitleTb.Location = new System.Drawing.Point(351, 153);
-            this.recTitleTb.MaxLength = 30;
-            this.recTitleTb.Name = "recTitleTb";
-            this.recTitleTb.Size = new System.Drawing.Size(300, 31);
-            this.recTitleTb.TabIndex = 4;
-            this.recTitleTb.Text = "";
-            // 
             // recDescTb
             // 
-            this.recDescTb.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescTb.Location = new System.Drawing.Point(351, 277);
+            this.recDescTb.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescTb.Location = new System.Drawing.Point(351, 246);
             this.recDescTb.MaxLength = 500;
             this.recDescTb.Name = "recDescTb";
-            this.recDescTb.Size = new System.Drawing.Size(300, 288);
+            this.recDescTb.Size = new System.Drawing.Size(300, 319);
             this.recDescTb.TabIndex = 5;
             this.recDescTb.Text = "";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(289, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(339, 41);
+            this.label4.Size = new System.Drawing.Size(326, 47);
             this.label4.TabIndex = 65;
             this.label4.Text = "Create a recording";
             // 
@@ -315,10 +305,10 @@ namespace SequenceAutomation
             this.showTutorialBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showTutorialBtn.FlatAppearance.BorderSize = 3;
             this.showTutorialBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.showTutorialBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTutorialBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showTutorialBtn.Location = new System.Drawing.Point(671, 19);
             this.showTutorialBtn.Name = "showTutorialBtn";
-            this.showTutorialBtn.Size = new System.Drawing.Size(302, 52);
+            this.showTutorialBtn.Size = new System.Drawing.Size(302, 57);
             this.showTutorialBtn.TabIndex = 66;
             this.showTutorialBtn.Text = "Show Tutorial";
             this.showTutorialBtn.UseVisualStyleBackColor = false;
@@ -330,7 +320,7 @@ namespace SequenceAutomation
             this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginBtn.FlatAppearance.BorderSize = 3;
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.Location = new System.Drawing.Point(964, 529);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(151, 69);
@@ -339,18 +329,27 @@ namespace SequenceAutomation
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.login);
             // 
+            // recTitleTb
+            // 
+            this.recTitleTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recTitleTb.Location = new System.Drawing.Point(352, 162);
+            this.recTitleTb.MaxLength = 30;
+            this.recTitleTb.Name = "recTitleTb";
+            this.recTitleTb.Size = new System.Drawing.Size(297, 35);
+            this.recTitleTb.TabIndex = 68;
+            // 
             // CreateRecUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.recTitleTb);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.showTutorialBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.recTitleTb);
             this.Controls.Add(this.recDescTb);
             this.Controls.Add(this.favouriteBtn);
             this.Controls.Add(this.label7);
@@ -391,10 +390,10 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox recTitleTb;
         private System.Windows.Forms.RichTextBox recDescTb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button showTutorialBtn;
         private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.TextBox recTitleTb;
     }
 }

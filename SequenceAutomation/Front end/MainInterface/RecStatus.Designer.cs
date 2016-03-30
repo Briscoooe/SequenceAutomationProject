@@ -38,10 +38,10 @@
             // 
             this.recButtonLabel.AutoSize = true;
             this.recButtonLabel.BackColor = System.Drawing.Color.Transparent;
-            this.recButtonLabel.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recButtonLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recButtonLabel.Location = new System.Drawing.Point(12, 123);
             this.recButtonLabel.Name = "recButtonLabel";
-            this.recButtonLabel.Size = new System.Drawing.Size(207, 32);
+            this.recButtonLabel.Size = new System.Drawing.Size(208, 37);
             this.recButtonLabel.TabIndex = 9;
             this.recButtonLabel.Text = "Stop recording";
             // 
@@ -67,20 +67,20 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(182, 32);
+            this.label2.Size = new System.Drawing.Size(181, 37);
             this.label2.TabIndex = 11;
             this.label2.Text = "Elapsed time";
             // 
             // timerLabel
             // 
             this.timerLabel.AutoSize = true;
-            this.timerLabel.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timerLabel.Location = new System.Drawing.Point(12, 54);
             this.timerLabel.Name = "timerLabel";
-            this.timerLabel.Size = new System.Drawing.Size(0, 36);
+            this.timerLabel.Size = new System.Drawing.Size(0, 40);
             this.timerLabel.TabIndex = 12;
             // 
             // RecStatus

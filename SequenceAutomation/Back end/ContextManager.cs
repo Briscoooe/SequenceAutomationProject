@@ -13,7 +13,6 @@ namespace SequenceAutomation
          */
         #region Variable declarations
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
-
         private static Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
         private static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
         private static IntPtr shellWindow;
@@ -43,6 +42,7 @@ namespace SequenceAutomation
         #region Public methods
         /*
          * Method: ContextManager()
+         * Parameter: time - The time used as a key value in the context dictionary
          * Summary: Retrieve the context of the program when the enter key is pressed
          * Returns: A dictionary containing key value pairs of relevant context information
          */

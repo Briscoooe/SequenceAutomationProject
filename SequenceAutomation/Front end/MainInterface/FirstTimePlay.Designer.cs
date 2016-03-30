@@ -41,7 +41,7 @@
             this.yesBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.yesBtn.FlatAppearance.BorderSize = 3;
             this.yesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.yesBtn.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yesBtn.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yesBtn.Location = new System.Drawing.Point(157, 248);
             this.yesBtn.Name = "yesBtn";
             this.yesBtn.Size = new System.Drawing.Size(220, 220);
@@ -56,7 +56,7 @@
             this.noBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.noBtn.FlatAppearance.BorderSize = 3;
             this.noBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.noBtn.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noBtn.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noBtn.Location = new System.Drawing.Point(585, 248);
             this.noBtn.Name = "noBtn";
             this.noBtn.Size = new System.Drawing.Size(220, 220);
@@ -68,10 +68,10 @@
             // rememberChoiceBtn
             // 
             this.rememberChoiceBtn.AutoSize = true;
-            this.rememberChoiceBtn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rememberChoiceBtn.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rememberChoiceBtn.Location = new System.Drawing.Point(585, 474);
             this.rememberChoiceBtn.Name = "rememberChoiceBtn";
-            this.rememberChoiceBtn.Size = new System.Drawing.Size(288, 36);
+            this.rememberChoiceBtn.Size = new System.Drawing.Size(280, 41);
             this.rememberChoiceBtn.TabIndex = 2;
             this.rememberChoiceBtn.Text = "Don\'t ask me again";
             this.rememberChoiceBtn.UseVisualStyleBackColor = true;
@@ -79,20 +79,20 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(108, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(820, 125);
+            this.label1.Size = new System.Drawing.Size(820, 132);
             this.label1.TabIndex = 3;
             this.label1.Text = "Would you like to view a tutorial on how to play recordings?";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(111, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(694, 41);
+            this.label2.Size = new System.Drawing.Size(702, 47);
             this.label2.TabIndex = 4;
             this.label2.Text = "\"Yes\" is recommended for first time users";
             // 
