@@ -33,6 +33,7 @@ namespace SequenceAutomation
             this.loginCreateRec = new System.Windows.Forms.Button();
             this.loginPlayRec = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // loginCreateRec
@@ -72,11 +73,22 @@ namespace SequenceAutomation
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(146, 37);
+            this.label1.Location = new System.Drawing.Point(334, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(647, 130);
+            this.label1.Size = new System.Drawing.Size(253, 65);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome!\r\nWhat would you like to do?";
+            this.label1.Text = "Welcome!\r\n";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(148, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(647, 65);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "What would you like to do?";
             // 
             // LoginUserControl
             // 
@@ -84,6 +96,7 @@ namespace SequenceAutomation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginPlayRec);
             this.Controls.Add(this.loginCreateRec);
@@ -99,5 +112,6 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button loginCreateRec;
         private System.Windows.Forms.Button loginPlayRec;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,6 @@ namespace SequenceAutomation
 {
     public static class ConnectionManager
     {
-
         #region Variable declarations
         private static HttpWebRequest request;
         private static HttpWebResponse response;
@@ -30,10 +30,10 @@ namespace SequenceAutomation
 
         #region Public methods
         /*
-        * Method: testConnection()
-        * Summary: Attempts to establish a TCP connection with the server to prove that it can be successfully reached
-        * Returns: Returns true or false depending on the success or failure of the connection test
-        */
+         * Method: testConnection()
+         * Summary: Attempts to establish a TCP connection with the server to prove that it can be successfully reached
+         * Returns: Returns true or false depending on the success or failure of the connection test
+         */
         public static bool testConnection()
         {
             try
@@ -56,12 +56,12 @@ namespace SequenceAutomation
         }
 
         /*
-        * Method: loginUser()
-        * Summary: Attempts to log in the user by validating the passed in credentials against the values stored in the MySQL database
-        * Parameter: username - The username of the user attempting to log in
-        * Parameter: password - The password of the user attempting to log in
-        * Returns: True or false depending on the success or failure of the login attempt
-        */
+         * Method: loginUser()
+         * Summary: Attempts to log in the user by validating the passed in credentials against the values stored in the MySQL database
+         * Parameter: username - The username of the user attempting to log in
+         * Parameter: password - The password of the user attempting to log in
+         * Returns: True or false depending on the success or failure of the login attempt
+         */
         public static bool loginUser(string username, string password)
         {
             bool result;
@@ -93,15 +93,12 @@ namespace SequenceAutomation
                     responseStr = reader.ReadToEnd();
                 }
 
-                // Trim the unnecessary characters from the response string
-                string tmp = string.Join("", responseStr.Split('"', '{', '}', '\n'));
-                // Split the remaining contents at each "," and ":" and store the results as an array
-                string[] tmp2 = tmp.Split(':', ',');
-                
+                JToken responseToken = JObject.Parse(responseStr);
+
                 // Store the necessary user credentials in the application settings
-                Properties.Settings.Default.currentUser = tmp2[1];
-                Properties.Settings.Default.currentUserFirstname = tmp2[3];
-                Properties.Settings.Default.currentUserSurname = tmp2[5];
+                Properties.Settings.Default.currentUser = Convert.ToString(responseToken["userId"]);
+                Properties.Settings.Default.currentUserFirstname = Convert.ToString(responseToken["firstname"]);
+                Properties.Settings.Default.currentUserSurname = Convert.ToString(responseToken["surname"]);
 
                 // If the HTTP status code is "Accepted", return true. Otherwise return false
                 if (response.StatusCode == HttpStatusCode.Accepted)
@@ -123,11 +120,11 @@ namespace SequenceAutomation
 
 
         /*
-        * Method: register()
-        * Summary: Attempts to register a user by validating the input and writing the values to the MySQL databse on the server
-        * Parameter: userList - An array containing the registration details entered by the user
-        * Returns: A string containing an error confirmation message based on the success or failure of the registration
-        */
+         * Method: register()
+         * Summary: Attempts to register a user by validating the input and writing the values to the MySQL databse on the server
+         * Parameter: userList - An array containing the registration details entered by the user
+         * Returns: A string containing an error confirmation message based on the success or failure of the registration
+         */
         public static string register(List<string> userList)
         {
             string responseStr = "ERROR";
@@ -197,10 +194,10 @@ namespace SequenceAutomation
         }
 
         /*
-        * Method: getRecordings()
-        * Summary: Retrives the list of recordings stored on the server
-        * Returns: A list of objects of type RecordingManager, used to populate the main list within the application
-        */
+         * Method: getRecordings()
+         * Summary: Retrives the list of recordings stored on the server
+         * Returns: A list of objects of type RecordingManager, used to populate the main list within the application
+         */
         public static List<RecordingManager> getRecordings()
         {
             // Prepare the GET HTTP request to the "recordings" endpoint
@@ -222,19 +219,19 @@ namespace SequenceAutomation
                 RecordingManager recording;
 
                 // Trim the unnecessary characters from the response string 
-                string tmp = string.Join("", responseStr.Split('"', '[', ']', ' ', '\n'));
+                string responseStripped = string.Join("", responseStr.Split('"', '[', ']', ' ', '\n'));
                 // Split the remaining contents at each "," and store the results as an array
-                string[] tmp2 = tmp.Split(',');
+                string[] responseSplit = responseStripped.Split(',');
 
                 // Loop through the array elements and instantiate a recording variable for each element, add 
                 // them to the dirContents variable, assuming the element is not "." or "..", which are the 
                 // current and parent directory identifiers on the server 
-                foreach (string t in tmp2)
+                foreach (string recname in responseSplit)
                 {
-                    if (t != "." && t != "..")
+                    if (recname != "." && recname != "..")
                     {
-                        string tmp3 = getRecInfo(t);
-                        recording = new RecordingManager(tmp3);
+                        string tempRec = getRecInfo(recname);
+                        recording = new RecordingManager(tempRec);
                         dirContents.Add(recording);
                     }
                 }
@@ -252,18 +249,12 @@ namespace SequenceAutomation
             return dirContents;
         }
 
-/*
-* Method: 
-* Summary: 
-* Parameter: 
-* Returns: 
-*/
         /*
-        * Method: getRecInfo()
-        * Summary: Returns a JSON string containing information on the recording passed as a parameter
-        * Parameter: recId - The ID of the recording to retreive information for
-        * Returns: The whole JSON recording file stored on the server
-        */
+         * Method: getRecInfo()
+         * Summary: Returns a JSON string containing information on the recording passed as a parameter
+         * Parameter: recId - The ID of the recording to retreive information for
+         * Returns: The whole JSON recording file stored on the server
+         */
         public static string getRecInfo(string recId)
         {
             // If the ID contains the JSON extension, remove the extension
@@ -276,58 +267,71 @@ namespace SequenceAutomation
             prepareRequest(recordingUrl + "/" + recId, "", "GET");
             try
             {
+                // Send the request and retrieve the response string
+                // In this case, the response string is a full recording in the JSON format
                 response = (HttpWebResponse)request.GetResponse();
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
                     responseStr = reader.ReadToEnd();
                 }
+
+                response.Dispose();
             }
+
             catch (WebException we)
             {
                 Console.WriteLine(we.Message);
                 throw;
             }
 
-            if (response != null)
-                response.Dispose();
             return responseStr;
         }
 
-        public static bool uploadRecording(string jsonString)
+        /*
+         * Method: uploadRecording()
+         * Summary: Uploads a JSON recording string to the server
+         * Parameter: recJson - A recording string in the JSON format
+         * Returns: True or false depending on the success of the upload attempt
+         */
+        public static bool uploadRecording(string recJson)
         {
+            // Prepare the HTTP Post request to the users endpoint
             prepareRequest(recordingUrl, "text/json", "POST");
             bool result = false;
             try
             {
-                if(RecordingManager.validateJson(jsonString))
+                // Validate the JSON string to ensure it is in the correct format
+                if(RecordingManager.validateJson(recJson))
                 {
+                    // Write the JSON string with the HTTP request
                     using (var writer = new StreamWriter(request.GetRequestStream()))
                     {
-                        writer.Write(jsonString);
+                        writer.Write(recJson);
                         writer.Flush();
                         writer.Close();
                     }
 
                     try
                     {
+                        // Retrieve the response from the server
                         response = (HttpWebResponse)request.GetResponse();
-                        HttpStatusCode code = response.StatusCode;
-                        response.Dispose();
-                        if (code == HttpStatusCode.Created)
+
+                        // If the response code is "Created" assign the value "true" to the result variable
+                        // Otherwise, set it to false
+                        if (response.StatusCode == HttpStatusCode.Created)
                             result = true;
-                        else
-                            result = false;
+                        response.Dispose();
+
                     }
+                   
                     catch (WebException we)
                     {
                         Console.WriteLine(we.Message);
-                        result = false;
                     }
 
                 }
 
             }
-
             catch (NullReferenceException e)
             {
                 Console.WriteLine(e.Message);
@@ -338,19 +342,31 @@ namespace SequenceAutomation
 
         }
 
+        /*
+         * Method: deleteRecording()
+         * Summary: Attempts to delete a recording from the server
+         * Parameter: recJson - A recording string in the JSON format
+         * Returns: True or false depending on the success of the delete operation
+         */
         public static bool deleteRecording(string recJson)
         {
+            // Prepare the DELETE HTTP request to the recordings endpoint
             prepareRequest(recordingUrl, "text/json", "DELETE");
-            RecordingManager recording = new RecordingManager(recJson);
+            
+            //RecordingManager recording = new RecordingManager(recJson);
             bool result = false;
 
             try
             {
+                // Extract the ID from the recJson string
+                string recId = RecordingManager.getRecId(recJson);
 
+                // Create the JSON object to be written to the server
                 JObject recInfo = new JObject(
-                    new JProperty("recId", recording.Id),
+                    new JProperty("recId", recId),
                     new JProperty("UserId", Properties.Settings.Default.currentUser));
 
+                // Write the JSON string to the server
                 using (var writer = new StreamWriter(request.GetRequestStream()))
                 {
                     writer.Write(recInfo.ToString());
@@ -360,106 +376,151 @@ namespace SequenceAutomation
 
                 try
                 {
+                    // Retrieve the response 
                     response = (HttpWebResponse)request.GetResponse();
+
+                    // If the response code is "OK", return true
+                    if (response.StatusCode == HttpStatusCode.OK)
+                        result = true;
+                    response.Dispose();
                 }
                 catch (WebException we)
                 {
                     Console.WriteLine(we.Message);
+                    return false;
                 }
-
-                response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                    result = true;
             }
+
             catch (WebException we)
             {
                 Console.WriteLine(we.Message);
                 result = false;
             }
 
-            if (response != null)
-                response.Dispose();
             return result;
-
         }
 
         #endregion
+
+        #region Private methods
+        /*
+         * Method: encryptPassword()
+         * Summary: Encrypts the plaintext password entered by the user
+         * Parameter: plaintextPassword - The plain text password entered by the user into the text box in the interface
+         * Returns: The password string in its encrypted form
+         */
         private static string encryptPassword(string plaintextPassword)
         {
+            // Get the bytes of the password
             var bytes = new UTF8Encoding().GetBytes(plaintextPassword);
             byte[] hashBytes;
+            
+            // Using the SHA512 algorithm, compute the hash of each byte and store each result in the hashBytes array
             using (var algorithm = new SHA512Managed())
             {
                 hashBytes = algorithm.ComputeHash(bytes);
             }
+            
+            // Convert the hashBytes array to a string
             string encryptedPassword = Convert.ToBase64String(hashBytes);
+            
+            // Remove any forward and backward slashes from the encrypted string
+            // This had to be done as there were issues regarding the use of the escape character '\' when
+            // sending the encrypted password to the server as a string
             encryptedPassword = string.Join("", encryptedPassword.Split('\\', '/'));
 
             return encryptedPassword;
         }
 
+        /*
+         * Method: prepareRequest
+         * Summary: Prepares an HTTP request to one of the specified endpoints as one of the HTTP methods
+         * Parameter: url - The URL that the request should be sent to, either users/ recordings/
+         * Parameter: content - The JSON content, if any
+         * Parameter: method - The HTTP method, either GET, POST, PUT or DELETE
+         * Returns: True if successful
+         */
         private static bool prepareRequest(string url, string content, string method)
         {
+            // Initiailise the request to the URL and set the method
             request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
+            
+            // If content has been specified, set the request content type as the one passed in
             if (content != "")
             {
-                request.ContentType = "text/json";
+                request.ContentType = content;
             }
 
-            // Accept all certificates
+            // Accept all certificates. This had to be done to bypass the security restrictions regarding the self-signed certificate on the server
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
             return true;
         }
 
+        /*
+        * Method: validateUsername()
+        * Summary: Validates a username by checking whether or not it exists on the server
+        * Parameter: username - The username to be validated
+        * Returns: True or false depending on whether or not the username exists
+        */
         private static bool validateUsername(string username)
         {
+            // Prepare the GET HTTP request to the users endpoint, appending the username to be validated
             prepareRequest(usersUrl + "/" + username, "text/json", "GET");
 
-            bool result;
+            bool result = false;
             try
             {
+                // Send the request and retrieve the response
                 response = (HttpWebResponse)request.GetResponse();
+
+                // If the response status code is "OK", return true
                 if (response.StatusCode == HttpStatusCode.OK)
                     result = true;
-                else
-                    result = false;
-                if (response != null)
-                    response.Dispose();
+                response.Dispose();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                result = false;
             }
 
             return result;
-
         }
 
+        /*
+         * Method: validateEmail()
+         * Summary: Validates an email address by checking if it is in a valid format and not already registered to the application
+         * Parameter: email - The email address to be validated
+         * Returns: An integer acting as a status code for the operation
+         */
         private static int validateEmail(string email)
         {
-
+            // Prepare the GET HTTP request to the users endpoint, appending /email/(email)
             prepareRequest(usersUrl + "/email/" + email, "text/json", "GET");
-            int result;
+            int result = 2;
             try
             {
+                // Attempt to 
                 var addr = new System.Net.Mail.MailAddress(email);
-
                 response = (HttpWebResponse)request.GetResponse();
-                result = 0;
-                if (response != null)
-                    response.Dispose();
+
+                // If the status code returned is "OK" the email exists
+                if (response.StatusCode == HttpStatusCode.OK)
+                    result = 0;
+
+                response.Dispose();
             }
 
+            // If the address is in an incorrect format
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
                 result = 2;
             }
+
+            // If the address does not exist on the server
             catch (WebException e)
             {
                 Console.WriteLine(e.Message);
@@ -468,5 +529,7 @@ namespace SequenceAutomation
 
             return result;
         }
+
+        #endregion
     }
 }

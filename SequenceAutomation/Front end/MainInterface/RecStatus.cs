@@ -14,6 +14,8 @@ namespace SequenceAutomation
 
         public RecStatus(int messageNum)
         {
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
             Timer timer = new Timer();
             timer.Tick += new EventHandler(timer_Tick);

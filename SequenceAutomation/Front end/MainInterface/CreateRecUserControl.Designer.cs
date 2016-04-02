@@ -46,11 +46,11 @@ namespace SequenceAutomation
             this.uploadBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.recDescTb = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.showTutorialBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
             this.recTitleTb = new System.Windows.Forms.TextBox();
+            this.recDescTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // testRecBtn
@@ -186,7 +186,7 @@ namespace SequenceAutomation
             this.favouriteBtn.Location = new System.Drawing.Point(995, 289);
             this.favouriteBtn.Name = "favouriteBtn";
             this.favouriteBtn.Size = new System.Drawing.Size(110, 110);
-            this.favouriteBtn.TabIndex = 9;
+            this.favouriteBtn.TabIndex = 7;
             this.favouriteBtn.UseVisualStyleBackColor = false;
             this.favouriteBtn.Click += new System.EventHandler(this.addToFavourites);
             this.favouriteBtn.MouseEnter += new System.EventHandler(this.favouriteBtn_MouseEnter);
@@ -235,7 +235,7 @@ namespace SequenceAutomation
             this.saveBtn.Location = new System.Drawing.Point(1005, 153);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 100);
-            this.saveBtn.TabIndex = 8;
+            this.saveBtn.TabIndex = 6;
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveFile);
             this.saveBtn.MouseEnter += new System.EventHandler(this.saveBtn_MouseEnter);
@@ -254,7 +254,7 @@ namespace SequenceAutomation
             this.uploadBtn.Location = new System.Drawing.Point(995, 423);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(120, 79);
-            this.uploadBtn.TabIndex = 7;
+            this.uploadBtn.TabIndex = 8;
             this.uploadBtn.UseVisualStyleBackColor = false;
             this.uploadBtn.Click += new System.EventHandler(this.uploadRecording);
             this.uploadBtn.MouseEnter += new System.EventHandler(this.uploadBtn_MouseEnter);
@@ -278,16 +278,6 @@ namespace SequenceAutomation
             this.label2.Size = new System.Drawing.Size(202, 40);
             this.label2.TabIndex = 62;
             this.label2.Text = "Recording title";
-            // 
-            // recDescTb
-            // 
-            this.recDescTb.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescTb.Location = new System.Drawing.Point(351, 246);
-            this.recDescTb.MaxLength = 500;
-            this.recDescTb.Name = "recDescTb";
-            this.recDescTb.Size = new System.Drawing.Size(300, 319);
-            this.recDescTb.TabIndex = 5;
-            this.recDescTb.Text = "";
             // 
             // label4
             // 
@@ -324,7 +314,7 @@ namespace SequenceAutomation
             this.loginBtn.Location = new System.Drawing.Point(964, 529);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(151, 69);
-            this.loginBtn.TabIndex = 67;
+            this.loginBtn.TabIndex = 9;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.login);
@@ -336,7 +326,16 @@ namespace SequenceAutomation
             this.recTitleTb.MaxLength = 30;
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(297, 35);
-            this.recTitleTb.TabIndex = 68;
+            this.recTitleTb.TabIndex = 4;
+            // 
+            // recDescTb
+            // 
+            this.recDescTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescTb.Location = new System.Drawing.Point(352, 247);
+            this.recDescTb.Multiline = true;
+            this.recDescTb.Name = "recDescTb";
+            this.recDescTb.Size = new System.Drawing.Size(297, 351);
+            this.recDescTb.TabIndex = 5;
             // 
             // CreateRecUserControl
             // 
@@ -344,13 +343,13 @@ namespace SequenceAutomation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.recDescTb);
             this.Controls.Add(this.recTitleTb);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.showTutorialBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.recDescTb);
             this.Controls.Add(this.favouriteBtn);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -390,10 +389,10 @@ namespace SequenceAutomation
         private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox recDescTb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button showTutorialBtn;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.TextBox recTitleTb;
+        private System.Windows.Forms.TextBox recDescTb;
     }
 }

@@ -54,12 +54,11 @@ namespace SequenceAutomation
 
         private void addToFavourites(object sender, EventArgs e)
         {
-            if(validateInput(1))
+            if(validateInput(0))
             {
                 if (recJson != "" && recJson != null)
                 {
-                    recManager = new RecordingManager(recJson);
-                    string test = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    string test = RecordingManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                     List<string> tmp = new List<string>();
 
                     tmp = Properties.Settings.Default.favouriteRecordings;
@@ -106,10 +105,9 @@ namespace SequenceAutomation
 
         private void saveFile(object sender, EventArgs e)
         {
-            if (validateInput())
+            if (validateInput(0))
             {
-                recManager = new RecordingManager(recJson);
-                recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                recJson = RecordingManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                 string test = Regex.Replace(recTitleTb.Text, @"[\W]", "");
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = test;
@@ -134,8 +132,7 @@ namespace SequenceAutomation
             {
                 if (ConnectionManager.testConnection())
                 {
-                    recManager = new RecordingManager(recJson);
-                    recJson = recManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
+                    recJson = RecordingManager.addInformation(recJson, recTitleTb.Text, recDescTb.Text);
                     if (ConnectionManager.uploadRecording(recJson))
                         BigMessageBox.Show("Uploaded");
                     else
@@ -149,18 +146,6 @@ namespace SequenceAutomation
 
             }
 
-        }
-
-        private bool validateInput()
-        {
-            if (recTitleTb.Text == "")
-            {
-                BigMessageBox.Show("You must enter a title");
-                return false;
-            }
-
-            else
-                return true;
         }
 
         private bool validateInput(int option)
@@ -183,7 +168,7 @@ namespace SequenceAutomation
                 return false;
             }
 
-            if (option == 1 && recDescTb.Text == "")
+            if (recDescTb.Text == "")
             {
                 BigMessageBox.Show("You must enter a description");
                 return false;

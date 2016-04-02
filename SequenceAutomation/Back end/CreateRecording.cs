@@ -9,7 +9,6 @@ using System.Windows.Forms;
  * SetWindowsHookEx: http://www.pinvoke.net/default.aspx/user32/SetWindowsHookEx.html
  * UnhookWindowsHookEx: http://www.pinvoke.net/default.aspx/user32/UnhookWindowsHookEx.html
  * CallNextHookEx: http://www.pinvoke.net/default.aspx/user32/CallNextHookEx.html
- * GetModuleHandle: http://www.pinvoke.net/default.aspx/kernel32/getmodulehandle.html?diff=y
  */
 namespace SequenceAutomation
 {
@@ -19,7 +18,6 @@ namespace SequenceAutomation
 
         private delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
         private RecordingManager recManager;
-
         private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
         private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
@@ -44,9 +42,6 @@ namespace SequenceAutomation
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hookHandle, int validityCode, IntPtr keyActivity, IntPtr keyCode);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr GetModuleHandle(string handle);
 
         [DllImport("kernel32.dll")]
         static extern IntPtr LoadLibrary(string lpFileName);
@@ -80,11 +75,11 @@ namespace SequenceAutomation
 
 
             IntPtr hInstance = LoadLibrary("User32"); // Loads the User32 library and returns the module value, assigning it to the hInstance variable
-            callbackDelegate = new HookDelegate(onActivity); // Initialises the callbackDelegate using the onActivity method
+            callbackDelegate = new HookDelegate(onKeyActivity); // Initialises the callbackDelegate using the onKeyActivity method
 
             // Installs the hook to the keyboard using the following parameters
             // WH_KEYBOARD_LL stores the value 13, which is the code for the keyboard hook type
-            // callbackDelegate is the variable, of type HookDelegate, which passes a reference to the onActivity method
+            // callbackDelegate is the variable, of type HookDelegate, which passes a reference to the onKeyActivity method
             // hInstance stores the handle of the module thread
             // 0 is the thread ID. It tells the hook to listen to the activity of all threads, not just the thead containing the program itself
             // The call returns an IntPtr which is stored in the hookId variable. This is the ID of the hook which is later used to remove the hook.
@@ -113,14 +108,14 @@ namespace SequenceAutomation
         #region Private methods
 
         /*
-         * Method: onActivity()
+         * Method: onKeyActivity()
          * Summary: Method called each time a key action (key up or down) happens. Each key action is recorded along with the time at which it occured
          * Parameter: validityCode - Checks if the call is valid. If this is greater or equal to 0, i.e. successful, execution will continue
          * Parameter: keyActivity - The key activity. Either KEYUP or KEYDOWN
          * Parameter: keyCode - The code of the key pressed
-         * Returns: IntPtr
+         * Returns: The next hook in the chain
          */
-        private IntPtr onActivity(int validityCode, IntPtr keyActivity, IntPtr keyCode)
+        private IntPtr onKeyActivity(int validityCode, IntPtr keyActivity, IntPtr keyCode)
         {
             if (validityCode >= 0)
             {

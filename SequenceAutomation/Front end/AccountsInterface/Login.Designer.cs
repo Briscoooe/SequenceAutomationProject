@@ -77,9 +77,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(30, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(322, 37);
+            this.label2.Size = new System.Drawing.Size(143, 37);
             this.label2.TabIndex = 84;
-            this.label2.Text = "Username or email adress";
+            this.label2.Text = "Username ";
             // 
             // goBackBtn
             // 

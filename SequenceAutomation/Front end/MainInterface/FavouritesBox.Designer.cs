@@ -85,9 +85,9 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(326, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(207, 37);
+            this.label5.Size = new System.Drawing.Size(310, 37);
             this.label5.TabIndex = 66;
-            this.label5.Text = "Recording Info";
+            this.label5.Text = "Recording Information";
             // 
             // recordingsList
             // 

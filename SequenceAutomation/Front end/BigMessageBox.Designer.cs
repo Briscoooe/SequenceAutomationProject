@@ -48,7 +48,7 @@
             this.OkBtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.OkBtn.FlatAppearance.BorderSize = 3;
             this.OkBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OkBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OkBtn.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OkBtn.Location = new System.Drawing.Point(167, 207);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(209, 64);
@@ -70,7 +70,7 @@
             // 
             // messageBody
             // 
-            this.messageBody.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageBody.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageBody.Location = new System.Drawing.Point(42, 35);
             this.messageBody.Name = "messageBody";
             this.messageBody.Size = new System.Drawing.Size(472, 169);

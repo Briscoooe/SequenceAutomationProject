@@ -56,7 +56,7 @@ namespace SequenceAutomation
             // recDescLabel
             // 
             this.recDescLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescLabel.Location = new System.Drawing.Point(442, 419);
+            this.recDescLabel.Location = new System.Drawing.Point(442, 424);
             this.recDescLabel.Name = "recDescLabel";
             this.recDescLabel.Size = new System.Drawing.Size(441, 245);
             this.recDescLabel.TabIndex = 24;

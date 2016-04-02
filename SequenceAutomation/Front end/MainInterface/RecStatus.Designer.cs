@@ -55,7 +55,7 @@
             this.stopRecBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.stopRecBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stopRecBtn.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stopRecBtn.Location = new System.Drawing.Point(34, 174);
+            this.stopRecBtn.Location = new System.Drawing.Point(43, 174);
             this.stopRecBtn.Name = "stopRecBtn";
             this.stopRecBtn.Size = new System.Drawing.Size(150, 150);
             this.stopRecBtn.TabIndex = 8;
@@ -68,7 +68,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(26, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(181, 37);
             this.label2.TabIndex = 11;
@@ -78,7 +78,7 @@
             // 
             this.timerLabel.AutoSize = true;
             this.timerLabel.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timerLabel.Location = new System.Drawing.Point(12, 54);
+            this.timerLabel.Location = new System.Drawing.Point(50, 60);
             this.timerLabel.Name = "timerLabel";
             this.timerLabel.Size = new System.Drawing.Size(0, 40);
             this.timerLabel.TabIndex = 12;

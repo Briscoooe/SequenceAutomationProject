@@ -7,18 +7,20 @@ namespace SequenceAutomation
 {
     public static class ContextManager
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
         #region Variable declarations
         private delegate bool EnumWindowsProc(IntPtr windowHandle, int callbackVal); // Delegate needed for the EnumWindows method
         private static Dictionary<IntPtr, string> openWindows; // Dictionary to store the handle and title of open windows
-        private static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
         private static IntPtr shellWindow;
         private static StringBuilder titleBuffer;
 
         #endregion
+
+        #region Variable instantiations
+        // The currentContext dictionary is instantiated here as it is used the static methods
+        private static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+        
+        #endregion
+
 
         #region Library imports
         // Importation of native libraries
@@ -119,7 +121,9 @@ namespace SequenceAutomation
                 return false;
 
         }
+        #endregion
 
+        #region Private methods
         /*
          * Method: GetOpenWindows()
          * Summary: Retrieves information on all windows currently open on the system
@@ -163,10 +167,7 @@ namespace SequenceAutomation
 
             return openWindows;
         }
-
         #endregion
-
-
     }
 
 }

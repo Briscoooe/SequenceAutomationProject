@@ -84,23 +84,22 @@ namespace SequenceAutomation.Tests
             fullJson = "{ \"593\":{ \"LWin\":{ \"value\":256} },\"683\":{ \"LWin\":{ \"value\":257} },\"1332\":{ \"T\":{ \"value\":256} },\"1402\":{ \"E\":{ \"value\":256} },\"1488\":{ \"T\":{ \"value\":257},\"E\":{ \"value\":257} },\"1582\":{ \"S\":{ \"value\":256} },\"1686\":{ \"T\":{ \"value\":256} },\"1766\":{ \"S\":{ \"value\":257},\"T\":{ \"value\":257} },\"Name\":\"test\",\"Desc\":\"test\",\"recId\":\"5fe03f40-b67f-4fc8-8c57-0a84fd4c9441\",\"userName\":\"test\"}";
             string rawJson = "{ \"593\":{ \"LWin\":{ \"value\":256} },\"683\":{ \"LWin\":{ \"value\":257} },\"1332\":{ \"T\":{ \"value\":256} },\"1402\":{ \"E\":{ \"value\":256} },\"1488\":{ \"T\":{ \"value\":257},\"E\":{ \"value\":257} },\"1582\":{ \"S\":{ \"value\":256} },\"1686\":{ \"T\":{ \"value\":256} },\"1766\":{ \"S\":{ \"value\":257},\"T\":{ \"value\":257} }}";
             string infoJson = "";
-            rec = new RecordingManager(rawJson);
             Properties.Settings.Default.currentUser = "Test";
 
             // Assert that valid information can be added to a JSON string
-            infoJson = rec.addInformation(rawJson, "title", "Description");
+            infoJson = RecordingManager.addInformation(rawJson, "title", "Description");
             Assert.IsTrue(RecordingManager.validateJson(infoJson));
 
             // Assert that blank information cannot be added to the JSON string
-            infoJson = rec.addInformation(rawJson, "", "");
+            infoJson = RecordingManager.addInformation(rawJson, "", "");
             Assert.IsFalse(RecordingManager.validateJson(infoJson));
 
             // Assert that a blank title will fail to add to the JSON string
-            infoJson = rec.addInformation(rawJson, "", "Description");
+            infoJson = RecordingManager.addInformation(rawJson, "", "Description");
             Assert.IsFalse(RecordingManager.validateJson(infoJson));
 
             // Assert that a blank description will fail to add to the JSON string
-            infoJson = rec.addInformation(rawJson, "Title", "");
+            infoJson = RecordingManager.addInformation(rawJson, "Title", "");
             Assert.IsFalse(RecordingManager.validateJson(infoJson));
 
         }

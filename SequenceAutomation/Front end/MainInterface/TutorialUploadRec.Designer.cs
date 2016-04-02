@@ -30,7 +30,6 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.recDescTb = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.loginBtn = new System.Windows.Forms.Button();
             this.recTitleTb = new System.Windows.Forms.TextBox();
+            this.recDescTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label4
@@ -67,16 +67,6 @@
             this.label2.Size = new System.Drawing.Size(331, 47);
             this.label2.TabIndex = 41;
             this.label2.Text = "Save the recording";
-            // 
-            // recDescTb
-            // 
-            this.recDescTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recDescTb.Location = new System.Drawing.Point(51, 333);
-            this.recDescTb.MaxLength = 500;
-            this.recDescTb.Name = "recDescTb";
-            this.recDescTb.Size = new System.Drawing.Size(348, 329);
-            this.recDescTb.TabIndex = 1;
-            this.recDescTb.Text = "";
             // 
             // label1
             // 
@@ -284,13 +274,23 @@
             this.recTitleTb.MaxLength = 30;
             this.recTitleTb.Name = "recTitleTb";
             this.recTitleTb.Size = new System.Drawing.Size(347, 35);
-            this.recTitleTb.TabIndex = 69;
+            this.recTitleTb.TabIndex = 1;
+            // 
+            // recDescTb
+            // 
+            this.recDescTb.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recDescTb.Location = new System.Drawing.Point(52, 333);
+            this.recDescTb.Multiline = true;
+            this.recDescTb.Name = "recDescTb";
+            this.recDescTb.Size = new System.Drawing.Size(347, 365);
+            this.recDescTb.TabIndex = 2;
             // 
             // TutorialUploadRec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
+            this.Controls.Add(this.recDescTb);
             this.Controls.Add(this.recTitleTb);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.label9);
@@ -303,7 +303,6 @@
             this.Controls.Add(this.uploadBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.recDescTb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nextBtn);
@@ -322,7 +321,6 @@
         private System.Windows.Forms.Button nextBtn;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Button goBackBtn;
-        private System.Windows.Forms.RichTextBox recDescTb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button uploadBtn;
@@ -335,5 +333,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.TextBox recTitleTb;
+        private System.Windows.Forms.TextBox recDescTb;
     }
 }

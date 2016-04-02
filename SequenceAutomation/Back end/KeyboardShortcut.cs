@@ -11,16 +11,17 @@ namespace SequenceAutomation
 {
     public sealed class KeyboardShortcut : IDisposable
     {
-        // Registers a hot key with Windows.
+        #region Library imports 
+        // Importation of native libraries used to register an unregister the hotkey
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-        // Unregisters the hot key with Windows.
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        /// <summary>
-        /// Represents the window that is used internally to get the messages.
-        /// </summary>
+        #endregion
+        /*
+         * 
+         */
         private class Window : NativeWindow, IDisposable
         {
             private static int WM_HOTKEY = 0x0312;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 /*
@@ -187,9 +186,6 @@ namespace SequenceAutomation
                         }
                     }
                 }
-
-                // The current thread sleeps until the milisecond before the next entry
-                //Thread.Sleep(((int)(enumerator.Current - currentEntry - 1)));
 
                 while (watch.ElapsedMilliseconds < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
 

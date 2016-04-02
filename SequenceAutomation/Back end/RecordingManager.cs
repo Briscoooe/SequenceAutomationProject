@@ -11,10 +11,6 @@ namespace SequenceAutomation
 {
     public class RecordingManager
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
         #region Variable declaration
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
@@ -24,8 +20,7 @@ namespace SequenceAutomation
 
         #endregion
 
-        #region Public methods
-
+        #region Getter methods
         public string Title
         {
             get { return recTitle; }
@@ -51,25 +46,36 @@ namespace SequenceAutomation
             get { return userId; }
         }
 
+        #endregion
+
+        #region Public methods
+
+
         /*
          * Method: RecordingManager()
-         * Summary: Class Constructor
+         * Summary: Class constructor
+         * Parameter: inputJson - A JSON string in the recording format
          */
         public RecordingManager(string inputJson)
         {
             try
             {
+                // Attempt to extract the recording information from the JSON string
                 dynamic recObj = JsonConvert.DeserializeObject(inputJson);
                 recTitle = recObj.Name;
                 recDescription = recObj.Desc;
                 recId = recObj.recId;
                 userId = recObj.userId;
 
+                // If the recording contains a value for the name key
                 if(recObj.AuthorFirstname != null)
                 {
+                    // Combine the value of the author firstname and surname to the author name class member
                     recAuthor = Convert.ToString(recObj.AuthorFirstname) + " " + Convert.ToString(recObj.AuthorSurname);
                 }
             }
+
+            // If the recording is in the incorrect format
             catch (JsonReaderException j)
             {
                 Console.WriteLine(j.Message);
@@ -79,7 +85,7 @@ namespace SequenceAutomation
 
         /*
          * Method: RecordingManager()
-         * Summary: Class Constructor
+         * Summary: Class constructor
          * Parameter: keysDict - The dictionary of keys pressed, the key action, and the time it was pressed
          * Parameter: contextDict - The context of each "Return" key press
          */
@@ -90,14 +96,21 @@ namespace SequenceAutomation
             mergeToJson();
         }
 
-        public string addInformation(string keysString, string title, string description)
+        /*
+         * Method: addInformation()
+         * Summary: Adds identifying information to a recording string
+         * Parameter: keysString - The dictionary of keys pressed, the key action, and the time it was pressed
+         * Parameter: title - The tite to be added to the string
+         * Parameter: description - The description to be added to the string
+         * Return: A JSON string containing the added information
+         */
+        public static string addInformation(string keysString, string title, string description)
         {
-            Guid guid = Guid.NewGuid();
-            string recId = guid.ToString();
             dynamic tempObj = JsonConvert.DeserializeObject(keysString);
+
             tempObj.Name = title;
             tempObj.Desc = description;
-            tempObj.recId = recId;
+            tempObj.recId = "";
             tempObj.AuthorFirstname = Properties.Settings.Default.currentUserFirstname;
             tempObj.AuthorSurname = Properties.Settings.Default.currentUserSurname;
             tempObj.UserId = Properties.Settings.Default.currentUser;
@@ -155,6 +168,13 @@ namespace SequenceAutomation
                 return false;
             }
         }
+
+        public static string getRecId(string recJson)
+        {
+            RecordingManager rec = new RecordingManager(recJson);
+            return rec.Id;
+        }
+
         /*
         * Method: getDictionaries()
         * Summary: Translates a single, merged JSON string back into two separate dictionaries for keys and context
@@ -241,13 +261,6 @@ namespace SequenceAutomation
                                     if (keyActionStr == "256")
                                     {
                                         keyAction = (IntPtr)0x0100;
-
-                                        /*
-                                         * While regex is true, concatenate string, add "typed: " to beginning, add string to list item[x]
-                                         * if not true, add "Pressed {0} key", add string to list item[x]
-                                         * work out where to increment x
-                                         */
-
                                         Regex rex = new Regex(@"^[a-zA-Z][0-9]{0,1}$");
                                         if (rex.IsMatch(keyNameStr))
                                         {
@@ -311,8 +324,6 @@ namespace SequenceAutomation
             return true;
 
         }
-
-       
 
         #endregion
     }
