@@ -158,7 +158,7 @@ namespace SequenceAutomation
             currentEntry = 0; 
             watch.Reset();
             watch.Start();
-            int result = 0;
+            int errors = 0;
             // The keysToPlay enumerator, used to jump from one entry to another
             IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); 
 
@@ -174,14 +174,12 @@ namespace SequenceAutomation
                         // Check the current context against the stored context
                         if(ContextManager.checkContext(currentEntry, contextDict))
                         {
-                            result = 0;
                             break;
                         }
 
                         else
                         {
-                            result = 1;
-                            BigMessageBox.Show("The recording is not behaving as it should. Try reducing the speed or closing unnecessary windows");
+                            errors += 1;
                             break;
                         }
                     }
@@ -199,13 +197,10 @@ namespace SequenceAutomation
                     uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
                 }
 
-                else
-                    result = 0;
-
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }
 
-            return result;
+            return errors;
         }
 
         /*

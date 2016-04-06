@@ -11,9 +11,9 @@ namespace SequenceAutomation
     public partial class CreateRecUserControl : UserControl
     {
         #region Variable declarations
-        public event EventHandler BackButtonEvent;
-        public event EventHandler ShowTutorialEvent;
-        private KeyboardShortcut shortcut;
+        public event EventHandler BackButtonEvent; // The event handler for the back button
+        public event EventHandler ShowTutorialEvent; // The event handler for the tutorial button
+        private KeyboardShortcut shortcut; 
         private CreateRecording createRec;
         private RecStatus recStatus;
         private PlayRecording playRec;
@@ -29,127 +29,7 @@ namespace SequenceAutomation
 
         #endregion
 
-        #region Navigation events
-        private void showTutorial(object sender, EventArgs e)
-        {
-            if (ShowTutorialEvent != null)
-                ShowTutorialEvent(this, e);
-        }
-        /*
-         * Method: goBack()
-         * Summary: Returns to the previous screen
-         * Parameter: sender - The control that the action is for, in this case the button
-         * Parameter: e - Any arguments the function may use
-         */
-        private void goBack(object sender, EventArgs e)
-        {
-            if (BackButtonEvent != null)
-                BackButtonEvent(this, e);
-        }
-
-        #endregion
-
-        #region Button hover events
-
-        /*
-         * Summary: Each method in this region is an event handler that is triggered when
-         * the mouse hovers over a button and then leaves that button. The methods change
-         * their specific button to a darker color, indicating that it is being hovered over
-         */
-
-        private void startStopRecBtn_MouseEnter(object sender, EventArgs e)
-        {
-            // This logic is necessary as the start button and stop button share the same control
-            // The image changes depending on whether or not recording is active
-
-            //If the stop button is being shown, change the button to the stop_hover image
-            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
-            {
-                startStopRecBtn.BackgroundImage = Properties.Resources.stop_hover;
-            }
-
-            //If the start button is being shown, change the button to the start_hover image
-            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
-            {
-                startStopRecBtn.BackgroundImage = Properties.Resources.record_hover;
-            }
-        }
-
-        private void startStopRecBtn_MouseLeave(object sender, EventArgs e)
-        {
-            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
-            {
-                startStopRecBtn.BackgroundImage = Properties.Resources.stop;
-            }
-
-            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
-            {
-                startStopRecBtn.BackgroundImage = Properties.Resources.record;
-            }
-        }
-
-        private void testRecBtn_MouseLeave(object sender, EventArgs e)
-        {
-            testRecBtn.BackgroundImage = Properties.Resources.play;
-        }
-
-        private void testRecBtn_MouseEnter(object sender, EventArgs e)
-        {
-            testRecBtn.BackgroundImage = Properties.Resources.play_hover;
-        }
-
-        private void goBackBtn_MouseLeave(object sender, EventArgs e)
-        {
-            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
-        }
-
-        private void goBackBtn_MouseEnter(object sender, EventArgs e)
-        {
-            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
-        }
-
-        private void homeBtn_MouseLeave(object sender, EventArgs e)
-        {
-            homeBtn.BackgroundImage = Properties.Resources.home;
-        }
-
-        private void homeBtn_MouseEnter(object sender, EventArgs e)
-        {
-            homeBtn.BackgroundImage = Properties.Resources.home_hover;
-        }
-
-        private void uploadBtn_MouseEnter(object sender, EventArgs e)
-        {
-            uploadBtn.BackgroundImage = Properties.Resources.upload_hover;
-        }
-
-        private void uploadBtn_MouseLeave(object sender, EventArgs e)
-        {
-            uploadBtn.BackgroundImage = Properties.Resources.upload;
-        }
-
-        private void saveBtn_MouseEnter(object sender, EventArgs e)
-        {
-            saveBtn.BackgroundImage = Properties.Resources.save_hover;
-        }
-
-        private void saveBtn_MouseLeave(object sender, EventArgs e)
-        {
-            saveBtn.BackgroundImage = Properties.Resources.save;
-        }
-
-        private void favouriteBtn_MouseEnter(object sender, EventArgs e)
-        {
-            favouriteBtn.BackgroundImage = Properties.Resources.favourite_hover;
-        }
-
-        private void favouriteBtn_MouseLeave(object sender, EventArgs e)
-        {
-            favouriteBtn.BackgroundImage = Properties.Resources.favourite;
-        }
-
-        #endregion
-
+        #region Private methods
         /*
          * Method: testRecording()
          * Summary: Begins the playback of keystrokes
@@ -502,6 +382,127 @@ namespace SequenceAutomation
         {
             checkLogin();
         }
+
+        #endregion
+
+
+        #region Navigation events
+
+        // These methods are event handlers for the navigation buttons
+        private void showTutorial(object sender, EventArgs e)
+        {
+            if (ShowTutorialEvent != null)
+                ShowTutorialEvent(this, e);
+        }
+
+        private void goBack(object sender, EventArgs e)
+        {
+            if (BackButtonEvent != null)
+                BackButtonEvent(this, e);
+        }
+
+        #endregion
+
+        #region Button hover events
+
+        /*
+         * Summary: Each method in this region is an event handler that is triggered when
+         * the mouse hovers over a button and then leaves that button. The methods change
+         * their specific button to a darker color, indicating that it is being hovered over
+         */
+
+        private void startStopRecBtn_MouseEnter(object sender, EventArgs e)
+        {
+            // This logic is necessary as the start button and stop button share the same control
+            // The image changes depending on whether or not recording is active
+
+            //If the stop button is being shown, change the button to the stop_hover image
+            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.stop_hover;
+            }
+
+            //If the start button is being shown, change the button to the start_hover image
+            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.record_hover;
+            }
+        }
+
+        private void startStopRecBtn_MouseLeave(object sender, EventArgs e)
+        {
+            if (startStopRecBtn.Tag.ToString() == "stopRecTag")
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.stop;
+            }
+
+            else if (startStopRecBtn.Tag.ToString() == "startRecTag")
+            {
+                startStopRecBtn.BackgroundImage = Properties.Resources.record;
+            }
+        }
+
+        private void testRecBtn_MouseLeave(object sender, EventArgs e)
+        {
+            testRecBtn.BackgroundImage = Properties.Resources.play;
+        }
+
+        private void testRecBtn_MouseEnter(object sender, EventArgs e)
+        {
+            testRecBtn.BackgroundImage = Properties.Resources.play_hover;
+        }
+
+        private void goBackBtn_MouseLeave(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton;
+        }
+
+        private void goBackBtn_MouseEnter(object sender, EventArgs e)
+        {
+            goBackBtn.BackgroundImage = Properties.Resources.backbutton_hover;
+        }
+
+        private void homeBtn_MouseLeave(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home;
+        }
+
+        private void homeBtn_MouseEnter(object sender, EventArgs e)
+        {
+            homeBtn.BackgroundImage = Properties.Resources.home_hover;
+        }
+
+        private void uploadBtn_MouseEnter(object sender, EventArgs e)
+        {
+            uploadBtn.BackgroundImage = Properties.Resources.upload_hover;
+        }
+
+        private void uploadBtn_MouseLeave(object sender, EventArgs e)
+        {
+            uploadBtn.BackgroundImage = Properties.Resources.upload;
+        }
+
+        private void saveBtn_MouseEnter(object sender, EventArgs e)
+        {
+            saveBtn.BackgroundImage = Properties.Resources.save_hover;
+        }
+
+        private void saveBtn_MouseLeave(object sender, EventArgs e)
+        {
+            saveBtn.BackgroundImage = Properties.Resources.save;
+        }
+
+        private void favouriteBtn_MouseEnter(object sender, EventArgs e)
+        {
+            favouriteBtn.BackgroundImage = Properties.Resources.favourite_hover;
+        }
+
+        private void favouriteBtn_MouseLeave(object sender, EventArgs e)
+        {
+            favouriteBtn.BackgroundImage = Properties.Resources.favourite;
+        }
+
+        #endregion
 
     }
 }

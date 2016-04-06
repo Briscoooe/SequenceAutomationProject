@@ -122,13 +122,11 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("Error: There is no recording to play");
             }
-            playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
-            int result = playRec.Start();
 
-            if(result == 1)
-            {
-                BigMessageBox.Show("The recording may not have behaved correctly. Try reducing the speed or closing unnecessary windows");
-            }
+            playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
+            int errors = playRec.Start(); // Begin playback
+            if (errors > 0)
+                BigMessageBox.Show("The recording may not have played successfully. If this is the case, try reducing the speed");
 
         }
 
@@ -192,6 +190,7 @@ namespace SequenceAutomation
             }
 
             recordingsList.DataSource = recList;
+            refreshList();
         }
 
         private void updateList(object sender, EventArgs e)

@@ -17,7 +17,6 @@ namespace SequenceAutomation
         public event EventHandler gotoLoginEvent;
         public event EventHandler goNextEvent;
         public event EventHandler<TextEventArgs> goBackEvent;
-        private RecordingManager recManager;
         private AccountContainer accountContainer;
 
         public string recJson = "";

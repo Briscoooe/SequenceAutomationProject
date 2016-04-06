@@ -15,12 +15,14 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
-        private Random randomNum;
-        public string keysJson, recTitle, recDescription, recId, recAuthor, userId;
+        private Random randomNum; // A random number used when extracting the dictionary values
+        public string keysJson, recTitle, recDescription, recId, recAuthor, userId; // The string class members
 
         #endregion
 
         #region Getter methods
+
+        // Each of these methods returns the class member specified in the return of the "get" call
         public string Title
         {
             get { return recTitle; }
@@ -118,11 +120,20 @@ namespace SequenceAutomation
             return JsonConvert.SerializeObject(tempObj);
         }
 
+        /*
+         * Method: validateJson()
+         * Summary: Validates whether or not a string in in the valid JSON format
+         * Parameter: recJson - The string to be validated
+         * Return: True or false depending on whether or not the recording is in the valid format
+         */
         public static bool validateJson(string recJson)
         {
             try
             {
+                // Instantate the recording
                 RecordingManager recording = new RecordingManager(recJson);
+
+                // If the title or description are empty or non-existent
                 if (recording.Title == null || recording.Title == "" ||
                     recording.Description == null || recording.Description == "")
                 {
@@ -130,15 +141,16 @@ namespace SequenceAutomation
                 }
 
                 // Store the inputJson string into a dynamic object
-                dynamic timeKeys = JsonConvert.DeserializeObject(recJson);
-                // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
-                foreach (dynamic timeVal in timeKeys)
-                {
+                dynamic jsonKeys = JsonConvert.DeserializeObject(recJson);
 
-                    if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc" ||
-                    Convert.ToString(timeVal.Name) == "recId" || Convert.ToString(timeVal.Name) == "userName" || 
-                    Convert.ToString(timeVal.Name) == "AuthorFirstname" || Convert.ToString(timeVal.Name) == "AuthorSurname" ||
-                    Convert.ToString(timeVal.Name) == "UserId")
+                // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
+                foreach (dynamic key in jsonKeys)
+                {
+                    // If the key is one of the information keys
+                    if (Convert.ToString(key.Name) == "Name" || Convert.ToString(key.Name) == "Desc" ||
+                    Convert.ToString(key.Name) == "recId" || Convert.ToString(key.Name) == "userName" || 
+                    Convert.ToString(key.Name) == "AuthorFirstname" || Convert.ToString(key.Name) == "AuthorSurname" ||
+                    Convert.ToString(key.Name) == "UserId")
                     {
                         Console.WriteLine("Not time val");
                     }
@@ -147,10 +159,11 @@ namespace SequenceAutomation
                     {
                         try
                         {
-                            // Store the time value as a long, necessary for a dictionary entry
-                            long time = Convert.ToInt64(timeVal.Name);
+                            // Try and convert the key to a long
+                            long time = Convert.ToInt64(key.Name);
                         }
 
+                        // If the key cannot be converted to a long
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
@@ -160,8 +173,9 @@ namespace SequenceAutomation
                     }
                 }
                 return true;
-
             }
+
+            // If the instantiation fails
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
@@ -169,6 +183,12 @@ namespace SequenceAutomation
             }
         }
 
+        /*
+        * Method: getRecId()
+        * Summary: Extracts the ID from a recording
+        * Parameter: recJson - The recording to retrive the ID of
+        * Returns: A string containing the recording ID
+        */
         public static string getRecId(string recJson)
         {
             RecordingManager rec = new RecordingManager(recJson);

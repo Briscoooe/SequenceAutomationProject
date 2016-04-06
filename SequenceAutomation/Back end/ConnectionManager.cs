@@ -41,14 +41,16 @@ namespace SequenceAutomation
                 // Attempt to connect to the domain specified in the application settings
                 // If the connection cannot be established, return false
                 TcpClient client = new TcpClient();
-                if (!client.ConnectAsync(domain, 80).Wait(2000))
+                client.SendTimeout = 2000;
+                client.Connect(domain, 80);
+                if (!client.Connected)
                 {
                     return false;
                 }
             }
-            catch (AggregateException e)
+            catch (SocketException e)
             {
-                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.Message);
                 return false;
             }
 
@@ -87,6 +89,7 @@ namespace SequenceAutomation
 
             try
             {
+
                 response = (HttpWebResponse)request.GetResponse();
                 using (var reader = new StreamReader(response.GetResponseStream()))
                 {
@@ -107,7 +110,7 @@ namespace SequenceAutomation
                     result = false;
 
                 // Dispose the response variable
-                response.Dispose();
+                response.Close();
             }
             catch (WebException we)
             {
@@ -169,7 +172,7 @@ namespace SequenceAutomation
                                 responseStr = responseStr = "REGISTER_SUCCESSFUL";
 
                             // Dispose the response variable
-                            response.Dispose();
+                            response.Close();
                         }
                         catch (WebException we)
                         {
@@ -236,7 +239,7 @@ namespace SequenceAutomation
                     }
                 }
 
-                response.Dispose();
+                response.Close();
 
             }
             // If there is an error, set the value of the dirContents variable to null
@@ -275,7 +278,7 @@ namespace SequenceAutomation
                     responseStr = reader.ReadToEnd();
                 }
 
-                response.Dispose();
+                response.Close();
             }
 
             catch (WebException we)
@@ -306,6 +309,7 @@ namespace SequenceAutomation
                     // Write the JSON string with the HTTP request
                     using (var writer = new StreamWriter(request.GetRequestStream()))
                     {
+                        Console.WriteLine(recJson);
                         writer.Write(recJson);
                         writer.Flush();
                         writer.Close();
@@ -320,7 +324,7 @@ namespace SequenceAutomation
                         // Otherwise, set it to false
                         if (response.StatusCode == HttpStatusCode.Created)
                             result = true;
-                        response.Dispose();
+                        response.Close();
 
                     }
                    
@@ -382,7 +386,7 @@ namespace SequenceAutomation
                     // If the response code is "OK", return true
                     if (response.StatusCode == HttpStatusCode.OK)
                         result = true;
-                    response.Dispose();
+                    response.Close();
                 }
                 catch (WebException we)
                 {
@@ -454,7 +458,7 @@ namespace SequenceAutomation
 
             // Accept all certificates. This had to be done to bypass the security restrictions regarding the self-signed certificate on the server
             ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
             return true;
         }
@@ -479,7 +483,7 @@ namespace SequenceAutomation
                 // If the response status code is "OK", return true
                 if (response.StatusCode == HttpStatusCode.OK)
                     result = true;
-                response.Dispose();
+                response.Close();
             }
             catch (Exception e)
             {
@@ -510,7 +514,7 @@ namespace SequenceAutomation
                 if (response.StatusCode == HttpStatusCode.OK)
                     result = 0;
 
-                response.Dispose();
+                response.Close();
             }
 
             // If the address is in an incorrect format

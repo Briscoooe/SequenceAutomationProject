@@ -140,7 +140,6 @@
             this.Controls.Add(this.tutorialTestRec);
             this.Controls.Add(this.tutorialUploadRec);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.HelpButton = true;
             this.Name = "ApplicationContainer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Easy Automator";

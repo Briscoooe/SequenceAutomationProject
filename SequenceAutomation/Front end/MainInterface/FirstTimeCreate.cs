@@ -5,10 +5,7 @@ namespace SequenceAutomation.Interface
 {
     public partial class FirstTimeCreate : UserControl
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
+        // The event handlers for the buttons
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
 
@@ -17,6 +14,7 @@ namespace SequenceAutomation.Interface
             InitializeComponent();
         }
 
+        // These methods are event handlers for the navigation buttons
         private void gotoTutorial(object sender, EventArgs e)
         {
             if (YesTutorialEvent != null)
@@ -30,6 +28,10 @@ namespace SequenceAutomation.Interface
                 NoTutorialEvent(this, e);
         }
 
+        /*
+         * Method: checkChanged()
+         * Summary: 
+         */
         private void checkChanged(object sender, EventArgs e)
         {
             if (rememberChoiceBtn.Checked)

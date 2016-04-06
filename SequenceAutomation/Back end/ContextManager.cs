@@ -93,7 +93,6 @@ namespace SequenceAutomation
                 foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
                     foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
                     {
-   
                         numOfContextWindows += 1;
                         // Get the open windows and compare the results to the ones stored in the
                         // context dictionary

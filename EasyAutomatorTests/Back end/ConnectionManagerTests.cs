@@ -128,32 +128,29 @@ namespace SequenceAutomation.Tests
 
         }
 
-        [TestMethod()]
-        public void getRecInfoTest()
-        {
-            // NOTE: Throw exception in method
+[TestMethod()]
+public void getRecInfoTest()
+{
+    string rec = ConnectionManager.getRecInfo("f25987a2ca6a6f2ffce8a4f402c3a853fa4a0855110a49f709b10e934848f8e5");
+    RecordingManager recording = new RecordingManager(rec);
+    Assert.IsNotNull(recording.Author);
+    Assert.IsNotNull(recording.Description);
+    Assert.IsNotNull(recording.Id);
+    Assert.IsNotNull(recording.Title);
 
-            // Assert that a valid recording will be returned by a valid ID
-            string rec = ConnectionManager.getRecInfo("f25987a2ca6a6f2ffce8a4f402c3a853fa4a0855110a49f709b10e934848f8e5");
-            RecordingManager recording = new RecordingManager(rec);
-            Assert.IsNotNull(recording.Author);
-            Assert.IsNotNull(recording.Description);
-            Assert.IsNotNull(recording.Id);
-            Assert.IsNotNull(recording.Title);
+    try
+    {
+        string rec2 = ConnectionManager.getRecInfo("123456abcdef");
+        Assert.Fail("No exception thrown");
+    }
+    catch (WebException ex)
+    {
+        Assert.IsTrue(ex is WebException);
+    }
+
+}
 
 
-            // Assert that a non existent recording name will raise an exception
-            try
-            {
-                string rec2 = ConnectionManager.getRecInfo("123456abcdef");
-                Assert.Fail("No exception thrown");
-            }
-            catch (WebException ex)
-            {
-                Assert.IsTrue(ex is WebException);
-            }
-
-        }
 
         [TestMethod()]
         public void uploadRecordingTest()

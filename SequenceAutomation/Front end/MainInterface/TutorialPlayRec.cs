@@ -183,7 +183,9 @@ namespace SequenceAutomation
                 return;
             }
             playRec = new PlayRecording(recJson, recSpeed); // Initialise the playRec object with the keys returned from the createRec class
-            playRec.Start(); // Begin playback
+            int errors = playRec.Start(); // Begin playback
+            if (errors > 0)
+                BigMessageBox.Show("The recording may not have played successfully. If this is the case, try reducing the speed");
         }
 
 
