@@ -16,16 +16,19 @@ namespace SequenceAutomation
     {
         #region Variable declarations
 
-        private delegate IntPtr HookDelegate(int validityCode, IntPtr keyActivity, IntPtr keyCode); // The delegate used in the hook process
-        private RecordingManager recManager;
-        private HookDelegate callbackDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function
+        private delegate IntPtr HookDelegate(int nCode, IntPtr wParam, IntPtr lParam); // The delegate used in the hook process
+        private HookDelegate keyboardDelegate; // The delegate variable passed as a parameter to the SetWindowsHookEx function for the keyboard
+        private HookDelegate mouseDelegate;
         private Stopwatch watch; // Stopwatch used to track the precise timing of each key press
-        private Dictionary<long, Dictionary<Keys, IntPtr>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
-        private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
+        private Dictionary<string, Dictionary<long, Dictionary<Keys, IntPtr>>> savedKeys; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
+        private Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>> contextDict; // Dictionary to store the context at each critical moment
+        private Dictionary<string, Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>>> mouseActions;
         private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
         private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         private static int WH_KEYBOARD_LL = 13; // Code for the global keyboard hook type
-        private static IntPtr hookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
+        private static int WH_MOUSE_LL = 14; // Code for the global mouse hook type
+        private static IntPtr keyboardHookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
+        private static IntPtr mouseHookId = IntPtr.Zero; // The ID of the hook used to listen to the mouse
         private string keysJson;
 
         #endregion
@@ -56,8 +59,11 @@ namespace SequenceAutomation
          */
         public CreateRecording()
         {
-            savedKeys = new Dictionary<long, Dictionary<Keys, IntPtr>>();
-            contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+            savedKeys = new Dictionary<string, Dictionary<long, Dictionary<Keys, IntPtr>>>();
+            savedKeys.Add("Actions", new Dictionary<long, Dictionary<Keys, IntPtr>>());
+            contextDict = new Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>>();
+            mouseActions = new Dictionary<string, Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>>>();
+            mouseActions.Add("Actions", new Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>>());
             watch = new Stopwatch();
         }
 
@@ -70,20 +76,26 @@ namespace SequenceAutomation
             // If there is still a hook attached, throw an exception
             // This had to be included as I was having huge problems as a result of multiple hook/unhook operations in a single execution
             // This line ensures that the program will not try set another hook if one already exists
-            if (callbackDelegate != null)
+            if (keyboardDelegate != null)
                 throw new InvalidOperationException("Cannot hook more than once");
 
 
+            if (mouseDelegate != null)
+                throw new InvalidOperationException("Cannot hook more than once");
+
             IntPtr hInstance = LoadLibrary("User32"); // Loads the User32 library and returns the module value, assigning it to the hInstance variable
-            callbackDelegate = new HookDelegate(onKeyActivity); // Initialises the callbackDelegate using the onKeyActivity method
+            keyboardDelegate = new HookDelegate(onKeyActivity); // Initialises the keyboardDelegate using the onKeyActivity method
+            mouseDelegate = new HookDelegate(onMouseActivity);
 
             // Installs the hook to the keyboard using the following parameters
             // WH_KEYBOARD_LL stores the value 13, which is the code for the keyboard hook type
-            // callbackDelegate is the variable, of type HookDelegate, which passes a reference to the onKeyActivity method
+            // keyboardDelegate is the variable, of type HookDelegate, which passes a reference to the onKeyActivity method
             // hInstance stores the handle of the module thread
             // 0 is the thread ID. It tells the hook to listen to the activity of all threads, not just the thead containing the program itself
             // The call returns an IntPtr which is stored in the hookId variable. This is the ID of the hook which is later used to remove the hook.
-            hookId = SetWindowsHookEx(WH_KEYBOARD_LL, callbackDelegate, hInstance, 0);
+            keyboardHookId = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardDelegate, hInstance, 0);
+            mouseHookId = SetWindowsHookEx(WH_MOUSE_LL, mouseDelegate, hInstance, 0);
+
             watch.Start(); // Starts the timer
         }
 
@@ -95,11 +107,10 @@ namespace SequenceAutomation
         public string Stop()
         {
             watch.Stop();
-            UnhookWindowsHookEx(hookId); // Removes the keyboard hook
-
+            UnhookWindowsHookEx(keyboardHookId); // Removes the keyboard hook
+            UnhookWindowsHookEx(mouseHookId);
             // Merge the context and keys dictionaries into a single JSON string and return it
-            recManager = new RecordingManager(savedKeys, contextDict);
-            keysJson = recManager.keysJson;
+            keysJson = RecordingManager.mergeToJson(savedKeys, contextDict, mouseActions);
             return keysJson;
         }
 
@@ -119,7 +130,7 @@ namespace SequenceAutomation
         {
             if (validityCode >= 0)
             {
-                long time = watch.ElapsedMilliseconds; // Number of milliseconds elapsed since the stopwatch began
+                long time = watch.ElapsedTicks; // Number of milliseconds elapsed since the stopwatch began
                 Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
 
                 // If the enter key is pressed down, get the current context
@@ -127,14 +138,73 @@ namespace SequenceAutomation
                     contextDict = ContextManager.getContext(time);
 
                 // If the savedKeys dictionary contains no entry for the current elapsed time, create one
-                if (!savedKeys.ContainsKey(time))
-                    savedKeys.Add(time, new Dictionary<Keys, IntPtr>());
 
-                savedKeys[time].Add(keyName, keyActivity); //Saves the key and the activity
+                if(!savedKeys["Actions"].ContainsKey(time))
+                        savedKeys["Actions"].Add(time, new Dictionary<Keys, IntPtr>());
+
+                savedKeys["Actions"][time].Add(keyName, keyActivity); //Saves the key and the activity
             }
 
             // Passes the hook information to the next hook procedure in the current hook chain
-            return CallNextHookEx(hookId, validityCode, keyActivity, keyCode);
+            return CallNextHookEx(keyboardHookId, validityCode, keyActivity, keyCode);
+        }
+
+        private IntPtr onMouseActivity(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0)
+            {
+                
+                long time = watch.ElapsedTicks; // Number of milliseconds elapsed since the stopwatch began
+                string mouseAction = Convert.ToString((MouseMessages)wParam);
+
+                if (mouseAction == "WM_LBUTTONDOWN")
+                    contextDict = ContextManager.getContext(time);
+
+                if (!mouseActions["Actions"].ContainsKey(time))
+                {
+                    mouseActions["Actions"].Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
+
+                    if (!mouseActions["Actions"][time].ContainsKey(wParam))
+                        mouseActions["Actions"][time].Add(wParam, new Dictionary<string, int>());
+                }
+
+                MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
+                mouseActions["Actions"][time][wParam].Add("X", hookStruct.pt.x);
+                mouseActions["Actions"][time][wParam].Add("Y", hookStruct.pt.y);
+            }
+            return CallNextHookEx(mouseHookId, nCode, wParam, lParam);
+        }
+
+
+        #endregion
+
+        #region Mouse structures
+
+        public enum MouseMessages
+        {
+            WM_LBUTTONDOWN = 0x0201,
+            WM_LBUTTONUP = 0x0202,
+            WM_MOUSEMOVE = 0x0200,
+            WM_MOUSEWHEEL = 0x020A,
+            WM_RBUTTONDOWN = 0x0204,
+            WM_RBUTTONUP = 0x0205
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct POINT
+        {
+            public int x;
+            public int y;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MSLLHOOKSTRUCT
+        {
+            public POINT pt;
+            public uint mouseData;
+            public uint flags;
+            public uint time;
+            public IntPtr dwExtraInfo;
         }
 
         #endregion

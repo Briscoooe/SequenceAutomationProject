@@ -45,9 +45,14 @@ namespace SequenceAutomation
                 return;
             }
 
+            startStopRecBtn.Click -= startRecording;
             playRec = new PlayRecording(recJson, 1); // Initialise the playRec object with the keys returned from the createRec class
-            playRec.Start(); // Begin playback
-            recStatus.Dispose();
+            int result = playRec.Start(); // Begin playback
+
+            if (result >= 0)
+                BigMessageBox.Show("Complete");
+
+            startStopRecBtn.Click += startRecording;
         }
 
 
@@ -132,6 +137,7 @@ namespace SequenceAutomation
             recJson = createRec.Stop(); // Stop recording  
             recStatus.Dispose();
             shortcut.Dispose();
+            shortcut = null;
         }
 
 

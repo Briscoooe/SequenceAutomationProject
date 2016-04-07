@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -20,7 +21,6 @@ namespace SequenceAutomation
      * Structure: MOUSEINPUT
      * Summary: A structure to store information about simulated mouse input
      * Note: This structure is not directly used and only exists to be combined with the keyboard and hardware structures, thus allowing the INPUT structure to exist
-     * See : x
      */
     public struct MOUSEINPUT
     {
@@ -102,12 +102,11 @@ namespace SequenceAutomation
 
         public bool stopPlayback;
         private RecordingManager recManager;
-        private static IntPtr KEYUP = (IntPtr)0x0101; // Code of the key up signal
-        private static IntPtr KEYDOWN = (IntPtr)0x0100; // Code of the key down signal
         private float timeFactor; // The time factor used to determine the speed at which the recording should play
         private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
-        private Dictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
+        private Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseDict;
+        private SortedDictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
         private Stopwatch watch; // Timer used to compare the times of the recorded keys with the currently elapsed time
         private long currentEntry; // While playing, keeps the last keysDict frame that have been played.
         
@@ -143,9 +142,11 @@ namespace SequenceAutomation
             recManager.getDictionaries(inputJson);
             keysDict = recManager.keysDict;
             contextDict = recManager.contextDict;
+            mouseDict = recManager.mouseDict;
+
 
             // Initialise the keysToPlay dictoinary and load the keys into it
-            keysToPlay = new Dictionary<long, INPUT[]>();
+            keysToPlay = new SortedDictionary<long, INPUT[]>();
             prepareKeysToPlay();
         }
 
@@ -166,13 +167,13 @@ namespace SequenceAutomation
             while (enumerator.MoveNext())
             {
                 // Foreach time key in the context dictionary
-                foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
+                foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp2 in contextDict)
                 {
                     // Check if the timeKey (currentEntry) is also present in the contextDictionary, symbolising that a context entry is present for the exact time
-                    if (currentEntry == kvp.Key)
+                    if (currentEntry == kvp2.Key)
                     {
                         // Check the current context against the stored context
-                        if(ContextManager.checkContext(currentEntry, contextDict))
+                        if (ContextManager.checkContext(currentEntry, contextDict))
                         {
                             break;
                         }
@@ -185,21 +186,22 @@ namespace SequenceAutomation
                     }
                 }
 
-                while (watch.ElapsedMilliseconds < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
+                while (watch.ElapsedTicks < (enumerator.Current * timeFactor)) { } // Wait until the exact milisecond
 
                 if (!stopPlayback)
                 {
+
                     // The sendInput call, utilising three parameters
                     // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
                     // keysToPlay[enumerator.Current] is the current entry in the array of INPUT structures, keysToPlay
                     // Marshal.SizeOf(typeof(INPUT)) is the size of an INPUT structure
-                    // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if blocked by another thread
+                    // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if not
                     uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
                 }
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
             }
-
+            
             return errors;
         }
 
@@ -230,36 +232,71 @@ namespace SequenceAutomation
                 List<INPUT> inputs = new List<INPUT>();
 
                 // For each key-value pair in the kvp.Values, i.e. the keys played
-                foreach (KeyValuePair<Keys, IntPtr> kvp2 in kvp.Value)
+                foreach (KeyValuePair<Keys, IntPtr> kvp3 in kvp.Value)
                 {
                     // Add the key and a pointer to the key action (up or down) to the list of INPUTS
-                    inputs.Add(loadKey(kvp2.Key, intPtrToFlags(kvp2.Value))); 
+                    inputs.Add(loadKey(kvp3.Key, getFlags(kvp3.Value)));
                 }
-                
+
                 // Load the time value (kvp.Key) and list of inputs to the keysToPlay dictionary
                 keysToPlay.Add(kvp.Key, inputs.ToArray());
+            }
+
+            foreach (KeyValuePair<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseKvp in mouseDict)
+            {
+                List<INPUT> inputs = new List<INPUT>();
+
+                foreach (KeyValuePair<IntPtr, Dictionary<string, int>> mouseKvp2 in mouseKvp.Value)
+                {
+                    int x = 0;
+                    int y = 0;
+                    foreach (KeyValuePair<string, int> mouseKvp3 in mouseKvp2.Value)
+                    {
+                        if (mouseKvp3.Key == "X")
+                            x = Convert.ToInt32(mouseKvp3.Value);
+                        if (mouseKvp3.Key == "Y")
+                            y = Convert.ToInt32(mouseKvp3.Value);
+                    }
+
+                    x = 65535 * x / Screen.PrimaryScreen.WorkingArea.Width;
+                    y = 65535 * y / Screen.PrimaryScreen.WorkingArea.Height;
+                    inputs.Add(loadMouse(x, y, getFlags(mouseKvp2.Key) | 0x8000 ));
+                }
+                keysToPlay.Add(mouseKvp.Key, inputs.ToArray());
             }
         }
 
         /*
          * Method: intPtrToFlags()
-         * Summary: Translate the IntPtr reference for the key activity (up or down) to an unsigned integer flag necessary for storage in the INPUT list
-         * Parameter: activity - The key activity, either key up or key down
-         * Return: An insigned integer representing either the KEYUP or KEYDOWN hex code
+         * Summary: Translate the IntPtr reference for the key or mouse activity to an unsigned integer flag necessary for storage in the INPUT list
+         * Parameter: activity - The key or mouse activity (up, down, click etc.)
+         * Return: An insigned integer representing either the appropriate hex code
          */
          
-        private uint intPtrToFlags(IntPtr activity)
+        private uint getFlags(IntPtr activity)
         {
-            if (activity == KEYDOWN)
+            string activityInt = Convert.ToString(activity);
+            switch(activityInt)
             {
-                return 0;
+                case "256":
+                    return 0;
+                case "257":
+                    return 0x0002;
+                case "512":
+                    return 0x0001;
+                case "513":
+                    return 0x0002;
+                case "514":
+                    return 0x0004;
+                case "516":
+                    return 0x0008;
+                case "517":
+                    return 0x0010;
+                case "522":
+                    return 0x0800;
+                default:
+                    return 0;
             }
-            if (activity == KEYUP)
-            {
-                return 0x0002;
-            }
-            return 0;
-            
         }
 
         /*
@@ -286,7 +323,28 @@ namespace SequenceAutomation
                         ExtraInfo = IntPtr.Zero
                     }
                 }
+            };
+        }
 
+
+        private INPUT loadMouse(int x, int y, uint flags)
+        {
+            return new INPUT
+            {
+                Type = 0, // 0 represents a mouse event
+                Data =
+                {
+                    // Creating a MOUSEINPUT structure as per the definition at the beginning of this file
+                    Mouse = new MOUSEINPUT
+                    {
+                        X = x,
+                        Y = y,
+                        MouseData = 0,
+                        Flags = flags,
+                        Time = 0,
+                        ExtraInfo = IntPtr.Zero
+                    }
+                }
             };
         }
 

@@ -17,7 +17,8 @@ namespace SequenceAutomation
 
         #region Variable instantiations
         // The currentContext dictionary is instantiated here as it is used the static methods
-        private static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> currentContext = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
+        private static Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>> currentContext = new Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>>();
+        
         
         #endregion
 
@@ -48,8 +49,10 @@ namespace SequenceAutomation
          * Summary: Retrieve the context of the program when the enter key is pressed
          * Returns: A dictionary containing key value pairs of relevant context information
          */
-        public static Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> getContext(long time)
+        public static Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>> getContext(long time)
         {
+            if(!currentContext.ContainsKey("Actions"))
+                currentContext.Add("Actions", new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>());
             // Loop through the open windows dicionary returned by GetOpenWindows
             foreach (KeyValuePair<IntPtr, string> window in GetOpenWindows())
             {
@@ -57,19 +60,19 @@ namespace SequenceAutomation
                 string title = window.Value; // Store the window title 
 
                 // If the contextDictionary contains no entry for the current elapsed time, create one
-                if (!currentContext.ContainsKey(time))
+                if (!currentContext["Actions"].ContainsKey(time))
                 {
-                    currentContext.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
+                    currentContext["Actions"].Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
 
                     // If the contextDictionary contains no context at the current elapsed time, create one
-                    if (!currentContext[time].ContainsKey("Open windows"))
+                    if (!currentContext["Actions"][time].ContainsKey("Open windows"))
                     {
-                        currentContext[time].Add("Open windows", new Dictionary<IntPtr, string>());
+                        currentContext["Actions"][time].Add("Open windows", new Dictionary<IntPtr, string>());
                     }
                 }
 
                 // Add the dictionary of window handles and titles at to the dictionary at the current milisecond under the key "Open Windows"
-                currentContext[time]["Open windows"].Add(handle, title);
+                currentContext["Actions"][time]["Open windows"].Add(handle, title);
             }
 
             return currentContext;
@@ -89,6 +92,7 @@ namespace SequenceAutomation
             int numOfMatches = 0;
             // Iterate over the key-value pairs in the context dictionary, then the key value pairs of the
             // first nested dictionary, then the values of the third nested dictionary
+
             foreach (KeyValuePair<long, Dictionary<string, Dictionary<IntPtr, string>>> kvp in contextDict)
                 foreach (KeyValuePair<string, Dictionary<IntPtr, string>> kvp2 in kvp.Value)
                     foreach (KeyValuePair<IntPtr, string> kvp3 in kvp2.Value)
@@ -101,13 +105,7 @@ namespace SequenceAutomation
                             // If the window stored matches one of the current windows, increment the matches variable by one
                             if (kvp3.Value == window.Value)
                             {
-                                Console.WriteLine("\nMatch: \n{0}", Convert.ToString(window.Value));
                                 numOfMatches += 1;
-                            }
-
-                            else
-                            {
-                                Console.WriteLine("\nNot a match: \n{0}\n{1}", Convert.ToString(kvp3.Value), Convert.ToString(window.Value));
                             }
  
                         }

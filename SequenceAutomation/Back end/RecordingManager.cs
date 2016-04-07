@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace SequenceAutomation
 {
@@ -15,6 +16,7 @@ namespace SequenceAutomation
 
         public Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store the savedKeys in the format (time: <keyTitle, action>)
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
+        public Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseDict;
         private Random randomNum; // A random number used when extracting the dictionary values
         public string keysJson, recTitle, recDescription, recId, recAuthor, userId; // The string class members
 
@@ -85,18 +87,6 @@ namespace SequenceAutomation
             }
         }
 
-        /*
-         * Method: RecordingManager()
-         * Summary: Class constructor
-         * Parameter: keysDict - The dictionary of keys pressed, the key action, and the time it was pressed
-         * Parameter: contextDict - The context of each "Return" key press
-         */
-        public RecordingManager(Dictionary<long, Dictionary<Keys, IntPtr>> keysDict, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict)
-        {
-            this.keysDict = keysDict;
-            this.contextDict = contextDict;
-            mergeToJson();
-        }
 
         /*
          * Method: addInformation()
@@ -205,144 +195,146 @@ namespace SequenceAutomation
             // Initialise the dictionaries and randomNum variable
             contextDict = new Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>();
             keysDict = new Dictionary<long, Dictionary<Keys, IntPtr>>();
+            mouseDict = new Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>>();
             randomNum = new Random();
+            
+            var keysObject = JObject.Parse(inputJson);
 
-            // Store the inputJson string into a dynamic object
-            dynamic timeKeys = JsonConvert.DeserializeObject(inputJson);
-
-            // Iterate over the outer layer of the JSON string, in this instance it is the time keys of the JSON string
-            foreach (dynamic timeVal in timeKeys)
+            var props = keysObject.Properties().ToList();
+            foreach (var prop in props)
             {
-                if (Convert.ToString(timeVal.Name) == "Name" || Convert.ToString(timeVal.Name) == "Desc" ||
-                    Convert.ToString(timeVal.Name) == "recId" || Convert.ToString(timeVal.Name) == "userName")
+                long time = Convert.ToInt64(prop.Name);
+                foreach(JProperty layer3 in prop.Value)
                 {
-                    Console.WriteLine("Not time val");
-                }
-                else
-                {
-                    try
+                    // If a context object is reached
+                    if (layer3.Name == "Open windows")
                     {
-                        // Store the time value as a long, necessary for a dictionary entry
-                        long time = Convert.ToInt64(timeVal.Name);
+                        // Add the time key
+                        if (!contextDict.ContainsKey(time))
+                            contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
 
-                        // Store the timeVal.Value, in this instance it is the key name, into a dynamic object
-                        dynamic nameKeys = timeVal.Value;
-
-                        // Iterate over the key names
-                        foreach (dynamic nameVal in nameKeys)
+                        foreach (JProperty layer4 in layer3.Value)
                         {
-                            // Store the key name in a string variable
-                            // In this instance it will be either a key name or the "Open windows"
-                            string keyNameStr = nameVal.Name;
+                            // Add the "Open windows" key
+                            if (!contextDict[time].ContainsKey("Open windows"))
+                                contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
 
-                            // Iterate over the nameVal.Values, in this instance it will be either a window title or key action 
-                            foreach (dynamic windowVal in nameVal.Value)
-                            {
-                                // Store the key action (key up or key down) into a string variable
-                                string keyActionStr = windowVal.Value;
-
-                                // If the key name is equal to "Open windows", begin the process of adding the open windows to the contextDict
-                                // The key name may be "Open windows" due to the fact the keys and context dictionaries were merged into a single JSON string
-                                if (keyNameStr == "Open windows")
-                                {
-                                    // If the contextDict dictionary contains no entry for the current elapsed time, create one
-                                    if (!contextDict.ContainsKey(time))
-                                    {
-                                        contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
-
-                                        // If the contextDictionary contains no context for open windows at the current elapsed time, create one
-                                        if (!contextDict[time].ContainsKey("Open windows"))
-                                        {
-                                            contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
-                                        }
-                                    }
-
-                                    // Initialise a random pointer to be added to the context dictionary. During recording the pointer
-                                    // would represent the value of the window handle. This information is required for recording but not
-                                    // For playback and thus the value can be generated at random
-                                    IntPtr windowHandle = new IntPtr(randomNum.Next());
-
-                                    // Add the entry to the context dictionary
-                                    contextDict[time]["Open windows"].Add(windowHandle, keyActionStr);
-                                }
-
-                                // If the keyNameStr is a valid key, begin the process of adding an entry to the keys Dictionary
-                                else
-                                {
-
-                                    // Initialise the keyAction and keyActionStr variables
-                                    IntPtr keyAction = (IntPtr)0x0100;
-
-                                    // Convert the key name string variable to the Key data type
-                                    Keys keyName;
-                                    Enum.TryParse(keyNameStr, out keyName);
-
-                                    // If the key is pressed up or down, assign the keyAction variable the appropriate pointer value
-                                    if (keyActionStr == "256")
-                                    {
-                                        keyAction = (IntPtr)0x0100;
-                                        Regex rex = new Regex(@"^[a-zA-Z][0-9]{0,1}$");
-                                        if (rex.IsMatch(keyNameStr))
-                                        {
-                                            //tempstr += keyNameStr + ",";
-                                        }
-                                    }
-
-                                    else if (keyActionStr == "257")
-                                    {
-                                        keyAction = (IntPtr)0x0101;
-                                    }
-
-                                    // If the key name string is a valid key name, i.e. NOT "Open windows"
-                                    if (keyNameStr != "Open windows")
-                                    {
-                                        // If the keysDict dictionary contains no entry for the current elapsed time, create one
-                                        if (!keysDict.ContainsKey(time))
-                                            keysDict.Add(time, new Dictionary<Keys, IntPtr>());
-
-                                        // Add the entry to the keysDict dictionary
-                                        keysDict[time].Add(keyName, keyAction);
-                                    }
-                                }
-                            }
+                            IntPtr windowHandle = new IntPtr(randomNum.Next());
+                            contextDict[time]["Open windows"].Add(windowHandle, Convert.ToString(layer4.Value));
                         }
                     }
 
-                    catch (FormatException e)
+                    // If a mouse object is reached
+                    else if(layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
+                            layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
                     {
-                        Console.WriteLine(e.Message);
+                        if (!mouseDict.ContainsKey(time))
+                            mouseDict.Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
+
+                        foreach (JProperty layer4 in layer3.Value)
+                        {
+                            IntPtr mouseMessage = (IntPtr)Convert.ToInt32(layer3.Name);
+
+                            if (!mouseDict[time].ContainsKey(mouseMessage))
+                                mouseDict[time].Add(mouseMessage, new Dictionary<string, int>());
+
+                            if (!mouseDict[time][mouseMessage].ContainsKey(layer4.Name))
+                                mouseDict[time][mouseMessage].Add(layer4.Name, Convert.ToInt32(layer4.Value));
+                        }
+                    }
+                    // If a key object is reached
+                    else
+                    {
+                        // Iterate over the key-action key-value pairs
+                        foreach (JProperty layer4 in layer3.Value)
+                        {
+                            IntPtr keyAction;
+                            Keys keyName;
+                            Enum.TryParse(layer3.Name, out keyName);
+
+                            if (Convert.ToString(layer4.Value) == "256")
+                                keyAction = (IntPtr)0x0100;
+                            else
+                                keyAction = (IntPtr)0x0101;
+
+                            if (!keysDict.ContainsKey(time))
+                                keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+
+                            // Add the entry to the keysDict dictionary
+                            keysDict[time].Add(keyName, keyAction);
+                        }
                     }
                 }
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         /*
          * Method: toJson()
          * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
          * Return: A string comprising both the savedKeys and contexts as one organised JSON string
          */
-        private bool mergeToJson()
+        public static string mergeToJson(Dictionary<string, Dictionary<long, Dictionary<Keys, IntPtr>>> keysDict,
+                                Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>> contextDict,
+                                Dictionary<string, Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>>> mouseDict)
         {
             // Convert the dictionaries to JSON strings
             string keysJsonStr = JsonConvert.SerializeObject(keysDict, Formatting.Indented);
             string contextJsonStr = JsonConvert.SerializeObject(contextDict, Formatting.Indented);
+            string mouseJsonStr = JsonConvert.SerializeObject(mouseDict, Formatting.Indented);
 
             // Convert the JSON strings to JSON objects
-            JObject keysObject = JObject.Parse(keysJsonStr);
-            JObject contextObject = JObject.Parse(contextJsonStr);
+            var keysObject = JObject.Parse(keysJsonStr);
+            var contextObject = JObject.Parse(contextJsonStr);
+            var mouseObject = JObject.Parse(mouseJsonStr);
 
-            // Merge the two JSON objects together at matching values
+            // Merge the context JSON object to the mouse and key objects at the matching values
             // This process merges each each context recorded with the specific enter key press at the exact same milisecond
             keysObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
+            mouseObject.Merge(contextObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Merge });
 
-            keysJson =  keysObject.ToString();
+            // Merge the keys and mouse dictionaries
+            keysObject.Merge(mouseObject, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Union });
 
-            return true;
+            // Sort the dictionary to chronological order
+            keysObject = sort(keysObject);
+            return keysObject.ToString();
 
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private static JObject sort(JObject obj)
+        {
+            List<long> timeList = new List<long>();
+            var props = obj.Properties().ToList();
+            JObject tempObj = new JObject();
+            foreach (var prop in props.OrderBy(p => p.Value))
+            {
+                foreach(JProperty prop2 in prop.Value)
+                {
+                    long time = Convert.ToInt64(prop2.Name);
+                    if (time != 512 && time != 513 && time != 514 && time != 516 && time != 517 && time != 522)
+                        timeList.Add(time);
+                }
+            }
+
+            timeList.Sort();
+            foreach (long l in timeList)
+            {
+                foreach(var prop in props)
+                {
+                    foreach(JProperty prop2 in prop.Value)
+                    {
+                        if(prop2.Name == Convert.ToString(l))
+                        {
+                            tempObj.Add(prop2);
+                        }
+                    }
+                }
+            }
+            return tempObj;
         }
 
         #endregion
