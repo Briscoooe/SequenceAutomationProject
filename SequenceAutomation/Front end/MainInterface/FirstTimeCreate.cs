@@ -30,7 +30,7 @@ namespace SequenceAutomation.Interface
 
         /*
          * Method: checkChanged()
-         * Summary: 
+         * Summary: Checks to see if the user has selected the "Don't show this again" check box
          */
         private void checkChanged(object sender, EventArgs e)
         {

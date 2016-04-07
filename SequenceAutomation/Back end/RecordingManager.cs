@@ -5,7 +5,6 @@ using System.Windows.Forms;
 // External library used: http://www.newtonsoft.com/json
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace SequenceAutomation
@@ -18,7 +17,7 @@ namespace SequenceAutomation
         public Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict;  // Dictionary to store the context in the format (time: <windowHandle, windowTitle>)
         public Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseDict;
         private Random randomNum; // A random number used when extracting the dictionary values
-        public string keysJson, recTitle, recDescription, recId, recAuthor, userId; // The string class members
+        public string recTitle, recDescription, recId, recAuthor, userId; // The string class members
 
         #endregion
 
@@ -174,6 +173,60 @@ namespace SequenceAutomation
         }
 
         /*
+        * Method: containsMouse()
+        * Summary: Checks to see if a recording contains mouse activity
+        * Parameter: recJson - The recording to check
+        * Returns: True or false
+        */
+        public static bool containsMouse(string recJson)
+        {
+            var keysObject = JObject.Parse(recJson);
+
+            // Iterate over the properties in the JSON string
+            var props = keysObject.Properties().ToList();
+            foreach (var prop in props)
+            {
+                foreach (JProperty layer3 in prop.Value)
+                {
+                    // If a mouse object is detected
+                    if (layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
+                            layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /*
+        * Method: removeMouse()
+        * Summary: Removes any mouse activity from the recording
+        * Parameter: recJson - The recording to check
+        * Returns: A recording string without any mouse entries
+        */
+        public static string removeMouse(string recJson)
+        {
+            var keysObject = JObject.Parse(recJson);
+            var props = keysObject.Properties().ToList();
+
+            // Iterate over the properties in the JSON string
+            foreach (var prop in props)
+            {
+                foreach (JProperty layer3 in prop.Value)
+                {
+                    // If a mouse object is reached, remove it from the keys object
+                    if (layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
+                            layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
+                    {
+                        keysObject.Property(prop.Name).Remove();
+                    }
+                }
+            }
+            return keysObject.ToString();
+        }
+
+        /*
         * Method: getRecId()
         * Summary: Extracts the ID from a recording
         * Parameter: recJson - The recording to retrive the ID of
@@ -219,6 +272,7 @@ namespace SequenceAutomation
                             if (!contextDict[time].ContainsKey("Open windows"))
                                 contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
 
+                            // Add the window handle and title
                             IntPtr windowHandle = new IntPtr(randomNum.Next());
                             contextDict[time]["Open windows"].Add(windowHandle, Convert.ToString(layer4.Value));
                         }
@@ -228,16 +282,20 @@ namespace SequenceAutomation
                     else if(layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
                             layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
                     {
+                        // Create a new entry in the mouse dictionary
                         if (!mouseDict.ContainsKey(time))
                             mouseDict.Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
 
                         foreach (JProperty layer4 in layer3.Value)
                         {
+                            // Initialise the mouse message pointer which represents the mouse action (left click, right click etc.)
                             IntPtr mouseMessage = (IntPtr)Convert.ToInt32(layer3.Name);
 
+                            // Add the mouseMessage key to the dictionary
                             if (!mouseDict[time].ContainsKey(mouseMessage))
                                 mouseDict[time].Add(mouseMessage, new Dictionary<string, int>());
 
+                            // Add the coordinates to the mouse dictionary
                             if (!mouseDict[time][mouseMessage].ContainsKey(layer4.Name))
                                 mouseDict[time][mouseMessage].Add(layer4.Name, Convert.ToInt32(layer4.Value));
                         }
@@ -248,15 +306,20 @@ namespace SequenceAutomation
                         // Iterate over the key-action key-value pairs
                         foreach (JProperty layer4 in layer3.Value)
                         {
+                            // Declare the key action pointer
                             IntPtr keyAction;
+
+                            // Initialise the key name
                             Keys keyName;
                             Enum.TryParse(layer3.Name, out keyName);
 
+                            // Declare the action pointer
                             if (Convert.ToString(layer4.Value) == "256")
                                 keyAction = (IntPtr)0x0100;
                             else
                                 keyAction = (IntPtr)0x0101;
 
+                            // Create the dictionary entry
                             if (!keysDict.ContainsKey(time))
                                 keysDict.Add(time, new Dictionary<Keys, IntPtr>());
 
@@ -269,9 +332,9 @@ namespace SequenceAutomation
         }
 
         /*
-         * Method: toJson()
-         * Summary: Converts the savedKeys and context Dictionaries to a single JSON string
-         * Return: A string comprising both the savedKeys and contexts as one organised JSON string
+         * Method: mergeToJson()
+         * Summary: Converts the keys, mouse and context Dictionaries to a single JSON string
+         * Return: A JSON string comprising the three dictoinaries
          */
         public static string mergeToJson(Dictionary<string, Dictionary<long, Dictionary<Keys, IntPtr>>> keysDict,
                                 Dictionary<string, Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>>> contextDict,
@@ -305,35 +368,40 @@ namespace SequenceAutomation
 
         #region Private methods
 
+        /*
+         * Method: sort()
+         * Summary: Sorts the dictionary keys to numerical order
+         * Return: A string comprising both the savedKeys and contexts as one organised JSON string
+         */
         private static JObject sort(JObject obj)
         {
+            // Declare a list to store the times
             List<long> timeList = new List<long>();
-            var props = obj.Properties().ToList();
+
+            // Declare a temporary object to store the ordered keys
             JObject tempObj = new JObject();
+            
+            // Declare an object and iterate over it
+            var props = obj.Properties().ToList();
             foreach (var prop in props.OrderBy(p => p.Value))
-            {
                 foreach(JProperty prop2 in prop.Value)
                 {
+                    // If key is a time key, add it to the list
                     long time = Convert.ToInt64(prop2.Name);
                     if (time != 512 && time != 513 && time != 514 && time != 516 && time != 517 && time != 522)
                         timeList.Add(time);
                 }
-            }
 
+            // Sort the list of times and iterate over it
             timeList.Sort();
             foreach (long l in timeList)
-            {
                 foreach(var prop in props)
-                {
                     foreach(JProperty prop2 in prop.Value)
-                    {
+                        // If the time key is equal to a value in the original object, add it to the temporary object
                         if(prop2.Name == Convert.ToString(l))
-                        {
                             tempObj.Add(prop2);
-                        }
-                    }
-                }
-            }
+
+            // Return the temporary object
             return tempObj;
         }
 

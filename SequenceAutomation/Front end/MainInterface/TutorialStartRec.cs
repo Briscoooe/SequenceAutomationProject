@@ -6,12 +6,7 @@ namespace SequenceAutomation
 {
     public partial class TutorialStartRec : UserControl
     {
-
-        /* 
-         * TODO
-         * Commmenting
-         */
-
+        #region Variable declarations
         public event EventHandler gotoLoginEvent;
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;
@@ -19,7 +14,7 @@ namespace SequenceAutomation
         private CreateRecording createRec;
         private RecStatus recStatus;
         private string mergedJson;
-
+        #endregion
 
         public TutorialStartRec()
         {
@@ -106,6 +101,9 @@ namespace SequenceAutomation
 
         }
 
+        #region Navigation events
+
+        // These methods are event handlers for button events
 
         private void gotoLogin(object sender, EventArgs e)
         {
@@ -136,6 +134,16 @@ namespace SequenceAutomation
             if (goBackEvent != null)
                 goBackEvent(this, e);
         }
+        #endregion
+
+
+        #region Button hover events
+
+        /*
+         * Summary: Each method in this region is an event handler that is triggered when
+         * the mouse hovers over a button and then leaves that button. The methods change
+         * their specific button to a darker color, indicating that it is being hovered over
+         */
 
         private void goBackBtn_MouseLeave(object sender, EventArgs e)
         {
@@ -192,5 +200,6 @@ namespace SequenceAutomation
                 startStopRecBtn.BackgroundImage = Properties.Resources.record;
             }
         }
+        #endregion
     }
 }

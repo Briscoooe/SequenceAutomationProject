@@ -2,17 +2,12 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace SequenceAutomation
 {
     public partial class ApplicationContainer : Form
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
-
+        // Declaring the keyboard shortcut
         public KeyboardShortcut shortcut;
 
         /*
@@ -26,9 +21,10 @@ namespace SequenceAutomation
             MinimizeBox = false;
             CenterToScreen();
 
+            // Initialise the event handler for the property changed event
             Properties.Settings.Default.PropertyChanged += new PropertyChangedEventHandler(Default_PropertyChanged);
 
-            // Initialising the events to their appropriate methods
+            // Initialising the event handlers to their appropriate methods
             loginUserControl.CreateButtonEvent += gotoCreateTutorialSelect;
             loginUserControl.PlayButtonEvent += gotoPlayTutorialSelect;
 
@@ -68,11 +64,20 @@ namespace SequenceAutomation
         
         }
 
+        // This method saved the application settings when they have changed
         private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Properties.Settings.Default.Save();
         }
 
+        #region Event handlers
+
+        /*
+         * Summary: Each of these methods is an event handler for a button. All navigation between
+         * screens in the main application window is controlled by these methods
+         * Each of them set the size of the window according to the screen to be displayed and center the screen
+         * Some of the methods pass information like JSON strings and other recording information between them
+         */
         private void gotoUploadRec(object sender, TextEventArgs e)
         {
             if (e.json != "")
@@ -121,15 +126,10 @@ namespace SequenceAutomation
             ClientSize = new Size(1294, 690);
             tutorialSelectRec.BringToFront();
             CenterToScreen();
-            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Arrow;
+            Cursor.Current = Cursors.Arrow;
         }
 
-        /* 
-         * Method: returnToLogin()
-         * Summary: Brings up the login menu by bringing it to the front of the view
-         * Parameter: sender - The control that the action is for, in this case the button
-         * Parameter: e - Any arguments the function may use
-         */
+
         private void returnToLogin(object sender, EventArgs e)
         {
             loginUserControl.BringToFront();
@@ -137,27 +137,15 @@ namespace SequenceAutomation
             CenterToScreen();
         }
 
-        /* 
-         * Method: gotoPlay() 
-         * Summary: Brings up the play recording menu by bringing it to the front of the view
-         * Parameter: sender - The control that the action is for, in this case the button
-         * Parameter: e - Any arguments the function may use
-         */
         private void gotoPlay(object sender, EventArgs e)
         {
             playRecUserControl.prepareList();
             playRecUserControl.BringToFront();
             ClientSize = new Size(1270, 680);
             CenterToScreen();
-            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Arrow;
+            Cursor.Current = Cursors.Arrow;
         }
 
-        /* 
-        * Method: gotoCreate()
-        * Summary: Brings up the create recording menu by bringing it to the front of the view
-        * Parameter: sender - The control that the action is for, in this case the button
-         * Parameter: e - Any arguments the function may use
-        */
         private void gotoCreate(object sender, EventArgs e)
         {
             createRecUserControl.BringToFront();
@@ -202,6 +190,7 @@ namespace SequenceAutomation
                 CenterToScreen();
             }
         }
+        #endregion
 
     }
 }

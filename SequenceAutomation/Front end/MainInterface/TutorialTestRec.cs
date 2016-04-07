@@ -5,11 +5,6 @@ namespace SequenceAutomation.Interface
 {
     public partial class TutorialTestRec : UserControl
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
-
         public event EventHandler gotoLoginEvent;
         public event EventHandler<TextEventArgs> goNextEvent;
         public event EventHandler goBackEvent;
@@ -37,12 +32,17 @@ namespace SequenceAutomation.Interface
                 return;
             }
             playRec = new PlayRecording(mergedJson, 1); // Initialise the playRec object with the keys returned from the createRec class
+            int result = playRec.Start(); // Begin playback
 
-            // Begin playback
-            if (playRec.Start() == 0)
+            testRecBtn.Click -= testRecording;
+            if (result >= 0)
                 BigMessageBox.Show("Complete");
+
+            testRecBtn.Click += testRecording;
         }
 
+        #region Navigation events
+        // These methods are event handlers for button events
         private void gotoLogin(object sender, EventArgs e)
         {
             if (gotoLoginEvent != null)
@@ -66,6 +66,15 @@ namespace SequenceAutomation.Interface
             if (goBackEvent != null)
                 goBackEvent(this, e);
         }
+        #endregion
+
+        #region Button hover events
+
+        /*
+         * Summary: Each method in this region is an event handler that is triggered when
+         * the mouse hovers over a button and then leaves that button. The methods change
+         * their specific button to a darker color, indicating that it is being hovered over
+         */
 
         private void goBackBtn_MouseLeave(object sender, EventArgs e)
         {
@@ -107,6 +116,6 @@ namespace SequenceAutomation.Interface
         {
             testRecBtn.BackgroundImage = Properties.Resources.play_hover;
         }
-
+        #endregion
     }
 }

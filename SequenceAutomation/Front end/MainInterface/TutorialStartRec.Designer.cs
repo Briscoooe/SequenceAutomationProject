@@ -167,9 +167,9 @@
             this.recButtonLabel2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recButtonLabel2.Location = new System.Drawing.Point(33, 141);
             this.recButtonLabel2.Name = "recButtonLabel2";
-            this.recButtonLabel2.Size = new System.Drawing.Size(637, 37);
+            this.recButtonLabel2.Size = new System.Drawing.Size(784, 37);
             this.recButtonLabel2.TabIndex = 38;
-            this.recButtonLabel2.Text = "Once pressed, all keyboard activity will be saved";
+            this.recButtonLabel2.Text = "Once pressed, all mouse and keyboard activity will be saved";
             // 
             // startStopRecBtn
             // 

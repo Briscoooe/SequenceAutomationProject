@@ -5,10 +5,7 @@ namespace SequenceAutomation
 {
     public partial class LoginUserControl : UserControl
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
+        // The event handlers for the buttons
         public event EventHandler CreateButtonEvent;
         public event EventHandler PlayButtonEvent;
 
@@ -17,13 +14,13 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
+        // These methods are event handlers for the navigation buttons
         private void gotoCreate(object sender, EventArgs e)
         {
             if (CreateButtonEvent != null)
                 CreateButtonEvent(this, new EventArgs());
         }
 
-        
         private void gotoPlay(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;

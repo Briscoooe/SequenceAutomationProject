@@ -5,10 +5,7 @@ namespace SequenceAutomation
 {
     public partial class FirstTimePlay : UserControl
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
+        // The event handlers for the buttons
         public event EventHandler YesTutorialEvent;
         public event EventHandler NoTutorialEvent;
 
@@ -17,6 +14,7 @@ namespace SequenceAutomation
             InitializeComponent();
         }
 
+        // These methods are event handlers for the navigation buttons
         private void gotoTutorial(object sender, EventArgs e)
         {
             if (YesTutorialEvent != null)
@@ -31,6 +29,10 @@ namespace SequenceAutomation
                 NoTutorialEvent(this, e);
         }
 
+        /*
+         * Method: checkChanged()
+         * Summary: Checks to see if the user has selected the "Don't show this again" check box
+         */
         private void checkChanged(object sender, EventArgs e)
         {
             if(rememberChoiceBtn.Checked)

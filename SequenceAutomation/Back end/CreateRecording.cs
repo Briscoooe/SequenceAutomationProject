@@ -29,7 +29,6 @@ namespace SequenceAutomation
         private static int WH_MOUSE_LL = 14; // Code for the global mouse hook type
         private static IntPtr keyboardHookId = IntPtr.Zero; // The ID of the hook used to listen to the keyboard
         private static IntPtr mouseHookId = IntPtr.Zero; // The ID of the hook used to listen to the mouse
-        private string keysJson;
 
         #endregion
 
@@ -110,8 +109,7 @@ namespace SequenceAutomation
             UnhookWindowsHookEx(keyboardHookId); // Removes the keyboard hook
             UnhookWindowsHookEx(mouseHookId);
             // Merge the context and keys dictionaries into a single JSON string and return it
-            keysJson = RecordingManager.mergeToJson(savedKeys, contextDict, mouseActions);
-            return keysJson;
+            return RecordingManager.mergeToJson(savedKeys, contextDict, mouseActions);
         }
 
         #endregion
@@ -130,49 +128,66 @@ namespace SequenceAutomation
         {
             if (validityCode >= 0)
             {
-                long time = watch.ElapsedTicks; // Number of milliseconds elapsed since the stopwatch began
-                Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); // Convert the integer key value to the Keys data type
+                // Number of milliseconds elapsed since the stopwatch began
+                long time = watch.ElapsedTicks;
+
+                // Convert the integer key value to the Keys data type
+                Keys keyName = (Keys)(Marshal.ReadInt32(keyCode)); 
 
                 // If the enter key is pressed down, get the current context
                 if (keyName.ToString() == "Return" && keyActivity.ToString() == "256")
                     contextDict = ContextManager.getContext(time);
 
                 // If the savedKeys dictionary contains no entry for the current elapsed time, create one
-
                 if(!savedKeys["Actions"].ContainsKey(time))
                         savedKeys["Actions"].Add(time, new Dictionary<Keys, IntPtr>());
 
-                savedKeys["Actions"][time].Add(keyName, keyActivity); //Saves the key and the activity
+                // Add the key name and key activity to the dictionary entry
+                savedKeys["Actions"][time].Add(keyName, keyActivity);
             }
 
             // Passes the hook information to the next hook procedure in the current hook chain
             return CallNextHookEx(keyboardHookId, validityCode, keyActivity, keyCode);
         }
 
-        private IntPtr onMouseActivity(int nCode, IntPtr wParam, IntPtr lParam)
+        /*
+         * Method: onMouseActivity()
+         * Summary: Method called each time a mouse action happens
+         * Parameter: validityCode - Checks if the call is valid. If this is greater or equal to 0, i.e. successful, execution will continue
+         * Parameter: mouseActivity - The mouse activity (click, move etc.) 
+         * Parameter: lParam - Used to obtain the coordinates
+         * Returns: The next hook in the chain
+         */
+        private IntPtr onMouseActivity(int validityCode, IntPtr mouseActivity, IntPtr lParam)
         {
-            if (nCode >= 0)
+            if (validityCode >= 0)
             {
-                
-                long time = watch.ElapsedTicks; // Number of milliseconds elapsed since the stopwatch began
-                string mouseAction = Convert.ToString((MouseMessages)wParam);
+                // Number of milliseconds elapsed since the stopwatch began
+                long time = watch.ElapsedTicks;
 
+                // Convert the mouse action to a string
+                string mouseAction = Convert.ToString((MouseMessages)mouseActivity);
+
+                // If the mouse action is a left mouse click, record the context
                 if (mouseAction == "WM_LBUTTONDOWN")
                     contextDict = ContextManager.getContext(time);
 
+                // If no dictionary entry exists for the current time, create one
                 if (!mouseActions["Actions"].ContainsKey(time))
                 {
                     mouseActions["Actions"].Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
 
-                    if (!mouseActions["Actions"][time].ContainsKey(wParam))
-                        mouseActions["Actions"][time].Add(wParam, new Dictionary<string, int>());
+                    // If no mouse activity has been recorded at the current time, add a dictionary entry
+                    if (!mouseActions["Actions"][time].ContainsKey(mouseActivity))
+                        mouseActions["Actions"][time].Add(mouseActivity, new Dictionary<string, int>());
                 }
 
+                // Add the X and Y coordinates of the mouse activty to the dictionary entry
                 MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
-                mouseActions["Actions"][time][wParam].Add("X", hookStruct.pt.x);
-                mouseActions["Actions"][time][wParam].Add("Y", hookStruct.pt.y);
+                mouseActions["Actions"][time][mouseActivity].Add("X", hookStruct.pt.x);
+                mouseActions["Actions"][time][mouseActivity].Add("Y", hookStruct.pt.y);
             }
-            return CallNextHookEx(mouseHookId, nCode, wParam, lParam);
+            return CallNextHookEx(mouseHookId, validityCode, mouseActivity, lParam);
         }
 
 

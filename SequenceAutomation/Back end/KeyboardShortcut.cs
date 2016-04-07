@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 /*
  * References: http://www.pinvoke.net/default.aspx/user32/RegisterHotKey.html
+ * http://www.codeproject.com/Tips/274003/Global-Hotkeys-in-WPF#
  */
 namespace SequenceAutomation
 {
@@ -19,9 +18,6 @@ namespace SequenceAutomation
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
         #endregion
-        /*
-         * 
-         */
         private class Window : NativeWindow, IDisposable
         {
             private static int WM_HOTKEY = 0x0312;
@@ -32,10 +28,9 @@ namespace SequenceAutomation
                 this.CreateHandle(new CreateParams());
             }
 
-            /// <summary>
-            /// Overridden to get the notifications.
-            /// </summary>
-            /// <param name="m"></param>
+            /* 
+             * Summary: Overriden to get the notifications
+             */
             protected override void WndProc(ref Message m)
             {
                 base.WndProc(ref m);
@@ -79,11 +74,12 @@ namespace SequenceAutomation
             };
         }
 
-        /// <summary>
-        /// Registers a hot key in the system.
-        /// </summary>
-        /// <param name="modifier">The modifiers that are associated with the hot key.</param>
-        /// <param name="key">The key itself that is associated with the hot key.</param>
+
+        /*
+         * Summary: Registers the hot key
+         * Parameter: The modifiers that are associated with the hot key
+         * Parameter: The key itself that is associated with the hot key
+         */
         public void RegisterHotKey(ModifierKeys modifier, Keys key)
         {
             // increment the counter.
@@ -94,9 +90,10 @@ namespace SequenceAutomation
                 throw new InvalidOperationException("Couldn’t register the hot key.");
         }
 
-        /// <summary>
-        /// A hot key has been pressed.
-        /// </summary>
+
+        /*
+         * Summary: When the hot key has been pressed
+         */
         public event EventHandler<KeyPressedEventArgs> KeyPressed;
 
         #region IDisposable Members
@@ -116,9 +113,9 @@ namespace SequenceAutomation
         #endregion
     }
 
-    /// <summary>
-    /// Event Args for the event that is fired after the hot key has been pressed.
-    /// </summary>
+    /*
+     * Summary: Event Args for the event that is fired after the hot key has been pressed
+     */
     public class KeyPressedEventArgs : EventArgs
     {
         private ModifierKeys _modifier;
@@ -140,10 +137,10 @@ namespace SequenceAutomation
             get { return _key; }
         }
     }
-
-    /// <summary>
-    /// The enumeration of possible modifiers.
-    /// </summary>
+ 
+    /*
+     * Summary: The enumeration of possible modifiers
+     */
     [Flags]
     public enum ModifierKeys : uint
     {

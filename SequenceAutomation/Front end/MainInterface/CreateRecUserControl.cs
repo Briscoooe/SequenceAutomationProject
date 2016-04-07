@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -344,6 +343,13 @@ namespace SequenceAutomation
             {
                 BigMessageBox.Show("You must enter a description");
                 return false;
+            }
+
+            // If the recording contains mouse activity
+            if (RecordingManager.containsMouse(recJson))
+            {
+                BigMessageBox.Show("You cannot contain mouse activity in recordings. All mouse activity will be removed from your recording before upload");
+                recJson = RecordingManager.removeMouse(recJson);
             }
             return true;
         }

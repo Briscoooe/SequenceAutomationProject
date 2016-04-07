@@ -7,15 +7,10 @@ namespace SequenceAutomation
 {
     public partial class PlayRecUserControl : UserControl
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
-
+        #region Variable declarations
         public event EventHandler BackButtonEvent;
         public event EventHandler TutorialEvent;
         public event EventHandler gotoLoginEvent;
-
         private List<string> recList;
         private List<RecordingManager> recObjectList;
         private PlayRecording playRec;
@@ -27,8 +22,9 @@ namespace SequenceAutomation
         public string recFileName = "";
         public string author = "";
         public float recSpeed = 1;
-
         public int recSpeedVal = 3;
+
+        #endregion
 
         public PlayRecUserControl()
         {
@@ -38,34 +34,42 @@ namespace SequenceAutomation
             onSpeedChange();
         }
 
+        // Returns the selected recording from the favourites box
         private void doneSelecting(object sender, EventArgs e)
         {
             recJson = fave.recJson;
             updateInfo();
         }
 
+        /*
+         * Method: addToFavourites
+         * Summary: Adds the currently active recording to the users favourites
+         */
         private void addToFavourites(object sender, EventArgs e)
         {
+            // If there is no recording active
             if(recJson != "" && recJson != null)
             {
+                // If the user has no favourites, initialise the list
                 if(Properties.Settings.Default.favouriteRecordings == null)
                 {
                     Properties.Settings.Default.favouriteRecordings = new List<string>();
                 }
+                
+                // Initialise a temporary list storing the favourites
                 List<string> tmp = new List<string>();
                 tmp = Properties.Settings.Default.favouriteRecordings;
                 int x = 0;
 
+                // If there are favourites in the list
                 if (tmp.Count > 0)
                 {
+                    // Count the number of occurences of the current recording in the favourites
                     foreach (string s in tmp)
-                    {
                         if (recJson == s)
-                        {
                             x++;
-                        }
-                    }
 
+                    // If the recording is not already in the users favourites
                     if (x == 0)
                     {
                         Properties.Settings.Default.favouriteRecordings.Add(recJson);
@@ -77,6 +81,7 @@ namespace SequenceAutomation
                     }
                 }
 
+                // Initialise the favourites list
                 else
                 {
                     Properties.Settings.Default.favouriteRecordings = new List<string>();
@@ -90,11 +95,19 @@ namespace SequenceAutomation
                 BigMessageBox.Show("There is no recording to be added to favourites");
             }
 
+            // Save the settings
             Properties.Settings.Default.Save();
         }
 
+        /*
+         * Method: showFavourites()
+         * Summary: Begins the "Favourites" window
+         * Parameter: sender - The control that the action is for, in this case the button
+         * Parameter: e - Any arguments the function may use
+         */
         private void showFavourites(object sender, EventArgs e)
         {
+            // If there are favourites
             if (Properties.Settings.Default.favouriteRecordings != null)
             {
                 fave = new FavouritesBox();
@@ -130,17 +143,28 @@ namespace SequenceAutomation
 
         }
 
+        /*
+         * Method: chooseFile()
+         * Summary: Opens a file explorer to allow a user choose a recording from local storage
+         * Parameter: sender - The control that the action is for, in this case the text box
+         * Parameter: e - The key event arguments
+         */
         private void chooseFile(object sender, EventArgs e)
         {
+            // Set the parameters of the file explorer
             openFileDialog.FileName = "";
             openFileDialog.DefaultExt = ".json";
             openFileDialog.Filter = "Recording file (.json) |*.json";
 
+            // If a file was chosen
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fullPath = openFileDialog.FileName;
+
+                // Validate the selected file
                 if (RecordingManager.validateJson(File.ReadAllText(fullPath)))
                 {
+                    // Update the information displayed to match the recording
                     recJson = File.ReadAllText(fullPath);
                     recTitle = Path.GetFileNameWithoutExtension(fullPath);
                     updateInfo();
@@ -152,6 +176,12 @@ namespace SequenceAutomation
             }
         }
 
+        /*
+         * Method: searchListUpdate()
+         * Summary: Updates the list when text is typed into the search box
+         * Parameter: sender - The control that the action is for, in this case the text box
+         * Parameter: e - The key event arguments
+         */
         private void searchListUpdate(object sender, KeyEventArgs e)
         {
             List<string> temp = new List<string>();
@@ -169,11 +199,19 @@ namespace SequenceAutomation
             recordingsList.DataSource = temp;
         }
 
+        /*
+         * Method: prepareList()
+         * Summary: Prepares the list of recordings from the server
+         */
         public void prepareList()
         {
+            // Clear the list
             recList.Clear();
+
+            // Test the connection
             if (ConnectionManager.testConnection())
             {
+                // Retrieve the recordings and add them to the list
                 foreach (RecordingManager rec in ConnectionManager.getRecordings())
                 {
                     recObjectList.Add(rec);
@@ -181,6 +219,7 @@ namespace SequenceAutomation
                 }
             }
 
+            // If the connection test fails
             else
             {
                 recList.Clear();
@@ -210,6 +249,9 @@ namespace SequenceAutomation
             }
         }
 
+        /* 
+         * Summary: Updates the recording info with the currently selected one
+         */
         private void updateInfo(RecordingManager rec)
         {
             if (rec != null)
@@ -221,12 +263,16 @@ namespace SequenceAutomation
 
         }
 
+        /*
+         * Method: updateInfo()
+         * Summary: Updates the recording information displayed 
+         */
         private void updateInfo()
         {
             if (recJson != null && recJson != "")
             {
+                // Instantiate a recording manager variable and extract the title, description and author
                 recording = new RecordingManager(recJson);
-                
                 string title = recording.Title;
                 string description = recording.Description;
                 author = recording.Author;
@@ -267,6 +313,10 @@ namespace SequenceAutomation
             }
         }
 
+        /*
+         * Method: onSpeedChange()
+         * Summary: Changes the speed of recording based on what the user has selected
+         */
         private void onSpeedChange()
         {
             switch (recSpeedVal.ToString())
@@ -296,15 +346,23 @@ namespace SequenceAutomation
             }
         }
 
+        /*
+         * Method: deleteRec()
+         * Summary: Deletes a recording from the server
+         */
         private void deleteRec(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+            // If the user is not logged in
             if (Properties.Settings.Default.currentUser != "")
             {
+                // Attempt to delete the recording
                 if (ConnectionManager.deleteRecording(recJson))
                 {
+                    // Instantiate a RecordingManager class
                     RecordingManager rec = new RecordingManager(recJson);
-
+                    
+                    // Iterate over the recordings and remove the one just deleted
                     foreach (RecordingManager recording in recObjectList.ToArray())
                     {
                         if (rec.Id == recording.Id)
@@ -328,6 +386,9 @@ namespace SequenceAutomation
 
         }
 
+        #region Navigation events
+
+        // These methods are event handlers for button events
         private void goBack(object sender, EventArgs e)
         {
             if (BackButtonEvent != null)
@@ -346,6 +407,16 @@ namespace SequenceAutomation
             if (gotoLoginEvent != null)
                 gotoLoginEvent(this, e);
         }
+
+        #endregion
+
+        #region Button hover events
+
+        /*
+         * Summary: Each method in this region is an event handler that is triggered when
+         * the mouse hovers over a button and then leaves that button. The methods change
+         * their specific button to a darker color, indicating that it is being hovered over
+         */
 
         private void playRecBtn_MouseLeave(object sender, EventArgs e)
         {
@@ -436,5 +507,6 @@ namespace SequenceAutomation
         {
             deleteBtn.BackgroundImage = Properties.Resources.delete;
         }
+        #endregion
     }
 }

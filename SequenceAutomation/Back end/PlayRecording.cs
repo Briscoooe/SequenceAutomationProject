@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -18,9 +17,7 @@ namespace SequenceAutomation
     #region Stucture declarations
 
     /*
-     * Structure: MOUSEINPUT
-     * Summary: A structure to store information about simulated mouse input
-     * Note: This structure is not directly used and only exists to be combined with the keyboard and hardware structures, thus allowing the INPUT structure to exist
+     * Summary: The following structures are used to create the INPUT structures required to send mouse and keyboard inputs
      */
     public struct MOUSEINPUT
     {
@@ -32,11 +29,7 @@ namespace SequenceAutomation
         public IntPtr ExtraInfo;
     }
 
-    /*
-     * Structure: HARDWAREINPUT
-     * Summary: A structure to store information about simulated hardware input, other than a keyboard or mouse
-     * Note: This structure is not directly used and only exists to be combined with the keyboard and mouse structures, thus allowing the INPUT structure to exist
-     */
+
     public struct HARDWAREINPUT
     {
         public uint Msg;
@@ -44,15 +37,7 @@ namespace SequenceAutomation
         public ushort ParamH;
     }
 
-    /*
-     * Structure: KEYBDINPUT
-     * Summary: A structure to store information about simulated keyboard input
-     * Member: KeyCode - The key code of the key to be simulated
-     * Member: Scan - A hardware scan code for the key
-     * Member: Flags - The key action, either key up or key down
-     * Member: Time - The timestamp for the key even in milliseconds
-     * Member: ExtraInfo - An additional value associated with the keystroke
-     */
+
     public struct KEYBDINPUT
     {
         public ushort KeyCode;
@@ -62,13 +47,6 @@ namespace SequenceAutomation
         public IntPtr ExtraInfo;
     }
 
-    /*
-     * Structure: MOUSEKEYBDHARDWAREINPUT
-     * Summary: The union of the Mouse, Keyboard and Hardware structures
-     * Member: Mouse - An instance of the Mouse structure
-     * Member: Keyboard - An instance of the Keyboard structure
-     * Member: Hardware - An instance of the Hardware structure
-     */
     [StructLayout(LayoutKind.Explicit)]
     public struct MOUSEKEYBDHARDWAREINPUT
     {
@@ -105,8 +83,8 @@ namespace SequenceAutomation
         private float timeFactor; // The time factor used to determine the speed at which the recording should play
         private Dictionary<long, Dictionary<Keys, IntPtr>> keysDict; // Dictionary to store each key pressed, the action (up or down) and the time at which the action was recorded
         private Dictionary<long, Dictionary<string, Dictionary<IntPtr, string>>> contextDict; // Dictionary to store the context at each critical moment
-        private Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseDict;
-        private SortedDictionary<long, INPUT[]> keysToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
+        private Dictionary<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseDict; // Dictoinary to save the mouse actions
+        private SortedDictionary<long, INPUT[]> inputsToPlay; // Dictionary that stores the inputs to be be played. The inputs are determined from the keysDict dictionary
         private Stopwatch watch; // Timer used to compare the times of the recorded keys with the currently elapsed time
         private long currentEntry; // While playing, keeps the last keysDict frame that have been played.
         
@@ -144,15 +122,14 @@ namespace SequenceAutomation
             contextDict = recManager.contextDict;
             mouseDict = recManager.mouseDict;
 
-
-            // Initialise the keysToPlay dictoinary and load the keys into it
-            keysToPlay = new SortedDictionary<long, INPUT[]>();
-            prepareKeysToPlay();
+            // Initialise the inputsToPlay dictoinary and load the inputs into it
+            inputsToPlay = new SortedDictionary<long, INPUT[]>();
+            prepareInputsToPlay();
         }
 
         /*
          * Method: Start()
-         * Summary: Begins the execution of the inputs in the keysToPlay dictionary
+         * Summary: Begins the execution of the inputs in the inputsToPlay dictionary
          */
         public int Start()
         {
@@ -160,10 +137,10 @@ namespace SequenceAutomation
             watch.Reset();
             watch.Start();
             int errors = 0;
-            // The keysToPlay enumerator, used to jump from one entry to another
-            IEnumerator<long> enumerator = keysToPlay.Keys.GetEnumerator(); 
+            // The inputsToPlay enumerator, used to jump from one entry to another
+            IEnumerator<long> enumerator = inputsToPlay.Keys.GetEnumerator(); 
 
-            // Moves the next entry in the keysToPlay dictionary
+            // Moves the next entry in the inputsToPlay dictionary
             while (enumerator.MoveNext())
             {
                 // Foreach time key in the context dictionary
@@ -192,11 +169,11 @@ namespace SequenceAutomation
                 {
 
                     // The sendInput call, utilising three parameters
-                    // (uint)keysToPlay[enumerator.Current].Length is the number of INPUT structures in the keysToPlay array
-                    // keysToPlay[enumerator.Current] is the current entry in the array of INPUT structures, keysToPlay
+                    // (uint)inputsToPlay[enumerator.Current].Length is the number of INPUT structures in the inputsToPlay array
+                    // inputsToPlay[enumerator.Current] is the current entry in the array of INPUT structures, inputsToPlay
                     // Marshal.SizeOf(typeof(INPUT)) is the size of an INPUT structure
                     // The return parameter, err, is the status code of the sendInput call, returns 1 if successful, 0 if not
-                    uint err = SendInput((uint)keysToPlay[enumerator.Current].Length, keysToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
+                    uint err = SendInput((uint)inputsToPlay[enumerator.Current].Length, inputsToPlay[enumerator.Current], Marshal.SizeOf(typeof(INPUT)));
                 }
 
                 currentEntry = enumerator.Current; //Updates the currentEntry to the entry just played
@@ -223,7 +200,7 @@ namespace SequenceAutomation
          * Method: prepareKeysToPlay()
          * Summary: Translates the keysDict entries into INPUT structures that are necessary for the sendInput call
          */
-        private void prepareKeysToPlay()
+        private void prepareInputsToPlay()
         {
             // For each key-value pair in the keysDict dictionary
             foreach (KeyValuePair<long, Dictionary<Keys, IntPtr>> kvp in keysDict)
@@ -238,31 +215,38 @@ namespace SequenceAutomation
                     inputs.Add(loadKey(kvp3.Key, getFlags(kvp3.Value)));
                 }
 
-                // Load the time value (kvp.Key) and list of inputs to the keysToPlay dictionary
-                keysToPlay.Add(kvp.Key, inputs.ToArray());
+                // Load the time value (kvp.Key) and list of inputs to the inputsToPlay dictionary
+                inputsToPlay.Add(kvp.Key, inputs.ToArray());
             }
 
+            // For each key-value pair in the keysDict dictionary
             foreach (KeyValuePair<long, Dictionary<IntPtr, Dictionary<string, int>>> mouseKvp in mouseDict)
             {
+                // Create a list of inputs
                 List<INPUT> inputs = new List<INPUT>();
-
                 foreach (KeyValuePair<IntPtr, Dictionary<string, int>> mouseKvp2 in mouseKvp.Value)
                 {
+                    // Initialise the X and Y variables
                     int x = 0;
                     int y = 0;
+
+                    // Iterate over the X and Y coordinates of the current key-value
                     foreach (KeyValuePair<string, int> mouseKvp3 in mouseKvp2.Value)
                     {
+                        // Assign the X and Y values accordingly
                         if (mouseKvp3.Key == "X")
                             x = Convert.ToInt32(mouseKvp3.Value);
                         if (mouseKvp3.Key == "Y")
                             y = Convert.ToInt32(mouseKvp3.Value);
                     }
 
+                    // Convert the x and y coordinate values to pixel values 
                     x = 65535 * x / Screen.PrimaryScreen.WorkingArea.Width;
                     y = 65535 * y / Screen.PrimaryScreen.WorkingArea.Height;
                     inputs.Add(loadMouse(x, y, getFlags(mouseKvp2.Key) | 0x8000 ));
                 }
-                keysToPlay.Add(mouseKvp.Key, inputs.ToArray());
+                // Load the time value (mouseKvp.Key) and list of inputs to the inputsToPlay dictionary
+                inputsToPlay.Add(mouseKvp.Key, inputs.ToArray());
             }
         }
 
@@ -272,7 +256,6 @@ namespace SequenceAutomation
          * Parameter: activity - The key or mouse activity (up, down, click etc.)
          * Return: An insigned integer representing either the appropriate hex code
          */
-         
         private uint getFlags(IntPtr activity)
         {
             string activityInt = Convert.ToString(activity);
@@ -326,7 +309,14 @@ namespace SequenceAutomation
             };
         }
 
-
+        /*
+         * Method: loadMouse()
+         * Summary: Creates an INPUT structure from mouse activity
+         * Parameter: x - The X coordinate of the mouse input
+         * Parameter: y - The Y coordinate of the mouse input
+         * Parameter: flags - Flags representing the mouse activity (click, move etc.)
+         * Return: An INPUT structure comprising the necessary information as specified in the above data structure
+         */
         private INPUT loadMouse(int x, int y, uint flags)
         {
             return new INPUT

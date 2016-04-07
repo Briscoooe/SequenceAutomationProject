@@ -6,11 +6,6 @@ namespace SequenceAutomation
 {
     public class SearchBox : TextBox
     {
-        /* 
-         * TODO
-         * Commmenting
-         */
-
         private static Font SearchTextFont;
 
         public SearchBox()
@@ -20,7 +15,7 @@ namespace SequenceAutomation
 
         private void Initialize()
         {
-            SearchTextFont = new Font("Century Gothic", 16, FontStyle.Italic);
+            SearchTextFont = new Font("Segoe UI", 16, FontStyle.Italic);
         }
 
         protected override void WndProc(ref Message m)
