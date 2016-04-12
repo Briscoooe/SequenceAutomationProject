@@ -256,77 +256,85 @@ namespace SequenceAutomation
             var props = keysObject.Properties().ToList();
             foreach (var prop in props)
             {
-                long time = Convert.ToInt64(prop.Name);
-                foreach(JProperty layer3 in prop.Value)
+                try
                 {
-                    // If a context object is reached
-                    if (layer3.Name == "Open windows")
+                    long time = Convert.ToInt64(prop.Name);
+                    foreach (JProperty layer3 in prop.Value)
                     {
-                        // Add the time key
-                        if (!contextDict.ContainsKey(time))
-                            contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
-
-                        foreach (JProperty layer4 in layer3.Value)
+                        // If a context object is reached
+                        if (layer3.Name == "Open windows")
                         {
-                            // Add the "Open windows" key
-                            if (!contextDict[time].ContainsKey("Open windows"))
-                                contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
+                            // Add the time key
+                            if (!contextDict.ContainsKey(time))
+                                contextDict.Add(time, new Dictionary<string, Dictionary<IntPtr, string>>());
 
-                            // Add the window handle and title
-                            IntPtr windowHandle = new IntPtr(randomNum.Next());
-                            contextDict[time]["Open windows"].Add(windowHandle, Convert.ToString(layer4.Value));
+                            foreach (JProperty layer4 in layer3.Value)
+                            {
+                                // Add the "Open windows" key
+                                if (!contextDict[time].ContainsKey("Open windows"))
+                                    contextDict[time].Add("Open windows", new Dictionary<IntPtr, string>());
+
+                                // Add the window handle and title
+                                IntPtr windowHandle = new IntPtr(randomNum.Next());
+                                contextDict[time]["Open windows"].Add(windowHandle, Convert.ToString(layer4.Value));
+                            }
+                        }
+
+                        // If a mouse object is reached
+                        else if(layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
+                                layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
+                        {
+                            // Create a new entry in the mouse dictionary
+                            if (!mouseDict.ContainsKey(time))
+                                mouseDict.Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
+
+                            foreach (JProperty layer4 in layer3.Value)
+                            {
+                                // Initialise the mouse message pointer which represents the mouse action (left click, right click etc.)
+                                IntPtr mouseMessage = (IntPtr)Convert.ToInt32(layer3.Name);
+
+                                // Add the mouseMessage key to the dictionary
+                                if (!mouseDict[time].ContainsKey(mouseMessage))
+                                    mouseDict[time].Add(mouseMessage, new Dictionary<string, int>());
+
+                                // Add the coordinates to the mouse dictionary
+                                if (!mouseDict[time][mouseMessage].ContainsKey(layer4.Name))
+                                    mouseDict[time][mouseMessage].Add(layer4.Name, Convert.ToInt32(layer4.Value));
+                            }
+                        }
+                        // If a key object is reached
+                        else
+                        {
+                            // Iterate over the key-action key-value pairs
+                            foreach (JProperty layer4 in layer3.Value)
+                            {
+                                // Declare the key action pointer
+                                IntPtr keyAction;
+
+                                // Initialise the key name
+                                Keys keyName;
+                                Enum.TryParse(layer3.Name, out keyName);
+
+                                // Declare the action pointer
+                                if (Convert.ToString(layer4.Value) == "256")
+                                    keyAction = (IntPtr)0x0100;
+                                else
+                                    keyAction = (IntPtr)0x0101;
+
+                                // Create the dictionary entry
+                                if (!keysDict.ContainsKey(time))
+                                    keysDict.Add(time, new Dictionary<Keys, IntPtr>());
+
+                                // Add the entry to the keysDict dictionary
+                                keysDict[time].Add(keyName, keyAction);
+                            }
                         }
                     }
+                }
 
-                    // If a mouse object is reached
-                    else if(layer3.Name == "512" || layer3.Name == "513" || layer3.Name == "514" ||
-                            layer3.Name == "516" || layer3.Name == "517" || layer3.Name == "522")
-                    {
-                        // Create a new entry in the mouse dictionary
-                        if (!mouseDict.ContainsKey(time))
-                            mouseDict.Add(time, new Dictionary<IntPtr, Dictionary<string, int>>());
-
-                        foreach (JProperty layer4 in layer3.Value)
-                        {
-                            // Initialise the mouse message pointer which represents the mouse action (left click, right click etc.)
-                            IntPtr mouseMessage = (IntPtr)Convert.ToInt32(layer3.Name);
-
-                            // Add the mouseMessage key to the dictionary
-                            if (!mouseDict[time].ContainsKey(mouseMessage))
-                                mouseDict[time].Add(mouseMessage, new Dictionary<string, int>());
-
-                            // Add the coordinates to the mouse dictionary
-                            if (!mouseDict[time][mouseMessage].ContainsKey(layer4.Name))
-                                mouseDict[time][mouseMessage].Add(layer4.Name, Convert.ToInt32(layer4.Value));
-                        }
-                    }
-                    // If a key object is reached
-                    else
-                    {
-                        // Iterate over the key-action key-value pairs
-                        foreach (JProperty layer4 in layer3.Value)
-                        {
-                            // Declare the key action pointer
-                            IntPtr keyAction;
-
-                            // Initialise the key name
-                            Keys keyName;
-                            Enum.TryParse(layer3.Name, out keyName);
-
-                            // Declare the action pointer
-                            if (Convert.ToString(layer4.Value) == "256")
-                                keyAction = (IntPtr)0x0100;
-                            else
-                                keyAction = (IntPtr)0x0101;
-
-                            // Create the dictionary entry
-                            if (!keysDict.ContainsKey(time))
-                                keysDict.Add(time, new Dictionary<Keys, IntPtr>());
-
-                            // Add the entry to the keysDict dictionary
-                            keysDict[time].Add(keyName, keyAction);
-                        }
-                    }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
